@@ -1,0 +1,30 @@
+{
+  "name": "play-14-api",
+  "private": true,
+  "version": "0.1.0",
+  "description": "#play14 api",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.1.0",
+    "@strapi/plugin-users-permissions": "4.1.0",
+    "@strapi/strapi": "4.1.0",
+    "pg": "^8.7.3"
+  },
+  "author": {
+    "name": "Cédric Pontet"
+  },
+  "strapi": {
+    "uuid": "57f1478c-cf26-4149-8239-82091268fbc1"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
