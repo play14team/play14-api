@@ -37,3 +37,15 @@ yarn build
 ```
 docker build -t play14/api .
 ```
+
+Pay attention to the . at the end of the line
+
+### Run docker container
+
+```
+docker run -p 1337:1337 -it --env-file=./.env --name play14-api play14/api
+```
+
+This command uses the `.env` file content to provide environement variables to the container. This is mostly useful for database configuration. Alternatively, you can use the `-e` option.
+
+For more information, refer to the [docker run](https://docs.docker.com/engine/reference/commandline/run/) documentation
