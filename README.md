@@ -49,3 +49,8 @@ docker run -p 1337:1337 -it --env-file=./.env --name play14-api play14/api
 This command uses the `.env` file content to provide environement variables to the container. This is mostly useful for database configuration. Alternatively, you can use the `-e` option.
 
 For more information, refer to the [docker run](https://docs.docker.com/engine/reference/commandline/run/) documentation
+
+### Configure upload provider
+
+Use [Strapi Provider Upload Azure Storage](https://github.com/jakeFeldman/strapi-provider-upload-azure-storage)
+
