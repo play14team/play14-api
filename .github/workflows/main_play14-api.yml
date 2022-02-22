@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_835ecbb1ba404135920eb76728f8e6fb }}/play14containerregistry/play14/api:${{ github.sha }}
+        tags: play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_835ecbb1ba404135920eb76728f8e6fb }}/play14/api:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'play14-api'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_40851a2f32b141dea6eecf09f0709f80 }}
-        images: 'play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_835ecbb1ba404135920eb76728f8e6fb }}/play14containerregistry/play14/api:${{ github.sha }}'
+        images: 'play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_835ecbb1ba404135920eb76728f8e6fb }}/play14/api:${{ github.sha }}'
