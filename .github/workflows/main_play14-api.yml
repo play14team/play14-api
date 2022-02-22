@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://play14containerregistry.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_835ecbb1ba404135920eb76728f8e6fb }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_f5e18e1cb0224bbc9d453c82f788bf13 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_7ef9324b36614400b4479858c0faebe4 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_2142a127a01b4104a7ab901cc98c26b5 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_835ecbb1ba404135920eb76728f8e6fb }}/play14/api:${{ github.sha }}
+        tags: play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7ef9324b36614400b4479858c0faebe4 }}/play14/api:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'play14-api'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_40851a2f32b141dea6eecf09f0709f80 }}
-        images: 'play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_835ecbb1ba404135920eb76728f8e6fb }}/play14/api:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_95e9402284f4458f84b25dbaf572a581 }}
+        images: 'play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_7ef9324b36614400b4479858c0faebe4 }}/play14/api:${{ github.sha }}'
