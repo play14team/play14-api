@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_registration_link_registrations",
+  "info": {
+    "displayName": "LinkRegistration",
+    "icon": "unlink",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
