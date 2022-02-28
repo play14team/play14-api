@@ -30,22 +30,22 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ffe5bfecd7584141bc1b74ac070c90aa }}/play14-api:${{ github.sha }}
+        tags: play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ffe5bfecd7584141bc1b74ac070c90aa }}/play14-api:${{ github.sha }},play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ffe5bfecd7584141bc1b74ac070c90aa }}/play14-api:latest
         file: ./Dockerfile
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   environment:
+  #     name: 'production'
+  #     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'play14-api'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b9c54e1016074722b61429a6ce37bc1c }}
-        images: 'play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ffe5bfecd7584141bc1b74ac070c90aa }}/play14-api:${{ github.sha }}'
+  #   steps:
+  #   - name: Deploy to Azure Web App
+  #     id: deploy-to-webapp
+  #     uses: azure/webapps-deploy@v2
+  #     with:
+  #       app-name: 'play14-api'
+  #       slot-name: 'production'
+  #       publish-profile: ${{ secrets.AzureAppService_PublishProfile_b9c54e1016074722b61429a6ce37bc1c }}
+  #       images: 'play14containerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ffe5bfecd7584141bc1b74ac070c90aa }}/play14-api:${{ github.sha }}'
