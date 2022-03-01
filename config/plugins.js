@@ -1,4 +1,10 @@
 module.exports = ({ env }) => ({
+  transformer: {
+    enabled: true,
+    config: {
+      prefix: '/api/'
+    }
+  },
   upload: {
     config: {
       provider: 'strapi-provider-upload-azure-storage',
