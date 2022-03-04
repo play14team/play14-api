@@ -5,6 +5,10 @@ module.exports = ({ env }) => ({
       prefix: '/api/'
     }
   },
+  'strapi-tiptap-editor': {
+    enabled: true,
+    resolve: './node_modules/strapi-tiptap-editor'
+  },
   upload: {
     config: {
       provider: 'strapi-provider-upload-azure-storage',
