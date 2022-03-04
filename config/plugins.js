@@ -9,6 +9,21 @@ module.exports = ({ env }) => ({
     enabled: true,
     resolve: './node_modules/strapi-tiptap-editor'
   },
+  'website-builder': {
+    enabled: true,
+    config: {
+      url: 'https://api.vercel.com/v1/integrations/deploy/prj_U1wjY8CZ3cCXxTe20hYlChK4r2fA/RtFvN1P3hc',
+      trigger: {
+        type: 'event',
+        events: [
+          {
+            model: 'events',
+            types: ['create', 'update', 'delete'],
+          },
+        ],
+      },
+    }
+  },
   upload: {
     config: {
       provider: 'strapi-provider-upload-azure-storage',

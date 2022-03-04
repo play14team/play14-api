@@ -10317,6 +10317,11 @@ strapi-plugin-transformer@^1.0.3:
   resolved "https://registry.yarnpkg.com/strapi-plugin-transformer/-/strapi-plugin-transformer-1.0.3.tgz#83872270620d76123d1bd407c4ba24fa5a4a1d24"
   integrity sha512-NVD9z5TEGgQATiYHJEsdpo9biPxPm0SYoL31S+1V9HAHPxqq6ZLkRDpgLOGddEVY7ba9QHZ2EipICSIOKpedPg==
 
+strapi-plugin-website-builder@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-website-builder/-/strapi-plugin-website-builder-2.1.0.tgz#400a2eb3b14285ce3d0e2e2bd3aa2c3f819e79d1"
+  integrity sha512-VVjNivxR+5i30uqx80bl0VF1puycIjq3s6r/6MFD5gnQJe8HgqnjybikkZuzYDRUXFc9lj0vssWzX2Qy182Xbg==
+
 strapi-provider-upload-azure-storage@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strapi-provider-upload-azure-storage/-/strapi-provider-upload-azure-storage-2.0.0.tgz#487c750b8cdc3a0b5d3e450ec1277a0e4ff8b7d9"

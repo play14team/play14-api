@@ -19,6 +19,7 @@
     "slugify": "^1.6.5",
     "strapi-plugin-entity-relationship-chart": "^4.0.2",
     "strapi-plugin-transformer": "^1.0.3",
+    "strapi-plugin-website-builder": "^2.1.0",
     "strapi-provider-upload-azure-storage": "^2.0.0",
     "strapi-tiptap-editor": "^0.6.0"
   },
