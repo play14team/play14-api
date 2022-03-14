@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "event_locations",
+  "info": {
+    "singularName": "event-location",
+    "pluralName": "event-locations",
+    "displayName": "EventLocation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "Country": {
+      "type": "string",
+      "required": true
+    },
+    "events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event.event",
+      "mappedBy": "location"
+    }
+  }
+}

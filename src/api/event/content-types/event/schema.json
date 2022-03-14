@@ -76,6 +76,18 @@
         }
       },
       "type": "richtext"
+    },
+    "location": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event-location.event-location",
+      "inversedBy": "events"
+    },
+    "venue": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::venue.venue",
+      "inversedBy": "events"
     }
   }
 }
