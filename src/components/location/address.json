@@ -11,9 +11,6 @@
       "type": "string",
       "required": true
     },
-    "number": {
-      "type": "string"
-    },
     "postalCode": {
       "type": "string"
     },
