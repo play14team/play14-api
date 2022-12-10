@@ -28,6 +28,7 @@
     "strapi-plugin-import-export-entries": "^1.18.0",
     "strapi-plugin-multi-select": "^1.1.0",
     "strapi-plugin-populate-deep": "^1.1.2",
+    "strapi-plugin-postgis": "^0.1.7",
     "strapi-plugin-transformer": "^2.1.1",
     "strapi-plugin-vercel-deploy": "^1.4.0",
     "strapi-provider-upload-azure-storage": "^2.1.0"
