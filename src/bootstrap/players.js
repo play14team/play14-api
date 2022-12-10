@@ -18,10 +18,7 @@ function transformToJson(mdDir, jsonDir) {
             for( const file of files ) {
                 const mdPath = path.join( mdDir, file );
                 const jsonFile = path.join( jsonDir, changeExtension(file, '.json'));
-
-                console.log( "Converting '%s'", mdPath);
                 yaml2json(mdPath, jsonFile);
-                console.log( "Converted to '%s'", jsonFile );
             }
         }
         catch( e ) {
@@ -30,17 +27,17 @@ function transformToJson(mdDir, jsonDir) {
     })();
 }
 
+function changeExtension(file, extension) {
+    const basename = path.basename(file, path.extname(file))
+    return path.join(path.dirname(file), basename + extension)
+}
+
 function yaml2json(inputfile, outputfile) {
     const data = fs.readFileSync(inputfile, {encoding: 'utf-8'});
     const split = data.split('---');
     cleanData = split.length > 2 ? split[1] : data;
     const obj = yaml.load(cleanData);
     fs.writeFileSync(outputfile, JSON.stringify(obj, null, 2));
-}
-
-function changeExtension(file, extension) {
-    const basename = path.basename(file, path.extname(file))
-    return path.join(path.dirname(file), basename + extension)
 }
 
 module.exports = { importData };
