@@ -1,30 +1,37 @@
 module.exports = ({ env }) => ({
-  transformer: {
+  'ckeditor': true,
+  'seo': {
+    enabled: true,
+  },
+  'transformer': {
     enabled: true,
     config: {
-      prefix: '/api/'
+      prefix: '/api/',
+      responseTransforms: {
+        removeAttributesKey: true,
+        removeDataKey: true,
+      }
     }
   },
-  'strapi-tiptap-editor': {
-    enabled: true,
-    resolve: './node_modules/strapi-tiptap-editor'
-  },
-  'website-builder': {
+  'vercel-deploy': {
     enabled: true,
     config: {
-      url: 'https://api.vercel.com/v1/integrations/deploy/prj_U1wjY8CZ3cCXxTe20hYlChK4r2fA/RtFvN1P3hc',
-      trigger: {
-        type: 'event',
-        events: [
-          {
-            model: 'events',
-            types: ['create', 'update', 'delete'],
-          },
-        ],
-      },
+      deployHook: process.env.VERCEL_DEPLOY_PLUGIN_HOOK,
+      apiToken: process.env.VERCEL_DEPLOY_PLUGIN_API_TOKEN,
+      appFilter: process.env.VERCEL_DEPLOY_PLUGIN_APP_FILTER,
+      teamFilter: process.env.VERCEL_DEPLOY_PLUGIN_TEAM_FILTER,
+      roles: ["strapi-super-admin", "strapi-editor", "strapi-author"],
     }
   },
-  upload: {
+  'strapi-plugin-populate-deep': {
+    config: {
+      defaultDepth: 3, // Default is 5
+    }
+  },
+  'import-export-entries': {
+    enabled: true,
+  },
+  'upload': {
     config: {
       provider: 'strapi-provider-upload-azure-storage',
       providerOptions: {

@@ -29,4 +29,8 @@ module.exports = ({ env }) => ({
     from: 'admin@play14.org',
     replyTo: 'admin@play14.org',
   },
+  watchIgnoreFiles: [
+    '**/config/sync/**',
+    '**/bootstrap/**',
+  ],
 });

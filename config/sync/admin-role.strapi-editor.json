@@ -1,0 +1,124 @@
+{
+  "name": "Editor",
+  "code": "strapi-editor",
+  "description": "Editors can manage and publish contents including those of other users.",
+  "permissions": [
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::event.event",
+      "properties": {
+        "fields": [
+          "name",
+          "start",
+          "end",
+          "status",
+          "timetable.day",
+          "timetable.description",
+          "timetable.timeslots.time",
+          "timetable.timeslots.description",
+          "registration.link.url",
+          "registration.widget.code"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::event.event",
+      "properties": {
+        "fields": [
+          "name",
+          "start",
+          "end",
+          "status",
+          "timetable.day",
+          "timetable.description",
+          "timetable.timeslots.time",
+          "timetable.timeslots.description",
+          "registration.link.url",
+          "registration.widget.code"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::event.event",
+      "properties": {
+        "fields": [
+          "name",
+          "start",
+          "end",
+          "status",
+          "timetable.day",
+          "timetable.description",
+          "timetable.timeslots.time",
+          "timetable.timeslots.description",
+          "registration.link.url",
+          "registration.widget.code"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::venue.venue",
+      "properties": {
+        "fields": [
+          "name"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::venue.venue",
+      "properties": {
+        "fields": [
+          "name"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::venue.venue",
+      "properties": {
+        "fields": [
+          "name"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.copy-link",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.create",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.download",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.assets.update",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.read",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    }
+  ]
+}
