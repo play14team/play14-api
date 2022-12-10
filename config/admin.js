@@ -31,6 +31,7 @@ module.exports = ({ env }) => ({
   },
   watchIgnoreFiles: [
     '**/config/sync/**',
-    '**/bootstrap/**',
+    '**/bootstrap/md/**',
+    '**/bootstrap/json/**',
   ],
 });

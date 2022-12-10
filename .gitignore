@@ -114,4 +114,4 @@ build
 .strapi-updater.json
 
 appSettings.json
-/src/bootstrap/json
+**/bootstrap/json

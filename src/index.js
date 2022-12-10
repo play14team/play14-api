@@ -1,5 +1,5 @@
 'use strict';
-const players = require('./bootstrap/players.js')
+const players = require('../bootstrap/players.js')
 
 module.exports = {
   /**
