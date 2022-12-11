@@ -20,6 +20,7 @@
     "@strapi/plugin-users-permissions": "4.5.3",
     "@strapi/strapi": "4.5.3",
     "js-yaml": "^4.1.0",
+    "mime": "^3.0.0",
     "pg": "^8.7.3",
     "slugify": "^1.6.5",
     "strapi-plugin-config-sync": "^1.1.0",
