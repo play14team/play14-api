@@ -4,6 +4,9 @@ const mime = require('mime');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 const yaml = require('js-yaml');
 const slugify = require('slugify');
+const { endianness } = require("os");
+const { entries } = require("lodash");
+const playerApiName = 'api::player.player';
 
 function importData() {
 	console.log("Importing players");
@@ -74,8 +77,9 @@ function yaml2json(inputfile) {
 function uploadFileAndCreateOrUpdatePlayer(player, folderId) {
 	(async () => {
 		try {
-			let file = await uploadFile(player, folderId);
-			await createOrUpdatePlayer(player, file);
+			const file = await uploadFile(player, folderId);
+			const entityId = await mapPlayer(player, file);
+			//await mapSocialMedia(player, entityId)
 		} catch (error) {
 			console.log(error);
 		}
@@ -87,7 +91,6 @@ async function uploadFile(player, folderId) {
 	const extension = path.extname(player.avatar);
 	const fileName = slug + extension;
 	const filePath = path.join(bootstrapDir, player.avatar ?? "images/players/default.png");
-	const stats = fs.statSync(filePath);
 
 	const uploadApi = await strapi.query("plugin::upload.file");
 	let file = await uploadApi.findOne({
@@ -111,7 +114,6 @@ async function uploadFile(player, folderId) {
 				path: filePath,
 				name: fileName,
 				type: mime.getType(filePath),
-				size: stats.size,
 			},
 		});
 
@@ -124,10 +126,10 @@ async function uploadFile(player, folderId) {
 	return file;
 }
 
-async function createOrUpdatePlayer(player, file) {
+async function mapPlayer(player, file) {
 	const slug = mapSlug(player.name);
 
-	const playerApi = strapi.query('api::player.player');
+	const playerApi = strapi.query(playerApiName);
 	let entry = await playerApi.findOne({
 		where: {
 			slug: slug
@@ -143,25 +145,31 @@ async function createOrUpdatePlayer(player, file) {
 		position: capitalize(player.position),
 		company: player.company,
 		bio: player.bio,
-		//socialNetworks: mapSocialMedia(player.socials),
-		// events: mapEvents(player.events),
+    // socialNetworks: [
+    //     {
+    //         type: "Twitter",
+    //         url: "cpontet",
+    //     }
+    // ],
 		avatar: file
 	};
 
 	if (!entry) {
 		console.log("Create player");
-		await playerApi.create({
+		entry = await playerApi.create({
 			data: playerData
 		});
 	} else {
 		console.log("Update player");
-		await playerApi.update({
+		entry = await playerApi.update({
 			where: {
 				id: entry.id
 			},
 			data: playerData
 		});
 	}
+
+  return entry.id;
 }
 
 function mapSlug(name) {
@@ -170,17 +178,73 @@ function mapSlug(name) {
 	}).toLowerCase();
 }
 
-function mapSocialMedia(socials) {
+async function mapSocialMedia(player, entityId) {
+	if (player.socials) {
+		const entry = await strapi.entityService.findOne(playerApiName, entityId);
+    if (entry) {
+        // entry was found
+        const socialNetworks = createSocialMedia(player.socials);
+        entry.socialNetworks = socialNetworks;
+        console.log(entry);
+        await strapi.entityService.update(playerApiName, entry.id, entry);
+    }
+	}
+}
+
+function createSocialMedia(socials) {
 	if (socials)
 		return socials.map(s => {
-			const url = s.url ? s.url.toString() : "";
 			return {
-				url: url,
+				url: mapUrl(s.url),
 				type: mapSocialMediaName(s.name)
 			}
 		});
 
 	return [];
+}
+
+function updateSocialMedia(entry, player) {
+    if (!player.socials)
+        return [];
+
+    let socialsData = [];
+    player.socials.forEach(social => {
+        if (!entry.socialNetworks) {
+            console.log("Create new social networks")
+            socialsData.push( {
+                type: mapSocialMediaName(social.name),
+                url: mapUrl(social.url)
+            });
+        }
+        else {
+            entry.socialNetworks.forEach(socialNetwork => {
+                if (socialNetwork.type == mapSocialMediaName(social.name)) {
+                    console.log("Update social networks")
+                    // socialsData.push( {
+                    //     id: socialNetwork.id,
+                    //     type: socialNetwork.type,
+                    //     url: mapUrl(social.url)
+                    // });
+                }
+                else {
+                    console.log("Add new social networks")
+                    // socialsData.push( {
+                    //     type: mapSocialMediaName(social.name),
+                    //     url: mapUrl(social.url)
+                    // });
+                }
+
+            })
+        }
+    })
+    return socialsData;
+}
+
+function mapUrl(url) {
+	if (url)
+		return url.toString();
+
+	return "";
 }
 
 function mapSocialMediaName(name) {
