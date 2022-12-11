@@ -1,10 +1,10 @@
-var path = require("path");
+const path = require("path");
 const fs = require("fs");
+const mime = require('mime');
 const axios = require("axios");
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 const yaml = require('js-yaml');
-const slugify = require('slugify')
-
+const slugify = require('slugify');
 
 function importData() {
     console.log("Importing players");
@@ -24,19 +24,23 @@ function transformToJson(mdDir) {
               const mdPath = path.join( mdDir, file );
               const player = yaml2json(mdPath);
               try {
-                    const dbPlayer = mapToDatabase(player);
-                    const entries = await strapi.entityService.findMany(apiName, {
-                        fields: ['id'],
-                        filters: { name: player.name },
-                    });
+                    createAndLinkFile(player, 7);
 
-                    if (entries.length == 0) {
-                        console.log("Insterting ", player.name);
-                        await strapi.entityService.create(apiName, dbPlayer);
-                    } else {
-                        console.log("Updating ", player.name);
-                        await strapi.entityService.update(apiName, entries[0].id, dbPlayer);
-                    };
+                    // const dbPlayer = mapToDatabase(player);
+                    // const entries = await strapi.entityService.findMany(apiName, {
+                    //     fields: ['id'],
+                    //     filters: { name: player.name },
+                    // });
+
+                    // uploadFile(player);
+
+                    // if (entries.length == 0) {
+                    //     console.log("Insterting ", player.name);
+                    //     await strapi.entityService.create(apiName, dbPlayer);
+                    // } else {
+                    //     console.log("Updating ", player.name);
+                    //     await strapi.entityService.update(apiName, entries[0].id, dbPlayer);
+                    // };
                     players.push(player)
                 } catch (error) {
                     failed.push(player)
@@ -67,31 +71,15 @@ function mapToDatabase(player) {
             position: capitalize(player.position),
             company: player.company,
             bio: player.bio,
-            // avatar: mapAvatar(player.avatar),
             socialNetworks: mapSocialMedia(player.socials),
-            // events: mapEvents(player.events),
+            events: mapEvents(player.events),
         },
-        files: mapToFiles(player),
+        //files: mapAvatar(player),
     };
-}
-
-function mapToFiles(player) {
-    if (player.avatar)
-        return {
-            image: {
-                path: path.join(bootstrapDir, player.avatar),
-                name: mapSlug(player.name) + path.extname(player.avatar),
-            }
-        };
-    return null;
 }
 
 function mapSlug(name) {
     return slugify(name, {remove: /[*+~.()'"!:@]/g}).toLowerCase();
-}
-
-function mapAvatar(avatar) {
-    return null;
 }
 
 function mapSocialMedia(socials) {
@@ -122,86 +110,154 @@ function mapEvents(events) {
 }
 
 function changeExtension(file, extension) {
-    const basename = path.basename(file, path.extname(file))
-    return path.join(path.dirname(file), basename + extension)
+    return path.join(path.dirname(file), basename(file) + extension)
 }
 
-function uploadFile(file) {
-    const filePath = path.join(bootstrapDir, file);
+function basename(file){
+    return path.basename(file, path.extname(file))
+}
+
+function uploadFile(player) {
+    const uploadService = strapi.plugins.upload.services.upload;
+    const folderName = "players";
+
+    const slug = mapSlug(player.name);
+    const fileName = slug + path.extname(player.avatar);
+    const filePath = path.join(folderName, fileName);
+    const folderId = ensureUloadFolder(folderName);
+
+    console.log("Uploading " + filePath);
+
+    const file = {
+        path: path.join(bootstrapDir, player.avatar),
+        name: fileName
+    };
+
     (async ()=> {
-        await strapi.entityService.uploadFiles(entry, {
-        'files.avatar': fs.createReadStream(filePath)
-        }, {
-            model: strapi.models.player.modelName
-        });
+        uploadService.upload({
+            data: {
+              path: filePath,
+              fileInfo: {folder: folderId},
+            },
+            files: file
+          });
     })();
 }
 
-// const files = {
-//     image: {
-//       path: [String],
-//       name: [String],
-//       type: [String],
-//       size: [Number],
-//     },
-//     images: [{
-//       path: [String],
-//       name: [String],
-//       type: [String],
-//       size: [Number],
-//     },
-//     {
-//       path: [String],
-//       name: [String],
-//       type: [String],
-//       size: [Number],
-//     }],
-//   };
+function ensureUloadFolder(folderName) {
+    const folderApiName = 'plugin::upload.folder';
+    const folderService = strapi.plugins.upload.services.folder;
+    let folderId = 1;
 
-// await strapi.entityService.uploadFiles(entry, files, {
-//     model: strapi.models.product.modelName
-// });
+    (async ()=> {
+        let folder = await strapi.query(folderApiName).findOne({where: {name: folderName}});
+        if (!folder) {
+            await folderService.create({name: folderName})
+            folder = await strapi.query(folderApiName).findOne({where: {name: folderName}});
+            folderId = folder.id;
+            console.log(`Created folder ${folderName} with id ${folderId}`)
+        }
+    })();
+    return folderId;
+}
+
+const uploadUserFilesService = async (fileArray, firstLevelFolder) => {
+    const uploadService = strapi.plugins.upload.services.upload;
+    const folderService = strapi.plugins.upload.services.folder;
+
+    // FIRST LEVEL FOLDER BLOCK
+    let firstLevelFolderBase = await strapi.query('plugin::upload.folder').findOne({where: {name: firstLevelFolder}});
+    if (!firstLevelFolderBase) {
+      await folderService.create({name: firstLevelFolder})
+      firstLevelFolderBase = await strapi.query('plugin::upload.folder').findOne({where: {name: firstLevelFolder}});
+    }
+
+    // NOW LETS UPDATE THE FILES
+    const uploadedFiles = await Promise.map(fileArray, async (file) => {
+        return uploadService.upload({
+          data: {
+            path: path.join(firstLevelFolder, ),
+            fileInfo: {folder: firstLevelFolderBase.id},
+          },
+          files: file
+        })
+      }
+    );
+}
 
 
 
-// function importSongs() {
-//     fs.readdir(importDir, (error, files) => {
-//       if (error) {
-//         console.log('Error!', error);
-//       } else {
-//         files.forEach((file) => {
+function createAndLinkFile(player, folderId) {
+    (async ()=> {
+        try {
+            const slug = mapSlug(player.name);
+            const api = strapi.query('api::player.player');
 
-//           // check for .mp3 file name ending
-//           if (file.indexOf('.mp3') < 0) {
-//             return;
-//           }
+            const extension = path.extname(player.avatar);
+            const fileName = slug + extension;
+            const filePath = path.join(bootstrapDir, player.avatar ?? "images/players/default.png");
+            const stats = fs.statSync(filePath);
 
-//           const form = new FormData();
-//           form.append('data', JSON.stringify({
-//             title: file
-//           }));
-//           form.append('files.mp3', fs.createReadStream(`${importDir}/${file}`), file);
+            //upload file
+            const uploadApi = await strapi.query("plugin::upload.file");
+            let file = await uploadApi.findOne({
+                where: { name: fileName },
+            });
 
-//           const request = httpClient.request(
-//             {
-//               method: 'post',
-//               path: '/songs',
-//               host: strapiUrl.hostname,
-//               port: strapiUrl.port,
-//               protocol: strapiUrl.protocol,
-//               headers: {
-//                 ...form.getHeaders(),
-//                 Authorization: `Bearer ${jwt}`,
-//               }
-//             }, (res) => {
-//               res.on('error', (error) => {
-//                 console.log(`Error on file ${file}`, error);
-//               });
-//             });
-//             form.pipe(request);
-//         });
-//       }
-//     })
-//   }
+            if (file) {
+                console.log(`${fileName} already exists`);
+            }
+            else {
+                console.log(`Uploading ${fileName}`);
 
+                await strapi.plugins.upload.services.upload.upload({
+                    data: {
+                        fileInfo: {folder: folderId},
+                    },
+                    files: {
+                        path: filePath,
+                        name: fileName,
+                        type: mime.getType(filePath),
+                        size: stats.size,
+                    },
+                });
+
+                file = await uploadApi.findOne({
+                    where: { name: fileName },
+                });
+            }
+
+            //create or update player
+            let entry = await api.findOne({
+                where: { slug: slug },
+                populate: { avatar: true },
+			      });
+
+            const playerData = {
+                slug: slug,
+                name: player.name,
+                position: capitalize(player.position),
+                company: player.company,
+                bio: player.bio,
+                avatar: file
+                // socialNetworks: mapSocialMedia(player.socials),
+                // events: mapEvents(player.events),
+            };
+
+            if (!entry) {
+                console.log("Create player")
+                await api.create({ data: playerData});
+            }
+            else {
+                console.log("Update player")
+                await api.update({
+                    where: { id: entry.id },
+                    data : playerData
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    })();
+}
 module.exports = { importData };
