@@ -18,8 +18,12 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   bootstrap() {
-    setTimeout(() => {
-      players.importData();
-    }, 1500);
+    if (process.env.BOOTSTRAP === "true")
+    {
+      console.log("Bootstrap started");
+      setTimeout(() => {
+        players.importData();
+      }, 1500);
+    }
   },
 };
