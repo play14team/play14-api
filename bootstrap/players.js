@@ -6,26 +6,38 @@ const yaml = require('js-yaml');
 const slugify = require('slugify');
 const playerApiName = 'api::player.player';
 
-function importData() {
+async function importData() {
 	console.log("Importing players");
 	const markdownDir = path.join(bootstrapDir, "md/players");
-	importPlayers(markdownDir)
+	await importPlayers(markdownDir);
 }
 
-function importPlayers(markdownDir) {
-    (async ()=>{
-        try {
-            const folderId = await ensureUloadFolder("players");
-            const files = await fs.promises.readdir( markdownDir );
+async function importPlayers(markdownDir) {
+    try {
+        const folderId = await ensureUloadFolder("players");
+        const files = await fs.promises.readdir( markdownDir );
 
-            for(const file of files ) {
-                createOrUpdatePlayer(path.join(markdownDir, file), folderId);
-            }
-        }
-        catch(error) {
-            console.error(error);
-        }
-    })();
+        let succeeded = 0;
+        let failed = 0;
+
+        Promise.all(
+            files.map(file =>
+                {
+                    createOrUpdatePlayer(path.join(markdownDir, file), folderId)
+                        .then(_ => {
+                            succeeded++;
+                            console.log(`Progress ${succeeded + failed} on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            failed++;
+                        })
+                })
+        );
+    }
+    catch(error) {
+        console.error(error);
+    }
 }
 
 async function ensureUloadFolder(folderName) {
@@ -53,30 +65,24 @@ async function ensureUloadFolder(folderName) {
 }
 
 async function createOrUpdatePlayer(file, folderId) {
-    (async () => {
-        try {
-            const player = yaml2json(file);
-            const avatar = await uploadFile(player, folderId);
-            const playerData = mapPlayer(player, avatar);
+    const player = yaml2json(file);
+    const avatar = await uploadFile(player, folderId);
+    const playerData = mapPlayer(player, avatar);
 
-            const entries = await strapi.entityService.findMany(playerApiName, {
-                fields: ['id'],
-                filters: { name: player.name },
-            });
+    const entries = await strapi.entityService.findMany(playerApiName, {
+        fields: ['id'],
+        filters: { name: player.name },
+    });
 
-            if (entries.length == 0) {
-                console.log(`Insterting ${player.name}`);
-                await strapi.entityService.create(playerApiName, playerData);
-                console.log(`${player.name} inserted`);
-            } else {
-                console.log(`Updating ${player.name}`);
-                await strapi.entityService.update(playerApiName, entries[0].id, playerData);
-                console.log(`${player.name} updated`);
-            };
-        } catch (error) {
-            console.error(error);
-        }
-    })();
+    if (entries.length == 0) {
+        console.log(`Insterting ${player.name}`);
+        await strapi.entityService.create(playerApiName, playerData);
+        console.log(`${player.name} inserted`);
+    } else {
+        console.log(`Updating ${player.name}`);
+        await strapi.entityService.update(playerApiName, entries[0].id, playerData);
+        console.log(`${player.name} updated`);
+    };
 }
 
 function yaml2json(inputfile) {
@@ -91,43 +97,44 @@ function yaml2json(inputfile) {
 async function uploadFile(player, folderId) {
     if (!player.avatar)
         player.avatar = "images/players/default.png";
-	const slug = mapSlug(player.name);
-	const extension = path.extname(player.avatar);
-	const fileName = slug + extension;
-	const filePath = path.join(bootstrapDir, player.avatar);
 
-	const uploadApi = await strapi.query("plugin::upload.file");
-	let file = await uploadApi.findOne({
-		where: {
-			name: fileName
-		},
-	});
+    const slug = mapSlug(player.name);
+    const extension = path.extname(player.avatar);
+    const fileName = slug + extension;
+    const filePath = path.join(bootstrapDir, player.avatar);
 
-	if (file) {
-		console.log(`${fileName} already exists`);
-	} else {
-		console.log(`Uploading ${fileName}`);
+    const uploadApi = await strapi.query("plugin::upload.file");
+    let file = await uploadApi.findOne({
+        where: {
+        name: fileName
+        },
+    });
 
-		await strapi.plugins.upload.services.upload.upload({
-			data: {
-				fileInfo: {
-					folder: folderId
-				},
-			},
-			files: {
-				path: filePath,
-				name: fileName,
-				type: mime.getType(filePath),
-			},
-		});
+    if (file) {
+        console.log(`${fileName} already exists`);
+    } else {
+        console.log(`Uploading ${fileName}`);
 
-		file = await uploadApi.findOne({
-			where: {
-				name: fileName
-			},
-		});
-	}
-	return file;
+        await strapi.plugins.upload.services.upload.upload({
+        data: {
+            fileInfo: {
+            folder: folderId
+            },
+        },
+        files: {
+            path: filePath,
+            name: fileName,
+            type: mime.getType(filePath),
+        },
+        });
+
+        file = await uploadApi.findOne({
+        where: {
+            name: fileName
+        },
+        });
+    }
+    return file;
 }
 
 function mapPlayer(player, avatar) {
@@ -156,12 +163,12 @@ function mapSocialMedia(socials) {
 }
 
 function mapSocialMediaName(name) {
-	if (name.toLowerCase() === "google-plus")
-		return "Other"
-	if (name.toLowerCase() === "linkedin")
-		return "LinkedIn";
-	else
-		return capitalize(name);
+    if (name.toLowerCase() === "google-plus")
+        return "Other"
+    if (name.toLowerCase() === "linkedin")
+        return "LinkedIn";
+    else
+        return capitalize(name);
 }
 
 function mapEvents(events) {
@@ -169,15 +176,11 @@ function mapEvents(events) {
 }
 
 function mapSlug(name) {
-	return slugify(name, {
-		remove: /[*+~.()'"!:@]/g
-	}).toLowerCase();
+	return slugify(name, {remove: /[*+~.()'"!:@]/g}).toLowerCase();
 }
 
 function capitalize(name) {
 	return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-module.exports = {
-	importData
-};
+module.exports = { importData };
