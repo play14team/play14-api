@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_components::location.address",
+  "key": "plugin_content_manager_configuration_components::shared.meta-social",
   "value": {
-    "uid": "location.address",
+    "uid": "shared.meta-social",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "street",
-      "defaultSortBy": "street",
+      "mainField": "title",
+      "defaultSortBy": "title",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,88 +20,88 @@
           "sortable": false
         }
       },
-      "street": {
+      "socialNetwork": {
         "edit": {
-          "label": "street",
+          "label": "socialNetwork",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "street",
+          "label": "socialNetwork",
           "searchable": true,
           "sortable": true
         }
       },
-      "postalCode": {
+      "title": {
         "edit": {
-          "label": "postalCode",
+          "label": "title",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "postalCode",
+          "label": "title",
           "searchable": true,
           "sortable": true
         }
       },
-      "city": {
+      "description": {
         "edit": {
-          "label": "city",
+          "label": "description",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "city",
+          "label": "description",
           "searchable": true,
           "sortable": true
         }
       },
-      "country": {
+      "image": {
         "edit": {
-          "label": "country",
+          "label": "image",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "country",
-          "searchable": true,
-          "sortable": true
+          "label": "image",
+          "searchable": false,
+          "sortable": false
         }
       }
     },
     "layouts": {
       "list": [
         "id",
-        "street",
-        "postalCode",
-        "city"
+        "socialNetwork",
+        "title",
+        "description"
       ],
       "edit": [
         [
           {
-            "name": "street",
+            "name": "socialNetwork",
             "size": 6
           },
           {
-            "name": "postalCode",
+            "name": "title",
             "size": 6
           }
         ],
         [
           {
-            "name": "city",
+            "name": "description",
             "size": 6
           },
           {
-            "name": "country",
+            "name": "image",
             "size": 6
           }
         ]

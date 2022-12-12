@@ -96,8 +96,8 @@
       "list": [
         "id",
         "name",
-        "createdAt",
-        "updatedAt"
+        "Country",
+        "events"
       ],
       "edit": [
         [

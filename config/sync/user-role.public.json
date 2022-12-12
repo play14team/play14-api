@@ -10,6 +10,12 @@
       "action": "api::event.event.findOne"
     },
     {
+      "action": "api::player.player.find"
+    },
+    {
+      "action": "api::player.player.findOne"
+    },
+    {
       "action": "plugin::users-permissions.auth.callback"
     },
     {

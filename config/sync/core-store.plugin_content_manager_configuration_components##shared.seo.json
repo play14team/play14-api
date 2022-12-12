@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::venue.venue",
+  "key": "plugin_content_manager_configuration_components::shared.seo",
   "value": {
-    "uid": "api::venue.venue",
+    "uid": "shared.seo",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "name",
-      "defaultSortBy": "name",
+      "mainField": "metaTitle",
+      "defaultSortBy": "metaTitle",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -16,133 +16,132 @@
         "edit": {},
         "list": {
           "label": "id",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "name": {
-        "edit": {
-          "label": "name",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "name",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "address": {
-        "edit": {
-          "label": "address",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "address",
           "searchable": false,
           "sortable": false
         }
       },
-      "embeddedMapUrl": {
+      "metaTitle": {
         "edit": {
-          "label": "embeddedMapUrl",
+          "label": "metaTitle",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "embeddedMapUrl",
+          "label": "metaTitle",
           "searchable": true,
           "sortable": true
         }
       },
-      "logo": {
+      "metaDescription": {
         "edit": {
-          "label": "logo",
+          "label": "metaDescription",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "logo",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "website": {
-        "edit": {
-          "label": "website",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "website",
+          "label": "metaDescription",
           "searchable": true,
           "sortable": true
         }
       },
-      "socialNetworks": {
+      "metaImage": {
         "edit": {
-          "label": "socialNetworks",
+          "label": "metaImage",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "socialNetworks",
+          "label": "metaImage",
           "searchable": false,
           "sortable": false
         }
       },
-      "events": {
+      "metaSocial": {
         "edit": {
-          "label": "events",
+          "label": "metaSocial",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
-          "mainField": "name"
+          "editable": true
         },
         "list": {
-          "label": "events",
+          "label": "metaSocial",
           "searchable": false,
           "sortable": false
         }
       },
-      "createdAt": {
+      "keywords": {
         "edit": {
-          "label": "createdAt",
+          "label": "keywords",
           "description": "",
           "placeholder": "",
-          "visible": false,
+          "visible": true,
           "editable": true
         },
         "list": {
-          "label": "createdAt",
+          "label": "keywords",
           "searchable": true,
           "sortable": true
         }
       },
-      "updatedAt": {
+      "metaRobots": {
         "edit": {
-          "label": "updatedAt",
+          "label": "metaRobots",
           "description": "",
           "placeholder": "",
-          "visible": false,
+          "visible": true,
           "editable": true
         },
         "list": {
-          "label": "updatedAt",
+          "label": "metaRobots",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "structuredData": {
+        "edit": {
+          "label": "structuredData",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "structuredData",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "metaViewport": {
+        "edit": {
+          "label": "metaViewport",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "metaViewport",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "canonicalURL": {
+        "edit": {
+          "label": "canonicalURL",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "canonicalURL",
           "searchable": true,
           "sortable": true
         }
@@ -151,53 +150,62 @@
     "layouts": {
       "list": [
         "id",
-        "name",
-        "address",
-        "embeddedMapUrl"
+        "metaTitle",
+        "metaDescription",
+        "metaImage"
       ],
       "edit": [
         [
           {
-            "name": "name",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "address",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "embeddedMapUrl",
+            "name": "metaTitle",
             "size": 6
           },
           {
-            "name": "logo",
+            "name": "metaDescription",
             "size": 6
           }
         ],
         [
           {
-            "name": "website",
+            "name": "metaImage",
             "size": 6
           }
         ],
         [
           {
-            "name": "socialNetworks",
+            "name": "metaSocial",
             "size": 12
           }
         ],
         [
           {
-            "name": "events",
+            "name": "keywords",
+            "size": 6
+          },
+          {
+            "name": "metaRobots",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "structuredData",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "metaViewport",
+            "size": 6
+          },
+          {
+            "name": "canonicalURL",
             "size": 6
           }
         ]
       ]
-    }
+    },
+    "isComponent": true
   },
   "type": "object",
   "environment": null,

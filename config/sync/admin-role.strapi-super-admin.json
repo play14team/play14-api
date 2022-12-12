@@ -65,7 +65,8 @@
           "registration.widget.code",
           "description",
           "location",
-          "venue"
+          "venue",
+          "players"
         ],
         "locales": [
           "en",
@@ -116,7 +117,8 @@
           "registration.widget.code",
           "description",
           "location",
-          "venue"
+          "venue",
+          "players"
         ],
         "locales": [
           "en",
@@ -145,11 +147,78 @@
           "registration.widget.code",
           "description",
           "location",
-          "venue"
+          "venue",
+          "players"
         ],
         "locales": [
           "en",
           "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::player.player",
+      "properties": {
+        "fields": [
+          "name",
+          "slug",
+          "position",
+          "company",
+          "tagline",
+          "bio",
+          "country",
+          "avatar",
+          "socialNetworks.url",
+          "socialNetworks.type",
+          "events"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::player.player",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::player.player",
+      "properties": {
+        "fields": [
+          "name",
+          "slug",
+          "position",
+          "company",
+          "tagline",
+          "bio",
+          "country",
+          "avatar",
+          "socialNetworks.url",
+          "socialNetworks.type",
+          "events"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::player.player",
+      "properties": {
+        "fields": [
+          "name",
+          "slug",
+          "position",
+          "company",
+          "tagline",
+          "bio",
+          "country",
+          "avatar",
+          "socialNetworks.url",
+          "socialNetworks.type",
+          "events"
         ]
       },
       "conditions": []
