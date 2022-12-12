@@ -1,4 +1,5 @@
 'use strict';
+const players = require('../bootstrap/players.js')
 
 module.exports = {
   /**
@@ -16,5 +17,13 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {},
+  bootstrap() {
+    if (process.env.BOOTSTRAP === "true")
+    {
+      console.log("Bootstrap started");
+      setTimeout(() => {
+        players.importData();
+      }, 1500);
+    }
+  },
 };

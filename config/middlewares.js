@@ -8,7 +8,9 @@ module.exports = ({
       contentSecurityPolicy: {
         directives: {
           'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
-          'img-src': ["'self'", 'data:', 'cdn.jsdelivr.net', 'strapi.io', `${env('STORAGE_ACCOUNT')}.blob.core.windows.net`],
+          'img-src': ["'self'", 'data:', 'blob:', 'cdn.jsdelivr.net', 'strapi.io', 'market.strapi.io', '*.tile.openstreetmap.org', process.env.STORAGE_URL, process.env.STORAGE_CDN_URL],
+          'media-src': ["'self'", 'data:', 'blob:', process.env.STORAGE_URL, process.env.STORAGE_CDN_URL],
+          upgradeInsecureRequests: null,
         },
       }
     },
