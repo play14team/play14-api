@@ -33,6 +33,9 @@
     "company": {
       "type": "string"
     },
+    "tagline": {
+      "type": "string"
+    },
     "bio": {
       "type": "richtext"
     },

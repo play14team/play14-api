@@ -93,7 +93,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::player.player",
-      "inversedBy": "events"
+      "mappedBy": "events"
     }
   }
 }
