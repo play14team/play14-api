@@ -1,0 +1,774 @@
+- name: AIGLU
+  url: http://aiglu.org/
+  logo: /images/sponsors/aiglu.jpg
+  socials:
+    - name: email
+      url : info@aiglu.org
+    - name: twitter
+      url: aiglu
+
+- name: Miro
+  url: https://miro.com/?utm_source=play14.org&utm_medium=referral&utm_campaign=play14
+  logo: /images/sponsors/miro.png
+  socials:
+    - name: twitter
+      url: mirohq
+    - name: linkedin
+      url: company/mirohq/
+    - name: youtube
+      url: user/RealtimeBoardEng/
+    - name: facebook
+      url: TryMiro/
+
+- name: Mural
+  url: https://www.mural.co/
+  logo: /images/sponsors/mural.png
+  socials:
+    - name: twitter
+      url: mural/
+    - name: linkedin
+      url: company/mural.co
+    - name: youtube
+      url: channel/UCUcf9nFefdwgOoKMQ6qiHeA
+    - name: facebook
+      url: mural.co
+    - name: instagram
+      url: mural_app/
+    
+
+- name: Technoport
+  url: http://www.technoport.lu
+  logo: /images/sponsors/Technoport.jpg
+  socials:
+    - name: email
+      url : incubator@technoport.lu
+    - name: twitter
+      url: Technoport_Lux
+
+- name: Agile Partner
+  url: http://agilepartner.net/
+  logo: /images/sponsors/AgilePartner.png
+  socials:
+    - name: email
+      url : contact@agilepartner.net
+    - name: twitter
+      url: AgilePartner
+
+- name: Marmelab
+  url: http://marmelab.com/
+  logo: /images/sponsors/marmelab.png
+  socials:
+    - name: email
+      url : info@marmelab.com
+    - name: twitter
+      url: marmelab
+
+- name: We&Co
+  url: https://wecompany.me/
+  logo: /images/sponsors/WeCo.png
+
+- name: Agile²
+  url: https://agilesqr.com/
+  logo: /images/sponsors/AgileSquare.png
+
+- name: Agile Reloaded
+  url: http://www.agilereloaded.it/
+  logo: /images/sponsors/milano/AgileReloaded.png
+  socials:
+    - name: email
+      url : info@agilereloaded.it
+    - name: twitter
+      url: agilereloaded
+
+- name: Nokia
+  url: https://www.nokia.com
+  logo: /images/sponsors/nokia_white_logo.png
+  socials:
+    - name: twitter
+      url: nokia
+    - name: linkedin
+      url: company/nokia/
+    - name: facebook
+      url: nokia/
+
+- name: Nokia Romania
+  url: http://www.nokia.com/ro_ro
+  logo: /images/sponsors/timisoara/nokia.png
+  socials:
+    - name: twitter
+      url: nokia
+    - name: linkedin
+      url: company/1070/
+
+- name: Nokia France
+  url: https://www.nokia.com/fr_int
+  logo: /images/sponsors/timisoara/nokia.png
+  socials:
+    - name: twitter
+      url: nokia
+    - name: linkedin
+      url: company/1070/
+
+- name: The Extraordinaires
+  url: https://www.extraordinaires.com
+  logo: /images/sponsors/TheExtraordinairesDesignStudio.jpg
+  socials:
+    - name: email
+      url : hello@extraordinaires.com
+    - name: twitter
+      url: extraordinaires
+
+- name: Stattys
+  url: http://www.stattys.com
+  logo: /images/sponsors/Stattys.png
+  socials:
+    - name: twitter
+      url: stattys_world
+    - name: facebook
+      url : Stattys
+
+- name: '[ki:]®Learning'
+  url: http://www.kilearning.net
+  logo: /images/sponsors/berlin/kiLearning.jpg
+  socials:
+    - name: email
+      url: frageE@kilearning.net
+    - name: twitter
+      url: kiLearning
+
+- name: DaWanda Snuggery
+  url: https://de.dawanda.com/mkt/dawanda-snuggery
+  logo: /images/sponsors/berlin/snuggery.png
+  socials:
+    - name: email
+      url: snuggery@dawanda.com
+    - name: twitter
+      url: dawanda_de
+
+- name: PlanetExpat
+  url: http://planetexpat.org/
+  logo: /images/sponsors/madrid/PlanetExpat.png
+  socials:
+    - name: email
+      url: info@planetexpat.org
+    - name: twitter
+      url: PlanetExpat
+    - name: linkedin
+      url: company/2949016
+    - name: facebook
+      url: PlanetExpat
+
+- name: Legamaster
+  url: http://www.legamaster.com/home/
+  logo: /images/sponsors/berlin/Legamaster.jpg
+  socials:
+    - name: twitter
+      url: hashtag/legamaster
+    - name: youtube
+      url: user/LegamasterBV
+
+- name: Neuland
+  url: http://www.neuland.com/
+  logo: /images/sponsors/berlin/neuland.jpg
+  socials:
+    - name: email
+      url: info@neuland.com
+    - name: facebook
+      url: neuland
+
+- name: 7Pixel
+  url: http://www.7pixel.it/
+  logo: /images/sponsors/milano/SevenPixel.png
+  socials:
+    - name: linkedin
+      url: company/361906/
+    - name: twitter
+      url: hashtag/7pixel?src=hash
+  
+- name: TEAMLABS/
+  url: http://www.teamlabs.es/es
+  logo: /images/sponsors/madrid/teamlabs.png
+  socials:
+    - name: linkedin
+      url: school/3321408/
+    - name: twitter
+      url: teamlabs
+
+- name: The Robot Museum
+  url: http://www.therobotmuseum.eu/
+  logo: /images/sponsors/madrid/robot-museum.jpg
+  socials:
+    - name: facebook
+      url: therobotmuseum.eu
+    - name: twitter
+      url: therobotmuseum
+
+- name: Linda
+  url: http://lindalimon.com/
+  logo: /images/sponsors/madrid/linda.png
+  socials:
+    - name: facebook
+      url: tomalindalimon
+    - name: twitter
+      url: tomalindalimon
+
+- name: Catering Anmama
+  url: https://www.anmamacatering.com/
+  logo: /images/sponsors/madrid/catering-anmama.png
+
+- name: Societal Entrepreneurship
+  url: http://www.entrepreneurship-escpeurope.com/
+  logo: /images/sponsors/madrid/societal-entrepreneurship.png
+  socials:
+    - name: facebook
+      url: OptionEMadrid
+    - name: twitter
+      url: OptionEMadrid
+
+- name: Artefact
+  url: https://artefactshop.com/
+  logo: /images/sponsors/berlin/artefact.jpg
+  socials:
+    - name: twitter
+      url: Artefact_Cards
+    - name: youtube
+      url: user/ArtefactCards
+
+- name: emetriq
+  url: https://www.emetriq.com/en/
+  logo: /images/sponsors/berlin/emetriq.jpg
+  socials:
+    - name: twitter
+      url: emetriq
+    - name: facebook
+      url: emetriq
+
+- name: Herman Miller
+  url: http://www.hermanmiller.com/
+  logo: /images/sponsors/london/HermanMiller.png
+  socials:
+    - name: twitter
+      url: hermanmillerltd
+    - name: facebook
+      url: hermanmiller.europe
+    - name: linkedin
+      url: showcase/15217829/
+    - name: instagram
+      url: hermanmillerltd/
+
+- name: Adventure With Agile
+  url: https://www.adventureswithagile.com/
+  logo: /images/sponsors/london/AWA.gif
+  socials:
+    - name: twitter
+      url: agileadventures
+    - name: linkedin
+      url: company/10490967/
+
+- name: Launchlabs
+  url: http://launchlabs.ch/
+  logo: /images/sponsors/basel/launchlabs.png
+  socials:
+    - name: twitter
+      url: launchlabsbasel
+    - name: facebook
+      url: launchlabs.ch
+
+- name: Xebia
+  url: https://xebia.com
+  logo: /images/sponsors/amsterdam/xebia.png
+  socials:
+    - name: twitter
+      url: xebia
+    - name: email
+      url: info@xebia.com
+
+- name: Vichy Catalan
+  url: http://www.vichy-catalan.com/
+  logo: /images/sponsors/barcelona/vichy-catalan.png
+  socials:
+    - name: instagram
+      url: VichyCatalan
+    - name: facebook
+      url: pages/Vichy-Catalan/461772270556544?fref=ts
+    
+- name: Foyer
+  url: http://www.foyer.lu/
+  logo: /images/sponsors/luxembourg/foyer.png
+  socials:
+    - name: linkedin
+      url: company/foyer-assurances
+    - name: facebook
+      url: foyer.luxembourg/
+
+- name: Lavazza
+  url: http://www.lavazza.lu/
+  logo: /images/sponsors/luxembourg/lavazza.jpg
+  socials:
+    - name: facebook
+      url: europoint.lu/      
+
+- name: theventure.city
+  url: https://theventure.city/
+  logo: /images/sponsors/madrid/theventure.city.png
+  socials:
+    - name: twitter
+      url: TheVentureCity
+    - name: linkedin
+      url: company/theventurecity/
+    - name: instagram
+      url: theventurecity/
+
+- name: BBVA Open Space
+  url: https://openspace.bbva.com/madrid/en/
+  logo: /images/sponsors/madrid/bbva-openspace.png
+  socials:
+    - name: twitter
+      url: bbvainnovation
+    - name: linkedin
+      url: company/bbva
+    - name: facebook
+      url: centrodeinnovacionbbva
+    - name: youtube
+      url: user/centroinnovacionbbva
+    - name: instagram
+      url: cibbva/
+
+- name: digital.mente//
+  url: http://digitalmente.es/
+  logo: /images/sponsors/madrid/digitalmente.png
+  socials:
+    - name: instagram
+      url: digitalmentefotovideo/
+    - name: vimeo
+      url: user434261
+
+- name: Angler Film
+  url: https://vimeo.com/anglerfilm
+  logo: /images/sponsors/madrid/AnglerFilm.jpg
+  socials:
+    - name: vimeo
+      url: anglerfilm
+
+- name: Jugacetamol
+  url: http://juegacetamol.es/
+  logo: /images/sponsors/madrid/logojuegacetamol.jpg
+  socials:
+    - name: twitter
+      url: juegacetamol
+    - name: facebook
+      url: juegacetamol/
+    - name: instagram
+      url: juegacetamol/
+
+- name: Agile Taste
+  url: http://agiletaste.com/
+  logo: /images/sponsors/madrid/AgileTaste.jpg
+  socials:
+    - name: twitter
+      url: AgileTaste
+    - name: linkedin
+      url: company/agile-taste/?originalSubdomain=es
+    - name: instagram
+      url: agile.taste/
+
+- name: Detuatu Formacion
+  url: http://www.detuatuformacion.es/
+  logo: /images/sponsors/madrid/detuatu_formacion.png
+  socials:
+    - name: twitter
+      url: detuatuform
+    - name: facebook
+      url: detuatuformacion
+    - name: google-plus
+      url: +DetuatuformacionEs
+
+- name: Utopic School
+  url: https://www.utopicus.es/es/events/index/205126922/formacion
+  logo: /images/sponsors/madrid/Utopic_School.png
+  socials:
+    - name: twitter
+      url: utopic_us
+    - name: youtube
+      url: user/UtopicUsTV
+    - name: linkedin
+      url: company/utopic_us/
+    - name: facebook
+      url: utopicschool/
+    - name: instagram
+      url: utopic_us/
+
+- name: Everis LivingLab
+  url: https://www.everis.com/spain/es/everis-living-lab
+  logo: /images/sponsors/barcelona/everis.png
+  socials:
+    - name: twitter
+      url: everis
+    - name: youtube
+      url: user/everisgroup
+    - name: linkedin
+      url: company/everis
+    - name: facebook
+      url: everis
+
+- name: Critical Software
+  url: https://www.criticalsoftware.com
+  logo: /images/sponsors/porto/critical-software.png
+  socials:
+    - name: twitter
+      url: CriticalSftware
+    - name: youtube
+      url: user/criticalsoftware
+    - name: linkedin
+      url: company/critical-software
+    - name: facebook
+      url: criticalsoftware
+
+- name: Scopphu
+  url: https://scopphu.com/
+  logo: /images/sponsors/porto/scopphu.png
+  socials:
+    - name: facebook
+      url: scopphu
+    - name: youtube
+      url: c/Scopphupeopleandprojects
+    - name: linkedin
+      url: company/scopphu
+
+- name: MicroMarche
+  url: http://www.micromarche.com
+  logo: /images/sponsors/brussels/micro-marche.png
+  socials:
+    - name: facebook
+      url: micromarche/
+    - name: instagram
+      url: micromarche/
+
+- name: Dark Horse
+  url: https://www.thedarkhorse.de/
+  logo: /images/sponsors/berlin/dark-horse.png
+  socials:
+    - name: facebook
+      url: thedarkhorse.de
+    - name: twitter
+      url: darkhorseberlin
+    - name: linkedin
+      url: company/dark-horse-gmbh/?originalSubdomain=de
+    - name: xing
+      url: companies/darkhorsegmbh%26co.kg
+
+- name: EqualExperts
+  url: https://www.equalexperts.com/
+  logo: /images/sponsors/porto/equal-experts.png
+  socials:
+    - name: twitter
+      url: equalexperts
+    - name: linkedin
+      url: company/equal-experts?originalSubdomain=pt
+    - name: youtube
+      url: user/EqualExperts
+
+- name: Xing Porto
+  url: http://www.xing.careers/helloporto
+  logo: /images/sponsors/porto/xing.png
+  socials:
+    - name: twitter
+      url: XING_pt
+
+- name: Farfetch
+  url: http://www.farfetch.com/careers
+  logo: /images/sponsors/porto/farfetch.jpg
+  socials:
+    - name: linkedin
+      url: company/farfetch.com/
+    - name: instagram
+      url: farfetchpeople
+
+- name: INS
+  url: https://inscm.com.au/
+  logo: /images/sponsors/sydney/ins.svg
+  socials:
+    - name: email
+      url: enquiry@inscm.com.au
+
+- name: Tyro
+  url: https://www.tyro.com/
+  logo: /images/sponsors/sydney/tyro.png
+  socials:
+    - name: linkedin
+      url: company/tyro-payments/
+    - name: twitter
+      url: tyro
+    - name: facebook
+      url: tyrolimited
+
+- name: DIUS
+  url: https://dius.com.au/
+  logo: /images/sponsors/sydney/DIUS.png
+  socials:
+    - name: linkedin
+      url: company/dius-computing/
+    - name: twitter
+      url: dius_au
+
+- name: TheWorkshopper
+  url: https://theworkshopper.com/
+  logo: /images/sponsors/sydney/the-workshopper.jpg
+  socials:
+    - name: instagram
+      url: the_workshopper/
+
+- name: Talkdesk
+  url: https://www.talkdesk.com
+  logo: /images/sponsors/lisbon/talkdesk_logo.png
+  socials:
+    - name: twitter
+      url: talkdesk
+    - name: linkedin
+      url: company/talkdesk/
+    - name: facebook
+      url: talkdesk
+
+- name: SessionLab
+  url: https://www.sessionlab.com/
+  logo: /images/sponsors/madrid/sessionlab.png
+  socials:
+    - name: twitter
+      url: SessionLab
+    - name: facebook
+      url: SessionLab
+    - name: linkedin
+      url: company/trainedon/
+  
+- name: Markhof
+  url: https://markhof.wien/
+  logo: /images/sponsors/vienna/markhof.png
+  socials:
+    - name: facebook
+      url: markhof.wien
+
+- name: Business Agility Mexico
+  url: https://twitter.com/Agil_BAMEX
+  logo: /images/sponsors/mexico/BAMX.png
+  socials:
+    - name: facebook
+      url: pages/category/Community/Business-Agility-México-2534210283471312/
+    - name: twitter
+      url: Agil_BAMEX
+
+- name: Palo IT
+  url: https://www.palo-it.com/
+  logo: /images/sponsors/mexico/PaloIT.png
+  socials:
+    - name: twitter
+      url: Palo_IT
+
+- name: Proyectum
+  url: https://www.proyectum.com/mx/
+  logo: /images/sponsors/mexico/Proyectum.png
+  socials:
+    - name: twitter
+      url: proyectummx
+
+- name: Yunikon Academy
+  url: https://yunikon.academy/
+  logo: /images/sponsors/mexico/Yunikon.png
+  socials:
+    - name: email
+      url: info@yunikon.academy
+      
+- name: The Debriefing Cube
+  url: http://thedebriefingcube.com/
+  logo: /images/sponsors/thedebriefingcube.png
+
+- name: 'oose'
+  url: http://www.oose.de
+  logo: /images/sponsors/hamburg/oose.png
+  socials:
+    - name: email
+      url: info@oose.de
+    - name: twitter
+      url: ooseNews
+
+- name: More Shiny Eyes
+  url: https://www.kickstarter.com/projects/wondercards/wondercards-amazing-workshops-trainings-and-sessio
+  logo: /images/sponsors/berlin/2019/MSE.png
+  socials:
+    - name: linkedin
+      url: in/petranovskaja/
+    - name: youtube
+      url: c/more-shiny-eyes
+
+- name: Kaffee Form
+  url: http://www.kaffeeform.com
+  logo: /images/sponsors/berlin/kaffeeformlogo_schwarz.png
+
+- name: Wemanity
+  url: https://wemanity.com/
+  logo: /images/sponsors/madrid/wemanity.png
+  socials:
+  - name: facebook
+    url: Wemanity
+  - name: twitter
+    url: wemanity
+  - name: instagram
+    url: wemanity
+  - name: youtube
+    url: channel/UC6OtUOYvbMIjs1RX0sXhffg
+
+- name: Meeting Spicers
+  url: https://www.indiegogo.com/projects/the-meeting-spicer#/
+  logo: /images/sponsors/meeting-spicers.png
+  socials:
+  - name: facebook
+    url: MeetingSpicer
+  
+- name: Altitude Software
+  url: https://www.altitude.com/
+  logo: /images/sponsors/madrid/altitude.png
+  socials:
+  - name: facebook
+    url: altitudesoftware?fref=ts
+  - name: twitter
+    url: AltitudeSoft
+  - name: linkedin
+    url: user/AltitudeSoftware
+
+- name: La Cuina
+  url: http://www.lacuinarestaurante.es/
+  logo: /images/sponsors/madrid/lacuina.png
+  socials:
+  - name: facebook
+    url: la.restaurante
+  - name: twitter
+    url: lacuinamadrid
+
+- name: loco-motiv
+  url: http://www.loco-motiv.ch
+  logo: /images/sponsors/emmental/loco-motiv.png
+  socials:
+  - name: twitter
+    url: hoststarhosting
+
+- name: Elbuna
+  url: http://www.elbuna.ch/
+  logo: /images/sponsors/emmental/elbuna.png
+  socials:
+  - name: facebook
+    url: elbunawerk
+
+- name: AgentEx
+  url: https://www.agentex.at/
+  logo: /images/sponsors/vienna/agentex.png
+
+- name: Strategiefabriek
+  url: https://www.strategiefabriek.nl/
+  logo: /images/sponsors/amsterdam/strategiefabriek.png
+  socials:
+  - name: twitter
+    url: strategiefab
+  - name: linkedin
+    url: company/strategiefabriek
+  - name: facebook
+    url: strategiefabriek
+  - name: instagram
+    url: strategiefabriek
+
+- name: ABN-Amro
+  url: https://www.abnamro.com
+  logo: /images/sponsors/amsterdam/abn-amro.png
+  socials:
+  - name: twitter
+    url: abnamro
+  - name: linkedin
+    url: company/abn-amro
+  - name: facebook
+    url: abnamro
+
+- name: seriousgamespodcast
+  url: http://seriousgamespodcast.com/
+  logo: /images/sponsors/SeriousGamesPodcast_Logo.jpg
+
+- name: brainspire GbR
+  url: https://brainspire.de/
+  logo: /images/sponsors/stuttgart/brainspire.jpg
+  socials:
+  - name: linkedin
+    url: company/brainspire-gbr
+    
+- name: Strempel Beratung+Coaching
+  url: https://www.strempel.info
+  logo: /images/sponsors/stuttgart/Strempel.png
+  
+- name: Playful Insights
+  url: https://www.playful-insights.de
+  logo: /images/sponsors/stuttgart/Playful_Insights.png
+
+- name: Yorkshire Building Society
+  url: https://www.ybs.co.uk/
+  logo: /images/sponsors/leeds/YorkshireBuildingSociety.png
+
+- name: Agile Coach Camp Canada
+  url: http://agilecoachcampcanada.ca/
+  logo: /images/sponsors/bigone/accca.png
+
+- name: Agile Women
+  logo: /images/sponsors/mexico/agile-women.png
+
+- name: Academio
+  logo: /images/sponsors/mexico/academio.png
+
+- name: Globant
+  logo: /images/sponsors/mexico/globant.png
+
+- name: Scrum Mexico
+  logo: /images/sponsors/mexico/scrum-mexico.png
+
+- name: Agile Azteca
+  logo: /images/sponsors/mexico/agile-azteca.png
+
+- name: Bubbling Mind
+  logo: /images/sponsors/mexico/bubbling-mind.png
+
+- name: The Sam Loyd Company
+  url: http://samloyd.com/
+  logo: /images/sponsors/berlin/sam-loyd.jpg
+  socials:
+    - name: instagram
+      url: samloydco/
+
+- name: Agile Classrooms
+  url: 
+  logo: /images/sponsors/madrid/agile-classrooms.png
+  socials:
+
+- name: Netmind
+  url: https://netmind.net/
+  logo: /images/sponsors/madrid/netmind.jpg
+  socials:
+    - name: linkedin
+      url: company/netmind
+    - name: twitter
+      url: netmind_es
+    - name: facebook
+      url: netmindtraining
+    - name: instagram
+      url: netmind_group
+
+- name: Fab Lab Iași
+  url: https://fablabiasi.spaces.nexudus.com/
+  logo: /images/sponsors/iasi/fablabiasi.png
+  socials:
+    - name: facebook
+      url: fablabiasi
+    - name: instagram
+      url: fablabiasi
+
+- name: Hindawi
+  url: https://hindawi.ro/
+  logo: /images/sponsors/iasi/hindawi.jpg
+  socials:
+    - name: facebook
+      url: HindawiIasi
+    - name: linkedin
+      url: company/hindawilimited/

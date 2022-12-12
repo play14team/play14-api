@@ -1,0 +1,321 @@
+Technoport:
+    name: Technoport
+    area: Esch/Belval
+    address: >
+        9, avenue des Hauts-Fourneaux
+        L-4362 Esch-sur-Alzette  
+    url: http://www.technoport.lu
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20723.71349371132!2d5.964228003547424!3d49.51351172884244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe8b8bed0e26f33a!2sTechnoport+S.a.!5e0!3m2!1sen!2slu!4v1480793868583
+
+GoodgameStudios:
+    name: Goodgame Studios
+    area: Westend Village
+    address: >
+        Theodorstraße 42-90, Haus 9
+        22761 Hamburg, Germany
+    url: https://www.goodgamestudios.com
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.386461593076!2d9.897745516212382!3d53.56871908002633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b185cd2f283efb%3A0x5ff20e1640862502!2sGoodgame+Studios!5e0!3m2!1sen!2slu!4v1480794652104
+  
+Headspace:
+    name: Headspace
+    area: Farringdon
+    address: >
+        21 Hatton Garden 
+        London EC1N 8BA
+    url: http://www.headspacegroup.co.uk/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.6780840359784!2d-0.10990538384659447!3d51.51912167963703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b4dc883add9%3A0x8f1ad3d28b043a37!2sHeadspace!5e0!3m2!1sen!2slu!4v1480798062092
+
+AmericanUniversityBeirut:
+    name: American University of Beirut
+    area: Bliss
+    address: >
+        Bliss, Beirut, Lebanon
+    url: http://www.aub.edu.lb/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13246.217330597314!2d35.4811142!3d33.90113!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6189012b4bd99908!2sAmerican+University+of+Beirut!5e0!3m2!1sen!2slu!4v1480798657116
+    
+TheAppBusiness:
+    name: The App Business
+    area: Kings Cross
+    address: >
+        The Spitfire Building 
+        71 Collier Street
+        London N1 9BE
+    url: http://www.theappbusiness.com/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9927.908804183871!2d-0.118974!3d51.531978!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xddac8c198394a1dc!2sThe+App+Business!5e0!3m2!1sen!2slu!4v1480799032019
+
+SpazioMil:
+    name: Spazio Mil
+    area: Sesto San Giovanni
+    address: >
+        Via Granelli, 1
+        20099 Sesto San Giovanni 
+        Milano, Italy
+    url: http://www.spaziomil.org/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.0775985719397!2d9.222217315990855!3d45.52864397910185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c75ed6aa39bd%3A0x1a993269ff0deaa4!2sSpazio+MIL!5e0!3m2!1sen!2slu!4v1480800255231
+
+NokiaElectromotor:
+    name: Nokia Campus
+    area: Timiș County
+    address: >
+        Bulevardul Republicii 21
+        Timișoara, Romania
+    url: http://www.nokia.com/ro_ro
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.012119475597!2d21.20887131556713!3d45.75090297910548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47455d7b2821e4ad%3A0xf9e268d2e571f326!2sBulevardul+Republicii+21%2C+Timi%C8%99oara!5e0!3m2!1sen!2sro!4v1487091980587
+
+NokiaParisSaclay:
+    name: Nokia Paris-Saclay
+    area: Nozay
+    address: >
+        7, route de Villejust
+        91620 Nozay, France
+    url: https://www.nokia.com/fr_int
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2634.9695280148567!2d2.2340233!3d48.6678255!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5d7bcce288873%3A0xc80f5672fe7600e7!2sNokia+Paris-Saclay!5e0!3m2!1sfr!2slu!4v1519470456798
+    
+DaWandaSnuggery:
+    name: DaWanda Snuggery
+    area: Charlottenburg
+    address: >
+        Windscheidstraße 19
+        10627 Berlin, Germany
+    url: https://de.dawanda.com/mkt/dawanda-snuggery
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.548105854165!2d13.297142415806942!3d52.50541917981147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a850dbf8ec1d7f%3A0x3cc7d883ee0ee621!2sDaWanda+Snuggery!5e0!3m2!1sen!2sde!4v1490346595786
+
+TeamLabs:
+    name: TEAMLABS/
+    area: Embajadores
+    address: >
+        Calle Duque de Alba, 15
+        1ª planta
+        28012 Madrid
+    url: http://www.teamlabs.es
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12151.50753875613!2d-3.7066992!3d40.4115781!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa48c5345fe9381e6!2sTEAMLABS%2F!5e0!3m2!1sen!2slu!4v1490698163781
+
+
+HermanMiller:
+    name: Herman Miller
+    area: Temple
+    address: >
+        61 Aldwych
+        London WC2B 4AE, UK
+    url: http://www.hermanmiller.co.uk/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9931.880082593168!2d-0.11731!3d51.513766!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd18ecdae18d4170!2sHerman+Miller!5e0!3m2!1sen!2slu!4v1498315516358
+
+Oose:
+    name: Oose Innovative Informatik eG
+    area: Schanzenviertel
+    address: >
+        Kontorhaus Montblanc, 
+        Schulterblatt 36, 1st Floor,
+        20357 Hamburg
+    url: https://www.oose.de/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.8293796219987!2d9.961089816299474!3d53.56081318002464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b18f4ad1248fbd%3A0xb24c2b5b071755ca!2soose!5e0!3m2!1sen!2slu!4v1500142735162
+
+EspacioManhattan:
+    name: Espacio Manhattan
+    area: 
+    address: >
+        Carrer d'Aragó, 425
+        08013 Barcelona, Spain
+    url: http://www.studiomanhattan.es/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.7189302441548!2d2.1745012159982147!3d41.401909979262875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2dd74bb30ad%3A0x89d0fdc59b5fa694!2sStudio+Manhattan+BCN!5e0!3m2!1sen!2slu!4v1500799989369
+
+Kapellerput:
+    name : Kapellerput
+    area: 
+    address: >
+        Somerenseweg 100
+        5591 TN Heeze
+        The Netherlands
+    url: https://www.kapellerput.nl/en/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2490.81523214727!2d5.598263316205133!3d51.36969332858274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c728bd5fa46a1f%3A0xc811ec42350c2e58!2sKapellerput!5e0!3m2!1sen!2slu!4v1501698016755
+
+XebiaAmsterdam:
+    name: Xebia Academy
+    area:
+    address: >
+        Wibautstraat 200-202,
+        1091 GS Amsterdam
+        Netherlands
+    url: https://training.xebia.com/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2864.8705494393375!2d4.913944783271025!3d52.35135720660903!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x96d5be6ccd02cedc!2sXebia+Academy!5e0!3m2!1sen!2slu!4v1506288405277
+
+Launchlabs:
+    name: Launchlabs
+    area: Gundeldingen
+    address: >
+        Hall 8, Gundeldingerfeld 
+        Dornacherstrasse 192 
+        CH-4053 Basel 
+    url: http://launchlabs.ch/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2693.3369876803126!2d7.591096816126186!3d47.541769700446565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b845fde9f14d%3A0x272c16cb9c1608e3!2slaunchlabs+(Schweiz)+GmbH!5e0!3m2!1sen!2slu!4v1507151154363
+
+TheVentureCity:
+    name: theventure.city
+    area: Almagro
+    address: >
+        Almagro, 21. Planta 2, 28010 Madrid, Spain
+    url: https://theventure.city/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.0013964008567!2d-3.694693048796436!3d40.430967979262114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228927e141bf9%3A0xb13d27fc9fdbe82e!2sTheVenture.city!5e0!3m2!1sen!2slu!4v1521121502158
+
+EverisLivingLab:
+    name: Everis LivingLab
+    area: Les Corts
+    address: >
+        Carrer de Pedro i Pons, 6, 08034 Barcelona
+    url: https://www.everis.com/spain/es/everis-living-lab
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11973.287929162212!2d2.1231324!3d41.3888134!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2d36f962ec52aa60!2severis+LivingLab!5e0!3m2!1sen!2ses!4v1527950761301
+
+CriticalSoftware:
+    name: Critical Software
+    area: Santo Ildefonso
+    address: >
+        Largo do Dr. Tito Fontes 21
+        4000-060 Porto
+    url: https://www.criticalsoftware.com
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.1674849461683!2d-8.610559484581461!3d41.152696579286385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464fbb058fff9%3A0x54ec224423309633!2sCritical+Software+S.A.!5e0!3m2!1sen!2slu!4v1529954855467
+
+MicroMarche:
+    name: Micro Marché
+    area: Metro Jacques Brel
+    address: >
+        Quai Fernand Demets 55,
+        1070 Anderlecht
+    url: http://www.micromarche.com
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.2630760843217!2d4.322100251514493!3d50.84481247943118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf559bf48bb0c70b1!2sMicro+March%C3%A9!5e0!3m2!1sen!2sbe!4v1531590271662
+
+DarkHorse:
+    name: Dark Horse
+    area: Friedrichshain-Kreuzberg 
+    address: >
+        Glogauer Strasse 6 
+        Backyard 2, Floor 4 
+        10999 Berlin
+    url: https://www.thedarkhorse.de/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.173074453927!2d13.43559765156866!3d52.494106579710106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a8522911d8e441%3A0x9a2a182812b72378!2sDark+Horse!5e0!3m2!1sen!2slu!4v1532331681672
+
+Spazio13:
+    name: Spazio13
+    area: 
+    address: >
+        Via Colonnello de Cristoforis, 8
+        70123 Bari
+    url: https://spazio13.org/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.4508024410065!2d16.853940015350155!3d41.12468392020259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1347e88d29e9c9cd%3A0x585d1b70ea5c31ce!2sSpazio+13!5e0!3m2!1sit!2sit!4v1537452947615
+
+INS:
+    name: INS
+    area: 
+    address: >
+        Level 5,
+        1 Oxford Street,
+        Surry Hills NSW 2010
+    url: https://inscm.com.au/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6624.95540191513!2d151.212386!3d-33.877349!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb87192c91e1b3546!2sINS+Career+Management!5e0!3m2!1sen!2sau!4v1542795212259
+
+FutureLab:
+    name: FutureLab
+    area: Bologna
+    address: >
+        Via Landa 121
+        40050 - Monte San Pietro
+    url: http://www.futurelab.red
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d149419.3407857504!2d11.14281699596419!3d44.42232328681302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132acd4c88253b9b%3A0xd78d4f8683b857ab!2sFutureLab!5e0!3m2!1sen!2slu!4v1548870060076
+
+Talkdesk:
+    name: Talkdesk
+    area: Campo de Ourique
+    address: >
+        R. Tierno Galvan, 
+        Torre 3, 
+        15 andar, 
+        1070-274 Lisbon
+    url: https://www.talkdesk.com
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d16572.251990816898!2d-9.161881760360775!3d38.72314956095887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd44fcfec64a034fd!2sTalkdesk+-+Portugal!5e0!3m2!1sen!2sau!4v1551304934619
+
+PaloIT Mexico:
+    name: PaloIT Mexico
+    area: Polanco III Secc
+    address: >
+        Campos Elíseos 385, 
+        TORRE A, PISO 1,
+        Polanco, 
+        Polanco III Secc, 
+        11560 Ciudad de México, CDMX
+    url: https://www.palo-it.com
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15050.392992447045!2d-99.202516!3d19.429757!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xad08d88cf33b0d1e!2sPalo+IT!5e0!3m2!1sen!2slu!4v1553617521699
+
+Spaces Atocha:
+    name: Spaces
+    area: Atocha
+    address: >
+        Calle de Alfonso XII, 62
+        2nd floor
+        Madrid, 28014
+    url: https://www.spacesworks.com/es/madrid/atocha/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.016043772127!2d-3.6912287489413376!3d40.408495363962714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4226269f3f9097%3A0x1d955ab18180f1ec!2sSpaces+-+Madrid%2C+Atocha!5e0!3m2!1sen!2slu!4v1553675082427
+
+The Sentral Residences:
+    name: The Sentral Residences
+    area: Sentral
+    address: >
+        8, Jalan Stesen Sentral 2
+        50470 Kuala Lumpur
+    url: https://thesentralresidence.com/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31870.61746818806!2d101.66414321467357!3d3.1402921163837654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49c403df9edf%3A0xdd41354a50e76cb1!2s8%2C%20Jalan%20Stesen%20Sentral%202%2C%20Kuala%20Lumpur%20Sentral%2C%2050470%20Kuala%20Lumpur%2C%20Wilayah%20Persekutuan%20Kuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2slu!4v1570870595131!5m2!1sen!2slu
+
+Markhof:
+    name: Markhof
+    area: Saint Marx
+    address: >
+        Markhofgasse 19, 
+        1030 Vienna
+    url: https://markhof.wien/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2659.6972205787656!2d16.4094117030801!3d48.193184977938614!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf4979ab85512cb10!2sCOLEARNING+Wien!5e0!3m2!1sen!2slu!4v1555006238707!5m2!1sen!2slu
+
+Ministry Of Justice UK:
+    name: Ministry Of Justice
+    area: St James' Park
+    address: >
+        102 Petty France, Westminster, London SW1H 9AJ, UK
+    url: https://www.justice.gov.uk/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.7333039344303!2d-0.13709344863402903!3d51.49976141898271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604dbe92f5af3%3A0x43d424d396c6fa7!2sMinistry+of+Justice!5e0!3m2!1sen!2slu!4v1557905720527!5m2!1sen!2slu
+
+Elbuna:
+    name: Elbuna - Christian Baumgartner
+    area: Emmental
+    address: >
+        Obermattgraben 115A, 3534 Signau, Switzerland
+    url: http://www.elbuna.ch/
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2724.770914338837!2d7.718620551231007!3d46.92688564257386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478fcbc7a1f5594b%3A0x4397d4f721bb250e!2sObermattgraben+115A%2C+3534+Signau%2C+Switzerland!5e0!3m2!1sen!2slu!4v1563471931789!5m2!1sen!2slu
+
+Strategiefabriek:
+    name: Strategiefabriek
+    area: Bijlmer-Centrum
+    address: >
+        Hogehilweg 20, Amsterdam
+    url: https://www.strategiefabriek.nl/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9757.986121569802!2d4.948478!3d52.306992!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x839aac92dc15db31!2sStrategiefabriek%20Amsterdam!5e0!3m2!1sen!2slu!4v1567238423650!5m2!1sen!2slu
+
+SocialBakers:
+    name: SocialBakers
+    area: 
+    address: >
+        Pernerova 53, 186 00 Prague
+    url: https://www.socialbakers.com/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10238.873442919205!2d14.4547801!3d50.0915597!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb4c591e1fcf1e76!2sSocialbakers%20a.s.!5e0!3m2!1sen!2slu!4v1574105318326!5m2!1sen!2slu
+
+ThePodiumBuilding:
+    name: The Podium Building
+    area: 
+    address: >
+        1 Market St, Sydney NSW 2000
+    url: 
+    map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.7156208751503!2d151.20231971521022!3d-33.871219080655585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae3f17411049%3A0x3b1ff23de94d1077!2sGeneral%20Assembly%20Sydney!5e0!3m2!1sen!2slu!4v1576776896041!5m2!1sen!2slu
+
+Connectory:
+    name: Connectory
+    area: Stuttgart Stadtmitte
+    address: >
+        Königstraße 78, 70173 Stuttgart
+    url: https://www.stuttgartconnectory.com/
+    map: https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3612.6868083804465!2d9.174025851374491!3d48.77407077517214!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x27f40d966fcf042d!2sConnectory%20Stuttgart%20-%20Powered%20by%20Robert%20Bosch%20GmbH!5e0!3m2!1sde!2sde!4v1579728136731!5m2!1sde!2sde

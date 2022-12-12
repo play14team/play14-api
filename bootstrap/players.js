@@ -1,20 +1,22 @@
+'use strict';
+
 const path = require("path");
 const fs = require("fs");
 const mime = require('mime');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 const yaml = require('js-yaml');
 const slugify = require('slugify');
-const playerApiName = 'api::player.player';
+const { ensureFolder, uploadFile } = require('./upload.js');
 
 async function importData() {
-	console.log("Importing players");
-	const markdownDir = path.join(bootstrapDir, "md/players");
-	await importPlayers(markdownDir);
+    console.log("Importing players");
+    const markdownDir = path.join(bootstrapDir, "md/players");
+    await importPlayers(markdownDir);
 }
 
 async function importPlayers(markdownDir) {
     try {
-        const folderId = await ensureUloadFolder("players");
+        const folderId = await ensureFolder("players");
         const files = await fs.promises.readdir( markdownDir );
 
         let succeeded = 0;
@@ -26,11 +28,13 @@ async function importPlayers(markdownDir) {
                     createOrUpdatePlayer(path.join(markdownDir, file), folderId)
                         .then(_ => {
                             succeeded++;
-                            console.log(`Progress ${succeeded + failed} on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
                         })
                         .catch(err => {
                             console.error(err);
                             failed++;
+                        })
+                        .then(_ => {
+                            console.log(`Progress ${succeeded + failed} on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
                         })
                 })
         );
@@ -40,33 +44,10 @@ async function importPlayers(markdownDir) {
     }
 }
 
-async function ensureUloadFolder(folderName) {
-    const folderApiName = 'plugin::upload.folder';
-    const folderService = strapi.plugins.upload.services.folder;
-
-    let folder = await strapi.query(folderApiName).findOne({
-      where: {
-        name: folderName
-      }
-    });
-    if (!folder) {
-      await folderService.create({
-        name: folderName
-      })
-      folder = await strapi.query(folderApiName).findOne({
-        where: {
-          name: folderName
-        }
-      });
-      console.log(`Created folder ${folderName} with id ${folder.id}`)
-    }
-
-    return folder.id;
-}
-
 async function createOrUpdatePlayer(file, folderId) {
+    const playerApiName = 'api::player.player';
     const player = yaml2json(file);
-    const avatar = await uploadFile(player, folderId);
+    const avatar = await uploadAvatar(player, folderId);
     const playerData = mapPlayer(player, avatar);
 
     const entries = await strapi.entityService.findMany(playerApiName, {
@@ -86,15 +67,13 @@ async function createOrUpdatePlayer(file, folderId) {
 }
 
 function yaml2json(inputfile) {
-	const data = fs.readFileSync(inputfile, {
-		encoding: 'utf-8'
-	});
+	const data = fs.readFileSync(inputfile, { encoding: 'utf-8' });
 	const split = data.split('---');
 	const cleanData = split.length > 2 ? split[1] : data;
 	return yaml.load(cleanData);
 }
 
-async function uploadFile(player, folderId) {
+async function uploadAvatar(player, folderId) {
     if (!player.avatar)
         player.avatar = "images/players/default.png";
 
@@ -103,38 +82,7 @@ async function uploadFile(player, folderId) {
     const fileName = slug + extension;
     const filePath = path.join(bootstrapDir, player.avatar);
 
-    const uploadApi = await strapi.query("plugin::upload.file");
-    let file = await uploadApi.findOne({
-        where: {
-        name: fileName
-        },
-    });
-
-    if (file) {
-        console.log(`${fileName} already exists`);
-    } else {
-        console.log(`Uploading ${fileName}`);
-
-        await strapi.plugins.upload.services.upload.upload({
-        data: {
-            fileInfo: {
-            folder: folderId
-            },
-        },
-        files: {
-            path: filePath,
-            name: fileName,
-            type: mime.getType(filePath),
-        },
-        });
-
-        file = await uploadApi.findOne({
-        where: {
-            name: fileName
-        },
-        });
-    }
-    return file;
+    return await uploadFile(fileName, folderId, filePath);
 }
 
 function mapPlayer(player, avatar) {
