@@ -80,7 +80,7 @@ async function mapEvent(event, parentFolderId) {
             contactEmail: event.contact,
             description: event.content,
             images: images,
-            timetable: mapTimeTable(event.timetable),
+            timetable: [], //mapTimeTable(event.timetable),
             registration: mapRegistration(event.registration),
             venue: venue,
             location: eventLocation,
@@ -113,8 +113,28 @@ function mapStatus(event) {
 }
 
 function mapTimeTable(timetable) {
-    // TODO
-    return [];
+    if (!timetable)
+        return [];
+
+    return timetable.map(t => {
+        return {
+            day: t.day,
+            description: t.desc,
+            timeslots: mapTimeslots
+        }
+    });
+}
+
+function mapTimeslots(timeslots) {
+    if (!timeslots)
+        return [];
+
+    return timeslots.map(t => {
+        return {
+            time: t.time,
+            description: t.desc,
+            }
+    });
 }
 
 function mapRegistration(registration) {
