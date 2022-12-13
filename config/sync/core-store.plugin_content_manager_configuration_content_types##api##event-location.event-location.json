@@ -34,16 +34,16 @@
           "sortable": true
         }
       },
-      "Country": {
+      "country": {
         "edit": {
-          "label": "Country",
+          "label": "country",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "Country",
+          "label": "country",
           "searchable": true,
           "sortable": true
         }
@@ -61,6 +61,20 @@
           "label": "events",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "slug": {
+        "edit": {
+          "label": "slug",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "slug",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -93,12 +107,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "name",
-        "Country",
-        "events"
-      ],
       "edit": [
         [
           {
@@ -106,16 +114,26 @@
             "size": 6
           },
           {
-            "name": "Country",
+            "name": "slug",
             "size": 6
           }
         ],
         [
           {
+            "name": "country",
+            "size": 6
+          },
+          {
             "name": "events",
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "name",
+        "events",
+        "country"
       ]
     }
   },

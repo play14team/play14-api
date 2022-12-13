@@ -1,4 +1,5 @@
 "use strict";
+const mime = require('mime');
 
 const ensureFolder = async (folderName) => {
     const folderApiName = 'plugin::upload.folder';

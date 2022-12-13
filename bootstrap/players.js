@@ -2,11 +2,9 @@
 
 const path = require("path");
 const fs = require("fs");
-const mime = require('mime');
-const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
-const yaml = require('js-yaml');
-const slugify = require('slugify');
 const { ensureFolder, uploadFile } = require('./upload.js');
+const { yaml2json, mapSocialNetworks, toSlug, capitalize } = require('./utilities.js');
+const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 
 async function importData() {
     console.log("Importing players");
@@ -66,21 +64,11 @@ async function createOrUpdatePlayer(file, folderId) {
     };
 }
 
-function yaml2json(inputfile) {
-    const data = fs.readFileSync(inputfile, { encoding: 'utf-8' });
-    const split = data.split('---');
-    const cleanData = split.length > 1 ? split[1] : data;
-    const json = yaml.load(cleanData);
-    json["content"] = split.length > 2 ? split[2] : "";
-
-    return json;
-}
-
 async function uploadAvatar(player, folderId) {
     if (!player.avatar)
         player.avatar = "images/players/default.png";
 
-    const slug = mapSlug(player.name);
+    const slug = toSlug(player.name);
     const extension = path.extname(player.avatar);
     const fileName = slug + extension;
     const filePath = path.join(bootstrapDir, player.avatar);
@@ -97,36 +85,9 @@ function mapPlayer(player, avatar) {
             tagline: player.bio,
             bio: player.content,
             avatar: avatar,
-            socialNetworks: mapSocialMedia(player.socials),
+            socialNetworks: mapSocialNetworks(player.socials),
         }
     };
-}
-
-function mapSocialMedia(socials) {
-    if (socials)
-        return socials.map(s => {
-            const url = s.url ? s.url?.toString() : "";
-            return { url: url, type: mapSocialMediaName(s.name)}}
-        );
-
-    return [];
-}
-
-function mapSocialMediaName(name) {
-    if (name.toLowerCase() === "google-plus")
-        return "Other"
-    if (name.toLowerCase() === "linkedin")
-        return "LinkedIn";
-    else
-        return capitalize(name);
-}
-
-function mapSlug(name) {
-	return slugify(name, {remove: /[*+~.()'"!:@]/g}).toLowerCase();
-}
-
-function capitalize(name) {
-	return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
 module.exports = { importData };
