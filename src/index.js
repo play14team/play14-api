@@ -1,6 +1,7 @@
 'use strict';
 const players = require('../bootstrap/players')
 const locations = require('../bootstrap/locations')
+const events = require('../bootstrap/events')
 
 module.exports = {
   /**
@@ -25,6 +26,7 @@ module.exports = {
       setTimeout(() => {
         // players.importData();
         // locations.importData();
+        events.importData();
       }, 1500);
     }
   },

@@ -1,6 +1,8 @@
 "use strict";
+
 const fs = require("fs");
 const yaml = require('js-yaml');
+const slugify = require('slugify');
 
 function yaml2json(inputfile) {
     const data = fs.readFileSync(inputfile, { encoding: 'utf-8' });

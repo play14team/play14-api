@@ -1,31 +1,43 @@
 "use strict";
 const mime = require('mime');
 
-const ensureFolder = async (folderName) => {
-    const folderApiName = 'plugin::upload.folder';
-    const folderService = strapi.plugins.upload.services.folder;
-
-    let folder = await strapi.query(folderApiName).findOne({
-      where: {
-        name: folderName
-      }
-    });
+async function ensureFolder(folderName, parentFolderId) {
+    let folder = await getFolder(folderName, parentFolderId);
     if (!folder) {
-      await folderService.create({
-        name: folderName
-      })
-      folder = await strapi.query(folderApiName).findOne({
-        where: {
-          name: folderName
-        }
-      });
+      await createFolder(folderName, parentFolderId);
+      folder = await getFolder(folderName, parentFolderId);
       console.log(`Created folder ${folderName} with id ${folder.id}`)
     }
 
     return folder.id;
 }
 
-const uploadFile = async (fileName, folderId, filePath) => {
+async function getFolder(folderName, parentFolderId) {
+  const whereClause = { name: folderName };
+  if (parentFolderId)
+  {
+    whereClause["parent"] = await getFolderById(parentFolderId);
+  }
+
+  return await strapi.query('plugin::upload.folder').findOne({ where: whereClause });
+}
+
+async function createFolder(folderName, parentFolderId) {
+  const folder = { name: folderName };
+  if (parentFolderId)
+  {
+    folder["parent"] = parentFolderId;
+  }
+
+  await strapi.plugins.upload.services.folder.create(folder);
+}
+
+async function getFolderById(folderId) {
+  const whereClause = { id: folderId };
+  return await strapi.query('plugin::upload.folder').findOne({ where: whereClause });
+}
+
+async function uploadFile(fileName, folderId, filePath) {
     const uploadApi = await strapi.query("plugin::upload.file");
     let file = await uploadApi.findOne({
         where: {
@@ -34,15 +46,13 @@ const uploadFile = async (fileName, folderId, filePath) => {
     });
 
     if (file) {
-        console.log(`${fileName} already exists`);
+        console.log(`${fileName} already exists in folder ${folderId}`);
     } else {
         console.log(`Uploading ${fileName}`);
 
         await strapi.plugins.upload.services.upload.upload({
         data: {
-            fileInfo: {
-            folder: folderId
-            },
+            fileInfo: { folder: folderId },
         },
         files: {
             path: filePath,
@@ -61,3 +71,4 @@ const uploadFile = async (fileName, folderId, filePath) => {
 }
 
 module.exports = { ensureFolder, uploadFile };
+

@@ -14,7 +14,7 @@ async function importData() {
 
 async function importEvents(markdownDir) {
     try {
-        const folderId = await ensureFolder("events");
+        const eventsFolderId = await ensureFolder("events");
         const files = await fs.promises.readdir( markdownDir );
 
         let succeeded = 0;
@@ -23,7 +23,7 @@ async function importEvents(markdownDir) {
         Promise.all(
             files.map(file =>
                 {
-                    createOrUpdateEvent(path.join(markdownDir, file), folderId)
+                    createOrUpdateEvent(path.join(markdownDir, file), eventsFolderId)
                         .then(_ => {
                             succeeded++;
                         })
@@ -42,45 +42,37 @@ async function importEvents(markdownDir) {
     }
 }
 
-async function createOrUpdateEvent(file, folderId) {
+async function createOrUpdateEvent(file, parentFolderId) {
     const apiName = 'api::event.event';
     const event = yaml2json(file);
 
-    const images = await uploadImages(event, folderId);
-    const eventData = mapEvent(event, images);
-
+    const eventData = await mapEvent(event, parentFolderId);
     const entries = await strapi.entityService.findMany(apiName, {
         fields: ['id'],
-        filters: { name: event.name },
+        filters: { name: event.title },
     });
 
     if (entries.length == 0) {
-        console.log(`Insterting ${event.name}`);
+        console.log(`Insterting ${event.title}`);
         await strapi.entityService.create(apiName, eventData);
-        console.log(`${event.name} inserted`);
+        console.log(`${event.title} inserted`);
     } else {
-        console.log(`Updating ${event.name}`);
+        console.log(`Updating ${event.title}`);
         await strapi.entityService.update(apiName, entries[0].id, eventData);
-        console.log(`${event.name} updated`);
+        console.log(`${event.title} updated`);
     };
 }
 
-async function uploadImages(event, folderId) {
-    // if (!event.avatar)
-    //     event.avatar = "images/events/default.png";
+async function mapEvent(event, parentFolderId) {
 
-    // const slug = toSlug(event.name);
-    // const extension = path.extname(event.avatar);
-    // const fileName = slug + extension;
-    // const filePath = path.join(bootstrapDir, event.avatar);
+    const childFolderId = await ensureFolder(toSlug(event.title), parentFolderId);
+    const images = await uploadImages(event, childFolderId);
+    const venue = await mapVenue(event.location);
 
-    // return await uploadFile(fileName, folderId, filePath);
-}
-
-function mapEvent(event, images) {
     return {
         data: {
-            name: event.name,
+            slug: toSlug(event.title),
+            name: event.title,
             start: event.schedule.start,
             end: event.schedule.finish,
             status: mapStatus(event),
@@ -89,10 +81,23 @@ function mapEvent(event, images) {
             images: images,
             timetable: mapTimeTable(event.timetable),
             registration: mapRegistration(event.registration),
-            venue: mapVenue(event.location)
+            venue: venue
+            // TODO EventLocation
             // TODO Sponsors
         }
     };
+}
+
+async function uploadImages(event, folderId) {
+    const images = [];
+    if (event.images)
+        Promise.all(
+            event.images.map(image => {
+                const filePath = path.join(bootstrapDir, image);
+                return uploadFile(path.basename(image), folderId, filePath).then(file => { images.push(file) });
+            })
+        );
+    return images;
 }
 
 function mapStatus(event) {
@@ -100,7 +105,7 @@ function mapStatus(event) {
         return "Cancelled";
     else if (event.schedule.isOver || Date.now() > event.schedule.finish)
         return "Over";
-    else if ((event.schedule.registration.link && event.schedule.registration.url) || event.schedule.registration.type)
+    else if ((event.registration && ((event.registration.link && event.registration.url) || event.registration.type)))
         return "Open";
 
     return "Announced";
@@ -116,7 +121,7 @@ function mapRegistration(registration) {
     return {};
 }
 
-function mapVenue(location) {
+async function mapVenue(location) {
     // TODO
     return {};
 }

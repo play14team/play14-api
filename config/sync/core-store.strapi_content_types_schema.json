@@ -1718,13 +1718,16 @@
         },
         "slug": {
           "type": "uid",
-          "targetField": "name"
+          "targetField": "name",
+          "required": true
         },
         "start": {
-          "type": "datetime"
+          "type": "datetime",
+          "required": true
         },
         "end": {
-          "type": "datetime"
+          "type": "datetime",
+          "required": true
         },
         "status": {
           "type": "enumeration",
@@ -1732,13 +1735,13 @@
             "Announced",
             "Open",
             "Over",
-            "Canceled"
+            "Cancelled"
           ],
           "default": "Announced"
         },
-        "image": {
+        "images": {
           "type": "media",
-          "multiple": false,
+          "multiple": true,
           "required": false,
           "allowedTypes": [
             "images"
@@ -1863,13 +1866,16 @@
           },
           "slug": {
             "type": "uid",
-            "targetField": "name"
+            "targetField": "name",
+            "required": true
           },
           "start": {
-            "type": "datetime"
+            "type": "datetime",
+            "required": true
           },
           "end": {
-            "type": "datetime"
+            "type": "datetime",
+            "required": true
           },
           "status": {
             "type": "enumeration",
@@ -1877,13 +1883,13 @@
               "Announced",
               "Open",
               "Over",
-              "Canceled"
+              "Cancelled"
             ],
             "default": "Announced"
           },
-          "image": {
+          "images": {
             "type": "media",
-            "multiple": false,
+            "multiple": true,
             "required": false,
             "allowedTypes": [
               "images"

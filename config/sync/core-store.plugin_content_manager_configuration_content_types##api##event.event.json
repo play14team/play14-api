@@ -6,10 +6,10 @@
       "bulkable": true,
       "filterable": true,
       "searchable": true,
-      "pageSize": 10,
+      "pageSize": 20,
       "mainField": "name",
-      "defaultSortBy": "name",
-      "defaultSortOrder": "ASC"
+      "defaultSortBy": "start",
+      "defaultSortOrder": "DESC"
     },
     "metadatas": {
       "id": {
@@ -90,16 +90,16 @@
           "sortable": true
         }
       },
-      "image": {
+      "images": {
         "edit": {
-          "label": "image",
+          "label": "images",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "image",
+          "label": "images",
           "searchable": false,
           "sortable": false
         }
@@ -235,12 +235,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "name",
-        "slug",
-        "start"
-      ],
       "edit": [
         [
           {
@@ -265,10 +259,6 @@
         [
           {
             "name": "status",
-            "size": 6
-          },
-          {
-            "name": "image",
             "size": 6
           }
         ],
@@ -310,8 +300,21 @@
           {
             "name": "players",
             "size": 6
+          },
+          {
+            "name": "images",
+            "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "name",
+        "start",
+        "end",
+        "status",
+        "location",
+        "images"
       ]
     }
   },
