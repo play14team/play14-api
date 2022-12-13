@@ -54,7 +54,7 @@ async function createOrUpdateLocation(location, shortName) {
 
     const entries = await strapi.entityService.findMany(venueApiName, {
         fields: ['id'],
-        filters: { shortName: shortName },
+        filters: { name: location.name },
     });
 
     if (entries.length == 0) {

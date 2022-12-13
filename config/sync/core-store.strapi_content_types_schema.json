@@ -2244,7 +2244,7 @@
               "localized": true
             }
           },
-          "type": "string"
+          "type": "text"
         },
         "logo": {
           "type": "media",
@@ -2282,6 +2282,24 @@
           "relation": "oneToMany",
           "target": "api::event.event",
           "mappedBy": "venue"
+        },
+        "country": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string",
+          "customField": "plugin::country-select.country"
+        },
+        "shortName": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string",
+          "unique": true
         },
         "createdAt": {
           "type": "datetime"
@@ -2367,7 +2385,7 @@
                 "localized": true
               }
             },
-            "type": "string"
+            "type": "text"
           },
           "logo": {
             "type": "media",
@@ -2405,6 +2423,24 @@
             "relation": "oneToMany",
             "target": "api::event.event",
             "mappedBy": "venue"
+          },
+          "country": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "customField",
+            "customField": "plugin::country-select.country"
+          },
+          "shortName": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string",
+            "unique": true
           }
         },
         "kind": "collectionType"

@@ -16,6 +16,12 @@
       "action": "api::player.player.findOne"
     },
     {
+      "action": "api::venue.venue.find"
+    },
+    {
+      "action": "api::venue.venue.findOne"
+    },
+    {
       "action": "plugin::users-permissions.auth.callback"
     },
     {
