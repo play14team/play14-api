@@ -232,13 +232,15 @@
           "address.street",
           "address.postalCode",
           "address.city",
-          "address.country",
+          "address.area",
           "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "country",
+          "shortName"
         ],
         "locales": [
           "en",
@@ -267,13 +269,15 @@
           "address.street",
           "address.postalCode",
           "address.city",
-          "address.country",
+          "address.area",
           "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "country",
+          "shortName"
         ],
         "locales": [
           "en",
@@ -291,13 +295,15 @@
           "address.street",
           "address.postalCode",
           "address.city",
-          "address.country",
+          "address.area",
           "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "country",
+          "shortName"
         ],
         "locales": [
           "en",

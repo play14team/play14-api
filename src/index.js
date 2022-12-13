@@ -23,7 +23,7 @@ module.exports = {
     {
       console.log("Bootstrap started");
       setTimeout(() => {
-        //players.importData();
+        // players.importData();
         locations.importData();
       }, 1500);
     }

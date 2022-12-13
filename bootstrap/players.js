@@ -67,10 +67,13 @@ async function createOrUpdatePlayer(file, folderId) {
 }
 
 function yaml2json(inputfile) {
-	const data = fs.readFileSync(inputfile, { encoding: 'utf-8' });
-	const split = data.split('---');
-	const cleanData = split.length > 2 ? split[1] : data;
-	return yaml.load(cleanData);
+    const data = fs.readFileSync(inputfile, { encoding: 'utf-8' });
+    const split = data.split('---');
+    const cleanData = split.length > 1 ? split[1] : data;
+    const json = yaml.load(cleanData);
+    json["content"] = split.length > 2 ? split[2] : "";
+
+    return json;
 }
 
 async function uploadAvatar(player, folderId) {
@@ -92,10 +95,9 @@ function mapPlayer(player, avatar) {
             position: capitalize(player.position),
             company: player.company,
             tagline: player.bio,
-            bio: player.bio,
+            bio: player.content,
             avatar: avatar,
             socialNetworks: mapSocialMedia(player.socials),
-            events: mapEvents(player.events),
         }
     };
 }
@@ -117,10 +119,6 @@ function mapSocialMediaName(name) {
         return "LinkedIn";
     else
         return capitalize(name);
-}
-
-function mapEvents(events) {
-    return [];
 }
 
 function mapSlug(name) {

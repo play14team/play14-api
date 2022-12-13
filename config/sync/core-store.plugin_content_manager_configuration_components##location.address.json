@@ -62,16 +62,16 @@
           "sortable": true
         }
       },
-      "country": {
+      "area": {
         "edit": {
-          "label": "country",
+          "label": "area",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "country",
+          "label": "area",
           "searchable": true,
           "sortable": true
         }
@@ -91,17 +91,17 @@
             "size": 6
           },
           {
-            "name": "postalCode",
+            "name": "area",
             "size": 6
           }
         ],
         [
           {
-            "name": "city",
+            "name": "postalCode",
             "size": 6
           },
           {
-            "name": "country",
+            "name": "city",
             "size": 6
           }
         ]

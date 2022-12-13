@@ -119,6 +119,34 @@
           "sortable": false
         }
       },
+      "country": {
+        "edit": {
+          "label": "country",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "country",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "shortName": {
+        "edit": {
+          "label": "shortName",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "shortName",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -149,16 +177,14 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "name",
-        "address",
-        "embeddedMapUrl"
-      ],
       "edit": [
         [
           {
             "name": "name",
+            "size": 6
+          },
+          {
+            "name": "shortName",
             "size": 6
           }
         ],
@@ -166,6 +192,12 @@
           {
             "name": "address",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "website",
+            "size": 6
           }
         ],
         [
@@ -180,12 +212,6 @@
         ],
         [
           {
-            "name": "website",
-            "size": 6
-          }
-        ],
-        [
-          {
             "name": "socialNetworks",
             "size": 12
           }
@@ -194,8 +220,18 @@
           {
             "name": "events",
             "size": 6
+          },
+          {
+            "name": "country",
+            "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "name",
+        "address",
+        "embeddedMapUrl"
       ]
     }
   },
