@@ -16,9 +16,14 @@
       "type": "string",
       "required": true
     },
-    "Country": {
-      "type": "string",
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
       "required": true
+    },
+    "country": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
     },
     "events": {
       "type": "relation",
