@@ -68,6 +68,7 @@ async function mapEvent(event, parentFolderId) {
     const childFolderId = await ensureFolder(toSlug(event.title), parentFolderId);
     const images = await uploadImages(event, childFolderId);
     const venue = await mapVenue(event.location);
+    const eventLocation = await mapEventLocation(event.category);
 
     return {
         data: {
@@ -81,8 +82,8 @@ async function mapEvent(event, parentFolderId) {
             images: images,
             timetable: mapTimeTable(event.timetable),
             registration: mapRegistration(event.registration),
-            venue: venue
-            // TODO EventLocation
+            venue: venue,
+            location: eventLocation,
             // TODO Sponsors
         }
     };
@@ -122,7 +123,40 @@ function mapRegistration(registration) {
 }
 
 async function mapVenue(location) {
-    // TODO
+    const apiName = 'api::venue.venue';
+    let venue = {};
+
+    if (location && location.name) {
+       venue = await strapi.query(apiName).findOne({ where: { name: location.name } });
+    } else if (location) {
+        return await strapi.query(apiName).findOne({ where: { shortName: location } });
+    }
+
+    if (!venue) {
+        const venueData = {
+            data: {
+                shortName: location.name.replaceAll(' ', ''),
+                name: location.name,
+                address: {
+                    street: location.address,
+                    postalCode: "",
+                    city: "",
+                    area: location.area,
+                },
+                country: "",
+                embeddedMapUrl: location.map,
+                website: location.url,
+            }
+        };
+
+        venue = await strapi.entityService.create(apiName, venueData);
+    }
+
+    return venue;
+}
+
+async function mapEventLocation(location) {
+    const apiName = 'api::event-location.event-location';
     return {};
 }
 
