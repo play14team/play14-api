@@ -80,7 +80,7 @@ async function mapEvent(event, parentFolderId) {
             contactEmail: event.contact,
             description: event.content,
             images: images,
-            timetable: [], //mapTimeTable(event.timetable),
+            timetable: mapTimeTable(event.timetable),
             registration: mapRegistration(event.registration),
             venue: venue,
             location: eventLocation,
@@ -116,13 +116,15 @@ function mapTimeTable(timetable) {
     if (!timetable)
         return [];
 
-    return timetable.map(t => {
+    const t = timetable.map(t => {
         return {
             day: t.day,
             description: t.desc,
-            timeslots: mapTimeslots
+            timeslots: mapTimeslots(t.times)
         }
     });
+
+    return t;
 }
 
 function mapTimeslots(timeslots) {
@@ -130,11 +132,43 @@ function mapTimeslots(timeslots) {
         return [];
 
     return timeslots.map(t => {
+        const time = mapTime(t.time);
         return {
-            time: t.time,
+            time: time,
             description: t.desc,
-            }
+        };
     });
+}
+
+function mapTime(time) {
+    let formattedValue = null;
+    const tail = ':00.000';
+    if (time.includes('AM')) {
+        const value = time.replaceAll('AM', '').trim();
+        if (time.includes(':')) {
+          formattedValue = value + tail;
+        }
+        else {
+          formattedValue =  value + ':00' + tail;
+        }
+    }
+    else if (time.includes('PM')) {
+      const value = time.replaceAll('PM', '').trim();
+      if (time.includes(':')) {
+          const split = value.split(':');
+          formattedValue =  (parseInt(split[0]) + 12) + ':' + split[1] + tail;
+      }
+      else {
+        formattedValue =  (parseInt(value) + 12) + ':00' + tail;
+      }
+    }
+
+    if (formattedValue)
+        formattedValue = formattedValue.padStart(12, '0');
+    else
+        formattedValue = (time + tail);
+
+    return formattedValue;
 }
 
 function mapRegistration(registration) {
