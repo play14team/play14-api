@@ -240,6 +240,54 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::sponsor.sponsor",
+      "properties": {
+        "fields": [
+          "name",
+          "url",
+          "logo",
+          "socialNetworks.url",
+          "socialNetworks.type"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::sponsor.sponsor",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::sponsor.sponsor",
+      "properties": {
+        "fields": [
+          "name",
+          "url",
+          "logo",
+          "socialNetworks.url",
+          "socialNetworks.type"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::sponsor.sponsor",
+      "properties": {
+        "fields": [
+          "name",
+          "url",
+          "logo",
+          "socialNetworks.url",
+          "socialNetworks.type"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::venue.venue",
       "properties": {
         "fields": [

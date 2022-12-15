@@ -1,6 +1,7 @@
 'use strict';
-const players = require('../bootstrap/players')
 const venues = require('../bootstrap/venues')
+const sponsors = require('../bootstrap/sponsors')
+const players = require('../bootstrap/players')
 const events = require('../bootstrap/events')
 
 module.exports = {
@@ -24,9 +25,10 @@ module.exports = {
     {
       console.log("Bootstrap started");
       setTimeout(() => {
-        // players.importData();
+        sponsors.importData();
         // venues.importData();
-        events.importData();
+        // players.importData();
+        // events.importData();
       }, 1500);
     }
   },

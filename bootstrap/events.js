@@ -47,6 +47,7 @@ async function createOrUpdateEvent(file, parentFolderId) {
     const event = yaml2json(file);
 
     const eventData = await mapEvent(event, parentFolderId);
+
     const entries = await strapi.entityService.findMany(apiName, {
         fields: ['id'],
         filters: { name: normalize(event.title) },

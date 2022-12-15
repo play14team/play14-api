@@ -34,7 +34,7 @@
       url: mural.co
     - name: instagram
       url: mural_app/
-    
+
 
 - name: Technoport
   url: http://www.technoport.lu
@@ -184,7 +184,7 @@
       url: company/361906/
     - name: twitter
       url: hashtag/7pixel?src=hash
-  
+
 - name: TEAMLABS/
   url: http://www.teamlabs.es/es
   logo: /images/sponsors/madrid/teamlabs.png
@@ -258,7 +258,7 @@
 
 - name: Adventure With Agile
   url: https://www.adventureswithagile.com/
-  logo: /images/sponsors/london/AWA.gif
+  logo: /images/sponsors/london/AWA.png
   socials:
     - name: twitter
       url: agileadventures
@@ -291,7 +291,7 @@
       url: VichyCatalan
     - name: facebook
       url: pages/Vichy-Catalan/461772270556544?fref=ts
-    
+
 - name: Foyer
   url: http://www.foyer.lu/
   logo: /images/sponsors/luxembourg/foyer.png
@@ -306,7 +306,7 @@
   logo: /images/sponsors/luxembourg/lavazza.jpg
   socials:
     - name: facebook
-      url: europoint.lu/      
+      url: europoint.lu/
 
 - name: theventure.city
   url: https://theventure.city/
@@ -486,7 +486,7 @@
 
 - name: INS
   url: https://inscm.com.au/
-  logo: /images/sponsors/sydney/ins.svg
+  logo: /images/sponsors/sydney/ins.png
   socials:
     - name: email
       url: enquiry@inscm.com.au
@@ -539,7 +539,7 @@
       url: SessionLab
     - name: linkedin
       url: company/trainedon/
-  
+
 - name: Markhof
   url: https://markhof.wien/
   logo: /images/sponsors/vienna/markhof.png
@@ -576,7 +576,7 @@
   socials:
     - name: email
       url: info@yunikon.academy
-      
+
 - name: The Debriefing Cube
   url: http://thedebriefingcube.com/
   logo: /images/sponsors/thedebriefingcube.png
@@ -622,7 +622,7 @@
   socials:
   - name: facebook
     url: MeetingSpicer
-  
+
 - name: Altitude Software
   url: https://www.altitude.com/
   logo: /images/sponsors/madrid/altitude.png
@@ -695,11 +695,11 @@
   socials:
   - name: linkedin
     url: company/brainspire-gbr
-    
+
 - name: Strempel Beratung+Coaching
   url: https://www.strempel.info
   logo: /images/sponsors/stuttgart/Strempel.png
-  
+
 - name: Playful Insights
   url: https://www.playful-insights.de
   logo: /images/sponsors/stuttgart/Playful_Insights.png
@@ -738,7 +738,7 @@
       url: samloydco/
 
 - name: Agile Classrooms
-  url: 
+  url:
   logo: /images/sponsors/madrid/agile-classrooms.png
   socials:
 
