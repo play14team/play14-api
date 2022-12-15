@@ -1788,6 +1788,18 @@
           "target": "api::player.player",
           "mappedBy": "events"
         },
+        "hosts": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "hosted"
+        },
+        "mentors": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "mentored"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1935,6 +1947,18 @@
             "relation": "manyToMany",
             "target": "api::player.player",
             "mappedBy": "events"
+          },
+          "hosts": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "hosted"
+          },
+          "mentors": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "mentored"
           }
         },
         "kind": "collectionType"
@@ -2116,6 +2140,18 @@
           "target": "api::event.event",
           "inversedBy": "players"
         },
+        "hosted": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "mappedBy": "hosts"
+        },
+        "mentored": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "mappedBy": "mentors"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2205,6 +2241,18 @@
             "relation": "manyToMany",
             "target": "api::event.event",
             "inversedBy": "players"
+          },
+          "hosted": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "mappedBy": "hosts"
+          },
+          "mentored": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "mappedBy": "mentors"
           }
         },
         "kind": "collectionType"

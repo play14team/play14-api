@@ -97,6 +97,18 @@
       "relation": "manyToMany",
       "target": "api::player.player",
       "mappedBy": "events"
+    },
+    "hosts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::player.player",
+      "inversedBy": "hosted"
+    },
+    "mentors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::player.player",
+      "inversedBy": "mentored"
     }
   }
 }

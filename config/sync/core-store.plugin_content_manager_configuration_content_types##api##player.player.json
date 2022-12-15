@@ -76,6 +76,20 @@
           "sortable": true
         }
       },
+      "tagline": {
+        "edit": {
+          "label": "tagline",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "tagline",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "bio": {
         "edit": {
           "label": "bio",
@@ -147,18 +161,34 @@
           "sortable": false
         }
       },
-      "tagline": {
+      "hosted": {
         "edit": {
-          "label": "tagline",
+          "label": "hosted",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "name"
         },
         "list": {
-          "label": "tagline",
-          "searchable": true,
-          "sortable": true
+          "label": "hosted",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "mentored": {
+        "edit": {
+          "label": "mentored",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "mentored",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -191,6 +221,13 @@
       }
     },
     "layouts": {
+      "list": [
+        "name",
+        "slug",
+        "position",
+        "avatar",
+        "company"
+      ],
       "edit": [
         [
           {
@@ -244,15 +281,18 @@
           {
             "name": "events",
             "size": 6
+          },
+          {
+            "name": "hosted",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "mentored",
+            "size": 6
           }
         ]
-      ],
-      "list": [
-        "name",
-        "slug",
-        "position",
-        "avatar",
-        "company"
       ]
     }
   },
