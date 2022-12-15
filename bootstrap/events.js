@@ -69,6 +69,7 @@ async function mapEvent(event, parentFolderId) {
     const images = await uploadImages(event, childFolderId);
     const venue = await mapVenue(event.location);
     const eventLocation = await mapEventLocation(event.category);
+    const hosts = await mapHosts(event.members);
 
     return {
         data: {
@@ -84,9 +85,10 @@ async function mapEvent(event, parentFolderId) {
             registration: mapRegistration(event.registration),
             venue: venue,
             location: eventLocation,
+            hosts : hosts,
+
 
             // TODO Sponsors
-            // TODO Team
             // TODO Mentors
             // TODO Players
         }
@@ -245,6 +247,20 @@ async function mapEventLocation(category) {
     };
 
     return eventLocation;
+}
+
+async function mapHosts(members) {
+  const hosts = [];
+  if (members)
+    Promise.all(
+      members.map(m => {
+            return strapi.query('api::player.player').findOne({ where: { name: m } })
+              .then(h => {
+                hosts.push(h);
+              });
+        })
+    );
+  return hosts;
 }
 
 module.exports = { importData };

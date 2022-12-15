@@ -69,7 +69,9 @@
           "description",
           "location",
           "venue",
-          "players"
+          "players",
+          "hosts",
+          "mentors"
         ],
         "locales": [
           "en",
@@ -121,7 +123,9 @@
           "description",
           "location",
           "venue",
-          "players"
+          "players",
+          "hosts",
+          "mentors"
         ],
         "locales": [
           "en",
@@ -151,7 +155,9 @@
           "description",
           "location",
           "venue",
-          "players"
+          "players",
+          "hosts",
+          "mentors"
         ],
         "locales": [
           "en",
@@ -175,7 +181,9 @@
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "hosted",
+          "mentored"
         ]
       },
       "conditions": []
@@ -201,7 +209,9 @@
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "hosted",
+          "mentored"
         ]
       },
       "conditions": []
@@ -221,7 +231,9 @@
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "hosted",
+          "mentored"
         ]
       },
       "conditions": []

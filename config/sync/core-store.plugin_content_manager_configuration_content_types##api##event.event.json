@@ -205,6 +205,36 @@
           "sortable": false
         }
       },
+      "hosts": {
+        "edit": {
+          "label": "hosts",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "hosts",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "mentors": {
+        "edit": {
+          "label": "mentors",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "mentors",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -235,6 +265,15 @@
       }
     },
     "layouts": {
+      "list": [
+        "name",
+        "start",
+        "end",
+        "status",
+        "location",
+        "venue",
+        "images"
+      ],
       "edit": [
         [
           {
@@ -304,17 +343,18 @@
           {
             "name": "players",
             "size": 6
+          },
+          {
+            "name": "hosts",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "mentors",
+            "size": 6
           }
         ]
-      ],
-      "list": [
-        "name",
-        "start",
-        "end",
-        "status",
-        "location",
-        "venue",
-        "images"
       ]
     }
   },
