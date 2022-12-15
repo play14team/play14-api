@@ -1719,7 +1719,7 @@
         "slug": {
           "type": "uid",
           "targetField": "name",
-          "required": true
+          "required": false
         },
         "start": {
           "type": "datetime",
@@ -1867,7 +1867,7 @@
           "slug": {
             "type": "uid",
             "targetField": "name",
-            "required": true
+            "required": false
           },
           "start": {
             "type": "datetime",
@@ -1969,7 +1969,7 @@
         "slug": {
           "type": "uid",
           "targetField": "name",
-          "required": true
+          "required": false
         },
         "country": {
           "type": "string",
@@ -2028,7 +2028,7 @@
           "slug": {
             "type": "uid",
             "targetField": "name",
-            "required": true
+            "required": false
           },
           "country": {
             "type": "customField",

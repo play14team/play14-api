@@ -33,12 +33,17 @@ function mapSocialMediaName(name) {
         return capitalize(name);
 }
 
-function toSlug(name) {
-	return slugify(name, {remove: /[*+~.()'"!:@]/g}).toLowerCase();
+function toSlug(value) {
+  const normalized = normalize(value);
+	return slugify(normalized, {remove: /[*+~.()'"!:@]/g}).toLowerCase();
 }
 
-function capitalize(name) {
-	return name.charAt(0).toUpperCase() + name.slice(1);
+function capitalize(value) {
+	return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
-module.exports = { yaml2json, mapSocialNetworks, toSlug, capitalize };
+function normalize(value) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+module.exports = { yaml2json, mapSocialNetworks, toSlug, capitalize, normalize };

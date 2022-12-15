@@ -8,14 +8,10 @@
   "options": {},
   "attributes": {
     "link": {
-      "type": "component",
-      "repeatable": false,
-      "component": "registration.link-registration"
+      "type": "string"
     },
-    "widget": {
-      "type": "component",
-      "repeatable": false,
-      "component": "registration.widget-registration"
+    "widgetCode": {
+      "type": "text"
     }
   }
 }

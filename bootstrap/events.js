@@ -49,7 +49,7 @@ async function createOrUpdateEvent(file, parentFolderId) {
     const eventData = await mapEvent(event, parentFolderId);
     const entries = await strapi.entityService.findMany(apiName, {
         fields: ['id'],
-        filters: { name: event.title },
+        filters: { name: normalize(event.title) },
     });
 
     if (entries.length == 0) {
@@ -84,7 +84,7 @@ async function mapEvent(event, parentFolderId) {
             registration: mapRegistration(event.registration),
             venue: venue,
             location: eventLocation,
-            
+
             // TODO Sponsors
             // TODO Team
             // TODO Mentors
