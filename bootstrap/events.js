@@ -3,7 +3,7 @@
 const path = require("path");
 const fs = require("fs");
 const { ensureFolder, uploadFile } = require('./upload.js');
-const { yaml2json, toSlug, capitalize } = require('./utilities.js');
+const { yaml2json, toSlug, capitalize, normalize } = require('./utilities.js');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 
 async function importData() {
@@ -72,8 +72,8 @@ async function mapEvent(event, parentFolderId) {
 
     return {
         data: {
+            name: normalize(event.title),
             slug: toSlug(event.title),
-            name: event.title,
             start: event.schedule.start,
             end: event.schedule.finish,
             status: mapStatus(event),
@@ -84,7 +84,11 @@ async function mapEvent(event, parentFolderId) {
             registration: mapRegistration(event.registration),
             venue: venue,
             location: eventLocation,
+            
             // TODO Sponsors
+            // TODO Team
+            // TODO Mentors
+            // TODO Players
         }
     };
 }
@@ -172,8 +176,15 @@ function mapTime(time) {
 }
 
 function mapRegistration(registration) {
-    // TODO
+  if (!registration)
     return {};
+
+  if (registration.type && registration.type === 'link')
+  {
+      return { link: registration.url }
+  }
+
+  return { widgetCode: JSON.stringify(registration) };
 }
 
 async function mapVenue(location) {
