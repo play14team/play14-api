@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "id",
-      "defaultSortBy": "id",
+      "mainField": "link",
+      "defaultSortBy": "link",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -34,18 +34,18 @@
           "sortable": false
         }
       },
-      "widget": {
+      "widgetCode": {
         "edit": {
-          "label": "widget",
+          "label": "widgetCode",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "widget",
-          "searchable": false,
-          "sortable": false
+          "label": "widgetCode",
+          "searchable": true,
+          "sortable": true
         }
       }
     },
@@ -53,7 +53,7 @@
       "list": [
         "id",
         "link",
-        "widget"
+        "widgetCode"
       ],
       "edit": [
         [
@@ -64,7 +64,7 @@
         ],
         [
           {
-            "name": "widget",
+            "name": "widgetCode",
             "size": 12
           }
         ]

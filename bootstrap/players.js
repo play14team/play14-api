@@ -80,6 +80,7 @@ function mapPlayer(player, avatar) {
     return {
         data: {
             name: player.name,
+            slug: toSlug(player.name),
             position: capitalize(player.position),
             company: player.company,
             tagline: player.bio,
