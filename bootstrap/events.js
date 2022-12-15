@@ -71,6 +71,8 @@ async function mapEvent(event, parentFolderId) {
     const eventLocation = await mapEventLocation(event.category);
     const hosts = await mapPlayers(event.members);
     const mentors = await mapPlayers(event.mentors);
+    const playerNames = await getPlayerNames(event.title);
+    const players = await mapPlayers(playerNames);
 
     return {
         data: {
@@ -88,8 +90,8 @@ async function mapEvent(event, parentFolderId) {
             location: eventLocation,
             hosts: hosts,
             mentors: mentors,
+            players: players,
             // TODO Sponsors
-            // TODO Players
         }
     };
 }
@@ -260,6 +262,23 @@ async function mapPlayers(names) {
         })
     );
   return players;
+}
+
+async function getPlayerNames(eventName) {
+  const markdownDir = path.join(bootstrapDir, "md/players");
+  const files = await fs.promises.readdir( markdownDir );
+
+  const names = [];
+  files.map(file =>
+    {
+      const player = yaml2json(path.join(markdownDir, file));
+      if (player.events && player.events.includes(eventName)) {
+        names.push(player.name);
+      }
+    }
+  );
+
+  return names;
 }
 
 module.exports = { importData };
