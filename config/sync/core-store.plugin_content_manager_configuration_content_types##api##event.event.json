@@ -265,15 +265,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "name",
-        "start",
-        "end",
-        "status",
-        "location",
-        "venue",
-        "images"
-      ],
       "edit": [
         [
           {
@@ -341,20 +332,29 @@
         ],
         [
           {
-            "name": "players",
+            "name": "hosts",
             "size": 6
           },
           {
-            "name": "hosts",
+            "name": "mentors",
             "size": 6
           }
         ],
         [
           {
-            "name": "mentors",
+            "name": "players",
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "name",
+        "start",
+        "end",
+        "status",
+        "location",
+        "venue",
+        "images"
       ]
     }
   },
