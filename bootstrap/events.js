@@ -3,7 +3,7 @@
 const path = require("path");
 const fs = require("fs");
 const { ensureFolder, uploadFile } = require('./upload.js');
-const { yaml2json, mapSocialNetworks, toSlug, capitalize } = require('./utilities.js');
+const { yaml2json, toSlug, capitalize } = require('./utilities.js');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 
 async function importData() {
@@ -209,9 +209,31 @@ async function mapVenue(location) {
     return venue;
 }
 
-async function mapEventLocation(location) {
+async function mapEventLocation(category) {
     const apiName = 'api::event-location.event-location';
-    return {};
+
+    const entries = await strapi.entityService.findMany(apiName, {
+        fields: ['id'],
+        filters: { slug: category },
+    });
+
+    let eventLocation = {};
+
+    if (entries.length == 0) {
+        console.log(`Insterting ${category}`);
+        const locationData = {
+          data: {
+            slug: category,
+            name: capitalize(category)
+          }
+        }
+        eventLocation = await strapi.entityService.create(apiName, locationData);
+        console.log(`${category} inserted`);
+    } else {
+        eventLocation = entries[0];
+    };
+
+    return eventLocation;
 }
 
 module.exports = { importData };
