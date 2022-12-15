@@ -17,14 +17,39 @@ function yaml2json(inputfile) {
 function mapSocialNetworks(socials) {
     if (socials)
         return socials.map(s => {
-            const url = s.url ? s.url?.toString() : "";
-            return { url: url, type: mapSocialMediaName(s.name)}}
+            const url = '' + s.url;
+            return { url: mapSocialNetworkUrl(url), type: mapSocialNetworkName(s.name)}}
         );
 
     return [];
 }
 
-function mapSocialMediaName(name) {
+function mapSocialNetworkUrl(url, socialNetworkName) {
+  switch (socialNetworkName) {
+    case "Twitter":
+      return new URL(url, "https://twitter.com");
+    case "LinkeIn":
+      return new URL(url, "https://www.linkedin.com");
+    case "Facebook":
+      return new URL(url, "https://www.facebook.com");
+    case "Youtube":
+      return new URL(url, "https://www.youtube.com");
+    case "Instagram":
+      return new URL(url, "https://www.instagram.com");
+    case "Xing":
+      return new URL(url, "https://www.xing.com/");
+    case "Email":
+      return new URL(url, "mailto:");
+    case "Wikipedia":
+      return new URL(url, "https://www.wikipedia.org");
+    case "Vimeo":
+      return new URL(url, "https://vimeo.com");
+    default:
+      return url;
+  }
+}
+
+function mapSocialNetworkName(name) {
     if (name.toLowerCase() === "google-plus")
         return "Other"
     if (name.toLowerCase() === "linkedin")

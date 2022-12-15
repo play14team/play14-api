@@ -2266,6 +2266,110 @@
       "actions": {},
       "lifecycles": {}
     },
+    "api::sponsor.sponsor": {
+      "kind": "collectionType",
+      "collectionName": "sponsors",
+      "info": {
+        "singularName": "sponsor",
+        "pluralName": "sponsors",
+        "displayName": "Sponsor"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "url": {
+          "type": "string"
+        },
+        "logo": {
+          "allowedTypes": [
+            "images"
+          ],
+          "type": "media",
+          "multiple": false
+        },
+        "socialNetworks": {
+          "type": "component",
+          "repeatable": true,
+          "component": "contact.social-network"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "sponsors",
+        "info": {
+          "singularName": "sponsor",
+          "pluralName": "sponsors",
+          "displayName": "Sponsor"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "url": {
+            "type": "string"
+          },
+          "logo": {
+            "allowedTypes": [
+              "images"
+            ],
+            "type": "media",
+            "multiple": false
+          },
+          "socialNetworks": {
+            "type": "component",
+            "repeatable": true,
+            "component": "contact.social-network"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "sponsor",
+      "connection": "default",
+      "uid": "api::sponsor.sponsor",
+      "apiName": "sponsor",
+      "globalId": "Sponsor",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::venue.venue": {
       "kind": "collectionType",
       "collectionName": "venues",

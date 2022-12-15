@@ -3,7 +3,6 @@
 const path = require("path");
 const fs = require("fs");
 const yaml = require('js-yaml');
-const { async } = require("rxjs");
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 const upload = require('./upload');
 
