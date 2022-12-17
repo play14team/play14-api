@@ -39,7 +39,7 @@ async function importVenues(locationPath) {
             }
         }
 
-        Promise.all(promises);
+        await Promise.all(promises);
 
     } catch (error) {
         console.error(error);
