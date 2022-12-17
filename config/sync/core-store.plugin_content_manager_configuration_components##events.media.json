@@ -22,9 +22,9 @@
       },
       "url": {
         "edit": {
-          "label": "url",
-          "description": "",
-          "placeholder": "",
+          "label": "URL",
+          "description": "URL of the media library",
+          "placeholder": "Type a valid URL",
           "visible": true,
           "editable": true
         },
@@ -36,9 +36,9 @@
       },
       "type": {
         "edit": {
-          "label": "type",
-          "description": "",
-          "placeholder": "",
+          "label": "Type of media",
+          "description": "What type of media library?",
+          "placeholder": "Pick a value",
           "visible": true,
           "editable": true
         },

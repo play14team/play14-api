@@ -22,9 +22,9 @@
       },
       "url": {
         "edit": {
-          "label": "url",
-          "description": "",
-          "placeholder": "",
+          "label": "URL",
+          "description": "URL of the social network account",
+          "placeholder": "Type a valid URL",
           "visible": true,
           "editable": true
         },
@@ -36,9 +36,9 @@
       },
       "type": {
         "edit": {
-          "label": "type",
-          "description": "",
-          "placeholder": "",
+          "label": "Social Network",
+          "description": "Which social network?",
+          "placeholder": "Pick a social network",
           "visible": true,
           "editable": true
         },

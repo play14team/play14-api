@@ -22,9 +22,9 @@
       },
       "street": {
         "edit": {
-          "label": "street",
-          "description": "",
-          "placeholder": "",
+          "label": "Street and number",
+          "description": "What are the street and number?",
+          "placeholder": "Type street and number",
           "visible": true,
           "editable": true
         },
@@ -36,9 +36,9 @@
       },
       "postalCode": {
         "edit": {
-          "label": "postalCode",
-          "description": "",
-          "placeholder": "",
+          "label": "Postal Code",
+          "description": "What is the postal code?",
+          "placeholder": "Type the postal code",
           "visible": true,
           "editable": true
         },
@@ -50,9 +50,9 @@
       },
       "city": {
         "edit": {
-          "label": "city",
-          "description": "",
-          "placeholder": "",
+          "label": "City",
+          "description": "What city?",
+          "placeholder": "Type the name of the city",
           "visible": true,
           "editable": true
         },
@@ -64,9 +64,9 @@
       },
       "area": {
         "edit": {
-          "label": "area",
-          "description": "",
-          "placeholder": "",
+          "label": "Area",
+          "description": "What area of neighborhood?",
+          "placeholder": "Type the name of the area or neighborhood",
           "visible": true,
           "editable": true
         },

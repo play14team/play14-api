@@ -22,9 +22,9 @@
       },
       "category": {
         "edit": {
-          "label": "category",
-          "description": "",
-          "placeholder": "",
+          "label": "Category",
+          "description": "What kind of sponsor?",
+          "placeholder": "Type a category of sponsorship (i.e. Venue, Food, Drinks, Goodies, ...)",
           "visible": true,
           "editable": true
         },
@@ -36,9 +36,9 @@
       },
       "sponsors": {
         "edit": {
-          "label": "sponsors",
-          "description": "",
-          "placeholder": "",
+          "label": "Sponsors",
+          "description": "Who is sponsoring your event?",
+          "placeholder": "Pick one or more sponsors or create a new sponsor first",
           "visible": true,
           "editable": true,
           "mainField": "name"

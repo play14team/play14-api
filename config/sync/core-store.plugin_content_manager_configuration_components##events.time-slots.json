@@ -22,11 +22,12 @@
       },
       "time": {
         "edit": {
-          "label": "time",
-          "description": "",
-          "placeholder": "",
+          "label": "Time",
+          "description": "What time does the activity starts?",
+          "placeholder": "Pick a time for the activity",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "step": 30
         },
         "list": {
           "label": "time",
@@ -36,9 +37,9 @@
       },
       "description": {
         "edit": {
-          "label": "description",
-          "description": "",
-          "placeholder": "",
+          "label": "Description",
+          "description": "What happens at this time?",
+          "placeholder": "Type any activity",
           "visible": true,
           "editable": true
         },
