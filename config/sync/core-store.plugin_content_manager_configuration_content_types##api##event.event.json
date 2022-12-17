@@ -235,6 +235,20 @@
           "sortable": false
         }
       },
+      "sponsorships": {
+        "edit": {
+          "label": "sponsorships",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "sponsorships",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -265,6 +279,14 @@
       }
     },
     "layouts": {
+      "list": [
+        "name",
+        "start",
+        "end",
+        "status",
+        "location",
+        "venue"
+      ],
       "edit": [
         [
           {
@@ -308,12 +330,6 @@
         ],
         [
           {
-            "name": "images",
-            "size": 12
-          }
-        ],
-        [
-          {
             "name": "timetable",
             "size": 12
           }
@@ -332,6 +348,16 @@
         ],
         [
           {
+            "name": "players",
+            "size": 6
+          },
+          {
+            "name": "images",
+            "size": 6
+          }
+        ],
+        [
+          {
             "name": "hosts",
             "size": 6
           },
@@ -342,19 +368,10 @@
         ],
         [
           {
-            "name": "players",
-            "size": 6
+            "name": "sponsorships",
+            "size": 12
           }
         ]
-      ],
-      "list": [
-        "name",
-        "start",
-        "end",
-        "status",
-        "location",
-        "venue",
-        "images"
       ]
     }
   },

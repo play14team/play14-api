@@ -34,7 +34,7 @@ async function importVenues(locationPath) {
                             failed++;
                         })
                         .then(_ => {
-                            console.log(`Progress ${succeeded + failed} on ${promises.length} [${succeeded} succeeded, ${failed} failed]`)
+                            console.log(`${succeeded + failed} venues on ${promises.length} [${succeeded} succeeded, ${failed} failed]`)
                         })
                 );
             }
@@ -57,13 +57,13 @@ async function createOrUpdateLocation(location, shortName) {
     });
 
     if (entries.length == 0) {
-        console.log(`Insterting ${shortName}`);
+        console.log(`Insterting Venue "${shortName}"`);
         await strapi.entityService.create(venueApiName, venue);
-        console.log(`${shortName} inserted`);
+        console.log(`Venue "${shortName}" inserted`);
     } else {
-        console.log(`Updating ${shortName}`);
+        console.log(`Updating Venue "${shortName}"`);
         await strapi.entityService.update(venueApiName, entries[0].id, venue);
-        console.log(`${shortName} updated`);
+        console.log(`Venue "${shortName}" updated`);
     };
 }
 

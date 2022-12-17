@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_components::registration.registration",
+  "key": "plugin_content_manager_configuration_components::events.sponsorship",
   "value": {
-    "uid": "registration.registration",
+    "uid": "events.sponsorship",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "link",
-      "defaultSortBy": "link",
+      "mainField": "category",
+      "defaultSortBy": "category",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,51 +20,50 @@
           "sortable": false
         }
       },
-      "link": {
+      "category": {
         "edit": {
-          "label": "link",
+          "label": "category",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "link",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "widgetCode": {
-        "edit": {
-          "label": "widgetCode",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "widgetCode",
+          "label": "category",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "sponsors": {
+        "edit": {
+          "label": "sponsors",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "sponsors",
+          "searchable": false,
+          "sortable": false
         }
       }
     },
     "layouts": {
       "list": [
         "id",
-        "link",
-        "widgetCode"
+        "category",
+        "sponsors"
       ],
       "edit": [
         [
           {
-            "name": "link",
-            "size": 12
-          }
-        ],
-        [
+            "name": "category",
+            "size": 6
+          },
           {
-            "name": "widgetCode",
+            "name": "sponsors",
             "size": 6
           }
         ]

@@ -32,7 +32,7 @@ async function importPlayers(markdownDir) {
                             failed++;
                         })
                         .then(_ => {
-                            console.log(`Progress ${succeeded + failed} on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
+                            console.log(`Players ${succeeded + failed} players on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
                         })
                 })
         );
@@ -54,13 +54,13 @@ async function createOrUpdatePlayer(file, folderId) {
     });
 
     if (entries.length == 0) {
-        console.log(`Insterting ${player.name}`);
+        console.log(`Insterting Player "${player.name}"`);
         await strapi.entityService.create(playerApiName, playerData);
-        console.log(`${player.name} inserted`);
+        console.log(`Player "${player.name}" inserted`);
     } else {
-        console.log(`Updating ${player.name}`);
+        console.log(`Updating Player "${player.name}"`);
         await strapi.entityService.update(playerApiName, entries[0].id, playerData);
-        console.log(`${player.name} updated`);
+        console.log(`"${player.name}" updated`);
     };
 }
 

@@ -40,7 +40,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": false
+          "editable": true
         },
         "list": {
           "label": "slug",
@@ -112,6 +112,12 @@
           {
             "name": "name",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "events",
+            "size": 6
           },
           {
             "name": "slug",
@@ -122,16 +128,12 @@
           {
             "name": "country",
             "size": 6
-          },
-          {
-            "name": "events",
-            "size": 6
           }
         ]
       ],
       "list": [
-        "slug",
         "name",
+        "slug",
         "country",
         "events"
       ]

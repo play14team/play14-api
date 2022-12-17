@@ -32,7 +32,7 @@ async function importEvents(markdownDir) {
                             failed++;
                         })
                         .then(_ => {
-                            console.log(`Progress ${succeeded + failed} on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
+                            console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
                         })
                 })
         );
@@ -54,13 +54,13 @@ async function createOrUpdateEvent(file, parentFolderId) {
     });
 
     if (entries.length == 0) {
-        console.log(`Insterting ${event.title}`);
+        console.log(`Insterting Event "${event.title}"`);
         await strapi.entityService.create(apiName, eventData);
-        console.log(`${event.title} inserted`);
+        console.log(`Event "${event.title}" inserted`);
     } else {
-        console.log(`Updating ${event.title}`);
+        console.log(`Updating Event "${event.title}"`);
         await strapi.entityService.update(apiName, entries[0].id, eventData);
-        console.log(`${event.title} updated`);
+        console.log(`Event "${event.title}" updated`);
     };
 }
 
@@ -74,6 +74,7 @@ async function mapEvent(event, parentFolderId) {
     const mentors = await mapPlayers(event.mentors);
     const playerNames = await getPlayerNames(event.title);
     const players = await mapPlayers(playerNames);
+    const sponsorships = await mapSponsors(event.sponsors);
 
     return {
         data: {
@@ -92,7 +93,7 @@ async function mapEvent(event, parentFolderId) {
             hosts: hosts,
             mentors: mentors,
             players: players,
-            // TODO Sponsors
+            sponsorships: sponsorships ?? [],
         }
     };
 }
@@ -280,6 +281,55 @@ async function getPlayerNames(eventName) {
   );
 
   return names;
+}
+
+async function mapSponsors(sponsors) {
+  const sponsorships = [];
+  if (sponsors)
+  {
+    const sponsorsByType = getSponsorsByType(sponsors);
+    Promise.all(
+      Object.keys(sponsorsByType).map((type) => {
+        const names = sponsorsByType[type];
+        return findSponsorsByName(names)
+          .then(sponsorItems => {
+            const sponsorship = {
+              category: type,
+              sponsors: sponsorItems
+            };
+            sponsorships.push(sponsorship);
+          })
+      })
+    );
+  }
+  return sponsorships;
+}
+
+function getSponsorsByType(sponsors) {
+  if(sponsors) {
+    return sponsors.reduce((group, sponsor) => {
+      const { type } = sponsor;
+      group[type] = group[type] ?? [];
+      group[type].push(sponsor.name);
+      return group;
+    }, {});
+  }
+
+  return {};
+}
+
+async function findSponsorsByName(names) {
+  const items = [];
+  if (names)
+    Promise.all(
+      names.map(name => {
+            return strapi.query('api::sponsor.sponsor').findOne({ where: { name: name } })
+              .then(item => {
+                items.push(item);
+              });
+        })
+    );
+  return items;
 }
 
 module.exports = { importData };

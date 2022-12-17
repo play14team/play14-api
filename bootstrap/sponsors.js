@@ -33,7 +33,7 @@ async function importItems(filePath, mapItem, apiName) {
             failed++;
           })
           .then(_ => {
-            console.log(`Progress ${succeeded + failed} on ${items.length} [${succeeded} succeeded, ${failed} failed]`);
+            console.log(`${succeeded + failed} sponsors on ${items.length} [${succeeded} succeeded, ${failed} failed]`);
           });
       })
     );
@@ -43,26 +43,20 @@ async function importItems(filePath, mapItem, apiName) {
 }
 
 async function createOrUpdate(value, name, apiName) {
-  try {
-    const entries = await strapi.entityService.findMany(apiName, {
-        fields: ['id'],
-        filters: { name: name },
-    });
+  const entries = await strapi.entityService.findMany(apiName, {
+      fields: ['id'],
+      filters: { name: name },
+  });
 
-    if (entries.length == 0) {
-        console.log(`Insterting ${name}`);
-        await strapi.entityService.create(apiName, value);
-        console.log(`${name} inserted`);
-    } else {
-        console.log(`Updating ${name}`);
-        await strapi.entityService.update(apiName, entries[0].id, value);
-        console.log(`${name} updated`);
-    };
-  }
-  catch (err) {
-    console.log(`Failed to create or update ${name}`);
-    confirm.err(err);
-  }
+  if (entries.length == 0) {
+      console.log(`Insterting Sponsor "${name}"`);
+      await strapi.entityService.create(apiName, value);
+      console.log(`Sponsor "${name}" inserted`);
+  } else {
+      console.log(`Updating Sponsor "${name}"`);
+      await strapi.entityService.update(apiName, entries[0].id, value);
+      console.log(`Sponsor "${name}" updated`);
+  };
 }
 
 async function mapSponsor(sponsor, folderId) {
