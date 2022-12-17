@@ -119,6 +119,16 @@
         }
       },
       "component": "events.sponsorship"
+    },
+    "media": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "events.media"
     }
   }
 }

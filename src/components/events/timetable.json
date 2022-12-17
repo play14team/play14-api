@@ -10,13 +10,13 @@
     "day": {
       "type": "enumeration",
       "enum": [
-        "Friday",
-        "Saturday",
-        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
-        "Thursday"
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
       ],
       "required": true
     },
