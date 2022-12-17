@@ -46,7 +46,8 @@ async function uploadFile(fileName, folderId, filePath) {
     const uploadApi = await strapi.query("plugin::upload.file");
     let file = await uploadApi.findOne({
         where: {
-        name: fileName
+          name: fileName,
+          folder: folderId
         },
     });
 
