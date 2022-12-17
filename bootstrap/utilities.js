@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const yaml = require('js-yaml');
-const slugify = require('slugify');
+const { capitalize } = require('../src/libs/strings');
 
 function yaml2json(inputfile) {
     const data = fs.readFileSync(inputfile, { encoding: 'utf-8' });
@@ -58,17 +58,4 @@ function mapSocialNetworkName(name) {
         return capitalize(name);
 }
 
-function toSlug(value) {
-  const normalized = normalize(value);
-	return slugify(normalized, {remove: /[*+~.()'"!:@]/g}).toLowerCase();
-}
-
-function capitalize(value) {
-	return value.charAt(0).toUpperCase() + value.slice(1);
-}
-
-function normalize(value) {
-  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
-module.exports = { yaml2json, mapSocialNetworks, toSlug, capitalize, normalize };
+module.exports = { yaml2json, mapSocialNetworks };

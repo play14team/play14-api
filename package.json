@@ -19,6 +19,7 @@
     "@strapi/plugin-seo": "^1.7.7",
     "@strapi/plugin-users-permissions": "4.5.4",
     "@strapi/strapi": "4.5.4",
+    "async-mutex": "^0.4.0",
     "js-yaml": "^4.1.0",
     "mime": "^3.0.0",
     "pg": "^8.7.3",
