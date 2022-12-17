@@ -138,28 +138,10 @@ async function uploadContentImages(htmlContent, folderId) {
   return newHtmlContent;
 }
 
-    // const promises = [];
-
-    // images.forEach(image => {
-    //   const url = image.getAttribute('src');
-    //   if (url.startsWith('/images')) {
-    //     const filePath = path.join(bootstrapDir, url);
-    //     promises.push(new Promise(async (res, rej) => {
-    //       const file = await uploadFile(path.basename(url), contentFolderId, filePath)
-    //       image.setAttribute('src', file.url);
-    //       })
-    //     )
-    //   }
-    // })
-
-    // Promise.allSettled(promises);
-    // //Promise.all(promises);
-
-
 async function uploadImages(event, folderId) {
     const images = [];
     if (event.images)
-        Promise.all(
+        await Promise.all(
             event.images.map(image => {
                 const filePath = path.join(bootstrapDir, image);
                 return uploadFile(path.basename(image), folderId, filePath).then(file => { images.push(file) });
