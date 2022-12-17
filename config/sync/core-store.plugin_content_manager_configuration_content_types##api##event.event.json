@@ -22,9 +22,9 @@
       },
       "name": {
         "edit": {
-          "label": "name",
-          "description": "",
-          "placeholder": "",
+          "label": "Event name",
+          "description": "What is the event name?",
+          "placeholder": "Type the name of the city  followed by the year (yyyy)",
           "visible": true,
           "editable": true
         },
@@ -36,9 +36,9 @@
       },
       "slug": {
         "edit": {
-          "label": "slug",
+          "label": "Slug",
           "description": "",
-          "placeholder": "",
+          "placeholder": "auto-generated",
           "visible": true,
           "editable": false
         },
@@ -50,11 +50,12 @@
       },
       "start": {
         "edit": {
-          "label": "start",
-          "description": "",
+          "label": "Starts",
+          "description": "When does it starts?",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "step": 30
         },
         "list": {
           "label": "start",
@@ -64,11 +65,12 @@
       },
       "end": {
         "edit": {
-          "label": "end",
-          "description": "",
+          "label": "Ends",
+          "description": "When does it ends?",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "step": 30
         },
         "list": {
           "label": "end",
@@ -78,7 +80,7 @@
       },
       "status": {
         "edit": {
-          "label": "status",
+          "label": "Status",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -92,8 +94,8 @@
       },
       "images": {
         "edit": {
-          "label": "images",
-          "description": "",
+          "label": "Images",
+          "description": "Images of the city or venue",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -106,9 +108,9 @@
       },
       "contactEmail": {
         "edit": {
-          "label": "contactEmail",
+          "label": "Contact e-mail",
           "description": "",
-          "placeholder": "",
+          "placeholder": "team@play14.org",
           "visible": true,
           "editable": true
         },
@@ -120,7 +122,7 @@
       },
       "timetable": {
         "edit": {
-          "label": "timetable",
+          "label": "Schedule",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -134,7 +136,7 @@
       },
       "registration": {
         "edit": {
-          "label": "registration",
+          "label": "Registration",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -148,9 +150,9 @@
       },
       "description": {
         "edit": {
-          "label": "description",
-          "description": "",
-          "placeholder": "",
+          "label": "Description",
+          "description": "Describe the event and provide logistics details",
+          "placeholder": "Type any text you want to display on the event page",
           "visible": true,
           "editable": true
         },
@@ -162,9 +164,9 @@
       },
       "location": {
         "edit": {
-          "label": "location",
-          "description": "",
-          "placeholder": "",
+          "label": "Location",
+          "description": "In which location does the event take place?",
+          "placeholder": "Pick a location or create a new one first",
           "visible": true,
           "editable": true,
           "mainField": "name"
@@ -177,9 +179,9 @@
       },
       "venue": {
         "edit": {
-          "label": "venue",
-          "description": "",
-          "placeholder": "",
+          "label": "Venue",
+          "description": "Where does the event take place?",
+          "placeholder": "Pick a venue or create a new on first",
           "visible": true,
           "editable": true,
           "mainField": "name"
@@ -192,9 +194,9 @@
       },
       "players": {
         "edit": {
-          "label": "players",
-          "description": "",
-          "placeholder": "",
+          "label": "Players",
+          "description": "Who is attending the event?",
+          "placeholder": "Pick one or more players or create a new players first",
           "visible": true,
           "editable": true,
           "mainField": "name"
@@ -207,9 +209,9 @@
       },
       "hosts": {
         "edit": {
-          "label": "hosts",
-          "description": "",
-          "placeholder": "",
+          "label": "Hosts",
+          "description": "Who is part for the hosting team?",
+          "placeholder": "Pick one or more players or create a new players first",
           "visible": true,
           "editable": true,
           "mainField": "name"
@@ -222,9 +224,9 @@
       },
       "mentors": {
         "edit": {
-          "label": "mentors",
-          "description": "",
-          "placeholder": "",
+          "label": "Mentors",
+          "description": "Who is mentoring the hosting team?",
+          "placeholder": "Pick one or more players or create a new players first",
           "visible": true,
           "editable": true,
           "mainField": "name"
@@ -237,7 +239,7 @@
       },
       "sponsorships": {
         "edit": {
-          "label": "sponsorships",
+          "label": "Sponsorship",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -251,7 +253,7 @@
       },
       "media": {
         "edit": {
-          "label": "media",
+          "label": "Media libraries (Youtube videos or Google Photos)",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -293,53 +295,57 @@
       }
     },
     "layouts": {
-      "list": [
-        "name",
-        "start",
-        "end",
-        "status",
-        "location",
-        "venue"
-      ],
       "edit": [
         [
           {
             "name": "name",
-            "size": 6
+            "size": 4
           },
           {
             "name": "slug",
-            "size": 6
+            "size": 4
           }
         ],
         [
           {
             "name": "start",
-            "size": 6
+            "size": 4
           },
           {
             "name": "end",
-            "size": 6
+            "size": 4
           }
         ],
         [
           {
             "name": "status",
-            "size": 6
+            "size": 4
           },
           {
             "name": "contactEmail",
-            "size": 6
+            "size": 4
           }
         ],
         [
           {
-            "name": "venue",
-            "size": 6
+            "name": "location",
+            "size": 4
           },
           {
-            "name": "location",
-            "size": 6
+            "name": "venue",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "images",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "description",
+            "size": 12
           }
         ],
         [
@@ -356,32 +362,6 @@
         ],
         [
           {
-            "name": "description",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "players",
-            "size": 6
-          },
-          {
-            "name": "images",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "hosts",
-            "size": 6
-          },
-          {
-            "name": "mentors",
-            "size": 6
-          }
-        ],
-        [
-          {
             "name": "sponsorships",
             "size": 12
           }
@@ -391,7 +371,31 @@
             "name": "media",
             "size": 12
           }
+        ],
+        [
+          {
+            "name": "hosts",
+            "size": 6
+          },
+          {
+            "name": "players",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "mentors",
+            "size": 6
+          }
         ]
+      ],
+      "list": [
+        "name",
+        "start",
+        "end",
+        "status",
+        "location",
+        "venue"
       ]
     }
   },

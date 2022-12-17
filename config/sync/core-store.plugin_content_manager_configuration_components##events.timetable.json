@@ -22,9 +22,9 @@
       },
       "day": {
         "edit": {
-          "label": "day",
-          "description": "",
-          "placeholder": "",
+          "label": "Day",
+          "description": "What is the day?",
+          "placeholder": "Pick a week day",
           "visible": true,
           "editable": true
         },
@@ -36,9 +36,9 @@
       },
       "description": {
         "edit": {
-          "label": "description",
-          "description": "",
-          "placeholder": "",
+          "label": "Description",
+          "description": "What is going on that day?",
+          "placeholder": "Type any text to describe the day",
           "visible": true,
           "editable": true
         },
@@ -50,7 +50,7 @@
       },
       "timeslots": {
         "edit": {
-          "label": "timeslots",
+          "label": "Activities",
           "description": "",
           "placeholder": "",
           "visible": true,

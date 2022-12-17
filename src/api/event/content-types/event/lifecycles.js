@@ -31,17 +31,17 @@ Date.prototype.addDays = function (days) {
 
 module.exports = {
   beforeCreate(event) {
-    const {
-      data
-    } = event.params;
+    // const {
+    //   data
+    // } = event.params;
 
-    validate(data);
+    // validate(data);
   },
   beforeUpdate(event) {
-    const {
-      data
-    } = event.params;
+    // const {
+    //   data
+    // } = event.params;
 
-    validate(data);
+    // validate(data);
   },
 };
