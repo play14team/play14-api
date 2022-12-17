@@ -147,6 +147,21 @@
           "sortable": true
         }
       },
+      "player": {
+        "edit": {
+          "label": "player",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "player",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -211,6 +226,12 @@
           },
           {
             "name": "role",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "player",
             "size": 6
           }
         ]

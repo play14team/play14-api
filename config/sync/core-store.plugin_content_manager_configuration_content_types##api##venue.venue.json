@@ -228,8 +228,8 @@
         ]
       ],
       "list": [
-        "shortName",
         "name",
+        "shortName",
         "address",
         "country",
         "website",

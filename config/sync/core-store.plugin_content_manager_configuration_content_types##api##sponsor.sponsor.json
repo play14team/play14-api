@@ -6,7 +6,7 @@
       "bulkable": true,
       "filterable": true,
       "searchable": true,
-      "pageSize": 10,
+      "pageSize": 50,
       "mainField": "name",
       "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
@@ -106,12 +106,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "name",
-        "url",
-        "logo"
-      ],
       "edit": [
         [
           {
@@ -135,6 +129,12 @@
             "size": 12
           }
         ]
+      ],
+      "list": [
+        "id",
+        "name",
+        "url",
+        "logo"
       ]
     }
   },

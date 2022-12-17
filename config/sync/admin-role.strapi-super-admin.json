@@ -195,7 +195,8 @@
           "socialNetworks.type",
           "events",
           "hosted",
-          "mentored"
+          "mentored",
+          "user"
         ]
       },
       "conditions": []
@@ -223,7 +224,8 @@
           "socialNetworks.type",
           "events",
           "hosted",
-          "mentored"
+          "mentored",
+          "user"
         ]
       },
       "conditions": []
@@ -245,7 +247,8 @@
           "socialNetworks.type",
           "events",
           "hosted",
-          "mentored"
+          "mentored",
+          "user"
         ]
       },
       "conditions": []
@@ -562,7 +565,8 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "player"
         ]
       },
       "conditions": []
@@ -586,7 +590,8 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "player"
         ]
       },
       "conditions": []
@@ -604,7 +609,8 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "player"
         ]
       },
       "conditions": []

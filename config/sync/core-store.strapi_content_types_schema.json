@@ -781,6 +781,996 @@
       "plugin": "admin",
       "globalId": "AdminApiTokenPermission"
     },
+    "api::event.event": {
+      "kind": "collectionType",
+      "collectionName": "events",
+      "info": {
+        "singularName": "event",
+        "pluralName": "events",
+        "displayName": "Event",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "name": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "slug": {
+          "type": "uid",
+          "targetField": "name",
+          "required": false
+        },
+        "start": {
+          "type": "datetime",
+          "required": true,
+          "default": "2023-01-01T17:00:00.000Z"
+        },
+        "end": {
+          "type": "datetime",
+          "required": true,
+          "default": "2023-01-03T16:30:00.000Z"
+        },
+        "status": {
+          "type": "enumeration",
+          "enum": [
+            "Announced",
+            "Open",
+            "Over",
+            "Cancelled"
+          ],
+          "default": "Announced"
+        },
+        "images": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "contactEmail": {
+          "type": "string",
+          "default": "team@play14.org",
+          "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        },
+        "timetable": {
+          "type": "component",
+          "repeatable": true,
+          "component": "events.timetable"
+        },
+        "registration": {
+          "type": "component",
+          "repeatable": false,
+          "component": "registration.registration"
+        },
+        "description": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "location": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::event-location.event-location",
+          "inversedBy": "events"
+        },
+        "venue": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::venue.venue",
+          "inversedBy": "events"
+        },
+        "players": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "mappedBy": "events"
+        },
+        "hosts": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "hosted"
+        },
+        "mentors": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "mentored"
+        },
+        "sponsorships": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "events.sponsorship"
+        },
+        "media": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "events.media"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::event.event"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        }
+      },
+      "__schema__": {
+        "collectionName": "events",
+        "info": {
+          "singularName": "event",
+          "pluralName": "events",
+          "displayName": "Event",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "name": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "slug": {
+            "type": "uid",
+            "targetField": "name",
+            "required": false
+          },
+          "start": {
+            "type": "datetime",
+            "required": true,
+            "default": "2023-01-01T17:00:00.000Z"
+          },
+          "end": {
+            "type": "datetime",
+            "required": true,
+            "default": "2023-01-03T16:30:00.000Z"
+          },
+          "status": {
+            "type": "enumeration",
+            "enum": [
+              "Announced",
+              "Open",
+              "Over",
+              "Cancelled"
+            ],
+            "default": "Announced"
+          },
+          "images": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "contactEmail": {
+            "type": "string",
+            "default": "team@play14.org",
+            "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+          },
+          "timetable": {
+            "type": "component",
+            "repeatable": true,
+            "component": "events.timetable"
+          },
+          "registration": {
+            "type": "component",
+            "repeatable": false,
+            "component": "registration.registration"
+          },
+          "description": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          },
+          "location": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::event-location.event-location",
+            "inversedBy": "events"
+          },
+          "venue": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::venue.venue",
+            "inversedBy": "events"
+          },
+          "players": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "mappedBy": "events"
+          },
+          "hosts": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "hosted"
+          },
+          "mentors": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "mentored"
+          },
+          "sponsorships": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "events.sponsorship"
+          },
+          "media": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "events.media"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "event",
+      "connection": "default",
+      "uid": "api::event.event",
+      "apiName": "event",
+      "globalId": "Event",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::event-location.event-location": {
+      "kind": "collectionType",
+      "collectionName": "event_locations",
+      "info": {
+        "singularName": "event-location",
+        "pluralName": "event-locations",
+        "displayName": "EventLocation",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "uid",
+          "targetField": "name",
+          "required": false
+        },
+        "country": {
+          "type": "string",
+          "customField": "plugin::country-select.country"
+        },
+        "events": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::event.event",
+          "mappedBy": "location"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "event_locations",
+        "info": {
+          "singularName": "event-location",
+          "pluralName": "event-locations",
+          "displayName": "EventLocation",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "slug": {
+            "type": "uid",
+            "targetField": "name",
+            "required": false
+          },
+          "country": {
+            "type": "customField",
+            "customField": "plugin::country-select.country"
+          },
+          "events": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::event.event",
+            "mappedBy": "location"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "event-location",
+      "connection": "default",
+      "uid": "api::event-location.event-location",
+      "apiName": "event-location",
+      "globalId": "EventLocation",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::player.player": {
+      "kind": "collectionType",
+      "collectionName": "players",
+      "info": {
+        "singularName": "player",
+        "pluralName": "players",
+        "displayName": "Player",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "slug": {
+          "type": "uid",
+          "targetField": "name"
+        },
+        "position": {
+          "type": "enumeration",
+          "enum": [
+            "Player",
+            "Host",
+            "Mentor",
+            "Founder"
+          ]
+        },
+        "company": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "richtext"
+        },
+        "country": {
+          "type": "string",
+          "customField": "plugin::country-select.country"
+        },
+        "avatar": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "socialNetworks": {
+          "type": "component",
+          "repeatable": true,
+          "component": "contact.social-network"
+        },
+        "events": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "inversedBy": "players"
+        },
+        "hosted": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "mappedBy": "hosts"
+        },
+        "mentored": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "mappedBy": "mentors"
+        },
+        "user": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user",
+          "mappedBy": "player"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "players",
+        "info": {
+          "singularName": "player",
+          "pluralName": "players",
+          "displayName": "Player",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "slug": {
+            "type": "uid",
+            "targetField": "name"
+          },
+          "position": {
+            "type": "enumeration",
+            "enum": [
+              "Player",
+              "Host",
+              "Mentor",
+              "Founder"
+            ]
+          },
+          "company": {
+            "type": "string"
+          },
+          "tagline": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "richtext"
+          },
+          "country": {
+            "type": "customField",
+            "customField": "plugin::country-select.country"
+          },
+          "avatar": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "socialNetworks": {
+            "type": "component",
+            "repeatable": true,
+            "component": "contact.social-network"
+          },
+          "events": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "inversedBy": "players"
+          },
+          "hosted": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "mappedBy": "hosts"
+          },
+          "mentored": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "mappedBy": "mentors"
+          },
+          "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user",
+            "mappedBy": "player"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "player",
+      "connection": "default",
+      "uid": "api::player.player",
+      "apiName": "player",
+      "globalId": "Player",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::sponsor.sponsor": {
+      "kind": "collectionType",
+      "collectionName": "sponsors",
+      "info": {
+        "singularName": "sponsor",
+        "pluralName": "sponsors",
+        "displayName": "Sponsor"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "url": {
+          "type": "string"
+        },
+        "logo": {
+          "allowedTypes": [
+            "images"
+          ],
+          "type": "media",
+          "multiple": false
+        },
+        "socialNetworks": {
+          "type": "component",
+          "repeatable": true,
+          "component": "contact.social-network"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "sponsors",
+        "info": {
+          "singularName": "sponsor",
+          "pluralName": "sponsors",
+          "displayName": "Sponsor"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "url": {
+            "type": "string"
+          },
+          "logo": {
+            "allowedTypes": [
+              "images"
+            ],
+            "type": "media",
+            "multiple": false
+          },
+          "socialNetworks": {
+            "type": "component",
+            "repeatable": true,
+            "component": "contact.social-network"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "sponsor",
+      "connection": "default",
+      "uid": "api::sponsor.sponsor",
+      "apiName": "sponsor",
+      "globalId": "Sponsor",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::venue.venue": {
+      "kind": "collectionType",
+      "collectionName": "venues",
+      "info": {
+        "singularName": "venue",
+        "pluralName": "venues",
+        "displayName": "Venue",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "name": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string"
+        },
+        "address": {
+          "type": "component",
+          "repeatable": false,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "location.address"
+        },
+        "embeddedMapUrl": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "text"
+        },
+        "logo": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ],
+          "pluginOptions": {
+            "i18n": {
+              "localized": false
+            }
+          }
+        },
+        "website": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "contact.social-network"
+        },
+        "events": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::event.event",
+          "mappedBy": "venue"
+        },
+        "country": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string",
+          "customField": "plugin::country-select.country"
+        },
+        "shortName": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string",
+          "unique": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::venue.venue"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        }
+      },
+      "__schema__": {
+        "collectionName": "venues",
+        "info": {
+          "singularName": "venue",
+          "pluralName": "venues",
+          "displayName": "Venue",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "name": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string"
+          },
+          "address": {
+            "type": "component",
+            "repeatable": false,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "location.address"
+          },
+          "embeddedMapUrl": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "text"
+          },
+          "logo": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ],
+            "pluginOptions": {
+              "i18n": {
+                "localized": false
+              }
+            }
+          },
+          "website": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string"
+          },
+          "socialNetworks": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "contact.social-network"
+          },
+          "events": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::event.event",
+            "mappedBy": "venue"
+          },
+          "country": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "customField",
+            "customField": "plugin::country-select.country"
+          },
+          "shortName": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string",
+            "unique": true
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "venue",
+      "connection": "default",
+      "uid": "api::venue.venue",
+      "apiName": "venue",
+      "globalId": "Venue",
+      "actions": {},
+      "lifecycles": {}
+    },
     "plugin::upload.file": {
       "collectionName": "files",
       "info": {
@@ -1573,6 +2563,12 @@
           "inversedBy": "users",
           "configurable": false
         },
+        "player": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::player.player",
+          "inversedBy": "user"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1614,6 +2610,7 @@
         }
       },
       "kind": "collectionType",
+      "__filename__": "schema.json",
       "__schema__": {
         "collectionName": "up_users",
         "info": {
@@ -1677,6 +2674,12 @@
             "target": "plugin::users-permissions.role",
             "inversedBy": "users",
             "configurable": false
+          },
+          "player": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::player.player",
+            "inversedBy": "user"
           }
         },
         "kind": "collectionType"
@@ -1687,984 +2690,6 @@
       "uid": "plugin::users-permissions.user",
       "plugin": "users-permissions",
       "globalId": "UsersPermissionsUser"
-    },
-    "api::event.event": {
-      "kind": "collectionType",
-      "collectionName": "events",
-      "info": {
-        "singularName": "event",
-        "pluralName": "events",
-        "displayName": "Event",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": true
-      },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "attributes": {
-        "name": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string",
-          "required": true,
-          "unique": true
-        },
-        "slug": {
-          "type": "uid",
-          "targetField": "name",
-          "required": false
-        },
-        "start": {
-          "type": "datetime",
-          "required": true,
-          "default": "2023-01-01T17:00:00.000Z"
-        },
-        "end": {
-          "type": "datetime",
-          "required": true,
-          "default": "2023-01-03T16:30:00.000Z"
-        },
-        "status": {
-          "type": "enumeration",
-          "enum": [
-            "Announced",
-            "Open",
-            "Over",
-            "Cancelled"
-          ],
-          "default": "Announced"
-        },
-        "images": {
-          "type": "media",
-          "multiple": true,
-          "required": false,
-          "allowedTypes": [
-            "images"
-          ]
-        },
-        "contactEmail": {
-          "type": "string",
-          "default": "team@play14.org",
-          "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
-        },
-        "timetable": {
-          "type": "component",
-          "repeatable": true,
-          "component": "events.timetable"
-        },
-        "registration": {
-          "type": "component",
-          "repeatable": false,
-          "component": "registration.registration"
-        },
-        "description": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "richtext"
-        },
-        "location": {
-          "type": "relation",
-          "relation": "manyToOne",
-          "target": "api::event-location.event-location",
-          "inversedBy": "events"
-        },
-        "venue": {
-          "type": "relation",
-          "relation": "manyToOne",
-          "target": "api::venue.venue",
-          "inversedBy": "events"
-        },
-        "players": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "mappedBy": "events"
-        },
-        "hosts": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "inversedBy": "hosted"
-        },
-        "mentors": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "inversedBy": "mentored"
-        },
-        "sponsorships": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "events.sponsorship"
-        },
-        "media": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "events.media"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "publishedAt": {
-          "type": "datetime",
-          "configurable": false,
-          "writable": true,
-          "visible": false
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::event.event"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
-        }
-      },
-      "__schema__": {
-        "collectionName": "events",
-        "info": {
-          "singularName": "event",
-          "pluralName": "events",
-          "displayName": "Event",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": true
-        },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
-        "attributes": {
-          "name": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "slug": {
-            "type": "uid",
-            "targetField": "name",
-            "required": false
-          },
-          "start": {
-            "type": "datetime",
-            "required": true,
-            "default": "2023-01-01T17:00:00.000Z"
-          },
-          "end": {
-            "type": "datetime",
-            "required": true,
-            "default": "2023-01-03T16:30:00.000Z"
-          },
-          "status": {
-            "type": "enumeration",
-            "enum": [
-              "Announced",
-              "Open",
-              "Over",
-              "Cancelled"
-            ],
-            "default": "Announced"
-          },
-          "images": {
-            "type": "media",
-            "multiple": true,
-            "required": false,
-            "allowedTypes": [
-              "images"
-            ]
-          },
-          "contactEmail": {
-            "type": "string",
-            "default": "team@play14.org",
-            "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
-          },
-          "timetable": {
-            "type": "component",
-            "repeatable": true,
-            "component": "events.timetable"
-          },
-          "registration": {
-            "type": "component",
-            "repeatable": false,
-            "component": "registration.registration"
-          },
-          "description": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "richtext"
-          },
-          "location": {
-            "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::event-location.event-location",
-            "inversedBy": "events"
-          },
-          "venue": {
-            "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::venue.venue",
-            "inversedBy": "events"
-          },
-          "players": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "mappedBy": "events"
-          },
-          "hosts": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "inversedBy": "hosted"
-          },
-          "mentors": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "inversedBy": "mentored"
-          },
-          "sponsorships": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "events.sponsorship"
-          },
-          "media": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "events.media"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "event",
-      "connection": "default",
-      "uid": "api::event.event",
-      "apiName": "event",
-      "globalId": "Event",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::event-location.event-location": {
-      "kind": "collectionType",
-      "collectionName": "event_locations",
-      "info": {
-        "singularName": "event-location",
-        "pluralName": "event-locations",
-        "displayName": "EventLocation",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "name": {
-          "type": "string",
-          "required": true
-        },
-        "slug": {
-          "type": "uid",
-          "targetField": "name",
-          "required": false
-        },
-        "country": {
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "events": {
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::event.event",
-          "mappedBy": "location"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        }
-      },
-      "__schema__": {
-        "collectionName": "event_locations",
-        "info": {
-          "singularName": "event-location",
-          "pluralName": "event-locations",
-          "displayName": "EventLocation",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "name": {
-            "type": "string",
-            "required": true
-          },
-          "slug": {
-            "type": "uid",
-            "targetField": "name",
-            "required": false
-          },
-          "country": {
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "events": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::event.event",
-            "mappedBy": "location"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "event-location",
-      "connection": "default",
-      "uid": "api::event-location.event-location",
-      "apiName": "event-location",
-      "globalId": "EventLocation",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::player.player": {
-      "kind": "collectionType",
-      "collectionName": "players",
-      "info": {
-        "singularName": "player",
-        "pluralName": "players",
-        "displayName": "Player",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "name": {
-          "type": "string",
-          "required": true,
-          "unique": true
-        },
-        "slug": {
-          "type": "uid",
-          "targetField": "name"
-        },
-        "position": {
-          "type": "enumeration",
-          "enum": [
-            "Player",
-            "Host",
-            "Mentor",
-            "Founder"
-          ]
-        },
-        "company": {
-          "type": "string"
-        },
-        "tagline": {
-          "type": "string"
-        },
-        "bio": {
-          "type": "richtext"
-        },
-        "country": {
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "avatar": {
-          "type": "media",
-          "multiple": false,
-          "required": false,
-          "allowedTypes": [
-            "images"
-          ]
-        },
-        "socialNetworks": {
-          "type": "component",
-          "repeatable": true,
-          "component": "contact.social-network"
-        },
-        "events": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::event.event",
-          "inversedBy": "players"
-        },
-        "hosted": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::event.event",
-          "mappedBy": "hosts"
-        },
-        "mentored": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::event.event",
-          "mappedBy": "mentors"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        }
-      },
-      "__schema__": {
-        "collectionName": "players",
-        "info": {
-          "singularName": "player",
-          "pluralName": "players",
-          "displayName": "Player",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "name": {
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "slug": {
-            "type": "uid",
-            "targetField": "name"
-          },
-          "position": {
-            "type": "enumeration",
-            "enum": [
-              "Player",
-              "Host",
-              "Mentor",
-              "Founder"
-            ]
-          },
-          "company": {
-            "type": "string"
-          },
-          "tagline": {
-            "type": "string"
-          },
-          "bio": {
-            "type": "richtext"
-          },
-          "country": {
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "avatar": {
-            "type": "media",
-            "multiple": false,
-            "required": false,
-            "allowedTypes": [
-              "images"
-            ]
-          },
-          "socialNetworks": {
-            "type": "component",
-            "repeatable": true,
-            "component": "contact.social-network"
-          },
-          "events": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::event.event",
-            "inversedBy": "players"
-          },
-          "hosted": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::event.event",
-            "mappedBy": "hosts"
-          },
-          "mentored": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::event.event",
-            "mappedBy": "mentors"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "player",
-      "connection": "default",
-      "uid": "api::player.player",
-      "apiName": "player",
-      "globalId": "Player",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::sponsor.sponsor": {
-      "kind": "collectionType",
-      "collectionName": "sponsors",
-      "info": {
-        "singularName": "sponsor",
-        "pluralName": "sponsors",
-        "displayName": "Sponsor"
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "name": {
-          "type": "string",
-          "required": true,
-          "unique": true
-        },
-        "url": {
-          "type": "string"
-        },
-        "logo": {
-          "allowedTypes": [
-            "images"
-          ],
-          "type": "media",
-          "multiple": false
-        },
-        "socialNetworks": {
-          "type": "component",
-          "repeatable": true,
-          "component": "contact.social-network"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        }
-      },
-      "__schema__": {
-        "collectionName": "sponsors",
-        "info": {
-          "singularName": "sponsor",
-          "pluralName": "sponsors",
-          "displayName": "Sponsor"
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "name": {
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "url": {
-            "type": "string"
-          },
-          "logo": {
-            "allowedTypes": [
-              "images"
-            ],
-            "type": "media",
-            "multiple": false
-          },
-          "socialNetworks": {
-            "type": "component",
-            "repeatable": true,
-            "component": "contact.social-network"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "sponsor",
-      "connection": "default",
-      "uid": "api::sponsor.sponsor",
-      "apiName": "sponsor",
-      "globalId": "Sponsor",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::venue.venue": {
-      "kind": "collectionType",
-      "collectionName": "venues",
-      "info": {
-        "singularName": "venue",
-        "pluralName": "venues",
-        "displayName": "Venue",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "attributes": {
-        "name": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string"
-        },
-        "address": {
-          "type": "component",
-          "repeatable": false,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "location.address"
-        },
-        "embeddedMapUrl": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "text"
-        },
-        "logo": {
-          "type": "media",
-          "multiple": false,
-          "required": false,
-          "allowedTypes": [
-            "images"
-          ],
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          }
-        },
-        "website": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string"
-        },
-        "socialNetworks": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "contact.social-network"
-        },
-        "events": {
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::event.event",
-          "mappedBy": "venue"
-        },
-        "country": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "shortName": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string",
-          "unique": true
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::venue.venue"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
-        }
-      },
-      "__schema__": {
-        "collectionName": "venues",
-        "info": {
-          "singularName": "venue",
-          "pluralName": "venues",
-          "displayName": "Venue",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
-        "attributes": {
-          "name": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string"
-          },
-          "address": {
-            "type": "component",
-            "repeatable": false,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "location.address"
-          },
-          "embeddedMapUrl": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "text"
-          },
-          "logo": {
-            "type": "media",
-            "multiple": false,
-            "required": false,
-            "allowedTypes": [
-              "images"
-            ],
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            }
-          },
-          "website": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string"
-          },
-          "socialNetworks": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "contact.social-network"
-          },
-          "events": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::event.event",
-            "mappedBy": "venue"
-          },
-          "country": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "shortName": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string",
-            "unique": true
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "venue",
-      "connection": "default",
-      "uid": "api::venue.venue",
-      "apiName": "venue",
-      "globalId": "Venue",
-      "actions": {},
-      "lifecycles": {}
     }
   },
   "type": "object",
