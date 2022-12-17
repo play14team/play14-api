@@ -2,10 +2,14 @@
 
 const path = require("path");
 const fs = require("fs");
+const showdown  = require('showdown');
+const { JSDOM } = require("jsdom");
 const { ensureFolder, uploadFile } = require('./upload.js');
 const { yaml2json } = require('./utilities.js');
 const { eventToSlug, capitalize, normalize } = require('../src/libs/strings');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
+
+const markdownConverter = new showdown.Converter();
 
 async function importData() {
     console.log("Importing events");
@@ -74,8 +78,8 @@ async function createOrUpdateEvent(file, parentFolderId) {
 
 async function mapEvent(event, parentFolderId) {
   const slug = eventToSlug(event.title, event.schedule.start);
-  const childFolderId = await ensureFolder(slug, parentFolderId);
-  const images = await uploadImages(event, childFolderId);
+  const imagesFolderId = await ensureFolder(slug, parentFolderId);
+  const images = await uploadImages(event, imagesFolderId);
   const venue = await mapVenue(event.location);
   const eventLocation = await mapEventLocation(event.category);
   const hosts = await mapPlayers(event.members);
@@ -83,6 +87,9 @@ async function mapEvent(event, parentFolderId) {
   const playerNames = await getPlayerNames(event.title);
   const players = await mapPlayers(playerNames);
   const sponsorships = await mapSponsors(event.sponsors);
+
+  const htmlContent = markdownConverter.makeHtml(event.content);
+  const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
 
   return {
       data: {
@@ -92,7 +99,7 @@ async function mapEvent(event, parentFolderId) {
           end: event.schedule.finish,
           status: mapStatus(event),
           contactEmail: event.contact,
-          description: event.content,
+          description: newHtmlContent,
           images: images,
           timetable: mapTimeTable(event.timetable),
           registration: mapRegistration(event.registration),
@@ -106,6 +113,48 @@ async function mapEvent(event, parentFolderId) {
       }
   };
 }
+
+async function uploadContentImages(htmlContent, folderId) {
+  let newHtmlContent = htmlContent;
+  const { document } = (new JSDOM(htmlContent)).window;
+  const images = document.querySelectorAll("img");
+  if (images.length > 0) {
+    const promises = [];
+    const contentFolderId = await ensureFolder('content', folderId);
+    images.forEach(image => {
+      const url = image.getAttribute('src');
+      if (url.startsWith('/images')) {
+        const filePath = path.join(bootstrapDir, url);
+        const promise = uploadFile(path.basename(url), contentFolderId, filePath)
+          .then(file => {
+            newHtmlContent = newHtmlContent.replaceAll(url, file.url);
+          });
+        promises.push(promise);
+      }
+    });
+    await Promise.all(promises);
+  }
+
+  return newHtmlContent;
+}
+
+    // const promises = [];
+
+    // images.forEach(image => {
+    //   const url = image.getAttribute('src');
+    //   if (url.startsWith('/images')) {
+    //     const filePath = path.join(bootstrapDir, url);
+    //     promises.push(new Promise(async (res, rej) => {
+    //       const file = await uploadFile(path.basename(url), contentFolderId, filePath)
+    //       image.setAttribute('src', file.url);
+    //       })
+    //     )
+    //   }
+    // })
+
+    // Promise.allSettled(promises);
+    // //Promise.all(promises);
+
 
 async function uploadImages(event, folderId) {
     const images = [];
