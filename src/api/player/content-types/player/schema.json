@@ -73,6 +73,12 @@
       "relation": "manyToMany",
       "target": "api::event.event",
       "mappedBy": "mentors"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "player"
     }
   }
 }

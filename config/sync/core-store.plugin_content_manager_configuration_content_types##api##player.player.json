@@ -6,7 +6,7 @@
       "bulkable": true,
       "filterable": true,
       "searchable": true,
-      "pageSize": 10,
+      "pageSize": 50,
       "mainField": "name",
       "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
@@ -191,6 +191,21 @@
           "sortable": false
         }
       },
+      "user": {
+        "edit": {
+          "label": "user",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "username"
+        },
+        "list": {
+          "label": "user",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -290,6 +305,10 @@
         [
           {
             "name": "mentored",
+            "size": 6
+          },
+          {
+            "name": "user",
             "size": 6
           }
         ]
