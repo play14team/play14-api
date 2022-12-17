@@ -28,7 +28,7 @@ module.exports = {
         sponsors.importData();
         // venues.importData();
         // players.importData();
-        // events.importData();
+        events.importData();
       }, 1500);
     }
   },

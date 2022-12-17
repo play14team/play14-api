@@ -71,7 +71,9 @@
           "venue",
           "players",
           "hosts",
-          "mentors"
+          "mentors",
+          "sponsorships.category",
+          "sponsorships.sponsors"
         ],
         "locales": [
           "en",
@@ -125,7 +127,9 @@
           "venue",
           "players",
           "hosts",
-          "mentors"
+          "mentors",
+          "sponsorships.category",
+          "sponsorships.sponsors"
         ],
         "locales": [
           "en",
@@ -157,7 +161,9 @@
           "venue",
           "players",
           "hosts",
-          "mentors"
+          "mentors",
+          "sponsorships.category",
+          "sponsorships.sponsors"
         ],
         "locales": [
           "en",

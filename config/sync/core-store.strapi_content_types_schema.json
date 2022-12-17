@@ -1800,6 +1800,16 @@
           "target": "api::player.player",
           "inversedBy": "mentored"
         },
+        "sponsorships": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "events.sponsorship"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1959,6 +1969,16 @@
             "relation": "manyToMany",
             "target": "api::player.player",
             "inversedBy": "mentored"
+          },
+          "sponsorships": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "events.sponsorship"
           }
         },
         "kind": "collectionType"
