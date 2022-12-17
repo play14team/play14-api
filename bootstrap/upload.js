@@ -51,9 +51,7 @@ async function uploadFile(fileName, folderId, filePath) {
         },
     });
 
-    if (file) {
-        console.log(`${fileName} already exists in folder ${folderId}`);
-    } else {
+    if (!file) {
         console.log(`Uploading ${fileName}`);
 
         await strapi.plugins.upload.services.upload.upload({

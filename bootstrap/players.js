@@ -21,7 +21,7 @@ async function importPlayers(markdownDir) {
         let succeeded = 0;
         let failed = 0;
 
-        Promise.all(
+        await Promise.all(
             files.map(file =>
                 {
                     createOrUpdatePlayer(path.join(markdownDir, file), folderId)

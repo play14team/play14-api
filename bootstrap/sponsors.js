@@ -22,7 +22,7 @@ async function importItems(filePath, mapItem, apiName) {
     let succeeded = 0;
     let failed = 0;
 
-    Promise.all(
+    await Promise.all(
       items.map(item => {
         createOrUpdate(mapItem(item, sponsorsFolderId), item.name, apiName)
           .then(_ => {

@@ -24,8 +24,9 @@ async function importEvents(markdownDir) {
 
         let succeeded = 0;
         let failed = 0;
+        let errors = [];
 
-        Promise.all(
+        await Promise.all(
             files.map(file =>
                 {
                     createOrUpdateEvent(path.join(markdownDir, file), eventsFolderId)
@@ -35,9 +36,12 @@ async function importEvents(markdownDir) {
                         .catch(err => {
                           console.error(err);
                           failed++;
+                          errors[file] = err;
                         })
                         .then(_ => {
                             console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
+                            if (files.length === succeeded + failed)
+                              console.log(errors);
                         })
                 })
         );
@@ -50,6 +54,7 @@ async function importEvents(markdownDir) {
 async function createOrUpdateEvent(file, parentFolderId) {
   const apiName = 'api::event.event';
   const event = yaml2json(file);
+  let isHandled = false;
   try {
     const eventData = await mapEvent(event, parentFolderId);
 
@@ -61,17 +66,30 @@ async function createOrUpdateEvent(file, parentFolderId) {
     });
 
     if (entries.length == 0) {
-      console.log(`Insterting Event "${event.title}"`);
-      await strapi.entityService.create(apiName, eventData);
-      console.log(`Event "${event.title}" inserted`);
+      try {
+        console.log(`Insterting Event "${event.title}"`);
+        await strapi.entityService.create(apiName, eventData);
+        console.log(`Event "${event.title}" inserted`);
+      } catch (error) {
+        console.error(`Could not insert "${event.title}"`)
+        isHandled = true;
+        throw error;
+      }
     } else {
-      console.log(`Updating Event "${event.title}"`);
-      await strapi.entityService.update(apiName, entries[0].id, eventData);
-      console.log(`Event "${event.title}" updated`);
+      try {
+        console.log(`Updating Event "${event.title}"`);
+        await strapi.entityService.update(apiName, entries[0].id, eventData);
+        console.log(`Event "${event.title}" updated`);
+      } catch (error) {
+        console.error(`Could not update "${event.title}"`)
+        isHandled = true;
+        throw error;
+      }
     };
 
   } catch (error) {
-    console.log(`Could not create or update "${event.title}"`)
+    if (!isHandled)
+      console.error(`Could not create or update "${event.title}"`)
     throw error;
   }
 }
@@ -140,13 +158,18 @@ async function uploadContentImages(htmlContent, folderId) {
 
 async function uploadImages(event, folderId) {
     const images = [];
-    if (event.images)
-        await Promise.all(
-            event.images.map(image => {
-                const filePath = path.join(bootstrapDir, image);
-                return uploadFile(path.basename(image), folderId, filePath).then(file => { images.push(file) });
-            })
-        );
+    if (event.images) {
+      const promises = [];
+      event.images.map(image => {
+          if (image.includes('/images')) {
+            const filePath = path.join(bootstrapDir, image);
+            if (fs.existsSync(filePath))
+              promises.push(uploadFile(path.basename(image), folderId, filePath).then(file => { images.push(file) }));
+          }
+      })
+
+      await Promise.all(promises);
+    }
     return images;
 }
 
@@ -250,14 +273,14 @@ async function mapVenue(location) {
                 shortName: location.name.replaceAll(' ', ''),
                 name: location.name,
                 address: {
-                    street: location.address,
+                    street: location.address ?? "",
                     postalCode: "",
                     city: "",
-                    area: location.area,
+                    area: location.area ?? "",
                 },
                 country: "",
-                embeddedMapUrl: location.map,
-                website: location.url,
+                embeddedMapUrl: location.map || "",
+                website: location.url || "",
             }
         };
 
@@ -297,7 +320,7 @@ async function mapEventLocation(category) {
 async function mapPlayers(names) {
   const players = [];
   if (names)
-    Promise.all(
+    await Promise.all(
       names.map(n => {
             return strapi.query('api::player.player').findOne({ where: { name: n } })
               .then(p => {
@@ -330,7 +353,7 @@ async function mapSponsors(sponsors) {
   if (sponsors)
   {
     const sponsorsByType = getSponsorsByType(sponsors);
-    Promise.all(
+    await Promise.all(
       Object.keys(sponsorsByType).map((type) => {
         const names = sponsorsByType[type];
         return findSponsorsByName(names)
@@ -363,7 +386,7 @@ function getSponsorsByType(sponsors) {
 async function findSponsorsByName(names) {
   const items = [];
   if (names)
-    Promise.all(
+    await Promise.all(
       names.map(name => {
             return strapi.query('api::sponsor.sponsor').findOne({ where: { name: name } })
               .then(item => {
