@@ -25,7 +25,7 @@ module.exports = {
     {
       console.log("Bootstrap started");
       setTimeout(() => {
-        sponsors.importData();
+        // sponsors.importData();
         // venues.importData();
         // players.importData();
         events.importData();

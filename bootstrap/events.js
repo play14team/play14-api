@@ -3,7 +3,8 @@
 const path = require("path");
 const fs = require("fs");
 const { ensureFolder, uploadFile } = require('./upload.js');
-const { yaml2json, toSlug, capitalize, normalize } = require('./utilities.js');
+const { yaml2json } = require('./utilities.js');
+const { eventToSlug, capitalize, normalize } = require('../src/libs/strings');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 
 async function importData() {
@@ -25,11 +26,11 @@ async function importEvents(markdownDir) {
                 {
                     createOrUpdateEvent(path.join(markdownDir, file), eventsFolderId)
                         .then(_ => {
-                            succeeded++;
+                          succeeded++;
                         })
                         .catch(err => {
-                            console.error(err);
-                            failed++;
+                          console.error(err);
+                          failed++;
                         })
                         .then(_ => {
                             console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
@@ -43,59 +44,66 @@ async function importEvents(markdownDir) {
 }
 
 async function createOrUpdateEvent(file, parentFolderId) {
-    const apiName = 'api::event.event';
-    const event = yaml2json(file);
-
+  const apiName = 'api::event.event';
+  const event = yaml2json(file);
+  try {
     const eventData = await mapEvent(event, parentFolderId);
 
     const entries = await strapi.entityService.findMany(apiName, {
-        fields: ['id'],
-        filters: { name: normalize(event.title) },
+      fields: ['id'],
+      filters: {
+        name: normalize(event.title)
+      },
     });
 
     if (entries.length == 0) {
-        console.log(`Insterting Event "${event.title}"`);
-        await strapi.entityService.create(apiName, eventData);
-        console.log(`Event "${event.title}" inserted`);
+      console.log(`Insterting Event "${event.title}"`);
+      await strapi.entityService.create(apiName, eventData);
+      console.log(`Event "${event.title}" inserted`);
     } else {
-        console.log(`Updating Event "${event.title}"`);
-        await strapi.entityService.update(apiName, entries[0].id, eventData);
-        console.log(`Event "${event.title}" updated`);
+      console.log(`Updating Event "${event.title}"`);
+      await strapi.entityService.update(apiName, entries[0].id, eventData);
+      console.log(`Event "${event.title}" updated`);
     };
+
+  } catch (error) {
+    console.log(`Could not create or update "${event.title}"`)
+    throw error;
+  }
 }
 
 async function mapEvent(event, parentFolderId) {
+  const slug = eventToSlug(event.title, event.schedule.start);
+  const childFolderId = await ensureFolder(slug, parentFolderId);
+  const images = await uploadImages(event, childFolderId);
+  const venue = await mapVenue(event.location);
+  const eventLocation = await mapEventLocation(event.category);
+  const hosts = await mapPlayers(event.members);
+  const mentors = await mapPlayers(event.mentors);
+  const playerNames = await getPlayerNames(event.title);
+  const players = await mapPlayers(playerNames);
+  const sponsorships = await mapSponsors(event.sponsors);
 
-    const childFolderId = await ensureFolder(toSlug(event.title), parentFolderId);
-    const images = await uploadImages(event, childFolderId);
-    const venue = await mapVenue(event.location);
-    const eventLocation = await mapEventLocation(event.category);
-    const hosts = await mapPlayers(event.members);
-    const mentors = await mapPlayers(event.mentors);
-    const playerNames = await getPlayerNames(event.title);
-    const players = await mapPlayers(playerNames);
-    const sponsorships = await mapSponsors(event.sponsors);
-
-    return {
-        data: {
-            name: normalize(event.title),
-            slug: toSlug(event.title),
-            start: event.schedule.start,
-            end: event.schedule.finish,
-            status: mapStatus(event),
-            contactEmail: event.contact,
-            description: event.content,
-            images: images,
-            timetable: mapTimeTable(event.timetable),
-            registration: mapRegistration(event.registration),
-            venue: venue,
-            location: eventLocation,
-            hosts: hosts,
-            mentors: mentors,
-            players: players,
-            sponsorships: sponsorships ?? [],
-        }
-    };
+  return {
+      data: {
+          name: normalize(event.title),
+          slug: slug,
+          start: event.schedule.start,
+          end: event.schedule.finish,
+          status: mapStatus(event),
+          contactEmail: event.contact,
+          description: event.content,
+          images: images,
+          timetable: mapTimeTable(event.timetable),
+          registration: mapRegistration(event.registration),
+          venue: venue,
+          location: eventLocation,
+          hosts: hosts,
+          mentors: mentors,
+          players: players,
+          sponsorships: sponsorships ?? [],
+      }
+  };
 }
 
 async function uploadImages(event, folderId) {

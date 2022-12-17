@@ -4,7 +4,6 @@ const path = require("path");
 const fs = require("fs");
 const yaml = require('js-yaml');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
-const upload = require('./upload');
 
 async function importData() {
     console.log("Importing locations");

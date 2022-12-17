@@ -1,12 +1,17 @@
 "use strict";
 const mime = require('mime');
+const { Mutex } = require('async-mutex');
+const mutex = new Mutex();
 
 async function ensureFolder(folderName, parentFolderId) {
     let folder = await getFolder(folderName, parentFolderId);
     if (!folder) {
-      await createFolder(folderName, parentFolderId);
-      folder = await getFolder(folderName, parentFolderId);
-      console.log(`Created folder ${folderName} with id ${folder.id}`)
+      console.log(`Creating folder "${folderName}"`);
+      await mutex.runExclusive(async () => {
+        await createFolder(folderName, parentFolderId);
+        folder = await getFolder(folderName, parentFolderId);
+        console.log(`Folder ${folderName} created with id ${folder.id}`)
+      });
     }
 
     return folder.id;

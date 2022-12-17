@@ -3,7 +3,8 @@
 const path = require("path");
 const fs = require("fs");
 const { ensureFolder, uploadFile } = require('./upload.js');
-const { yaml2json, mapSocialNetworks, toSlug, capitalize } = require('./utilities.js');
+const { yaml2json, mapSocialNetworks } = require('./utilities.js');
+const { toSlug, capitalize } = require('../src/libs/strings');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 
 async function importData() {
