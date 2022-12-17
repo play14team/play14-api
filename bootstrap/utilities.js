@@ -4,14 +4,18 @@ const fs = require("fs");
 const yaml = require('js-yaml');
 const { capitalize } = require('../src/libs/strings');
 
-function yaml2json(inputfile) {
+function yaml2json(inputfile, skipSplit) {
     const data = fs.readFileSync(inputfile, { encoding: 'utf-8' });
-    const split = data.split('---');
-    const cleanData = split.length > 1 ? split[1] : data;
-    const json = yaml.load(cleanData);
-    json["content"] = split.length > 2 ? split[2] : "";
-
-    return json;
+    if (!skipSplit)
+    {
+      const split = data.split('---');
+      const cleanData = split.length > 1 ? split[1] : data;
+      const json = yaml.load(cleanData);
+      json["content"] = split.length > 2 ? split[2] : "";
+      return json;
+    }
+    else
+      return yaml.load(data);
 }
 
 function mapSocialNetworks(socials) {

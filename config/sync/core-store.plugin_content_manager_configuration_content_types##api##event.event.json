@@ -249,6 +249,20 @@
           "sortable": false
         }
       },
+      "media": {
+        "edit": {
+          "label": "media",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "media",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -369,6 +383,12 @@
         [
           {
             "name": "sponsorships",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "media",
             "size": 12
           }
         ]

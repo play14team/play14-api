@@ -73,7 +73,9 @@
           "hosts",
           "mentors",
           "sponsorships.category",
-          "sponsorships.sponsors"
+          "sponsorships.sponsors",
+          "media.url",
+          "media.type"
         ],
         "locales": [
           "en",
@@ -129,7 +131,9 @@
           "hosts",
           "mentors",
           "sponsorships.category",
-          "sponsorships.sponsors"
+          "sponsorships.sponsors",
+          "media.url",
+          "media.type"
         ],
         "locales": [
           "en",
@@ -163,7 +167,9 @@
           "hosts",
           "mentors",
           "sponsorships.category",
-          "sponsorships.sponsors"
+          "sponsorships.sponsors",
+          "media.url",
+          "media.type"
         ],
         "locales": [
           "en",

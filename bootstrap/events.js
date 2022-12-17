@@ -101,7 +101,8 @@ async function mapEvent(event, parentFolderId) {
           hosts: hosts,
           mentors: mentors,
           players: players,
-          sponsorships: sponsorships ?? [],
+          sponsorships: sponsorships,
+          media: mapMedia(event.title),
       }
   };
 }
@@ -135,7 +136,7 @@ function mapTimeTable(timetable) {
 
     const t = timetable.map(t => {
         return {
-            day: t.day,
+            day: t.day.split(' ')[0],
             description: t.desc,
             timeslots: mapTimeslots(t.times)
         }
@@ -173,7 +174,9 @@ function mapTime(time) {
       const value = time.replaceAll('PM', '').trim();
       if (time.includes(':')) {
           const split = value.split(':');
-          formattedValue =  (parseInt(split[0]) + 12) + ':' + split[1] + tail;
+          const hours = parseInt(split[0]);
+          const addHours = (hours < 12) ? 12 : 0;
+          formattedValue =  (hours + addHours) + ':' + split[1] + tail;
       }
       else {
         formattedValue =  (parseInt(value) + 12) + ':00' + tail;
@@ -338,6 +341,30 @@ async function findSponsorsByName(names) {
         })
     );
   return items;
+}
+
+function mapMedia(eventName) {
+  const results = [];
+  const media = yaml2json(path.join(bootstrapDir, "data/media.yml"), true);
+  media
+    .filter(medium => medium.name.includes(eventName))
+    .map(medium => {
+      if (medium.photos) {
+        const result = {
+          url: medium.photos,
+          type: "Photos"
+        };
+        results.push(result);
+      }
+      if (medium.videos) {
+        const result = {
+          url: medium.videos,
+          type: "Videos"
+        };
+        results.push(result);
+      }
+    });
+  return results;
 }
 
 module.exports = { importData };

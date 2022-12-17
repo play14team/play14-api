@@ -1810,6 +1810,16 @@
           },
           "component": "events.sponsorship"
         },
+        "media": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "events.media"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -1979,6 +1989,16 @@
               }
             },
             "component": "events.sponsorship"
+          },
+          "media": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "events.media"
           }
         },
         "kind": "collectionType"
