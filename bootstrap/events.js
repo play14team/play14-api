@@ -39,9 +39,12 @@ async function importEvents(markdownDir) {
                           errors[file] = err;
                         })
                         .then(_ => {
-                            console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
-                            if (files.length === succeeded + failed)
+                            console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`);
+                            const count = succeeded + failed;
+                            if (files.length === count && errors.length > 0)                             {
+                              console.log(`There were ${errors.length} issues during the processing`)
                               console.log(errors);
+                            }
                         })
                 })
         );
@@ -100,11 +103,10 @@ async function mapEvent(event, parentFolderId) {
   const images = await uploadImages(event, imagesFolderId);
   const venue = await mapVenue(event.location);
   const eventLocation = await mapEventLocation(event.category);
-  // const hosts = await mapPlayers(event.members);
-  // const mentors = await mapPlayers(event.mentors);
-  // const playerNames = await getPlayerNames(event.title);
-  // const players = await mapPlayers(playerNames);
-  // const sponsorships = await mapSponsors(event.sponsors);
+  const hosts = await mapPlayers(event.members);
+  const mentors = await mapPlayers(event.mentors);
+  const players = await mapPlayers(event.title);
+  const sponsorships = await mapSponsors(event.sponsors);
 
   const htmlContent = markdownConverter.makeHtml(event.content);
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
@@ -123,11 +125,11 @@ async function mapEvent(event, parentFolderId) {
           registration: mapRegistration(event.registration),
           venue: venue,
           location: eventLocation,
-          // hosts: hosts,
-          // mentors: mentors,
-          // players: players,
-          // sponsorships: sponsorships,
-          // media: mapMedia(event.title),
+          hosts: hosts,
+          mentors: mentors,
+          players: players,
+          sponsorships: sponsorships,
+          media: mapMedia(event.title),
           publishedAt: event.schedule.start,
       }
   };
@@ -320,14 +322,18 @@ async function mapEventLocation(category) {
     return eventLocation;
 }
 
-async function mapPlayers(names) {
+async function mapPlayers(eventName) {
   const players = [];
+  const names = await getPlayerNames(eventName);
   if (names)
     await Promise.all(
       names.map(n => {
             return strapi.query('api::player.player').findOne({ where: { name: n } })
               .then(p => {
-                players.push(p);
+                if (p)
+                  players.push(p);
+                else
+                  throw new Error(`Could not find player "${n}"`);
               });
         })
     );
@@ -393,7 +399,10 @@ async function findSponsorsByName(names) {
       names.map(name => {
             return strapi.query('api::sponsor.sponsor').findOne({ where: { name: name } })
               .then(item => {
-                items.push(item);
+                if (item)
+                  items.push(item);
+                else
+                  throw new Error(`Could not find sponsor "${n}"`);
               });
         })
     );
