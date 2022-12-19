@@ -100,11 +100,11 @@ async function mapEvent(event, parentFolderId) {
   const images = await uploadImages(event, imagesFolderId);
   const venue = await mapVenue(event.location);
   const eventLocation = await mapEventLocation(event.category);
-  const hosts = await mapPlayers(event.members);
-  const mentors = await mapPlayers(event.mentors);
-  const playerNames = await getPlayerNames(event.title);
-  const players = await mapPlayers(playerNames);
-  const sponsorships = await mapSponsors(event.sponsors);
+  // const hosts = await mapPlayers(event.members);
+  // const mentors = await mapPlayers(event.mentors);
+  // const playerNames = await getPlayerNames(event.title);
+  // const players = await mapPlayers(playerNames);
+  // const sponsorships = await mapSponsors(event.sponsors);
 
   const htmlContent = markdownConverter.makeHtml(event.content);
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
@@ -123,11 +123,12 @@ async function mapEvent(event, parentFolderId) {
           registration: mapRegistration(event.registration),
           venue: venue,
           location: eventLocation,
-          hosts: hosts,
-          mentors: mentors,
-          players: players,
-          sponsorships: sponsorships,
-          media: mapMedia(event.title),
+          // hosts: hosts,
+          // mentors: mentors,
+          // players: players,
+          // sponsorships: sponsorships,
+          // media: mapMedia(event.title),
+          publishedAt: event.schedule.start,
       }
   };
 }
@@ -262,29 +263,31 @@ async function mapVenue(location) {
     let venue = {};
 
     if (location && location.name) {
-       venue = await strapi.query(apiName).findOne({ where: { name: location.name } });
+      venue = await strapi.query(apiName).findOne({ where: { name: location.name } });
     } else if (location) {
-        return await strapi.query(apiName).findOne({ where: { shortName: location } });
+      venue = await strapi.query(apiName).findOne({ where: { shortName: location } });
     }
 
     if (!venue) {
-        const venueData = {
-            data: {
-                shortName: location.name.replaceAll(' ', ''),
-                name: location.name,
-                address: {
-                    street: location.address ?? "",
-                    postalCode: "",
-                    city: "",
-                    area: location.area ?? "",
-                },
-                country: "",
-                embeddedMapUrl: location.map || "",
-                website: location.url || "",
-            }
-        };
+      let shortName = (location.name || location)
+      shortName = shortName.replaceAll(' ', '');
+      const venueData = {
+          data: {
+              shortName: shortName,
+              name: location.name || location,
+              address: {
+                  street: location.address || "",
+                  postalCode: "",
+                  city: "",
+                  area: location.area || "",
+              },
+              country: "",
+              embeddedMapUrl: location.map || "",
+              website: location.url || "",
+          }
+      };
 
-        venue = await strapi.entityService.create(apiName, venueData);
+      venue = await strapi.entityService.create(apiName, venueData);
     }
 
     return venue;
