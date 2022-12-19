@@ -1531,36 +1531,20 @@
       "options": {
         "draftAndPublish": false
       },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "attributes": {
         "name": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string"
         },
         "address": {
           "type": "component",
           "repeatable": false,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "component": "location.address"
         },
         "embeddedMapUrl": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "text"
         },
         "logo": {
@@ -1570,28 +1554,16 @@
           "allowedTypes": [
             "images"
           ],
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          }
+          "pluginOptions": {}
         },
         "website": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string"
         },
         "socialNetworks": {
           "type": "component",
           "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "component": "contact.social-network"
         },
         "events": {
@@ -1601,20 +1573,12 @@
           "mappedBy": "venue"
         },
         "country": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string",
           "customField": "plugin::country-select.country"
         },
         "shortName": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
+          "pluginOptions": {},
           "type": "string",
           "unique": true
         },
@@ -1643,22 +1607,6 @@
           "visible": false,
           "useJoinTable": false,
           "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::venue.venue"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
         }
       },
       "__schema__": {
@@ -1672,36 +1620,20 @@
         "options": {
           "draftAndPublish": false
         },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
+        "pluginOptions": {},
         "attributes": {
           "name": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string"
           },
           "address": {
             "type": "component",
             "repeatable": false,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "component": "location.address"
           },
           "embeddedMapUrl": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "text"
           },
           "logo": {
@@ -1711,28 +1643,16 @@
             "allowedTypes": [
               "images"
             ],
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            }
+            "pluginOptions": {}
           },
           "website": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string"
           },
           "socialNetworks": {
             "type": "component",
             "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "component": "contact.social-network"
           },
           "events": {
@@ -1742,20 +1662,12 @@
             "mappedBy": "venue"
           },
           "country": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "customField",
             "customField": "plugin::country-select.country"
           },
           "shortName": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
+            "pluginOptions": {},
             "type": "string",
             "unique": true
           }

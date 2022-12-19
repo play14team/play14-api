@@ -319,10 +319,6 @@
           "events",
           "country",
           "shortName"
-        ],
-        "locales": [
-          "en",
-          "fr"
         ]
       },
       "conditions": []
@@ -330,12 +326,7 @@
     {
       "action": "plugin::content-manager.explorer.delete",
       "subject": "api::venue.venue",
-      "properties": {
-        "locales": [
-          "en",
-          "fr"
-        ]
-      },
+      "properties": {},
       "conditions": []
     },
     {
@@ -356,10 +347,6 @@
           "events",
           "country",
           "shortName"
-        ],
-        "locales": [
-          "en",
-          "fr"
         ]
       },
       "conditions": []
@@ -382,10 +369,6 @@
           "events",
           "country",
           "shortName"
-        ],
-        "locales": [
-          "en",
-          "fr"
         ]
       },
       "conditions": []
