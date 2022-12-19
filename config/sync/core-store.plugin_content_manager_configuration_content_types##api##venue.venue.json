@@ -230,10 +230,10 @@
       "list": [
         "name",
         "shortName",
-        "address",
         "country",
         "website",
-        "logo"
+        "logo",
+        "events"
       ]
     }
   },
