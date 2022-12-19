@@ -24,11 +24,11 @@ module.exports = {
     if (process.env.BOOTSTRAP === "true")
     {
       console.log("Bootstrap started");
-      setTimeout(() => {
-        // sponsors.importData();
-        // venues.importData();
-        // players.importData();
-        events.importData();
+      setTimeout(async () => {
+        // await sponsors.importData();
+        // await venues.importData();
+        // await players.importData();
+        // await events.importData();
       }, 1500);
     }
   },

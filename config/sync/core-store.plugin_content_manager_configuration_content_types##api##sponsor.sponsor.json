@@ -131,7 +131,6 @@
         ]
       ],
       "list": [
-        "id",
         "name",
         "url",
         "logo"
