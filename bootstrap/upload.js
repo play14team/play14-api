@@ -1,4 +1,6 @@
 "use strict";
+
+const fs = require("fs");
 const mime = require('mime');
 const { Mutex } = require('async-mutex');
 const mutex = new Mutex();
@@ -54,16 +56,24 @@ async function uploadFile(fileName, folderId, filePath) {
     if (!file) {
         console.log(`Uploading ${fileName}`);
 
-        await strapi.plugins.upload.services.upload.upload({
-        data: {
-            fileInfo: { folder: folderId },
-        },
-        files: {
-            path: filePath,
-            name: fileName,
-            type: mime.getType(filePath),
-        },
-        });
+        try {
+          const stats = fs.statSync(filePath);
+          await strapi.plugins.upload.services.upload.upload({
+            data: {
+                fileInfo: { folder: folderId },
+            },
+            files: {
+                path: filePath,
+                name: fileName,
+                type: mime.getType(filePath),
+                size: stats.size,
+            },
+          });
+        } catch (error) {
+          console.error(`Could not upload ${filePath}`);
+          console.error(error);
+        }
+
 
         file = await uploadApi.findOne({
         where: {
