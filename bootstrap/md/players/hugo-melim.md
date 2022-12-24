@@ -5,7 +5,7 @@ name: Hugo Melim
 position: Player
 company: Mercedes-Benz.io
 bio: "Scrum Master | CSPO® | CSM®"
-avatar: /images/players/hugo-melim.jfif
+avatar: /images/players/hugo-melim.jpg
 socials:
   - name: linkedin
     url : in/hugomelim/

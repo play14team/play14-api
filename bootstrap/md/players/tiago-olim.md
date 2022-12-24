@@ -5,7 +5,7 @@ name: Tiago Olim
 position: Player
 company: Maracujá Experiences
 bio: "Host | Experiences Creator | Event Designer | Facilitator"
-avatar: /images/players/tiago-olim.jfif
+avatar: /images/players/tiago-olim.jpg
 socials:
   - name: linkedin
     url : in/tiagoolim/

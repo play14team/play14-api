@@ -5,7 +5,7 @@ name: Nicole Helmerich
 position: player
 company: 
 bio: "Consultant, trainer and coach / geek for conceptual and strategic planning"
-avatar: /images/players/nicole-helmerich.jfif
+avatar: /images/players/nicole-helmerich.jpg
 socials:
   - name: linkedin
     url : in/dr-nicole-helmerich-27430128

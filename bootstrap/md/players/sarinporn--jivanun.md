@@ -5,7 +5,7 @@ name: Sarinporn (Rin) Jivanun
 position: Host
 company: Enviro Thailand
 bio: "Managing director"
-avatar: /images/players/sarinporn-jivanun.jfif
+avatar: /images/players/sarinporn-jivanun.jpg
 socials:
   - name: linkedin
     url : in/sarinporn-jivanun-84b51577/

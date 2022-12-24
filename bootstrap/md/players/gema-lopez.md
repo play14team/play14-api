@@ -5,7 +5,7 @@ name: Gema López
 position: Host
 company: Coach Inspire Act
 bio: "Executive Coach y Design Thinker"
-avatar: /images/players/gema-lopez.jfif
+avatar: /images/players/gema-lopez.jpg
 socials:
   - name: linkedin
     url : in/gema-lopez-lopez/

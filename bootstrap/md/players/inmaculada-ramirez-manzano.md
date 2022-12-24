@@ -5,7 +5,7 @@ name: Inmaculada Ramírez Manzano
 position: Host
 company: UST
 bio: "Agile Coach"
-avatar: /images/players/inmaculada-ramirez-manzano.jfif
+avatar: /images/players/inmaculada-ramirez-manzano.jpg
 socials:
   - name: linkedin
     url : in/inmaculadaramirezmanzano/
