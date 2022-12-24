@@ -22,7 +22,7 @@
       },
       "name": {
         "edit": {
-          "label": "name",
+          "label": "Name",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -36,21 +36,21 @@
       },
       "slug": {
         "edit": {
-          "label": "slug",
+          "label": "Slug",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
-          "label": "Slug",
+          "label": "slug",
           "searchable": true,
           "sortable": true
         }
       },
       "country": {
         "edit": {
-          "label": "country",
+          "label": "Country",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -64,7 +64,7 @@
       },
       "events": {
         "edit": {
-          "label": "events",
+          "label": "Events",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -112,12 +112,6 @@
           {
             "name": "name",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "events",
-            "size": 6
           },
           {
             "name": "slug",
@@ -126,6 +120,10 @@
         ],
         [
           {
+            "name": "events",
+            "size": 6
+          },
+          {
             "name": "country",
             "size": 6
           }
@@ -133,8 +131,9 @@
       ],
       "list": [
         "name",
-        "country",
-        "events"
+        "events",
+        "slug",
+        "country"
       ]
     }
   },

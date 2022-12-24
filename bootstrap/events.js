@@ -7,8 +7,10 @@ const { JSDOM } = require("jsdom");
 const { ensureFolder, uploadFile } = require('./upload.js');
 const { yaml2json } = require('./utilities.js');
 const { eventToSlug, capitalize, normalize } = require('../src/libs/strings');
-const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
+const { Mutex } = require('async-mutex');
 
+const mutex = new Mutex();
+const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 const markdownConverter = new showdown.Converter();
 
 async function importData() {
@@ -289,7 +291,9 @@ async function mapVenue(location) {
           }
       };
 
-      venue = await strapi.entityService.create(apiName, venueData);
+      await mutex.runExclusive(async () => {
+        venue = await strapi.entityService.create(apiName, venueData);
+      });
     }
 
     return venue;
@@ -313,7 +317,9 @@ async function mapEventLocation(category) {
             name: capitalize(category)
           }
         }
-        eventLocation = await strapi.entityService.create(apiName, locationData);
+        await mutex.runExclusive(async () => {
+          eventLocation = await strapi.entityService.create(apiName, locationData);
+        });
         console.log(`${category} inserted`);
     } else {
         eventLocation = entries[0];
@@ -402,7 +408,7 @@ async function findSponsorsByName(names) {
                 if (item)
                   items.push(item);
                 else
-                  throw new Error(`Could not find sponsor "${n}"`);
+                  throw new Error(`Could not find sponsor "${name}"`);
               });
         })
     );

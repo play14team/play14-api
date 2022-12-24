@@ -25,10 +25,10 @@ module.exports = {
     {
       console.log("Bootstrap started");
       setTimeout(async () => {
-        // await sponsors.importData();
+        await sponsors.importData();
         // await venues.importData();
         // await players.importData();
-        // await events.importData();
+        await events.importData();
       }, 1500);
     }
   },
