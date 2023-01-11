@@ -10,8 +10,8 @@
       "url": "https://play14.org"
     },
     "license": {
-      "name": "Apache 2.0",
-      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+      "name": "MIT",
+      "url": "https://choosealicense.com/licenses/mit/"
     }
   }
 }

@@ -29,7 +29,7 @@
     "slug": {
       "type": "uid",
       "targetField": "name",
-      "required": false
+      "required": true
     },
     "start": {
       "type": "datetime",
