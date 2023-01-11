@@ -107,7 +107,7 @@ async function mapEvent(event, parentFolderId) {
   const eventLocation = await mapEventLocation(event.category);
   const hosts = await mapPlayers(event.members);
   const mentors = await mapPlayers(event.mentors);
-  const players = await mapPlayers(event.title);
+  const players = await mapPlayersFromEvent(event.title);
   const sponsorships = await mapSponsors(event.sponsors);
 
   const htmlContent = markdownConverter.makeHtml(event.content);
@@ -328,20 +328,25 @@ async function mapEventLocation(category) {
     return eventLocation;
 }
 
-async function mapPlayers(eventName) {
-  const players = [];
+async function mapPlayersFromEvent(eventName) {
   const names = await getPlayerNames(eventName);
+  return await mapPlayers(names);
+}
+
+async function mapPlayers(names) {
+  const players = [];
   if (names)
     await Promise.all(
       names.map(n => {
-            return strapi.query('api::player.player').findOne({ where: { name: n } })
-              .then(p => {
-                if (p)
-                  players.push(p);
-                else
-                  throw new Error(`Could not find player "${n}"`);
-              });
-        })
+        return strapi.query('api::player.player').findOne({ where: { name: n } })
+          .then(p => {
+            if (p)
+              players.push(p);
+
+            else
+              throw new Error(`Could not find player "${n}"`);
+          });
+      })
     );
   return players;
 }
