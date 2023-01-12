@@ -4,7 +4,7 @@ module.exports = ({ env }) => ({
     enabled: true,
   },
   'transformer': {
-    enabled: false,
+    enabled: true,
     config: {
       prefix: '/api/',
       responseTransforms: {
