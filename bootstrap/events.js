@@ -103,6 +103,7 @@ async function mapEvent(event, parentFolderId) {
   const slug = eventToSlug(event.title, event.schedule.start);
   const imagesFolderId = await ensureFolder(slug, parentFolderId);
   const images = await uploadImages(event, imagesFolderId);
+  const defaultImage = getDefaultImage(images, event);
   const venue = await mapVenue(event.location);
   const eventLocation = await mapEventLocation(event.category);
   const hosts = await mapPlayers(event.members);
@@ -122,6 +123,7 @@ async function mapEvent(event, parentFolderId) {
           status: mapStatus(event),
           contactEmail: event.contact,
           description: newHtmlContent,
+          defaultImage: defaultImage,
           images: images,
           timetable: mapTimeTable(event.timetable),
           registration: mapRegistration(event.registration),
@@ -176,6 +178,14 @@ async function uploadImages(event, folderId) {
       await Promise.all(promises);
     }
     return images;
+}
+
+function getDefaultImage(images, event) {
+  const defaultImageName = event.images[0];
+  if (!defaultImageName)
+    return undefined;
+
+  return images.filter(i => i.name === path.basename(defaultImageName)).pop();
 }
 
 function mapStatus(event) {
