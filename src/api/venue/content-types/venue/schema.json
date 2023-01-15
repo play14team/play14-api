@@ -14,7 +14,8 @@
   "attributes": {
     "name": {
       "pluginOptions": {},
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "address": {
       "type": "component",
@@ -59,7 +60,8 @@
     "shortName": {
       "pluginOptions": {},
       "type": "string",
-      "unique": true
+      "unique": true,
+      "required": true
     }
   }
 }
