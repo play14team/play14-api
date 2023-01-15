@@ -101,6 +101,9 @@ async function createOrUpdateEvent(file, parentFolderId) {
 
 async function mapEvent(event, parentFolderId) {
   const slug = eventToSlug(event.title, event.schedule.start);
+  const start = toUTCdate(event.schedule.start);
+  const end = toUTCdate(event.schedule.finish);
+
   const imagesFolderId = await ensureFolder(slug, parentFolderId);
   const images = await uploadImages(event, imagesFolderId);
   const defaultImage = getDefaultImage(images, event);
@@ -118,8 +121,8 @@ async function mapEvent(event, parentFolderId) {
       data: {
           name: normalize(event.title),
           slug: slug,
-          start: event.schedule.start,
-          end: event.schedule.finish,
+          start: start,
+          end: end,
           status: mapStatus(event),
           contactEmail: event.contact,
           description: newHtmlContent,
@@ -137,6 +140,10 @@ async function mapEvent(event, parentFolderId) {
           publishedAt: event.schedule.start,
       }
   };
+}
+
+function toUTCdate(date) {
+  return new Date(date.toLocaleString('en-US', { timeZone: "UTC" }));
 }
 
 async function uploadContentImages(htmlContent, folderId) {
