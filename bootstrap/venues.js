@@ -71,12 +71,8 @@ function mapVenue(location, shortName) {
         data: {
             shortName: shortName,
             name: location.name,
-            address: {
-                street: location.address,
-                postalCode: "",
-                city: "",
-                area: location.area,
-            },
+            address: location.address,
+            area: location.area,
             country: "",
             embeddedMapUrl: location.map,
             website: location.url,

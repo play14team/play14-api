@@ -34,20 +34,6 @@
           "sortable": true
         }
       },
-      "address": {
-        "edit": {
-          "label": "address",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "address",
-          "searchable": false,
-          "sortable": false
-        }
-      },
       "embeddedMapUrl": {
         "edit": {
           "label": "embeddedMapUrl",
@@ -147,6 +133,34 @@
           "sortable": true
         }
       },
+      "area": {
+        "edit": {
+          "label": "area",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "area",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "address": {
+        "edit": {
+          "label": "address",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "address",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -196,7 +210,17 @@
         ],
         [
           {
+            "name": "area",
+            "size": 6
+          },
+          {
             "name": "website",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "country",
             "size": 6
           }
         ],
@@ -219,10 +243,6 @@
         [
           {
             "name": "events",
-            "size": 6
-          },
-          {
-            "name": "country",
             "size": 6
           }
         ]

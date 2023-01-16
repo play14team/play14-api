@@ -812,7 +812,7 @@
         "slug": {
           "type": "uid",
           "targetField": "name",
-          "required": false
+          "required": true
         },
         "start": {
           "type": "datetime",
@@ -833,6 +833,19 @@
             "Cancelled"
           ],
           "default": "Announced"
+        },
+        "defaultImage": {
+          "allowedTypes": [
+            "images"
+          ],
+          "type": "media",
+          "multiple": false,
+          "pluginOptions": {
+            "i18n": {
+              "localized": false
+            }
+          },
+          "required": true
         },
         "images": {
           "type": "media",
@@ -994,7 +1007,7 @@
           "slug": {
             "type": "uid",
             "targetField": "name",
-            "required": false
+            "required": true
           },
           "start": {
             "type": "datetime",
@@ -1015,6 +1028,19 @@
               "Cancelled"
             ],
             "default": "Announced"
+          },
+          "defaultImage": {
+            "allowedTypes": [
+              "images"
+            ],
+            "type": "media",
+            "multiple": false,
+            "pluginOptions": {
+              "i18n": {
+                "localized": false
+              }
+            },
+            "required": true
           },
           "images": {
             "type": "media",
@@ -1535,13 +1561,25 @@
       "attributes": {
         "name": {
           "pluginOptions": {},
+          "type": "string",
+          "required": true
+        },
+        "shortName": {
+          "pluginOptions": {},
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        "area": {
           "type": "string"
         },
         "address": {
-          "type": "component",
-          "repeatable": false,
+          "type": "text"
+        },
+        "country": {
           "pluginOptions": {},
-          "component": "location.address"
+          "type": "string",
+          "customField": "plugin::country-select.country"
         },
         "embeddedMapUrl": {
           "pluginOptions": {},
@@ -1571,16 +1609,6 @@
           "relation": "oneToMany",
           "target": "api::event.event",
           "mappedBy": "venue"
-        },
-        "country": {
-          "pluginOptions": {},
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "shortName": {
-          "pluginOptions": {},
-          "type": "string",
-          "unique": true
         },
         "createdAt": {
           "type": "datetime"
@@ -1624,13 +1652,25 @@
         "attributes": {
           "name": {
             "pluginOptions": {},
+            "type": "string",
+            "required": true
+          },
+          "shortName": {
+            "pluginOptions": {},
+            "type": "string",
+            "unique": true,
+            "required": true
+          },
+          "area": {
             "type": "string"
           },
           "address": {
-            "type": "component",
-            "repeatable": false,
+            "type": "text"
+          },
+          "country": {
             "pluginOptions": {},
-            "component": "location.address"
+            "type": "customField",
+            "customField": "plugin::country-select.country"
           },
           "embeddedMapUrl": {
             "pluginOptions": {},
@@ -1660,16 +1700,6 @@
             "relation": "oneToMany",
             "target": "api::event.event",
             "mappedBy": "venue"
-          },
-          "country": {
-            "pluginOptions": {},
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "shortName": {
-            "pluginOptions": {},
-            "type": "string",
-            "unique": true
           }
         },
         "kind": "collectionType"
@@ -1813,6 +1843,41 @@
           "name": "upload_files_folder_path_index",
           "columns": [
             "folder_path"
+          ],
+          "type": null
+        },
+        {
+          "name": "upload_files_created_at_index",
+          "columns": [
+            "created_at"
+          ],
+          "type": null
+        },
+        {
+          "name": "upload_files_updated_at_index",
+          "columns": [
+            "updated_at"
+          ],
+          "type": null
+        },
+        {
+          "name": "upload_files_name_index",
+          "columns": [
+            "name"
+          ],
+          "type": null
+        },
+        {
+          "name": "upload_files_size_index",
+          "columns": [
+            "size"
+          ],
+          "type": null
+        },
+        {
+          "name": "upload_files_ext_index",
+          "columns": [
+            "ext"
           ],
           "type": null
         }

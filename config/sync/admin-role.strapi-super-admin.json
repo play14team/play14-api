@@ -58,6 +58,7 @@
           "start",
           "end",
           "status",
+          "defaultImage",
           "images",
           "contactEmail",
           "timetable.day",
@@ -116,6 +117,7 @@
           "start",
           "end",
           "status",
+          "defaultImage",
           "images",
           "contactEmail",
           "timetable.day",
@@ -152,6 +154,7 @@
           "start",
           "end",
           "status",
+          "defaultImage",
           "images",
           "contactEmail",
           "timetable.day",
@@ -307,18 +310,16 @@
       "properties": {
         "fields": [
           "name",
-          "address.street",
-          "address.postalCode",
-          "address.city",
-          "address.area",
+          "shortName",
+          "area",
+          "address",
+          "country",
           "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events",
-          "country",
-          "shortName"
+          "events"
         ]
       },
       "conditions": []
@@ -335,18 +336,16 @@
       "properties": {
         "fields": [
           "name",
-          "address.street",
-          "address.postalCode",
-          "address.city",
-          "address.area",
+          "shortName",
+          "area",
+          "address",
+          "country",
           "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events",
-          "country",
-          "shortName"
+          "events"
         ]
       },
       "conditions": []
@@ -357,18 +356,16 @@
       "properties": {
         "fields": [
           "name",
-          "address.street",
-          "address.postalCode",
-          "address.city",
-          "address.area",
+          "shortName",
+          "area",
+          "address",
+          "country",
           "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events",
-          "country",
-          "shortName"
+          "events"
         ]
       },
       "conditions": []
@@ -684,6 +681,12 @@
     },
     {
       "action": "plugin::upload.assets.update",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::upload.configure-view",
       "subject": null,
       "properties": {},
       "conditions": []

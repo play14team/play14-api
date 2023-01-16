@@ -296,12 +296,8 @@ async function mapVenue(location) {
           data: {
               shortName: shortName,
               name: location.name || location,
-              address: {
-                  street: location.address || "",
-                  postalCode: "",
-                  city: "",
-                  area: location.area || "",
-              },
+              address: location.address || "",
+              area: location.area || "",
               country: "",
               embeddedMapUrl: location.map || "",
               website: location.url || "",

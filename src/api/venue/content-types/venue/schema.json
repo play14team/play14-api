@@ -17,11 +17,22 @@
       "type": "string",
       "required": true
     },
-    "address": {
-      "type": "component",
-      "repeatable": false,
+    "shortName": {
       "pluginOptions": {},
-      "component": "location.address"
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "area": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "country": {
+      "pluginOptions": {},
+      "type": "customField",
+      "customField": "plugin::country-select.country"
     },
     "embeddedMapUrl": {
       "pluginOptions": {},
@@ -51,17 +62,6 @@
       "relation": "oneToMany",
       "target": "api::event.event",
       "mappedBy": "venue"
-    },
-    "country": {
-      "pluginOptions": {},
-      "type": "customField",
-      "customField": "plugin::country-select.country"
-    },
-    "shortName": {
-      "pluginOptions": {},
-      "type": "string",
-      "unique": true,
-      "required": true
     }
   }
 }

@@ -4,6 +4,12 @@
   "type": "public",
   "permissions": [
     {
+      "action": "api::event-location.event-location.find"
+    },
+    {
+      "action": "api::event-location.event-location.findOne"
+    },
+    {
       "action": "api::event.event.find"
     },
     {

@@ -265,6 +265,20 @@
           "sortable": false
         }
       },
+      "defaultImage": {
+        "edit": {
+          "label": "defaultImage",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "defaultImage",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -338,8 +352,12 @@
         ],
         [
           {
+            "name": "defaultImage",
+            "size": 6
+          },
+          {
             "name": "images",
-            "size": 4
+            "size": 6
           }
         ],
         [
