@@ -19,20 +19,23 @@ function yaml2json(inputfile, skipSplit) {
 }
 
 function mapSocialNetworks(socials) {
-    if (socials)
-        return socials.map(s => {
-            const url = '' + s.url;
-            return { url: mapSocialNetworkUrl(url), type: mapSocialNetworkName(s.name)}}
-        );
+  const socialNetworks = [];
+  socials && socials.map(s => {
+    const type = mapSocialNetworkName(s.name);
+    if (type) {
+      const url = mapSocialNetworkUrl('' + s.url, type).toString();
+      socialNetworks.push({ url: url, type: type});
+    }
+  });
 
-    return [];
+  return socialNetworks;
 }
 
 function mapSocialNetworkUrl(url, socialNetworkName) {
   switch (socialNetworkName) {
     case "Twitter":
       return new URL(url, "https://twitter.com");
-    case "LinkeIn":
+    case "LinkedIn":
       return new URL(url, "https://www.linkedin.com");
     case "Facebook":
       return new URL(url, "https://www.facebook.com");
@@ -42,12 +45,12 @@ function mapSocialNetworkUrl(url, socialNetworkName) {
       return new URL(url, "https://www.instagram.com");
     case "Xing":
       return new URL(url, "https://www.xing.com/");
-    case "Email":
-      return new URL(url, "mailto:");
     case "Wikipedia":
       return new URL(url, "https://www.wikipedia.org");
     case "Vimeo":
       return new URL(url, "https://vimeo.com");
+    case "Email":
+        return "mailto:" + url;
     default:
       return url;
   }
@@ -55,7 +58,7 @@ function mapSocialNetworkUrl(url, socialNetworkName) {
 
 function mapSocialNetworkName(name) {
     if (name.toLowerCase() === "google-plus")
-        return "Other"
+        return null;
     if (name.toLowerCase() === "linkedin")
         return "LinkedIn";
     else
