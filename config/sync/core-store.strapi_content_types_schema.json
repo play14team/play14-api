@@ -832,20 +832,21 @@
             "Over",
             "Cancelled"
           ],
-          "default": "Announced"
+          "default": "Announced",
+          "required": true
         },
         "defaultImage": {
+          "type": "media",
+          "multiple": false,
+          "required": true,
           "allowedTypes": [
             "images"
           ],
-          "type": "media",
-          "multiple": false,
           "pluginOptions": {
             "i18n": {
               "localized": false
             }
-          },
-          "required": true
+          }
         },
         "images": {
           "type": "media",
@@ -1027,20 +1028,21 @@
               "Over",
               "Cancelled"
             ],
-            "default": "Announced"
+            "default": "Announced",
+            "required": true
           },
           "defaultImage": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
             "allowedTypes": [
               "images"
             ],
-            "type": "media",
-            "multiple": false,
             "pluginOptions": {
               "i18n": {
                 "localized": false
               }
-            },
-            "required": true
+            }
           },
           "images": {
             "type": "media",
