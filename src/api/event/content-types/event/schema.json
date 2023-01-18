@@ -81,12 +81,14 @@
     "timetable": {
       "type": "component",
       "repeatable": true,
-      "component": "events.timetable"
+      "component": "events.timetable",
+      "required": false
     },
     "registration": {
       "type": "component",
       "repeatable": false,
-      "component": "registration.registration"
+      "component": "registration.registration",
+      "required": false
     },
     "description": {
       "pluginOptions": {
@@ -134,7 +136,8 @@
           "localized": true
         }
       },
-      "component": "events.sponsorship"
+      "component": "events.sponsorship",
+      "required": false
     },
     "media": {
       "type": "component",
@@ -144,7 +147,8 @@
           "localized": true
         }
       },
-      "component": "events.media"
+      "component": "events.media",
+      "required": false
     }
   }
 }

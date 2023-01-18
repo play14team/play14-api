@@ -2,12 +2,14 @@
   "collectionName": "components_events_sponsorships",
   "info": {
     "displayName": "Sponsorship",
-    "icon": "address-book"
+    "icon": "address-book",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "category": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "sponsors": {
       "type": "relation",

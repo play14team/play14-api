@@ -27,7 +27,8 @@
     "timeslots": {
       "type": "component",
       "repeatable": true,
-      "component": "events.time-slots"
+      "component": "events.time-slots",
+      "required": true
     }
   }
 }
