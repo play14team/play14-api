@@ -19,7 +19,8 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "name",
+      "required": true
     },
     "position": {
       "type": "enumeration",
@@ -28,10 +29,12 @@
         "Host",
         "Mentor",
         "Founder"
-      ]
+      ],
+      "required": true
     },
     "company": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     "tagline": {
       "type": "string"
@@ -39,9 +42,18 @@
     "bio": {
       "type": "richtext"
     },
+    "city": {
+      "type": "string"
+    },
     "country": {
       "type": "customField",
       "customField": "plugin::country-select.country"
+    },
+    "website": {
+      "type": "string"
+    },
+    "embeddedMapUrl": {
+      "type": "text"
     },
     "avatar": {
       "type": "media",
@@ -56,7 +68,7 @@
       "repeatable": true,
       "component": "contact.social-network"
     },
-    "events": {
+    "attended": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::event.event",

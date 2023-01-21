@@ -70,13 +70,13 @@
           "description",
           "location",
           "venue",
-          "players",
           "hosts",
           "mentors",
           "sponsorships.category",
           "sponsorships.sponsors",
           "media.url",
-          "media.type"
+          "media.type",
+          "players"
         ],
         "locales": [
           "en",
@@ -129,13 +129,13 @@
           "description",
           "location",
           "venue",
-          "players",
           "hosts",
           "mentors",
           "sponsorships.category",
           "sponsorships.sponsors",
           "media.url",
-          "media.type"
+          "media.type",
+          "players"
         ],
         "locales": [
           "en",
@@ -166,13 +166,13 @@
           "description",
           "location",
           "venue",
-          "players",
           "hosts",
           "mentors",
           "sponsorships.category",
           "sponsorships.sponsors",
           "media.url",
-          "media.type"
+          "media.type",
+          "players"
         ],
         "locales": [
           "en",
@@ -192,11 +192,14 @@
           "company",
           "tagline",
           "bio",
+          "city",
           "country",
+          "website",
+          "embeddedMapUrl",
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events",
+          "attended",
           "hosted",
           "mentored",
           "user"
@@ -221,11 +224,14 @@
           "company",
           "tagline",
           "bio",
+          "city",
           "country",
+          "website",
+          "embeddedMapUrl",
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events",
+          "attended",
           "hosted",
           "mentored",
           "user"
@@ -244,11 +250,14 @@
           "company",
           "tagline",
           "bio",
+          "city",
           "country",
+          "website",
+          "embeddedMapUrl",
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events",
+          "attended",
           "hosted",
           "mentored",
           "user"
@@ -657,6 +666,18 @@
     },
     {
       "action": "plugin::i18n.locale.update",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::sitemap.menu-link",
+      "subject": null,
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::sitemap.settings.read",
       "subject": null,
       "properties": {},
       "conditions": []

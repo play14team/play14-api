@@ -146,9 +146,9 @@
           "sortable": false
         }
       },
-      "events": {
+      "attended": {
         "edit": {
-          "label": "events",
+          "label": "attended",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -156,7 +156,7 @@
           "mainField": "name"
         },
         "list": {
-          "label": "events",
+          "label": "attended",
           "searchable": false,
           "sortable": false
         }
@@ -206,6 +206,48 @@
           "sortable": true
         }
       },
+      "city": {
+        "edit": {
+          "label": "city",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "city",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "website": {
+        "edit": {
+          "label": "website",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "website",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "embeddedMapUrl": {
+        "edit": {
+          "label": "embeddedMapUrl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "embeddedMapUrl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -236,13 +278,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "name",
-        "slug",
-        "position",
-        "avatar",
-        "company"
-      ],
       "edit": [
         [
           {
@@ -278,7 +313,23 @@
         ],
         [
           {
+            "name": "website",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "city",
+            "size": 6
+          },
+          {
             "name": "country",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "embeddedMapUrl",
             "size": 6
           },
           {
@@ -294,10 +345,6 @@
         ],
         [
           {
-            "name": "events",
-            "size": 6
-          },
-          {
             "name": "hosted",
             "size": 6
           }
@@ -311,7 +358,20 @@
             "name": "user",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "attended",
+            "size": 6
+          }
         ]
+      ],
+      "list": [
+        "name",
+        "slug",
+        "position",
+        "avatar",
+        "company"
       ]
     }
   },
