@@ -105,8 +105,8 @@ async function mapEvent(event, parentFolderId) {
   const end = toUTCdate(event.schedule.finish);
 
   const imagesFolderId = await ensureFolder(slug, parentFolderId);
-  const images = await uploadImages(event, imagesFolderId);
-  const defaultImage = getDefaultImage(images, event);
+  const images = await uploadImages(event, slug, imagesFolderId);
+  const defaultImage = getDefaultImage(images, slug, event);
   const venue = await mapVenue(event.location);
   const eventLocation = await mapEventLocation(event.category);
   const hosts = await mapPlayers(event.members);
@@ -170,15 +170,16 @@ async function uploadContentImages(htmlContent, folderId) {
   return newHtmlContent;
 }
 
-async function uploadImages(event, folderId) {
+async function uploadImages(event, slug, folderId) {
     const images = [];
     if (event.images) {
       const promises = [];
       event.images.map(image => {
           if (image.includes('/images')) {
             const filePath = path.join(bootstrapDir, image);
+            const name = getImageName(slug, image);
             if (fs.existsSync(filePath))
-              promises.push(uploadFile(path.basename(image), folderId, filePath).then(file => { images.push(file) }));
+              promises.push(uploadFile(name, folderId, filePath).then(file => { images.push(file) }));
           }
       })
 
@@ -187,12 +188,16 @@ async function uploadImages(event, folderId) {
     return images;
 }
 
-function getDefaultImage(images, event) {
+function getDefaultImage(images, slug, event) {
   const defaultImageName = event.images[0];
   if (!defaultImageName)
     return undefined;
 
-  return images.filter(i => i.name === path.basename(defaultImageName)).pop();
+  return images.filter(i => i.name === getImageName(slug, defaultImageName)).pop();
+}
+
+function getImageName(slug, image) {
+  return slug + "_" + path.basename(image);
 }
 
 function mapStatus(event) {

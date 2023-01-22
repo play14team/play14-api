@@ -44,6 +44,9 @@ module.exports = ({ env }) => ({
   'import-export-entries': {
     enabled: true,
   },
+  'strapi-blurhash': {
+    enabled: true,
+  },
   'upload': {
     config: {
       provider: 'strapi-provider-upload-azure-storage',
