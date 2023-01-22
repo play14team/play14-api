@@ -8,7 +8,7 @@ bio: "CTO | Software architect | Agile coach | EventStormer | Sketchnoter | Happ
 avatar: /images/players/CedricPontet.jpg
 socials:
   - name: email
-    url: cedric.pontet@gmail.com
+    url: cedric@play14.org
   - name: twitter
     url: cpontet
   - name: google-plus
