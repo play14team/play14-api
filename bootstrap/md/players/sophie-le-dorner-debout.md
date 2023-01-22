@@ -13,6 +13,5 @@ socials:
 events:
   - Luxembourg 2018
   - Luxembourg 2019
-  - Luxembourg 2020
 
 ---

@@ -39,7 +39,6 @@ events:
   - Luxembourg 2019
   - Madrid 2019
   - Kuala Lumpur 2019
-  - Luxembourg 2020
   - Online May 2020
   - Utrecht 2021
   - Luxembourg 2022
