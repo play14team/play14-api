@@ -5,7 +5,10 @@ const fs = require("fs");
 const { ensureFolder, uploadFile } = require('./upload.js');
 const { yaml2json, mapSocialNetworks } = require('./utilities.js');
 const { toSlug, capitalize } = require('../src/libs/strings');
+const showdown  = require('showdown');
+
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
+const markdownConverter = new showdown.Converter();
 
 async function importData() {
     console.log("Importing players");
@@ -78,6 +81,8 @@ async function uploadAvatar(player, folderId) {
 }
 
 function mapPlayer(player, avatar) {
+  const htmlContent = markdownConverter.makeHtml(player.content);
+
     return {
         data: {
             name: player.name,
@@ -85,7 +90,7 @@ function mapPlayer(player, avatar) {
             position: capitalize(player.position),
             company: player.company,
             tagline: player.bio,
-            bio: player.content,
+            bio: htmlContent,
             avatar: avatar,
             socialNetworks: mapSocialNetworks(player.socials),
         }
