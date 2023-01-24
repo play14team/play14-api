@@ -4,6 +4,382 @@
   "description": "Editors can manage and publish contents including those of other users.",
   "permissions": [
     {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::event-location.event-location",
+      "properties": {
+        "fields": [
+          "country",
+          "events",
+          "name",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::event-location.event-location",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::event-location.event-location",
+      "properties": {
+        "fields": [
+          "country",
+          "events",
+          "name",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::event-location.event-location",
+      "properties": {
+        "fields": [
+          "country",
+          "events",
+          "name",
+          "slug"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::event.event",
+      "properties": {
+        "fields": [
+          "contactEmail",
+          "defaultImage",
+          "description",
+          "end",
+          "hosts",
+          "images",
+          "location",
+          "media.type",
+          "media.url",
+          "mentors",
+          "name",
+          "players",
+          "registration.link",
+          "registration.widgetCode",
+          "slug",
+          "sponsorships.category",
+          "sponsorships.sponsors",
+          "start",
+          "status",
+          "timetable.day",
+          "timetable.description",
+          "timetable.timeslots.description",
+          "timetable.timeslots.time",
+          "venue"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::event.event",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::event.event",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::event.event",
+      "properties": {
+        "fields": [
+          "contactEmail",
+          "defaultImage",
+          "description",
+          "end",
+          "hosts",
+          "images",
+          "location",
+          "media.type",
+          "media.url",
+          "mentors",
+          "name",
+          "players",
+          "registration.link",
+          "registration.widgetCode",
+          "slug",
+          "sponsorships.category",
+          "sponsorships.sponsors",
+          "start",
+          "status",
+          "timetable.day",
+          "timetable.description",
+          "timetable.timeslots.description",
+          "timetable.timeslots.time",
+          "venue"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::event.event",
+      "properties": {
+        "fields": [
+          "contactEmail",
+          "defaultImage",
+          "description",
+          "end",
+          "hosts",
+          "images",
+          "location",
+          "media.type",
+          "media.url",
+          "mentors",
+          "name",
+          "players",
+          "registration.link",
+          "registration.widgetCode",
+          "slug",
+          "sponsorships.category",
+          "sponsorships.sponsors",
+          "start",
+          "status",
+          "timetable.day",
+          "timetable.description",
+          "timetable.timeslots.description",
+          "timetable.timeslots.time",
+          "venue"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::player.player",
+      "properties": {
+        "fields": [
+          "attended",
+          "avatar",
+          "bio",
+          "city",
+          "company",
+          "country",
+          "embeddedMapUrl",
+          "hosted",
+          "mentored",
+          "name",
+          "position",
+          "slug",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "tagline",
+          "user",
+          "website"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::player.player",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::player.player",
+      "properties": {
+        "fields": [
+          "attended",
+          "avatar",
+          "bio",
+          "city",
+          "company",
+          "country",
+          "embeddedMapUrl",
+          "hosted",
+          "mentored",
+          "name",
+          "position",
+          "slug",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "tagline",
+          "user",
+          "website"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::player.player",
+      "properties": {
+        "fields": [
+          "attended",
+          "avatar",
+          "bio",
+          "city",
+          "company",
+          "country",
+          "embeddedMapUrl",
+          "hosted",
+          "mentored",
+          "name",
+          "position",
+          "slug",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "tagline",
+          "user",
+          "website"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::sponsor.sponsor",
+      "properties": {
+        "fields": [
+          "logo",
+          "name",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "url"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::sponsor.sponsor",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::sponsor.sponsor",
+      "properties": {
+        "fields": [
+          "logo",
+          "name",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "url"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::sponsor.sponsor",
+      "properties": {
+        "fields": [
+          "logo",
+          "name",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "url"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::venue.venue",
+      "properties": {
+        "fields": [
+          "address",
+          "area",
+          "country",
+          "embeddedMapUrl",
+          "events",
+          "logo",
+          "name",
+          "shortName",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "website"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::venue.venue",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::venue.venue",
+      "properties": {
+        "fields": [
+          "address",
+          "area",
+          "country",
+          "embeddedMapUrl",
+          "events",
+          "logo",
+          "name",
+          "shortName",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "website"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::venue.venue",
+      "properties": {
+        "fields": [
+          "address",
+          "area",
+          "country",
+          "embeddedMapUrl",
+          "events",
+          "logo",
+          "name",
+          "shortName",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "website"
+        ]
+      },
+      "conditions": []
+    },
+    {
       "action": "plugin::upload.assets.copy-link",
       "subject": null,
       "properties": {},

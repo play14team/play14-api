@@ -1919,6 +1919,9 @@
           "useJoinTable": false,
           "private": true
         },
+        "blurhash": {
+          "type": "text"
+        },
         "sitemap_exclude": {
           "writable": true,
           "private": true,

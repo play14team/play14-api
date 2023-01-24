@@ -104,6 +104,20 @@
           "sortable": false
         }
       },
+      "city": {
+        "edit": {
+          "label": "city",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "city",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "country": {
         "edit": {
           "label": "country",
@@ -114,6 +128,34 @@
         },
         "list": {
           "label": "country",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "website": {
+        "edit": {
+          "label": "website",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "website",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "embeddedMapUrl": {
+        "edit": {
+          "label": "embeddedMapUrl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "embeddedMapUrl",
           "searchable": true,
           "sortable": true
         }
@@ -206,48 +248,6 @@
           "sortable": true
         }
       },
-      "city": {
-        "edit": {
-          "label": "city",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "city",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "website": {
-        "edit": {
-          "label": "website",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "website",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "embeddedMapUrl": {
-        "edit": {
-          "label": "embeddedMapUrl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "embeddedMapUrl",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -302,18 +302,6 @@
         [
           {
             "name": "tagline",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "bio",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "website",
             "size": 12
           }
         ],
@@ -330,8 +318,22 @@
         [
           {
             "name": "embeddedMapUrl",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "website",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "bio",
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "avatar",
             "size": 6
@@ -347,19 +349,17 @@
           {
             "name": "hosted",
             "size": 6
-          }
-        ],
-        [
+          },
           {
             "name": "mentored",
             "size": 6
-          },
-          {
-            "name": "user",
-            "size": 6
           }
         ],
         [
+          {
+            "name": "user",
+            "size": 6
+          },
           {
             "name": "attended",
             "size": 6
