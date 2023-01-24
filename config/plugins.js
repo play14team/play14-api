@@ -60,5 +60,77 @@ module.exports = ({ env }) => ({
         maxConcurrent: 10
       }
     }
-  }
+  },
+  "fuzzy-search": {
+    enabled: true,
+    config: {
+      contentTypes: [
+        {
+          uid: "api::event.event",
+          modelName: "event",
+          queryConstraints: {
+            where: {
+              $and: [
+                {
+                  publishedAt: { $notNull: true },
+                },
+              ],
+            },
+          },
+          fuzzysortOptions: {
+            characterLimit: 500,
+            threshold: -200,
+            keys: [
+              {
+                name: "name",
+                weight: 500,
+              },
+              {
+                name: "status",
+                weight: 400,
+              },
+              {
+                name: "description",
+                weight: -100,
+              },
+            ],
+          },
+        },
+        {
+          uid: "api::player.player",
+          modelName: "player",
+          fuzzysortOptions: {
+            characterLimit: 200,
+            threshold: -200,
+            keys: [
+              {
+                name: "name",
+                weight: 500,
+              },
+              {
+                name: "slug",
+                weight: 400,
+              },
+              {
+                name: "position",
+                weight: 300,
+              },
+              {
+                name: "company",
+                weight: 200,
+              },
+              {
+                name: "tagline",
+                weight: 100,
+              },
+              {
+                name: "bio",
+                weight: -100,
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
 });

@@ -28,6 +28,9 @@
       "action": "api::venue.venue.findOne"
     },
     {
+      "action": "plugin::fuzzy-search.searchController.search"
+    },
+    {
       "action": "plugin::users-permissions.auth.callback"
     },
     {
