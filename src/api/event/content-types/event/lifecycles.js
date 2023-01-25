@@ -8,40 +8,17 @@ const { eventToSlug } = require('../../../../libs/strings')
  */
 
 function validate(data) {
-  if (!data.start) {
-    data.start = new Date();
-    data.start.setHours(18, 0, 0, 0);
-    console.log("Changed start date to " + data.start);
+  const slug = eventToSlug(data.name, data.start);
+  if (data.slug != slug) {
+    data.slug = slug;
   }
-  if (!data.end) {
-    data.end = data.start.addDays(2);
-    data.end.setHours(17, 0, 0, 0);
-    console.log("Changed end date to " + data.end);
-  }
-  if (!data.slug) {
-    data.slug = eventToSlug(data.name, data.start)
-  }
-}
-
-Date.prototype.addDays = function (days) {
-  const date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
 }
 
 module.exports = {
   beforeCreate(event) {
-    // const {
-    //   data
-    // } = event.params;
-
-    // validate(data);
+    validate(event.params.data);
   },
   beforeUpdate(event) {
-    // const {
-    //   data
-    // } = event.params;
-
-    // validate(data);
+    validate(event.params.data);
   },
 };
