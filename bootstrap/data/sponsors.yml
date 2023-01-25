@@ -236,7 +236,7 @@
 
 - name: emetriq
   url: https://www.emetriq.com/en/
-  logo: /images/sponsors/berlin/emetriq.jpg
+  logo: /images/sponsors/berlin/emetriq.png
   socials:
     - name: twitter
       url: emetriq
