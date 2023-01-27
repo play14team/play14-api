@@ -91,6 +91,18 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "mappedBy": "player"
+    },
+    "documented": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::game.game",
+      "mappedBy": "authors"
+    },
+    "originated": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::game.game",
+      "mappedBy": "originators"
     }
   }
 }
