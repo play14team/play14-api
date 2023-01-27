@@ -2,13 +2,9 @@
 const path = require("path");
 const fs = require("fs");
 const mime = require('mime');
-const {
-  Mutex
-} = require('async-mutex');
+const { Mutex } = require('async-mutex');
 const mutex = new Mutex();
-const {
-  getPlaiceholder
-} = require('plaiceholder');
+const { getPlaiceholder } = require('plaiceholder');
 
 async function ensureFolder(folderName, parentFolderId) {
   let folder = await getFolder(folderName, parentFolderId);
@@ -71,21 +67,23 @@ async function uploadFile(fileName, folderId, filePath) {
 
     try {
       const stats = fs.statSync(filePath);
-      const blurhash = await generateBlurhash(filePath);
-      await strapi.plugins.upload.services.upload.upload({
-        data: {
-          fileInfo: {
-            folder: folderId,
+      await mutex.runExclusive(async () => {
+        const blurhash = await generateBlurhash(filePath);
+        await strapi.plugins.upload.services.upload.upload({
+          data: {
+            fileInfo: {
+              folder: folderId,
+              blurhash: blurhash,
+            },
+          },
+          files: {
+            path: filePath,
+            name: fileName,
+            type: mime.getType(filePath),
+            size: stats.size,
             blurhash: blurhash,
           },
-        },
-        files: {
-          path: filePath,
-          name: fileName,
-          type: mime.getType(filePath),
-          size: stats.size,
-          blurhash: blurhash,
-        },
+        });
       });
     } catch (error) {
       console.error(`Could not upload ${filePath}`);
