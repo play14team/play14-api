@@ -47,6 +47,14 @@ module.exports = ({ env }) => ({
   'strapi-blurhash': {
     enabled: true,
   },
+  upload: {
+    config: {
+      provider: 'strapi-provider-upload-local-url',
+      providerOptions: {
+        baseurl: "http://localhost:1337"
+      }
+    }
+  },
   // 'upload': {
   //   config: {
   //     provider: 'strapi-provider-upload-azure-storage',
