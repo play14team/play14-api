@@ -11,7 +11,7 @@ publishdate: 2017-07-16 00:00:00
 authors: 
   - Chris Caswell
 originators: 
-  - Karina Hermann
+  - Karina Herman
 firstplayed: Luxembourg 2015
 scale: Min 10 - Max 40
 timebox: 60 mins

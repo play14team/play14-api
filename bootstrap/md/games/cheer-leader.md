@@ -10,8 +10,6 @@ publishdate: 2018-09-29 00:00:00
 
 authors: 
   - Cédric Pontet
-originators: 
-  - Unknown
 firstplayed: Luxembourg 2014
 scale: Min 6, Max unlimited
 timebox: 15 mnins

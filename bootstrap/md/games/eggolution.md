@@ -11,7 +11,7 @@ publishdate: 2018-01-14 00:00:00
 authors: 
   - Cédric Pontet
 originators: 
-  - Karina Hermann
+  - Karina Herman
 firstplayed: Luxembourg 2016
 scale: Min 10, Max infinite
 timebox: 10 mins

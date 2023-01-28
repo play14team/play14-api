@@ -25,20 +25,17 @@ async function importPlayers(markdownDir) {
         let failed = 0;
 
         await Promise.all(
-            files.map(file =>
-                {
-                    createOrUpdatePlayer(path.join(markdownDir, file), folderId)
-                        .then(_ => {
-                            succeeded++;
-                        })
-                        .catch(err => {
-                            console.error(err);
-                            failed++;
-                        })
-                        .then(_ => {
-                            console.log(`Players ${succeeded + failed} players on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
-                        })
-                })
+          files.map(async file => {
+            try {
+              await createOrUpdatePlayer(path.join(markdownDir, file), folderId);
+              succeeded++;
+            } catch (error) {
+              console.error(error);
+              failed++;
+            } finally {
+              console.log(`Players ${succeeded + failed} players on ${files.length} [${succeeded} succeeded, ${failed} failed]`)
+            }
+          })
         );
     }
     catch(error) {

@@ -12,8 +12,7 @@ publishdate: 2018-06-29 00:00:00
 
 authors: 
   - Chris Caswell
-originators:
-  - Philly Lander
+credits:  Philly Lander
 firstplayed: Luxembourg 2018 
 scale: Min 10, Max 100
 timebox: 5 mins
