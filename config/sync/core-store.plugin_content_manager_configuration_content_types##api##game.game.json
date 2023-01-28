@@ -6,7 +6,7 @@
       "bulkable": true,
       "filterable": true,
       "searchable": true,
-      "pageSize": 10,
+      "pageSize": 50,
       "mainField": "name",
       "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
@@ -48,16 +48,16 @@
           "sortable": true
         }
       },
-      "gategory": {
+      "category": {
         "edit": {
-          "label": "gategory",
+          "label": "category",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "gategory",
+          "label": "category",
           "searchable": true,
           "sortable": true
         }
@@ -318,11 +318,11 @@
         ],
         [
           {
-            "name": "gategory",
+            "name": "scale",
             "size": 6
           },
           {
-            "name": "scale",
+            "name": "category",
             "size": 6
           }
         ],
@@ -406,10 +406,11 @@
         ]
       ],
       "list": [
-        "id",
         "name",
-        "slug",
-        "gategory"
+        "category",
+        "defaultImage",
+        "scale",
+        "timebox"
       ]
     }
   },

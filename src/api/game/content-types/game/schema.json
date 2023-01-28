@@ -36,7 +36,7 @@
       "targetField": "name",
       "required": true
     },
-    "gategory": {
+    "category": {
       "pluginOptions": {
         "i18n": {
           "localized": true
