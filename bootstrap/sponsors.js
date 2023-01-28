@@ -23,18 +23,16 @@ async function importItems(filePath, mapItem, apiName) {
     let failed = 0;
 
     await Promise.all(
-      items.map(item => {
-        createOrUpdate(mapItem(item, sponsorsFolderId), item.name, apiName)
-          .then(_ => {
-            succeeded++;
-          })
-          .catch(err => {
-            console.error(err);
-            failed++;
-          })
-          .then(_ => {
-            console.log(`${succeeded + failed} sponsors on ${items.length} [${succeeded} succeeded, ${failed} failed]`);
-          });
+      items.map(async item => {
+        try {
+          await createOrUpdate(mapItem(item, sponsorsFolderId), item.name, apiName);
+          succeeded++;
+        } catch (error) {
+          console.error(error);
+          failed++;
+        } finally {
+          console.log(`${succeeded + failed} sponsors on ${items.length} [${succeeded} succeeded, ${failed} failed]`);
+        }
       })
     );
   } catch (error) {

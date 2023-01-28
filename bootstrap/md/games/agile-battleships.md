@@ -14,8 +14,9 @@ publishdate: 2018-01-13 00:00:00
 authors: 
     - Chris Caswell
 originators: 
-    - James Scrimshire
     - Chris Caswell
+
+credits: James Scrimshire
 
 firstplayed: Timisoara 2017
 scale: Min 4, Max unlimited

@@ -5,7 +5,6 @@ title: High-Five
 category: ice breaker
 tags:
   - Fun
-  - 
 
 publishdate: 2018-09-30 00:00:00
 

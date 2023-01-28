@@ -96,13 +96,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::game.game",
-      "mappedBy": "authors"
+      "mappedBy": "documentedBy"
     },
-    "originated": {
+    "proposed": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::game.game",
-      "mappedBy": "originators"
+      "mappedBy": "proposedBy"
     }
   }
 }

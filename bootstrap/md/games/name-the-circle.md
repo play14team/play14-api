@@ -11,8 +11,6 @@ publishdate: 2017-07-01 00:00:00
 
 authors: 
   - Cédric Pontet
-originators: 
-  - Unknown
 firstplayed: Luxembourg 2015
 scale: Min 8, No limit
 timebox: 5 - 15 mins, depending on the size of the group

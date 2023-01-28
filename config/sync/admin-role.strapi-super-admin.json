@@ -183,6 +183,124 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::game.game",
+      "properties": {
+        "fields": [
+          "name",
+          "slug",
+          "gategory",
+          "documentedBy",
+          "proposedBy",
+          "firstPlayedAt",
+          "scale",
+          "timebox",
+          "summary",
+          "materials.value",
+          "preparationSteps.value",
+          "safety.key",
+          "safety.value",
+          "defaultImage",
+          "images",
+          "resources",
+          "description",
+          "tags.value",
+          "credits"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::game.game",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::game.game",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::game.game",
+      "properties": {
+        "fields": [
+          "name",
+          "slug",
+          "gategory",
+          "documentedBy",
+          "proposedBy",
+          "firstPlayedAt",
+          "scale",
+          "timebox",
+          "summary",
+          "materials.value",
+          "preparationSteps.value",
+          "safety.key",
+          "safety.value",
+          "defaultImage",
+          "images",
+          "resources",
+          "description",
+          "tags.value",
+          "credits"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::game.game",
+      "properties": {
+        "fields": [
+          "name",
+          "slug",
+          "gategory",
+          "documentedBy",
+          "proposedBy",
+          "firstPlayedAt",
+          "scale",
+          "timebox",
+          "summary",
+          "materials.value",
+          "preparationSteps.value",
+          "safety.key",
+          "safety.value",
+          "defaultImage",
+          "images",
+          "resources",
+          "description",
+          "tags.value",
+          "credits"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::player.player",
       "properties": {
         "fields": [
@@ -202,7 +320,9 @@
           "attended",
           "hosted",
           "mentored",
-          "user"
+          "user",
+          "documented",
+          "proposed"
         ]
       },
       "conditions": []
@@ -234,7 +354,9 @@
           "attended",
           "hosted",
           "mentored",
-          "user"
+          "user",
+          "documented",
+          "proposed"
         ]
       },
       "conditions": []
@@ -260,7 +382,9 @@
           "attended",
           "hosted",
           "mentored",
-          "user"
+          "user",
+          "documented",
+          "proposed"
         ]
       },
       "conditions": []

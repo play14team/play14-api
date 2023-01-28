@@ -3,9 +3,8 @@
 const path = require("path");
 const fs = require("fs");
 const showdown  = require('showdown');
-const { JSDOM } = require("jsdom");
-const { ensureFolder, uploadFile } = require('./upload.js');
-const { yaml2json } = require('./utilities.js');
+const { ensureFolder } = require('./upload.js');
+const { yaml2json, mapPlayers, uploadImages, getDefaultImage, uploadContentImages } = require('./utilities.js');
 const { eventToSlug, capitalize, normalize } = require('../src/libs/strings');
 const { Mutex } = require('async-mutex');
 
@@ -29,26 +28,23 @@ async function importEvents(markdownDir) {
         let errors = [];
 
         await Promise.all(
-            files.map(file =>
-                {
-                    createOrUpdateEvent(path.join(markdownDir, file), eventsFolderId)
-                        .then(_ => {
-                          succeeded++;
-                        })
-                        .catch(err => {
-                          console.error(err);
-                          failed++;
-                          errors[file] = err;
-                        })
-                        .then(_ => {
-                            console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`);
-                            const count = succeeded + failed;
-                            if (files.length === count && errors.length > 0)                             {
-                              console.log(`There were ${errors.length} issues during the processing`)
-                              console.log(errors);
-                            }
-                        })
-                })
+          files.map(async file => {
+            try {
+              await createOrUpdateEvent(path.join(markdownDir, file), eventsFolderId);
+              succeeded++;
+            } catch (error) {
+              console.error(error);
+              failed++;
+              errors[file] = error;
+            } finally {
+              console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`);
+              const count = succeeded + failed;
+              if (files.length === count && errors.length > 0)                             {
+                console.log(`There were ${errors.length} issues during the processing`)
+                console.log(errors);
+              }
+            }
+          })
         );
     }
     catch(error) {
@@ -144,60 +140,6 @@ async function mapEvent(event, parentFolderId) {
 
 function toUTCdate(date) {
   return new Date(date.toLocaleString('en-US', { timeZone: "UTC" }));
-}
-
-async function uploadContentImages(htmlContent, folderId) {
-  let newHtmlContent = htmlContent;
-  const { document } = (new JSDOM(htmlContent)).window;
-  const images = document.querySelectorAll("img");
-  if (images.length > 0) {
-    const promises = [];
-    const contentFolderId = await ensureFolder('content', folderId);
-    images.forEach(image => {
-      const url = image.getAttribute('src');
-      if (url.startsWith('/images')) {
-        const filePath = path.join(bootstrapDir, url);
-        const promise = uploadFile(path.basename(url), contentFolderId, filePath)
-          .then(file => {
-            newHtmlContent = newHtmlContent.replaceAll(url, file.url);
-          });
-        promises.push(promise);
-      }
-    });
-    await Promise.all(promises);
-  }
-
-  return newHtmlContent;
-}
-
-async function uploadImages(event, slug, folderId) {
-    const images = [];
-    if (event.images) {
-      const promises = [];
-      event.images.map(image => {
-          if (image.includes('/images')) {
-            const filePath = path.join(bootstrapDir, image);
-            const name = getImageName(slug, image);
-            if (fs.existsSync(filePath))
-              promises.push(uploadFile(name, folderId, filePath).then(file => { images.push(file) }));
-          }
-      })
-
-      await Promise.all(promises);
-    }
-    return images;
-}
-
-function getDefaultImage(images, slug, event) {
-  const defaultImageName = event.images[0];
-  if (!defaultImageName)
-    return undefined;
-
-  return images.filter(i => i.name === getImageName(slug, defaultImageName)).pop();
-}
-
-function getImageName(slug, image) {
-  return slug + "_" + path.basename(image);
 }
 
 function mapStatus(event) {
@@ -349,24 +291,6 @@ async function mapEventLocation(category) {
 async function mapPlayersFromEvent(eventName) {
   const names = await getPlayerNames(eventName);
   return await mapPlayers(names);
-}
-
-async function mapPlayers(names) {
-  const players = [];
-  if (names)
-    await Promise.all(
-      names.map(n => {
-        return strapi.query('api::player.player').findOne({ where: { name: n } })
-          .then(p => {
-            if (p)
-              players.push(p);
-
-            else
-              throw new Error(`Could not find player "${n}"`);
-          });
-      })
-    );
-  return players;
 }
 
 async function getPlayerNames(eventName) {

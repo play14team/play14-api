@@ -10,7 +10,7 @@ function eventToSlug(name, start) {
 
 function toSlug(value) {
   const normalized = normalize(value);
-	return slugify(normalized, {remove: /[*+~.()'"!:@]/g}).toLowerCase();
+	return slugify(normalized, {remove: /[*+~.,&()'"!:@]/g}).toLowerCase();
 }
 
 function normalize(value) {
