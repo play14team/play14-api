@@ -28,10 +28,6 @@ materials:
   - Folding models
   - White paper sheets
 
-resources:
-  - name: Folding models
-    url: http://www.shmula.com/paper-airplane-game-pull-systems-push-systems/8280/
-
 preparations:
   - Print and cut out the folding models
 
@@ -45,7 +41,8 @@ enableComments: true
 
 #### SETUP
 Create groups of 4 people.  
-Line them up and have them fold paper planes in a chain.  
 
-### TODO 
-Provide more details
+#### PLAY
+Line them up and have them fold paper planes in a chain, following this [folding model](http://www.shmula.com/paper-airplane-game-pull-systems-push-systems/8280/).
+
+Measure cycle time and lead time.
