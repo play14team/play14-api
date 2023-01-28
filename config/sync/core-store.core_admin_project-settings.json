@@ -10,6 +10,16 @@
       "ext": ".png",
       "size": 29.1,
       "provider": "strapi-provider-upload-azure-storage"
+    },
+    "authLogo": {
+      "name": "play14_500x500_black_bg.png",
+      "hash": "play14_500x500_black_bg_4fc399db8e",
+      "url": "http://localhost:1337/uploads/play14_500x500_black_bg_4fc399db8e.png",
+      "width": 500,
+      "height": 500,
+      "ext": ".png",
+      "size": 29.1,
+      "provider": "strapi-provider-upload-local-url"
     }
   },
   "type": "object",
