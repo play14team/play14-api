@@ -77,8 +77,8 @@ async function mapGame(game, parentFolderId) {
   const imagesFolderId = await ensureFolder(slug, parentFolderId);
   const images = await uploadImages(game, slug, imagesFolderId);
   const defaultImage = getDefaultImage(images, slug, game);
-  const authors = await mapPlayers(game.authors);
-  const originators = await mapPlayers(game.originators);
+  const documentedBy = await mapPlayers(game.authors);
+  const proposedBy = await mapPlayers(game.originators);
   const firstPlayedAt = await mapEvent(game.firstplayed);
   const materials = mapList(game.materials);
   const preparationSteps = mapList(game.preparations);
@@ -91,10 +91,10 @@ async function mapGame(game, parentFolderId) {
     data: {
       name: game.title,
       slug: slug,
-      gategory: category,
+      category: category,
       tags: tags,
-      authors: authors,
-      originators: originators,
+      documentedBy: documentedBy,
+      proposedBy: proposedBy,
       credits: game.credits,
       firstPlayedAt: firstPlayedAt,
       scale: game.scale,
@@ -112,8 +112,8 @@ async function mapGame(game, parentFolderId) {
   };
 }
 
-function mapCategory(event) {
-  switch (event.category) {
+function mapCategory(category) {
+  switch (category) {
     case "ice breaker":
       return "IceBreaker";
     case "ice breaker":

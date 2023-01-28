@@ -188,7 +188,7 @@
         "fields": [
           "name",
           "slug",
-          "gategory",
+          "category",
           "documentedBy",
           "proposedBy",
           "firstPlayedAt",
@@ -242,7 +242,7 @@
         "fields": [
           "name",
           "slug",
-          "gategory",
+          "category",
           "documentedBy",
           "proposedBy",
           "firstPlayedAt",
@@ -274,7 +274,7 @@
         "fields": [
           "name",
           "slug",
-          "gategory",
+          "category",
           "documentedBy",
           "proposedBy",
           "firstPlayedAt",

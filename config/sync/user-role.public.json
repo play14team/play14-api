@@ -16,6 +16,12 @@
       "action": "api::event.event.findOne"
     },
     {
+      "action": "api::game.game.find"
+    },
+    {
+      "action": "api::game.game.findOne"
+    },
+    {
       "action": "api::player.player.find"
     },
     {
