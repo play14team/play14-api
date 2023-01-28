@@ -2,7 +2,7 @@
 
 const path = require("path");
 const fs = require("fs");
-const { ensureFolder } = require('./upload.js');
+const { ensureFolder, uploadFile } = require('./upload.js');
 const { yaml2json, mapPlayers, uploadImages, getDefaultImage, uploadContentImages  } = require('./utilities.js');
 const { toSlug } = require('../src/libs/strings');
 const showdown = require('showdown');
@@ -82,7 +82,7 @@ async function mapGame(game, parentFolderId) {
   const firstPlayedAt = await mapEvent(game.firstplayed);
   const materials = mapList(game.materials);
   const preparationSteps = mapList(game.preparations);
-  const resources = await mapFiles(game.resources);
+  const resources = await mapFiles(game.resources, parentFolderId);
   const safety = mapSafety(game.safety);
   const htmlContent = markdownConverter.makeHtml(game.content);
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
@@ -131,8 +131,16 @@ function mapCategory(event) {
   }
 }
 
-async function mapFiles(names) {
-  return [];
+async function mapFiles(resources, folderId) {
+  const files = [];
+  if (resources && resources.length > 0) {
+    const filesFolderId = await ensureFolder('files', folderId);
+    Promise.all(resources.map(async (resource) => {
+      const filePath = path.join(bootstrapDir, resource.url);
+      return uploadFile(resource.name, filesFolderId, filePath).then(file => files.push(file));
+    }));
+  }
+  return files;
 }
 
 function mapList(values) {
