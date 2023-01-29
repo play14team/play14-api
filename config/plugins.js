@@ -138,6 +138,40 @@ module.exports = ({ env }) => ({
             ],
           },
         },
+        {
+          uid: "api::game.game",
+          modelName: "game",
+          fuzzysortOptions: {
+            characterLimit: 200,
+            threshold: -200,
+            keys: [
+              {
+                name: "name",
+                weight: 500,
+              },
+              {
+                name: "slug",
+                weight: 400,
+              },
+              {
+                name: "category",
+                weight: 300,
+              },
+              {
+                name: "tags",
+                weight: 200,
+              },
+              {
+                name: "credits",
+                weight: 100,
+              },
+              {
+                name: "summary",
+                weight: -100,
+              },
+            ],
+          },
+        },
       ],
     },
   },
