@@ -193,6 +193,17 @@
         }
       },
       "type": "string"
+    },
+    "ratings": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "component": "games.ratings",
+      "required": true
     }
   }
 }

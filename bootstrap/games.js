@@ -2,9 +2,20 @@
 
 const path = require("path");
 const fs = require("fs");
-const { ensureFolder, uploadFile } = require('./upload.js');
-const { yaml2json, mapPlayers, uploadImages, getDefaultImage, uploadContentImages  } = require('./utilities.js');
-const { toSlug } = require('../src/libs/strings');
+const {
+  ensureFolder,
+  uploadFile
+} = require('./upload.js');
+const {
+  yaml2json,
+  mapPlayers,
+  uploadImages,
+  getDefaultImage,
+  uploadContentImages
+} = require('./utilities.js');
+const {
+  toSlug
+} = require('../src/libs/strings');
 const showdown = require('showdown');
 
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
@@ -84,6 +95,7 @@ async function mapGame(game, parentFolderId) {
   const preparationSteps = mapList(game.preparations);
   const resources = await mapFiles(game.resources, parentFolderId);
   const safety = mapSafety(game.safety);
+  const ratings = mapRatings(game.ratings)
   const htmlContent = markdownConverter.makeHtml(game.content);
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
 
@@ -106,10 +118,31 @@ async function mapGame(game, parentFolderId) {
       safety: safety,
       defaultImage: defaultImage,
       images: images,
+      ratings: ratings,
       description: newHtmlContent,
       publishedAt: game.publishdate,
     }
   };
+}
+
+function mapRatings(ratings) {
+  if (!ratings)
+    return {};
+
+  return {
+    energy: getLevel(ratings, "Energy"),
+    connection: getLevel(ratings, "Connection"),
+    silliness: getLevel(ratings, "Silliness")
+  }
+}
+
+function getLevel(ratings, name) {
+  const rating = ratings.filter(r => r.title === name)[0];
+  if (!rating) {
+    throw new Error(`Rating '${name}' not found`);
+  }
+
+  return Math.round(rating.percent / 20);
 }
 
 function mapCategory(category) {
@@ -145,14 +178,23 @@ async function mapFiles(resources, folderId) {
 
 function mapList(values) {
   if (values)
-    return values.map(value => { return { value: value }});
+    return values.map(value => {
+      return {
+        value: value
+      }
+    });
 
   return [];
 }
 
 function mapSafety(safety) {
   if (safety)
-    return safety.map(s => { return {key: s.title, value: s.description}});
+    return safety.map(s => {
+      return {
+        key: s.title,
+        value: s.description
+      }
+    });
 
   return [];
 }
@@ -162,10 +204,16 @@ async function mapEvent(name) {
     return {};
 
   try {
-    return strapi.query('api::event.event').findOne({ where: { name: name } })
+    return strapi.query('api::event.event').findOne({
+      where: {
+        name: name
+      }
+    })
   } catch (error) {
     throw new Error(`Could not find event "${name}"`);
   }
 }
 
-module.exports = { importData };
+module.exports = {
+  importData
+};
