@@ -30,7 +30,7 @@ module.exports = {
         // await venues.importData();
         // await players.importData();
         // await events.importData();
-        await games.importData();
+        // await games.importData();
       }, 1500);
     }
   },
