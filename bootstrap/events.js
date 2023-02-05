@@ -2,54 +2,71 @@
 
 const path = require("path");
 const fs = require("fs");
-const showdown  = require('showdown');
-const { ensureFolder } = require('./upload.js');
-const { yaml2json, mapPlayers, uploadImages, getDefaultImage, uploadContentImages } = require('./utilities.js');
-const { eventToSlug, capitalize, normalize } = require('../src/libs/strings');
-const { Mutex } = require('async-mutex');
+const showdown = require('showdown');
+const {
+  ensureFolder
+} = require('./upload.js');
+const {
+  yaml2json,
+  mapPlayers,
+  uploadImages,
+  getDefaultImage,
+  uploadContentImages
+} = require('./utilities.js');
+const {
+  eventToSlug,
+  capitalize,
+  normalize
+} = require('../src/libs/strings');
+const {
+  getCountryFromCity,
+  geocodeAddress
+} = require('./geocode')
+const {
+  Mutex
+} = require('async-mutex');
 
 const mutex = new Mutex();
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 const markdownConverter = new showdown.Converter();
 
 async function importData() {
-    console.log("Importing events");
-    const markdownDir = path.join(bootstrapDir, "md/events");
-    await importEvents(markdownDir);
+  console.log("Importing events");
+  const markdownDir = path.join(bootstrapDir, "md/events");
+  await importEvents(markdownDir);
 }
 
 async function importEvents(markdownDir) {
-    try {
-        const eventsFolderId = await ensureFolder("events");
-        const files = await fs.promises.readdir( markdownDir );
+  try {
+    const eventsFolderId = await ensureFolder("events");
+    const files = await fs.promises.readdir(markdownDir);
 
-        let succeeded = 0;
-        let failed = 0;
-        let errors = [];
+    let succeeded = 0;
+    let failed = 0;
+    let errors = [];
 
-        await Promise.all(
-          files.map(async file => {
-            try {
-              await createOrUpdateEvent(path.join(markdownDir, file), eventsFolderId);
-              succeeded++;
-            } catch (error) {
-              console.error(error);
-              failed++;
-              errors[file] = error;
-            } finally {
-              console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`);
-              const count = succeeded + failed;
-              if (files.length === count && errors.length > 0)                             {
-                console.log(`There were ${errors.length} issues during the processing`)
-                console.log(errors);
-              }
-            }
-          })
-        );
-    }
-    catch(error) {
-        console.error(error);
-    }
+    await Promise.all(
+      files.map(async file => {
+        try {
+          await createOrUpdateEvent(path.join(markdownDir, file), eventsFolderId);
+          succeeded++;
+        } catch (error) {
+          console.error(error);
+          failed++;
+          errors[file] = error;
+        } finally {
+          console.log(`${succeeded + failed} events on ${files.length} [${succeeded} succeeded, ${failed} failed]`);
+          const count = succeeded + failed;
+          if (files.length === count && errors.length > 0) {
+            console.log(`There were ${errors.length} issues during the processing`)
+            console.log(errors);
+          }
+        }
+      })
+    );
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function createOrUpdateEvent(file, parentFolderId) {
@@ -114,178 +131,195 @@ async function mapEvent(event, parentFolderId) {
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
 
   return {
-      data: {
-          name: normalize(event.title),
-          slug: slug,
-          start: start,
-          end: end,
-          status: mapStatus(event),
-          contactEmail: event.contact,
-          description: newHtmlContent,
-          defaultImage: defaultImage,
-          images: images,
-          timetable: mapTimeTable(event.timetable),
-          registration: mapRegistration(event.registration),
-          venue: venue,
-          location: eventLocation,
-          hosts: hosts,
-          mentors: mentors,
-          players: players,
-          sponsorships: sponsorships,
-          media: mapMedia(event.title),
-          publishedAt: event.schedule.start,
-      }
+    data: {
+      name: normalize(event.title),
+      slug: slug,
+      start: start,
+      end: end,
+      status: mapStatus(event),
+      contactEmail: event.contact,
+      description: newHtmlContent,
+      defaultImage: defaultImage,
+      images: images,
+      timetable: mapTimeTable(event.timetable),
+      registration: mapRegistration(event.registration),
+      venue: venue,
+      location: eventLocation,
+      hosts: hosts,
+      mentors: mentors,
+      players: players,
+      sponsorships: sponsorships,
+      media: mapMedia(event.title),
+      publishedAt: event.schedule.start,
+    }
   };
 }
 
 function toUTCdate(date) {
-  return new Date(date.toLocaleString('en-US', { timeZone: "UTC" }));
+  return new Date(date.toLocaleString('en-US', {
+    timeZone: "UTC"
+  }));
 }
 
 function mapStatus(event) {
-    if (event.schedule.isCancelled)
-        return "Cancelled";
-    else if (event.schedule.isOver || Date.now() > event.schedule.finish)
-        return "Over";
-    else if ((event.registration && ((event.registration.link && event.registration.url) || event.registration.type)))
-        return "Open";
+  if (event.schedule.isCancelled)
+    return "Cancelled";
+  else if (event.schedule.isOver || Date.now() > event.schedule.finish)
+    return "Over";
+  else if ((event.registration && ((event.registration.link && event.registration.url) || event.registration.type)))
+    return "Open";
 
-    return "Announced";
+  return "Announced";
 }
 
 function mapTimeTable(timetable) {
-    if (!timetable)
-        return [];
+  if (!timetable)
+    return [];
 
-    const t = timetable.map(t => {
-        return {
-            day: t.day.split(' ')[0],
-            description: t.desc,
-            timeslots: mapTimeslots(t.times)
-        }
-    });
+  const t = timetable.map(t => {
+    return {
+      day: t.day.split(' ')[0],
+      description: t.desc,
+      timeslots: mapTimeslots(t.times)
+    }
+  });
 
-    return t;
+  return t;
 }
 
 function mapTimeslots(timeslots) {
-    if (!timeslots)
-        return [];
+  if (!timeslots)
+    return [];
 
-    return timeslots.map(t => {
-        const time = mapTime(t.time);
-        return {
-            time: time,
-            description: t.desc,
-        };
-    });
+  return timeslots.map(t => {
+    const time = mapTime(t.time);
+    return {
+      time: time,
+      description: t.desc,
+    };
+  });
 }
 
 function mapTime(time) {
-    let formattedValue = null;
-    const tail = ':00.000';
-    if (time.includes('AM')) {
-        const value = time.replaceAll('AM', '').trim();
-        if (time.includes(':')) {
-          formattedValue = value + tail;
-        }
-        else {
-          formattedValue =  value + ':00' + tail;
-        }
+  let formattedValue = null;
+  const tail = ':00.000';
+  if (time.includes('AM')) {
+    const value = time.replaceAll('AM', '').trim();
+    if (time.includes(':')) {
+      formattedValue = value + tail;
+    } else {
+      formattedValue = value + ':00' + tail;
     }
-    else if (time.includes('PM')) {
-      const value = time.replaceAll('PM', '').trim();
-      if (time.includes(':')) {
-          const split = value.split(':');
-          const hours = parseInt(split[0]);
-          const addHours = (hours < 12) ? 12 : 0;
-          formattedValue =  (hours + addHours) + ':' + split[1] + tail;
-      }
-      else {
-        formattedValue =  (parseInt(value) + 12) + ':00' + tail;
-      }
+  } else if (time.includes('PM')) {
+    const value = time.replaceAll('PM', '').trim();
+    if (time.includes(':')) {
+      const split = value.split(':');
+      const hours = parseInt(split[0]);
+      const addHours = (hours < 12) ? 12 : 0;
+      formattedValue = (hours + addHours) + ':' + split[1] + tail;
+    } else {
+      formattedValue = (parseInt(value) + 12) + ':00' + tail;
     }
+  }
 
-    if (formattedValue)
-        formattedValue = formattedValue.padStart(12, '0');
-    else
-        formattedValue = (time + tail);
+  if (formattedValue)
+    formattedValue = formattedValue.padStart(12, '0');
+  else
+    formattedValue = (time + tail);
 
-    return formattedValue;
+  return formattedValue;
 }
 
 function mapRegistration(registration) {
   if (!registration)
     return {};
 
-  if (registration.type && registration.type === 'link')
-  {
-      return { link: registration.url }
+  if (registration.type && registration.type === 'link') {
+    return {
+      link: registration.url
+    }
   }
 
-  return { widgetCode: JSON.stringify(registration) };
+  return {
+    widgetCode: JSON.stringify(registration)
+  };
 }
 
 async function mapVenue(location) {
-    const apiName = 'api::venue.venue';
-    let venue = {};
+  const apiName = 'api::venue.venue';
+  let venue = {};
 
-    if (location && location.name) {
-      venue = await strapi.query(apiName).findOne({ where: { name: location.name } });
-    } else if (location) {
-      venue = await strapi.query(apiName).findOne({ where: { shortName: location } });
-    }
+  if (location && location.name) {
+    venue = await strapi.query(apiName).findOne({
+      where: {
+        name: location.name
+      }
+    });
+  } else if (location) {
+    return await strapi.query(apiName).findOne({
+      where: {
+        shortName: location
+      }
+    });
+  }
 
+  await mutex.runExclusive(async () => {
+    let shortName = (location.name || location)
+    shortName = shortName.replaceAll(' ', '');
+    const geocode = await geocodeAddress(location.address);
+
+    const venueData = {
+      data: {
+        shortName: shortName,
+        name: location.name || location,
+        address: location.address || "",
+        area: location.area || "",
+        country: geocode.countryCode,
+        embeddedMapUrl: location.map || "",
+        website: location.url || "",
+        location: geocode.coordinates,
+      }
+    };
     if (!venue) {
-      let shortName = (location.name || location)
-      shortName = shortName.replaceAll(' ', '');
-      const venueData = {
-          data: {
-              shortName: shortName,
-              name: location.name || location,
-              address: location.address || "",
-              area: location.area || "",
-              country: "",
-              embeddedMapUrl: location.map || "",
-              website: location.url || "",
-          }
-      };
-
-      await mutex.runExclusive(async () => {
-        venue = await strapi.entityService.create(apiName, venueData);
-      });
+      venue = await strapi.entityService.create(apiName, venueData);
+    } else {
+      venue = await strapi.entityService.update(apiName, venue.id, venueData);
     }
+  });
 
-    return venue;
+  return venue;
 }
 
 async function mapEventLocation(category) {
-    const apiName = 'api::event-location.event-location';
+  const apiName = 'api::event-location.event-location';
 
-    const entries = await strapi.entityService.findMany(apiName, {
-        fields: ['id'],
-        filters: { slug: category },
-    });
+  const entries = await strapi.entityService.findMany(apiName, {
+    fields: ['id'],
+    filters: {
+      slug: category
+    },
+  });
 
-    let eventLocation = {};
+  let eventLocation = {};
+
+  await mutex.runExclusive(async () => {
+    const countryCode = await getCountryFromCity(category);
+    const locationData = {
+      data: {
+        slug: category,
+        name: capitalize(category),
+        country: countryCode
+      }
+    }
 
     if (entries.length == 0) {
-        console.log(`Insterting ${category}`);
-        const locationData = {
-          data: {
-            slug: category,
-            name: capitalize(category)
-          }
-        }
-        await mutex.runExclusive(async () => {
-          eventLocation = await strapi.entityService.create(apiName, locationData);
-        });
-        console.log(`${category} inserted`);
+      eventLocation = await strapi.entityService.create(apiName, locationData);
     } else {
-        eventLocation = entries[0];
+      eventLocation = await strapi.entityService.update(apiName, entries[0].id, locationData);
     };
+  });
 
-    return eventLocation;
+  return eventLocation;
 }
 
 async function mapPlayersFromEvent(eventName) {
@@ -295,25 +329,22 @@ async function mapPlayersFromEvent(eventName) {
 
 async function getPlayerNames(eventName) {
   const markdownDir = path.join(bootstrapDir, "md/players");
-  const files = await fs.promises.readdir( markdownDir );
+  const files = await fs.promises.readdir(markdownDir);
 
   const names = [];
-  files.map(file =>
-    {
-      const player = yaml2json(path.join(markdownDir, file));
-      if (player.events && player.events.includes(eventName)) {
-        names.push(player.name);
-      }
+  files.map(file => {
+    const player = yaml2json(path.join(markdownDir, file));
+    if (player.events && player.events.includes(eventName)) {
+      names.push(player.name);
     }
-  );
+  });
 
   return names;
 }
 
 async function mapSponsors(sponsors) {
   const sponsorships = [];
-  if (sponsors)
-  {
+  if (sponsors) {
     const sponsorsByType = getSponsorsByType(sponsors);
     await Promise.all(
       Object.keys(sponsorsByType).map((type) => {
@@ -333,10 +364,12 @@ async function mapSponsors(sponsors) {
 }
 
 function getSponsorsByType(sponsors) {
-  if(sponsors) {
+  if (sponsors) {
     return sponsors.reduce((group, sponsor) => {
-      const { type } = sponsor;
-      group[type] = group[type] ?? [];
+      const {
+        type
+      } = sponsor;
+      group[type] = group[type] || [];
       group[type].push(sponsor.name);
       return group;
     }, {});
@@ -350,14 +383,18 @@ async function findSponsorsByName(names) {
   if (names)
     await Promise.all(
       names.map(name => {
-            return strapi.query('api::sponsor.sponsor').findOne({ where: { name: name } })
-              .then(item => {
-                if (item)
-                  items.push(item);
-                else
-                  throw new Error(`Could not find sponsor "${name}"`);
-              });
-        })
+        return strapi.query('api::sponsor.sponsor').findOne({
+            where: {
+              name: name
+            }
+          })
+          .then(item => {
+            if (item)
+              items.push(item);
+            else
+              throw new Error(`Could not find sponsor "${name}"`);
+          });
+      })
     );
   return items;
 }
@@ -386,4 +423,6 @@ function mapMedia(eventName) {
   return results;
 }
 
-module.exports = { importData };
+module.exports = {
+  importData
+};

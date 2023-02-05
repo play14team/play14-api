@@ -3,6 +3,7 @@
 const path = require("path");
 const fs = require("fs");
 const yaml = require('js-yaml');
+const { geocodeAddress } = require('./geocode')
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 
 async function importData() {
@@ -48,7 +49,7 @@ async function importVenues(locationPath) {
 
 async function createOrUpdateLocation(location, shortName) {
     const venueApiName = 'api::venue.venue';
-    const venue = mapVenue(location, shortName);
+    const venue = await mapVenue(location, shortName);
 
     const entries = await strapi.entityService.findMany(venueApiName, {
         fields: ['id'],
@@ -66,16 +67,19 @@ async function createOrUpdateLocation(location, shortName) {
     };
 }
 
-function mapVenue(location, shortName) {
+async function mapVenue(location, shortName) {
+  const geocode = await geocodeAddress(location.address);
+
     return {
         data: {
             shortName: shortName,
             name: location.name,
             address: location.address,
             area: location.area,
-            country: "",
+            country: geocode.countryCode,
             embeddedMapUrl: location.map,
             website: location.url,
+            location: geocode.coordinates,
         }
     };
 }
