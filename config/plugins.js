@@ -69,6 +69,10 @@ module.exports = ({ env }) => ({
   //     }
   //   }
   // },
+  "map-field": {
+    enabled: true,
+    resolve: './src/plugins/map-field'
+  },
   "fuzzy-search": {
     enabled: true,
     config: {

@@ -64,7 +64,12 @@
       "mappedBy": "venue"
     },
     "location": {
-      "type": "json"
+      "type": "json",
+      "pluginOptions": {
+        "map-field": {
+          "enabled": true
+        }
+      }
     }
   }
 }
