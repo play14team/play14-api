@@ -1,47 +1,41 @@
-import React from 'react';
-import { Stack, Typography } from '@strapi/design-system';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import React, { useState } from 'react';
+import { useIntl } from 'react-intl';
+import { Stack, Typography, Box, TextInput } from '@strapi/design-system';
+import Map, {FullscreenControl, GeolocateControl, NavigationControl} from 'react-map-gl';
+import GeocoderControl from './geocoder-control'
+import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
 
-const DEFAULT_VIEWPORT = {
-  width: 800,
-  height: 600,
-  longitude: -122.45,
-  latitude: 37.78,
-  zoom: 14,
-};
+const TOKEN = "pk.eyJ1IjoicGxheTE0IiwiYSI6ImNsZGVtZXRiaTAwcXMzcW8xeWRocWNwbWgifQ.eSlehQdOi60URb4U1ILH9g"
 
 const MapField = ({
-  description,
-  disabled,
-  error,
   intlLabel,
   name,
   onChange,
-  placeholder,
-  required,
   value
 }) => {
+  const result = JSON.parse(value);
+  const longitude = result.geometry.coordinates[0] || 15;
+  const latitude = result.geometry.coordinates[1] || 45;
   const { formatMessage } = useIntl();
-  const [marker, setMarker] = useState(value);
-  const [viewport, setViewport]= useState(
-    value
-      ? {...DEFAULT_VIEWPORT, longitude: value.lng, latitude: value.lat }
-      : DEFAULT_VIEWPORT
-  )
+  const [viewState, setViewState] = React.useState({
+    longitude: longitude,
+    latitude: latitude,
+    zoom: 3.5
+  });
+  const [address, setAddress] = useState('');
 
-  const handleChange = ({ lngLat }) => {
-    const [ lng, lat ] = lngLat;
-    const value = JSON.stringify({
-      longitude: lng,
-      latitude: lat
-    });
 
-    setMarker({ lng, lat});
+  const handleChange = (evt) => {
+    const {result} = evt;
+    console.log(result);
+    const value = JSON.stringify(result);
+
+    setAddress(result.place_name);
     onChange({ target: { name, value, type: "json" } });
   }
 
   return (
-  <Stack size={1}>
+  <Stack spacing={4}>
     <Typography
       textColor="neutral800"
       as="label"
@@ -50,15 +44,24 @@ const MapField = ({
     >
       {formatMessage(intlLabel)}
     </Typography>
-    <ReactMapGL
-      {...viewport}
-      mapStyle={'mapbox://styles/mapbox/streets-v12'}
+
+    <Map
+      {...viewState}
+      onMove={evt => setViewState(evt.viewState)}
       onClick={handleChange}
-      onViewportChange={(nextViewport) => setViewport(nextViewport)}
-      mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
+      mapStyle="mapbox://styles/mapbox/streets-v12"
+      mapboxAccessToken={TOKEN}
+      attributionControl={false}
+      style={{ height:"500px", width:"100%" }}
     >
-      {marker && <Marker longitude={marker.lng} latitude={marker.lat} anchor="bottom" />}
-    </ReactMapGL>
+      <FullscreenControl />
+      <NavigationControl />
+      <GeolocateControl />
+      <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" onResult={handleChange} marker={{longitude: longitude, latitude: latitude}} />
+    </Map>
+    <Box padding={10}>
+          <TextInput label="Address" name="address" hint="Address selected on the map" value={address} disabled />
+        </Box>;
   </Stack>
   );
 }

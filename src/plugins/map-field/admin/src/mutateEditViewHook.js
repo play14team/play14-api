@@ -7,7 +7,6 @@ import pluginId from './pluginId';
  const mutateLayouts = (layouts) => {
   return layouts.map((row) => {
     const mutatedRow = row.reduce((acc, field) => {
-      console.log(field.fieldSchema.pluginOptions);
       const hasMapFieldEnabled = field.fieldSchema.pluginOptions?.["map-field"] && field.fieldSchema.pluginOptions?.["map-field"].enabled;
       if (!hasMapFieldEnabled) {
         return [...acc, field];
