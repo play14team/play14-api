@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Stack, Typography, Box, TextInput } from '@strapi/design-system';
+import { Stack, Typography, TextInput } from '@strapi/design-system';
 import Map, {FullscreenControl, GeolocateControl, NavigationControl} from 'react-map-gl';
 import GeocoderControl from './geocoder-control'
 import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
@@ -22,7 +22,7 @@ const MapField = ({
     latitude: latitude,
     zoom: 3.5
   });
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState(result.place_name || '');
 
 
   const handleChange = (evt) => {
@@ -59,9 +59,7 @@ const MapField = ({
       <GeolocateControl />
       <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" onResult={handleChange} marker={{longitude: longitude, latitude: latitude}} />
     </Map>
-    <Box padding={10}>
-          <TextInput label="Address" name="address" hint="Address selected on the map" value={address} disabled />
-        </Box>;
+    <TextInput label="Address" name="address" hint="Address selected on the map" value={address} disabled />
   </Stack>
   );
 }
