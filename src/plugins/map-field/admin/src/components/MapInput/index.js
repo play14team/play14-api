@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Stack, Typography, TextInput, Grid, GridItem } from '@strapi/design-system';
 import Map, {FullscreenControl, GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
-import GeocoderControl from './geocoder-control'
-import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
+import GeocoderControl from './geocoder-control';
+import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
+import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding'
 
 const TOKEN = "pk.eyJ1IjoicGxheTE0IiwiYSI6ImNsZGVtZXRiaTAwcXMzcW8xeWRocWNwbWgifQ.eSlehQdOi60URb4U1ILH9g"
 
@@ -13,6 +14,7 @@ const MapField = ({
   onChange,
   value
 }) => {
+
   const { formatMessage } = useIntl();
   const result = JSON.parse(value);
   const isDefaultViewState = (result == null)
@@ -27,27 +29,34 @@ const MapField = ({
     zoom: 3.5
   });
 
-
   const handleChange = (evt) => {
     const {result} = evt;
     if (! result) return;
+    updateValues(result);
+  }
 
+  const reverseGeocode= (evt) => {
+    evt.preventDefault();
+
+    const geocodingService = mbxGeocoding({ accessToken: TOKEN });
+    geocodingService.reverseGeocode({
+      query: [evt.lngLat.lng, evt.lngLat.lat]
+    })
+      .send()
+      .then(response => {
+        const result = response.body.features[0];
+        if (! result) return;
+        updateValues(result);
+    });
+  }
+
+  const updateValues = (result) => {
     const value = JSON.stringify(result);
 
     setAddress(result.place_name);
     setLongitude(result.geometry.coordinates[0]);
     setLatitude(result.geometry.coordinates[1]);
     onChange({ target: { name, value, type: "json" } });
-  }
-
-  const reverseGeocode= (evt) => {
-    evt.preventDefault();
-    console.log(evt);
-
-    //TODO reverse geocode address
-
-    setLongitude(evt.lngLat.lng);
-    setLatitude(evt.lngLat.lat);
   }
 
   const flyTo = (evt) => {

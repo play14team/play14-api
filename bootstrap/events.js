@@ -251,15 +251,13 @@ async function mapVenue(location) {
     const shortName = name.replaceAll(' ', '');
     const geocode = await geocodeAddress(location.address);
     const countryCode = getCountryCode(geocode);
-    const address = getAddress(geocode) || location.address;
-    const area = getArea(geocode) || location.area;
 
     const venueData = {
       data: {
         shortName: shortName,
         name: name,
-        address: address,
-        area: area,
+        address: location.address,
+        area: location.area,
         country: countryCode,
         embeddedMapUrl: location.map,
         website: location.url,
