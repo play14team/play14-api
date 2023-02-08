@@ -3,7 +3,7 @@
 const path = require("path");
 const fs = require("fs");
 const yaml = require('js-yaml');
-const { geocodeAddress } = require('./geocode')
+const { geocodeAddress, getCountryCode, getAddress, getArea } = require('./geocode');
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 
 async function importData() {
@@ -69,17 +69,20 @@ async function createOrUpdateLocation(location, shortName) {
 
 async function mapVenue(location, shortName) {
   const geocode = await geocodeAddress(location.address);
+  const countryCode = getCountryCode(geocode);
+  const address = getAddress(geocode) || location.address;
+  const area = getArea(geocode) || location.area;
 
     return {
         data: {
             shortName: shortName,
             name: location.name,
-            address: location.address,
-            area: location.area,
-            country: geocode.countryCode,
+            address: address,
+            area: area,
+            country: countryCode,
             embeddedMapUrl: location.map,
             website: location.url,
-            location: geocode.coordinates,
+            location: geocode,
         }
     };
 }

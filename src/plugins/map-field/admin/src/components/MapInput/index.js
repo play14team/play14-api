@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Stack, Typography, TextInput } from '@strapi/design-system';
-import Map, {FullscreenControl, GeolocateControl, NavigationControl} from 'react-map-gl';
+import { Stack, Typography, TextInput, Grid, GridItem } from '@strapi/design-system';
+import Map, {FullscreenControl, GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
 import GeocoderControl from './geocoder-control'
 import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
 
@@ -13,25 +13,47 @@ const MapField = ({
   onChange,
   value
 }) => {
-  const result = JSON.parse(value);
-  const longitude = result.geometry.coordinates[0] || 15;
-  const latitude = result.geometry.coordinates[1] || 45;
   const { formatMessage } = useIntl();
-  const [viewState, setViewState] = React.useState({
-    longitude: longitude,
-    latitude: latitude,
+  const result = JSON.parse(value);
+  const isDefaultViewState = (result == null)
+
+  const [longitude, setLongitude] = useState(result && result.geometry.coordinates[0] || null);
+  const [latitude, setLatitude] = useState(result && result.geometry.coordinates[1] || null);
+  const [address, setAddress] = useState(result && result.place_name || '');
+
+  const [viewState, setViewState] = useState({
+    longitude: longitude || 15,
+    latitude: latitude || 45,
     zoom: 3.5
   });
-  const [address, setAddress] = useState(result.place_name || '');
 
 
   const handleChange = (evt) => {
     const {result} = evt;
-    console.log(result);
+    if (! result) return;
+
     const value = JSON.stringify(result);
 
     setAddress(result.place_name);
+    setLongitude(result.geometry.coordinates[0]);
+    setLatitude(result.geometry.coordinates[1]);
     onChange({ target: { name, value, type: "json" } });
+  }
+
+  const reverseGeocode= (evt) => {
+    evt.preventDefault();
+    console.log(evt);
+
+    //TODO reverse geocode address
+
+    setLongitude(evt.lngLat.lng);
+    setLatitude(evt.lngLat.lat);
+  }
+
+  const flyTo = (evt) => {
+    if (isDefaultViewState) return;
+    const map = evt.target;
+    map.flyTo({center: [longitude, latitude], zoom: 15})
   }
 
   return (
@@ -48,7 +70,8 @@ const MapField = ({
     <Map
       {...viewState}
       onMove={evt => setViewState(evt.viewState)}
-      onClick={handleChange}
+      onDblClick={reverseGeocode}
+      onLoad={flyTo}
       mapStyle="mapbox://styles/mapbox/streets-v12"
       mapboxAccessToken={TOKEN}
       attributionControl={false}
@@ -57,9 +80,25 @@ const MapField = ({
       <FullscreenControl />
       <NavigationControl />
       <GeolocateControl />
-      <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" onResult={handleChange} marker={{longitude: longitude, latitude: latitude}} />
+      <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" onResult={handleChange}/>
+      <Marker longitude={longitude} latitude={latitude} color="#ff5200" />
     </Map>
-    <TextInput label="Address" name="address" hint="Address selected on the map" value={address} disabled />
+
+    <Grid gap={{
+        desktop: 5,
+        tablet: 2,
+        mobile: 1
+      }} >
+      <GridItem padding={1} col={8} xs={12}>
+        <TextInput label="address" name="address" value={address} disabled />
+      </GridItem>
+      <GridItem padding={1} col={2} xs={12}>
+        <TextInput label="longitude" name="longitude" value={longitude} disabled />
+      </GridItem>
+      <GridItem padding={1} col={2} xs={12}>
+        <TextInput label="latitude" name="latitude" value={latitude} disabled />
+      </GridItem>
+    </Grid>
   </Stack>
   );
 }

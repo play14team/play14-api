@@ -25,7 +25,7 @@ const GeocoderControl = (props) => {
         const location = result && (result.center || (result.geometry?.type === 'Point' && result.geometry.coordinates));
 
         if (location && props.marker) {
-          setMarker(<Marker {...props.marker} longitude={location[0]} latitude={location[1]} />);
+          setMarker(<Marker {...props.marker} longitude={location[0]} latitude={location[1]} color="#ff5200" />);
         } else {
           setMarker(null);
         }
