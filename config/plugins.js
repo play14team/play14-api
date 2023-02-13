@@ -47,31 +47,35 @@ module.exports = ({ env }) => ({
   'strapi-blurhash': {
     enabled: true,
   },
-  upload: {
-    config: {
-      provider: 'strapi-provider-upload-local-url',
-      providerOptions: {
-        baseurl: "http://localhost:1337"
-      }
-    }
-  },
-  // 'upload': {
+  // upload: {
   //   config: {
-  //     provider: 'strapi-provider-upload-azure-storage',
+  //     provider: 'strapi-provider-upload-local-url',
   //     providerOptions: {
-  //       account: env('STORAGE_ACCOUNT'),
-  //       accountKey: env('STORAGE_ACCOUNT_KEY'),
-  //       serviceBaseURL: env('STORAGE_URL'),
-  //       containerName: env('STORAGE_CONTAINER_NAME', 'strapi_uploads'),
-  //       cdnBaseURL: env('STORAGE_CDN_URL'),
-  //       defaultPath: 'assets',
-  //       maxConcurrent: 10
+  //       baseurl: "http://localhost:1337"
   //     }
   //   }
   // },
+  'upload': {
+    config: {
+      provider: 'strapi-provider-upload-azure-storage',
+      providerOptions: {
+        account: env('STORAGE_ACCOUNT'),
+        accountKey: env('STORAGE_ACCOUNT_KEY'),
+        serviceBaseURL: env('STORAGE_URL'),
+        containerName: env('STORAGE_CONTAINER_NAME', 'strapi_uploads'),
+        cdnBaseURL: env('STORAGE_CDN_URL'),
+        defaultPath: 'assets',
+        maxConcurrent: 10
+      }
+    }
+  },
   "map-field": {
     enabled: true,
-    resolve: './src/plugins/map-field'
+    resolve: './src/plugins/map-field',
+    config: {
+      mapboxToken: process.env.MAPBOX_ACCESS_TOKEN,
+      roles: ["strapi-super-admin"],
+    },
   },
   "fuzzy-search": {
     enabled: true,

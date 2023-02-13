@@ -789,1496 +789,6 @@
       "plugin": "admin",
       "globalId": "AdminApiTokenPermission"
     },
-    "api::event.event": {
-      "kind": "collectionType",
-      "collectionName": "events",
-      "info": {
-        "singularName": "event",
-        "pluralName": "events",
-        "displayName": "Event",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": true
-      },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "attributes": {
-        "name": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string",
-          "required": true,
-          "unique": true
-        },
-        "slug": {
-          "type": "uid",
-          "targetField": "name",
-          "required": true
-        },
-        "start": {
-          "type": "datetime",
-          "required": true,
-          "default": "2023-01-01T17:00:00.000Z"
-        },
-        "end": {
-          "type": "datetime",
-          "required": true,
-          "default": "2023-01-03T16:30:00.000Z"
-        },
-        "status": {
-          "type": "enumeration",
-          "enum": [
-            "Announced",
-            "Open",
-            "Over",
-            "Cancelled"
-          ],
-          "default": "Announced",
-          "required": true
-        },
-        "defaultImage": {
-          "type": "media",
-          "multiple": false,
-          "required": true,
-          "allowedTypes": [
-            "images"
-          ],
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          }
-        },
-        "images": {
-          "type": "media",
-          "multiple": true,
-          "required": false,
-          "allowedTypes": [
-            "images"
-          ]
-        },
-        "contactEmail": {
-          "type": "email",
-          "default": "team@play14.org",
-          "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
-        },
-        "timetable": {
-          "type": "component",
-          "repeatable": true,
-          "component": "events.timetable",
-          "required": false
-        },
-        "registration": {
-          "type": "component",
-          "repeatable": false,
-          "component": "registration.registration",
-          "required": false
-        },
-        "description": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "richtext"
-        },
-        "location": {
-          "type": "relation",
-          "relation": "manyToOne",
-          "target": "api::event-location.event-location",
-          "inversedBy": "events"
-        },
-        "venue": {
-          "type": "relation",
-          "relation": "manyToOne",
-          "target": "api::venue.venue",
-          "inversedBy": "events"
-        },
-        "hosts": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "inversedBy": "hosted"
-        },
-        "mentors": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "inversedBy": "mentored"
-        },
-        "sponsorships": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "events.sponsorship",
-          "required": false
-        },
-        "media": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "events.media",
-          "required": false
-        },
-        "players": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "mappedBy": "attended"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "publishedAt": {
-          "type": "datetime",
-          "configurable": false,
-          "writable": true,
-          "visible": false
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::event.event"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
-        },
-        "sitemap_exclude": {
-          "writable": true,
-          "private": true,
-          "configurable": false,
-          "visible": false,
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "__schema__": {
-        "collectionName": "events",
-        "info": {
-          "singularName": "event",
-          "pluralName": "events",
-          "displayName": "Event",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": true
-        },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
-        "attributes": {
-          "name": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "slug": {
-            "type": "uid",
-            "targetField": "name",
-            "required": true
-          },
-          "start": {
-            "type": "datetime",
-            "required": true,
-            "default": "2023-01-01T17:00:00.000Z"
-          },
-          "end": {
-            "type": "datetime",
-            "required": true,
-            "default": "2023-01-03T16:30:00.000Z"
-          },
-          "status": {
-            "type": "enumeration",
-            "enum": [
-              "Announced",
-              "Open",
-              "Over",
-              "Cancelled"
-            ],
-            "default": "Announced",
-            "required": true
-          },
-          "defaultImage": {
-            "type": "media",
-            "multiple": false,
-            "required": true,
-            "allowedTypes": [
-              "images"
-            ],
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            }
-          },
-          "images": {
-            "type": "media",
-            "multiple": true,
-            "required": false,
-            "allowedTypes": [
-              "images"
-            ]
-          },
-          "contactEmail": {
-            "type": "email",
-            "default": "team@play14.org",
-            "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
-          },
-          "timetable": {
-            "type": "component",
-            "repeatable": true,
-            "component": "events.timetable",
-            "required": false
-          },
-          "registration": {
-            "type": "component",
-            "repeatable": false,
-            "component": "registration.registration",
-            "required": false
-          },
-          "description": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "richtext"
-          },
-          "location": {
-            "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::event-location.event-location",
-            "inversedBy": "events"
-          },
-          "venue": {
-            "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::venue.venue",
-            "inversedBy": "events"
-          },
-          "hosts": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "inversedBy": "hosted"
-          },
-          "mentors": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "inversedBy": "mentored"
-          },
-          "sponsorships": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "events.sponsorship",
-            "required": false
-          },
-          "media": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "events.media",
-            "required": false
-          },
-          "players": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "mappedBy": "attended"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "event",
-      "connection": "default",
-      "uid": "api::event.event",
-      "apiName": "event",
-      "globalId": "Event",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::event-location.event-location": {
-      "kind": "collectionType",
-      "collectionName": "event_locations",
-      "info": {
-        "singularName": "event-location",
-        "pluralName": "event-locations",
-        "displayName": "EventLocation",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "name": {
-          "type": "string",
-          "required": true
-        },
-        "slug": {
-          "type": "uid",
-          "targetField": "name",
-          "required": false
-        },
-        "country": {
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "events": {
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::event.event",
-          "mappedBy": "location"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "sitemap_exclude": {
-          "writable": true,
-          "private": true,
-          "configurable": false,
-          "visible": false,
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "__schema__": {
-        "collectionName": "event_locations",
-        "info": {
-          "singularName": "event-location",
-          "pluralName": "event-locations",
-          "displayName": "EventLocation",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "name": {
-            "type": "string",
-            "required": true
-          },
-          "slug": {
-            "type": "uid",
-            "targetField": "name",
-            "required": false
-          },
-          "country": {
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "events": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::event.event",
-            "mappedBy": "location"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "event-location",
-      "connection": "default",
-      "uid": "api::event-location.event-location",
-      "apiName": "event-location",
-      "globalId": "EventLocation",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::game.game": {
-      "kind": "collectionType",
-      "collectionName": "games",
-      "info": {
-        "singularName": "game",
-        "pluralName": "games",
-        "displayName": "Game",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": true
-      },
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "attributes": {
-        "name": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string",
-          "required": true,
-          "unique": true
-        },
-        "slug": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "uid",
-          "targetField": "name",
-          "required": true
-        },
-        "category": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "enumeration",
-          "enum": [
-            "Game",
-            "IceBreaker",
-            "WarmUp",
-            "Facilitation",
-            "Retrospective",
-            "CoolDown"
-          ],
-          "required": true
-        },
-        "documentedBy": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "inversedBy": "documented"
-        },
-        "proposedBy": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::player.player",
-          "inversedBy": "proposed"
-        },
-        "firstPlayedAt": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "api::event.event"
-        },
-        "scale": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string"
-        },
-        "timebox": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string"
-        },
-        "summary": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "text"
-        },
-        "materials": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "shared.list",
-          "required": true
-        },
-        "preparationSteps": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "shared.list",
-          "required": true
-        },
-        "safety": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "shared.dictionary",
-          "required": true
-        },
-        "defaultImage": {
-          "type": "media",
-          "multiple": false,
-          "required": true,
-          "allowedTypes": [
-            "images"
-          ],
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          }
-        },
-        "images": {
-          "type": "media",
-          "multiple": true,
-          "required": true,
-          "allowedTypes": [
-            "images"
-          ],
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          }
-        },
-        "resources": {
-          "type": "media",
-          "multiple": true,
-          "required": true,
-          "allowedTypes": [
-            "files"
-          ],
-          "pluginOptions": {
-            "i18n": {
-              "localized": false
-            }
-          }
-        },
-        "description": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "richtext",
-          "required": true
-        },
-        "tags": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "component": "shared.list",
-          "required": true
-        },
-        "credits": {
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          },
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "publishedAt": {
-          "type": "datetime",
-          "configurable": false,
-          "writable": true,
-          "visible": false
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "localizations": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::game.game"
-        },
-        "locale": {
-          "writable": true,
-          "private": false,
-          "configurable": false,
-          "visible": false,
-          "type": "string"
-        },
-        "sitemap_exclude": {
-          "writable": true,
-          "private": true,
-          "configurable": false,
-          "visible": false,
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "__schema__": {
-        "collectionName": "games",
-        "info": {
-          "singularName": "game",
-          "pluralName": "games",
-          "displayName": "Game",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": true
-        },
-        "pluginOptions": {
-          "i18n": {
-            "localized": true
-          }
-        },
-        "attributes": {
-          "name": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "slug": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "uid",
-            "targetField": "name",
-            "required": true
-          },
-          "category": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "enumeration",
-            "enum": [
-              "Game",
-              "IceBreaker",
-              "WarmUp",
-              "Facilitation",
-              "Retrospective",
-              "CoolDown"
-            ],
-            "required": true
-          },
-          "documentedBy": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "inversedBy": "documented"
-          },
-          "proposedBy": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::player.player",
-            "inversedBy": "proposed"
-          },
-          "firstPlayedAt": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::event.event"
-          },
-          "scale": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string"
-          },
-          "timebox": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string"
-          },
-          "summary": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "text"
-          },
-          "materials": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "shared.list",
-            "required": true
-          },
-          "preparationSteps": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "shared.list",
-            "required": true
-          },
-          "safety": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "shared.dictionary",
-            "required": true
-          },
-          "defaultImage": {
-            "type": "media",
-            "multiple": false,
-            "required": true,
-            "allowedTypes": [
-              "images"
-            ],
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            }
-          },
-          "images": {
-            "type": "media",
-            "multiple": true,
-            "required": true,
-            "allowedTypes": [
-              "images"
-            ],
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            }
-          },
-          "resources": {
-            "type": "media",
-            "multiple": true,
-            "required": true,
-            "allowedTypes": [
-              "files"
-            ],
-            "pluginOptions": {
-              "i18n": {
-                "localized": false
-              }
-            }
-          },
-          "description": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "richtext",
-            "required": true
-          },
-          "tags": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "component": "shared.list",
-            "required": true
-          },
-          "credits": {
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            },
-            "type": "string"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "game",
-      "connection": "default",
-      "uid": "api::game.game",
-      "apiName": "game",
-      "globalId": "Game",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::player.player": {
-      "kind": "collectionType",
-      "collectionName": "players",
-      "info": {
-        "singularName": "player",
-        "pluralName": "players",
-        "displayName": "Player",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "name": {
-          "type": "string",
-          "required": true,
-          "unique": true
-        },
-        "slug": {
-          "type": "uid",
-          "targetField": "name",
-          "required": true
-        },
-        "position": {
-          "type": "enumeration",
-          "enum": [
-            "Player",
-            "Host",
-            "Mentor",
-            "Founder"
-          ],
-          "required": true
-        },
-        "company": {
-          "type": "string",
-          "required": false
-        },
-        "tagline": {
-          "type": "string"
-        },
-        "bio": {
-          "type": "richtext"
-        },
-        "city": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "website": {
-          "type": "string"
-        },
-        "embeddedMapUrl": {
-          "type": "text"
-        },
-        "avatar": {
-          "type": "media",
-          "multiple": false,
-          "required": false,
-          "allowedTypes": [
-            "images"
-          ]
-        },
-        "socialNetworks": {
-          "type": "component",
-          "repeatable": true,
-          "component": "contact.social-network"
-        },
-        "attended": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::event.event",
-          "inversedBy": "players"
-        },
-        "hosted": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::event.event",
-          "mappedBy": "hosts"
-        },
-        "mentored": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::event.event",
-          "mappedBy": "mentors"
-        },
-        "user": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "plugin::users-permissions.user",
-          "mappedBy": "player"
-        },
-        "documented": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::game.game",
-          "mappedBy": "documentedBy"
-        },
-        "proposed": {
-          "type": "relation",
-          "relation": "manyToMany",
-          "target": "api::game.game",
-          "mappedBy": "proposedBy"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "sitemap_exclude": {
-          "writable": true,
-          "private": true,
-          "configurable": false,
-          "visible": false,
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "__schema__": {
-        "collectionName": "players",
-        "info": {
-          "singularName": "player",
-          "pluralName": "players",
-          "displayName": "Player",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "name": {
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "slug": {
-            "type": "uid",
-            "targetField": "name",
-            "required": true
-          },
-          "position": {
-            "type": "enumeration",
-            "enum": [
-              "Player",
-              "Host",
-              "Mentor",
-              "Founder"
-            ],
-            "required": true
-          },
-          "company": {
-            "type": "string",
-            "required": false
-          },
-          "tagline": {
-            "type": "string"
-          },
-          "bio": {
-            "type": "richtext"
-          },
-          "city": {
-            "type": "string"
-          },
-          "country": {
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "website": {
-            "type": "string"
-          },
-          "embeddedMapUrl": {
-            "type": "text"
-          },
-          "avatar": {
-            "type": "media",
-            "multiple": false,
-            "required": false,
-            "allowedTypes": [
-              "images"
-            ]
-          },
-          "socialNetworks": {
-            "type": "component",
-            "repeatable": true,
-            "component": "contact.social-network"
-          },
-          "attended": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::event.event",
-            "inversedBy": "players"
-          },
-          "hosted": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::event.event",
-            "mappedBy": "hosts"
-          },
-          "mentored": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::event.event",
-            "mappedBy": "mentors"
-          },
-          "user": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "plugin::users-permissions.user",
-            "mappedBy": "player"
-          },
-          "documented": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::game.game",
-            "mappedBy": "documentedBy"
-          },
-          "proposed": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::game.game",
-            "mappedBy": "proposedBy"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "player",
-      "connection": "default",
-      "uid": "api::player.player",
-      "apiName": "player",
-      "globalId": "Player",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::sponsor.sponsor": {
-      "kind": "collectionType",
-      "collectionName": "sponsors",
-      "info": {
-        "singularName": "sponsor",
-        "pluralName": "sponsors",
-        "displayName": "Sponsor"
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "name": {
-          "type": "string",
-          "required": true,
-          "unique": true
-        },
-        "url": {
-          "type": "string"
-        },
-        "logo": {
-          "allowedTypes": [
-            "images"
-          ],
-          "type": "media",
-          "multiple": false
-        },
-        "socialNetworks": {
-          "type": "component",
-          "repeatable": true,
-          "component": "contact.social-network"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "sitemap_exclude": {
-          "writable": true,
-          "private": true,
-          "configurable": false,
-          "visible": false,
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "__schema__": {
-        "collectionName": "sponsors",
-        "info": {
-          "singularName": "sponsor",
-          "pluralName": "sponsors",
-          "displayName": "Sponsor"
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "name": {
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "url": {
-            "type": "string"
-          },
-          "logo": {
-            "allowedTypes": [
-              "images"
-            ],
-            "type": "media",
-            "multiple": false
-          },
-          "socialNetworks": {
-            "type": "component",
-            "repeatable": true,
-            "component": "contact.social-network"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "sponsor",
-      "connection": "default",
-      "uid": "api::sponsor.sponsor",
-      "apiName": "sponsor",
-      "globalId": "Sponsor",
-      "actions": {},
-      "lifecycles": {}
-    },
-    "api::venue.venue": {
-      "kind": "collectionType",
-      "collectionName": "venues",
-      "info": {
-        "singularName": "venue",
-        "pluralName": "venues",
-        "displayName": "Venue",
-        "description": ""
-      },
-      "options": {
-        "draftAndPublish": false
-      },
-      "pluginOptions": {},
-      "attributes": {
-        "name": {
-          "pluginOptions": {},
-          "type": "string",
-          "required": true
-        },
-        "shortName": {
-          "pluginOptions": {},
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        "area": {
-          "type": "string"
-        },
-        "address": {
-          "type": "text"
-        },
-        "country": {
-          "pluginOptions": {},
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "embeddedMapUrl": {
-          "pluginOptions": {},
-          "type": "text"
-        },
-        "logo": {
-          "type": "media",
-          "multiple": false,
-          "required": false,
-          "allowedTypes": [
-            "images"
-          ],
-          "pluginOptions": {}
-        },
-        "website": {
-          "pluginOptions": {},
-          "type": "string"
-        },
-        "socialNetworks": {
-          "type": "component",
-          "repeatable": true,
-          "pluginOptions": {},
-          "component": "contact.social-network"
-        },
-        "events": {
-          "type": "relation",
-          "relation": "oneToMany",
-          "target": "api::event.event",
-          "mappedBy": "venue"
-        },
-        "createdAt": {
-          "type": "datetime"
-        },
-        "updatedAt": {
-          "type": "datetime"
-        },
-        "createdBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "updatedBy": {
-          "type": "relation",
-          "relation": "oneToOne",
-          "target": "admin::user",
-          "configurable": false,
-          "writable": false,
-          "visible": false,
-          "useJoinTable": false,
-          "private": true
-        },
-        "sitemap_exclude": {
-          "writable": true,
-          "private": true,
-          "configurable": false,
-          "visible": false,
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "__schema__": {
-        "collectionName": "venues",
-        "info": {
-          "singularName": "venue",
-          "pluralName": "venues",
-          "displayName": "Venue",
-          "description": ""
-        },
-        "options": {
-          "draftAndPublish": false
-        },
-        "pluginOptions": {},
-        "attributes": {
-          "name": {
-            "pluginOptions": {},
-            "type": "string",
-            "required": true
-          },
-          "shortName": {
-            "pluginOptions": {},
-            "type": "string",
-            "unique": true,
-            "required": true
-          },
-          "area": {
-            "type": "string"
-          },
-          "address": {
-            "type": "text"
-          },
-          "country": {
-            "pluginOptions": {},
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "embeddedMapUrl": {
-            "pluginOptions": {},
-            "type": "text"
-          },
-          "logo": {
-            "type": "media",
-            "multiple": false,
-            "required": false,
-            "allowedTypes": [
-              "images"
-            ],
-            "pluginOptions": {}
-          },
-          "website": {
-            "pluginOptions": {},
-            "type": "string"
-          },
-          "socialNetworks": {
-            "type": "component",
-            "repeatable": true,
-            "pluginOptions": {},
-            "component": "contact.social-network"
-          },
-          "events": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::event.event",
-            "mappedBy": "venue"
-          }
-        },
-        "kind": "collectionType"
-      },
-      "modelType": "contentType",
-      "modelName": "venue",
-      "connection": "default",
-      "uid": "api::venue.venue",
-      "apiName": "venue",
-      "globalId": "Venue",
-      "actions": {},
-      "lifecycles": {}
-    },
     "plugin::upload.file": {
       "collectionName": "files",
       "info": {
@@ -3260,6 +1770,1658 @@
       "uid": "plugin::users-permissions.user",
       "plugin": "users-permissions",
       "globalId": "UsersPermissionsUser"
+    },
+    "api::event.event": {
+      "kind": "collectionType",
+      "collectionName": "events",
+      "info": {
+        "singularName": "event",
+        "pluralName": "events",
+        "displayName": "Event",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "name": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "slug": {
+          "type": "uid",
+          "targetField": "name",
+          "required": true
+        },
+        "start": {
+          "type": "datetime",
+          "required": true,
+          "default": "2023-01-01T17:00:00.000Z"
+        },
+        "end": {
+          "type": "datetime",
+          "required": true,
+          "default": "2023-01-03T16:30:00.000Z"
+        },
+        "status": {
+          "type": "enumeration",
+          "enum": [
+            "Announced",
+            "Open",
+            "Over",
+            "Cancelled"
+          ],
+          "default": "Announced",
+          "required": true
+        },
+        "defaultImage": {
+          "type": "media",
+          "multiple": false,
+          "required": true,
+          "allowedTypes": [
+            "images"
+          ],
+          "pluginOptions": {
+            "i18n": {
+              "localized": false
+            }
+          }
+        },
+        "images": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "contactEmail": {
+          "type": "email",
+          "default": "team@play14.org",
+          "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        },
+        "timetable": {
+          "type": "component",
+          "repeatable": true,
+          "component": "events.timetable",
+          "required": false
+        },
+        "registration": {
+          "type": "component",
+          "repeatable": false,
+          "component": "registration.registration",
+          "required": false
+        },
+        "description": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "location": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::event-location.event-location",
+          "inversedBy": "events"
+        },
+        "venue": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::venue.venue",
+          "inversedBy": "events"
+        },
+        "hosts": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "hosted"
+        },
+        "mentors": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "mentored"
+        },
+        "sponsorships": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "events.sponsorship",
+          "required": false
+        },
+        "media": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "events.media",
+          "required": false
+        },
+        "players": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "mappedBy": "attended"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::event.event"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        },
+        "sitemap_exclude": {
+          "writable": true,
+          "private": true,
+          "configurable": false,
+          "visible": false,
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "__schema__": {
+        "collectionName": "events",
+        "info": {
+          "singularName": "event",
+          "pluralName": "events",
+          "displayName": "Event",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "name": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "slug": {
+            "type": "uid",
+            "targetField": "name",
+            "required": true
+          },
+          "start": {
+            "type": "datetime",
+            "required": true,
+            "default": "2023-01-01T17:00:00.000Z"
+          },
+          "end": {
+            "type": "datetime",
+            "required": true,
+            "default": "2023-01-03T16:30:00.000Z"
+          },
+          "status": {
+            "type": "enumeration",
+            "enum": [
+              "Announced",
+              "Open",
+              "Over",
+              "Cancelled"
+            ],
+            "default": "Announced",
+            "required": true
+          },
+          "defaultImage": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+              "images"
+            ],
+            "pluginOptions": {
+              "i18n": {
+                "localized": false
+              }
+            }
+          },
+          "images": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "contactEmail": {
+            "type": "email",
+            "default": "team@play14.org",
+            "regex": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+          },
+          "timetable": {
+            "type": "component",
+            "repeatable": true,
+            "component": "events.timetable",
+            "required": false
+          },
+          "registration": {
+            "type": "component",
+            "repeatable": false,
+            "component": "registration.registration",
+            "required": false
+          },
+          "description": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          },
+          "location": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::event-location.event-location",
+            "inversedBy": "events"
+          },
+          "venue": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::venue.venue",
+            "inversedBy": "events"
+          },
+          "hosts": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "hosted"
+          },
+          "mentors": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "mentored"
+          },
+          "sponsorships": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "events.sponsorship",
+            "required": false
+          },
+          "media": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "events.media",
+            "required": false
+          },
+          "players": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "mappedBy": "attended"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "event",
+      "connection": "default",
+      "uid": "api::event.event",
+      "apiName": "event",
+      "globalId": "Event",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::event-location.event-location": {
+      "kind": "collectionType",
+      "collectionName": "event_locations",
+      "info": {
+        "singularName": "event-location",
+        "pluralName": "event-locations",
+        "displayName": "EventLocation",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "uid",
+          "targetField": "name",
+          "required": false
+        },
+        "country": {
+          "type": "string",
+          "customField": "plugin::country-select.country"
+        },
+        "events": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::event.event",
+          "mappedBy": "location"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "sitemap_exclude": {
+          "writable": true,
+          "private": true,
+          "configurable": false,
+          "visible": false,
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "__schema__": {
+        "collectionName": "event_locations",
+        "info": {
+          "singularName": "event-location",
+          "pluralName": "event-locations",
+          "displayName": "EventLocation",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "slug": {
+            "type": "uid",
+            "targetField": "name",
+            "required": false
+          },
+          "country": {
+            "type": "customField",
+            "customField": "plugin::country-select.country"
+          },
+          "events": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::event.event",
+            "mappedBy": "location"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "event-location",
+      "connection": "default",
+      "uid": "api::event-location.event-location",
+      "apiName": "event-location",
+      "globalId": "EventLocation",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::game.game": {
+      "kind": "collectionType",
+      "collectionName": "games",
+      "info": {
+        "singularName": "game",
+        "pluralName": "games",
+        "displayName": "Game",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "name": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "slug": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "uid",
+          "targetField": "name",
+          "required": true
+        },
+        "category": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "enumeration",
+          "enum": [
+            "Game",
+            "IceBreaker",
+            "WarmUp",
+            "Facilitation",
+            "Retrospective",
+            "CoolDown"
+          ],
+          "required": true
+        },
+        "documentedBy": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "documented"
+        },
+        "proposedBy": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::player.player",
+          "inversedBy": "proposed"
+        },
+        "firstPlayedAt": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::event.event"
+        },
+        "scale": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string"
+        },
+        "timebox": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string"
+        },
+        "summary": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "text"
+        },
+        "materials": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "shared.list",
+          "required": true
+        },
+        "preparationSteps": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "shared.list",
+          "required": true
+        },
+        "safety": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "shared.dictionary",
+          "required": true
+        },
+        "defaultImage": {
+          "type": "media",
+          "multiple": false,
+          "required": true,
+          "allowedTypes": [
+            "images"
+          ],
+          "pluginOptions": {
+            "i18n": {
+              "localized": false
+            }
+          }
+        },
+        "images": {
+          "type": "media",
+          "multiple": true,
+          "required": true,
+          "allowedTypes": [
+            "images"
+          ],
+          "pluginOptions": {
+            "i18n": {
+              "localized": false
+            }
+          }
+        },
+        "resources": {
+          "type": "media",
+          "multiple": true,
+          "required": true,
+          "allowedTypes": [
+            "files"
+          ],
+          "pluginOptions": {
+            "i18n": {
+              "localized": false
+            }
+          }
+        },
+        "description": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext",
+          "required": true
+        },
+        "tags": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "component": "shared.list",
+          "required": true
+        },
+        "credits": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "string"
+        },
+        "ratings": {
+          "type": "component",
+          "repeatable": false,
+          "pluginOptions": {
+            "i18n": {
+              "localized": false
+            }
+          },
+          "component": "games.ratings",
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::game.game"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        },
+        "sitemap_exclude": {
+          "writable": true,
+          "private": true,
+          "configurable": false,
+          "visible": false,
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "__schema__": {
+        "collectionName": "games",
+        "info": {
+          "singularName": "game",
+          "pluralName": "games",
+          "displayName": "Game",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "name": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "slug": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "uid",
+            "targetField": "name",
+            "required": true
+          },
+          "category": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "enumeration",
+            "enum": [
+              "Game",
+              "IceBreaker",
+              "WarmUp",
+              "Facilitation",
+              "Retrospective",
+              "CoolDown"
+            ],
+            "required": true
+          },
+          "documentedBy": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "documented"
+          },
+          "proposedBy": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::player.player",
+            "inversedBy": "proposed"
+          },
+          "firstPlayedAt": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::event.event"
+          },
+          "scale": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string"
+          },
+          "timebox": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string"
+          },
+          "summary": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "text"
+          },
+          "materials": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "shared.list",
+            "required": true
+          },
+          "preparationSteps": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "shared.list",
+            "required": true
+          },
+          "safety": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "shared.dictionary",
+            "required": true
+          },
+          "defaultImage": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+              "images"
+            ],
+            "pluginOptions": {
+              "i18n": {
+                "localized": false
+              }
+            }
+          },
+          "images": {
+            "type": "media",
+            "multiple": true,
+            "required": true,
+            "allowedTypes": [
+              "images"
+            ],
+            "pluginOptions": {
+              "i18n": {
+                "localized": false
+              }
+            }
+          },
+          "resources": {
+            "type": "media",
+            "multiple": true,
+            "required": true,
+            "allowedTypes": [
+              "files"
+            ],
+            "pluginOptions": {
+              "i18n": {
+                "localized": false
+              }
+            }
+          },
+          "description": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext",
+            "required": true
+          },
+          "tags": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "component": "shared.list",
+            "required": true
+          },
+          "credits": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "string"
+          },
+          "ratings": {
+            "type": "component",
+            "repeatable": false,
+            "pluginOptions": {
+              "i18n": {
+                "localized": false
+              }
+            },
+            "component": "games.ratings",
+            "required": true
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "game",
+      "connection": "default",
+      "uid": "api::game.game",
+      "apiName": "game",
+      "globalId": "Game",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::home.home": {
+      "kind": "singleType",
+      "collectionName": "homes",
+      "info": {
+        "singularName": "home",
+        "pluralName": "homes",
+        "displayName": "Home",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "images": {
+          "allowedTypes": [
+            "images"
+          ],
+          "type": "media",
+          "multiple": true,
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "required": true
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::home.home"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        },
+        "sitemap_exclude": {
+          "writable": true,
+          "private": true,
+          "configurable": false,
+          "visible": false,
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "__schema__": {
+        "collectionName": "homes",
+        "info": {
+          "singularName": "home",
+          "pluralName": "homes",
+          "displayName": "Home",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "images": {
+            "allowedTypes": [
+              "images"
+            ],
+            "type": "media",
+            "multiple": true,
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "required": true
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "home",
+      "connection": "default",
+      "uid": "api::home.home",
+      "apiName": "home",
+      "globalId": "Home",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::player.player": {
+      "kind": "collectionType",
+      "collectionName": "players",
+      "info": {
+        "singularName": "player",
+        "pluralName": "players",
+        "displayName": "Player",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "slug": {
+          "type": "uid",
+          "targetField": "name",
+          "required": true
+        },
+        "position": {
+          "type": "enumeration",
+          "enum": [
+            "Player",
+            "Host",
+            "Mentor",
+            "Founder"
+          ],
+          "required": true
+        },
+        "company": {
+          "type": "string",
+          "required": false
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "richtext"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "customField": "plugin::country-select.country"
+        },
+        "website": {
+          "type": "string"
+        },
+        "embeddedMapUrl": {
+          "type": "text"
+        },
+        "avatar": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "socialNetworks": {
+          "type": "component",
+          "repeatable": true,
+          "component": "contact.social-network"
+        },
+        "attended": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "inversedBy": "players"
+        },
+        "hosted": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "mappedBy": "hosts"
+        },
+        "mentored": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::event.event",
+          "mappedBy": "mentors"
+        },
+        "user": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "plugin::users-permissions.user",
+          "mappedBy": "player"
+        },
+        "documented": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::game.game",
+          "mappedBy": "documentedBy"
+        },
+        "proposed": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::game.game",
+          "mappedBy": "proposedBy"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "sitemap_exclude": {
+          "writable": true,
+          "private": true,
+          "configurable": false,
+          "visible": false,
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "__schema__": {
+        "collectionName": "players",
+        "info": {
+          "singularName": "player",
+          "pluralName": "players",
+          "displayName": "Player",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "slug": {
+            "type": "uid",
+            "targetField": "name",
+            "required": true
+          },
+          "position": {
+            "type": "enumeration",
+            "enum": [
+              "Player",
+              "Host",
+              "Mentor",
+              "Founder"
+            ],
+            "required": true
+          },
+          "company": {
+            "type": "string",
+            "required": false
+          },
+          "tagline": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "richtext"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "customField",
+            "customField": "plugin::country-select.country"
+          },
+          "website": {
+            "type": "string"
+          },
+          "embeddedMapUrl": {
+            "type": "text"
+          },
+          "avatar": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "socialNetworks": {
+            "type": "component",
+            "repeatable": true,
+            "component": "contact.social-network"
+          },
+          "attended": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "inversedBy": "players"
+          },
+          "hosted": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "mappedBy": "hosts"
+          },
+          "mentored": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::event.event",
+            "mappedBy": "mentors"
+          },
+          "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user",
+            "mappedBy": "player"
+          },
+          "documented": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::game.game",
+            "mappedBy": "documentedBy"
+          },
+          "proposed": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::game.game",
+            "mappedBy": "proposedBy"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "player",
+      "connection": "default",
+      "uid": "api::player.player",
+      "apiName": "player",
+      "globalId": "Player",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::sponsor.sponsor": {
+      "kind": "collectionType",
+      "collectionName": "sponsors",
+      "info": {
+        "singularName": "sponsor",
+        "pluralName": "sponsors",
+        "displayName": "Sponsor"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "url": {
+          "type": "string"
+        },
+        "logo": {
+          "allowedTypes": [
+            "images"
+          ],
+          "type": "media",
+          "multiple": false
+        },
+        "socialNetworks": {
+          "type": "component",
+          "repeatable": true,
+          "component": "contact.social-network"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "sitemap_exclude": {
+          "writable": true,
+          "private": true,
+          "configurable": false,
+          "visible": false,
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "__schema__": {
+        "collectionName": "sponsors",
+        "info": {
+          "singularName": "sponsor",
+          "pluralName": "sponsors",
+          "displayName": "Sponsor"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "url": {
+            "type": "string"
+          },
+          "logo": {
+            "allowedTypes": [
+              "images"
+            ],
+            "type": "media",
+            "multiple": false
+          },
+          "socialNetworks": {
+            "type": "component",
+            "repeatable": true,
+            "component": "contact.social-network"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "sponsor",
+      "connection": "default",
+      "uid": "api::sponsor.sponsor",
+      "apiName": "sponsor",
+      "globalId": "Sponsor",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::venue.venue": {
+      "kind": "collectionType",
+      "collectionName": "venues",
+      "info": {
+        "singularName": "venue",
+        "pluralName": "venues",
+        "displayName": "Venue",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "pluginOptions": {},
+          "type": "string",
+          "required": true
+        },
+        "shortName": {
+          "pluginOptions": {},
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        "area": {
+          "type": "string"
+        },
+        "address": {
+          "type": "text"
+        },
+        "country": {
+          "pluginOptions": {},
+          "type": "string",
+          "customField": "plugin::country-select.country"
+        },
+        "embeddedMapUrl": {
+          "pluginOptions": {},
+          "type": "text"
+        },
+        "logo": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ],
+          "pluginOptions": {}
+        },
+        "website": {
+          "pluginOptions": {},
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "component",
+          "repeatable": true,
+          "pluginOptions": {},
+          "component": "contact.social-network"
+        },
+        "events": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::event.event",
+          "mappedBy": "venue"
+        },
+        "location": {
+          "type": "json",
+          "pluginOptions": {
+            "map-field": {
+              "enabled": true
+            }
+          }
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "sitemap_exclude": {
+          "writable": true,
+          "private": true,
+          "configurable": false,
+          "visible": false,
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "__schema__": {
+        "collectionName": "venues",
+        "info": {
+          "singularName": "venue",
+          "pluralName": "venues",
+          "displayName": "Venue",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "pluginOptions": {},
+            "type": "string",
+            "required": true
+          },
+          "shortName": {
+            "pluginOptions": {},
+            "type": "string",
+            "unique": true,
+            "required": true
+          },
+          "area": {
+            "type": "string"
+          },
+          "address": {
+            "type": "text"
+          },
+          "country": {
+            "pluginOptions": {},
+            "type": "customField",
+            "customField": "plugin::country-select.country"
+          },
+          "embeddedMapUrl": {
+            "pluginOptions": {},
+            "type": "text"
+          },
+          "logo": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+              "images"
+            ],
+            "pluginOptions": {}
+          },
+          "website": {
+            "pluginOptions": {},
+            "type": "string"
+          },
+          "socialNetworks": {
+            "type": "component",
+            "repeatable": true,
+            "pluginOptions": {},
+            "component": "contact.social-network"
+          },
+          "events": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::event.event",
+            "mappedBy": "venue"
+          },
+          "location": {
+            "type": "json",
+            "pluginOptions": {
+              "map-field": {
+                "enabled": true
+              }
+            }
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "venue",
+      "connection": "default",
+      "uid": "api::venue.venue",
+      "apiName": "venue",
+      "globalId": "Venue",
+      "actions": {},
+      "lifecycles": {}
     }
   },
   "type": "object",

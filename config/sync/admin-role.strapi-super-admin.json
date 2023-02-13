@@ -204,7 +204,10 @@
           "resources",
           "description",
           "tags.value",
-          "credits"
+          "credits",
+          "ratings.energy",
+          "ratings.connection",
+          "ratings.silliness"
         ],
         "locales": [
           "en",
@@ -258,7 +261,10 @@
           "resources",
           "description",
           "tags.value",
-          "credits"
+          "credits",
+          "ratings.energy",
+          "ratings.connection",
+          "ratings.silliness"
         ],
         "locales": [
           "en",
@@ -290,7 +296,63 @@
           "resources",
           "description",
           "tags.value",
-          "credits"
+          "credits",
+          "ratings.energy",
+          "ratings.connection",
+          "ratings.silliness"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::home.home",
+      "properties": {
+        "fields": [
+          "images"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::home.home",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::home.home",
+      "properties": {
+        "fields": [
+          "images"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::home.home",
+      "properties": {
+        "fields": [
+          "images"
         ],
         "locales": [
           "en",
@@ -452,7 +514,8 @@
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "location"
         ]
       },
       "conditions": []
@@ -478,7 +541,8 @@
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "location"
         ]
       },
       "conditions": []
@@ -498,7 +562,8 @@
           "website",
           "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "events",
+          "location"
         ]
       },
       "conditions": []
