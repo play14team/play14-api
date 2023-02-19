@@ -3,8 +3,9 @@ import { useIntl } from 'react-intl';
 import { Stack, Typography, TextInput, Grid, GridItem } from '@strapi/design-system';
 import Map, {FullscreenControl, GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
 import GeocoderControl from './geocoder-control';
-import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding'
+
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const TOKEN = process.env.STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN
 

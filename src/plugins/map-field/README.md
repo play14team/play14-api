@@ -1,6 +1,6 @@
 # Strapi plugin `map-field`
 
-The `map-field` [Strapi](https://strapi.io/) plugin allows to add a [Mapbox](https://www.mapbox.com/) map as a field in your admin panel. 
+The `map-field` [Strapi](https://strapi.io/) plugin allows to add a [Mapbox](https://www.mapbox.com/) map custom field in your content-types. 
 
 ![Map Field](./map-field.png)
 
@@ -73,8 +73,12 @@ It uses the following npm packages
 
 ## Configure the plugin
 
+You need to enable the plugin in your Strapi plugins configuration.
+
+Open `config/plugins.js` and add the following:
+
 ```js
-// plugins.js
+// config/plugins.js
 module.exports = ({ env }) => ({
 
   ...
@@ -89,6 +93,46 @@ module.exports = ({ env }) => ({
 
 ```
 
+## Update the security middleware configuration
+
+In order for the map to be displayed properly, you will need to update the `strapi::security` middleware configuration.
+
+For that, open `config/middlewares.js` and add the directive `'worker-src': ['blob:']` to the `contentSecurityPolicy` directives under `strapi::security`.
+
+The whole file should look somewhat like this:
+```js
+module.exports = ({
+  env
+}) => [
+  'strapi::errors',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
+          'img-src': ["'self'", 'data:', 'blob:' ],
+          'media-src': ["'self'", 'data:', 'blob:'],
+          'worker-src': ['blob:'],
+          upgradeInsecureRequests: null,
+        },
+      }
+    },
+  },
+  'strapi::cors',
+  'strapi::poweredBy',
+  'strapi::logger',
+  'strapi::query',
+  'strapi::body',
+  'strapi::session',
+  'strapi::favicon',
+  'strapi::public',
+];
+```
+
+
 ## Provide a valid Mapbox Access Token
 
 Add a valid [Mapbox Access Token](https://docs.mapbox.com/help/getting-started/access-tokens/) as an environment variable in your `.env` file
@@ -100,11 +144,11 @@ STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN=pk.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 
-## Add a json field and enable the module
+## Enable the plugin on a JSON field in your content-type
 
-In order for the map to replace the JSON field in the Admin Panel, you need to enable the plugin on that JSON field in your content-type definition.
+In order for the map to replace the default JSON field editor in the Admin Panel, you need to enable the plugin on that JSON field in your content-type definition.
 
-This can be done manually by editing the content-type file and adding a `pluginOptions` section.
+This can be done by manually editing the content-type file and adding a `pluginOptions` section.
 
 Let's imagine that you have a content-type collection called `dummy` with a JSON field called `location`.
 
@@ -125,7 +169,6 @@ Let's imagine that you have a content-type collection called `dummy` with a JSON
 ```
 
 Simply add the `pluginOptions` as follow: 
-
 
 ```js
 // in your content-type definition
@@ -148,4 +191,6 @@ Simply add the `pluginOptions` as follow:
 
 ```
 
-You can disable the plugin at any moment by setting the `enabled` flag to `false`. This will display the JSON field again, instead of the map.
+Above, `map-field` corresponds to this plugin name. You cannot change that, otherwise it will not work.
+
+You can disable the plugin at any moment by setting the `enabled` flag to `false`. This will display the default JSON field again, instead of the map.
