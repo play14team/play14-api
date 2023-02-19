@@ -64,8 +64,8 @@
       },
       "address": {
         "edit": {
-          "label": "address",
-          "description": "legacy address (read-only)",
+          "label": "legacy address",
+          "description": "",
           "placeholder": "",
           "visible": true,
           "editable": false
