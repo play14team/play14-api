@@ -27,7 +27,7 @@
       "type": "string"
     },
     "address": {
-      "type": "text"
+      "type": "string"
     },
     "country": {
       "pluginOptions": {},
@@ -66,6 +66,9 @@
     "location": {
       "type": "customField",
       "customField": "plugin::map-field.map"
+    },
+    "addressDetails": {
+      "type": "string"
     }
   }
 }

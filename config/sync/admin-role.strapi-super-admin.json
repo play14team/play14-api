@@ -515,7 +515,8 @@
           "socialNetworks.url",
           "socialNetworks.type",
           "events",
-          "location"
+          "location",
+          "addressDetails"
         ]
       },
       "conditions": []
@@ -542,7 +543,8 @@
           "socialNetworks.url",
           "socialNetworks.type",
           "events",
-          "location"
+          "location",
+          "addressDetails"
         ]
       },
       "conditions": []
@@ -563,7 +565,8 @@
           "socialNetworks.url",
           "socialNetworks.type",
           "events",
-          "location"
+          "location",
+          "addressDetails"
         ]
       },
       "conditions": []

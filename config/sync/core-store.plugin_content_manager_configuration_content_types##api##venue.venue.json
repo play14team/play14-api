@@ -54,7 +54,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "area",
@@ -65,10 +65,10 @@
       "address": {
         "edit": {
           "label": "address",
-          "description": "",
+          "description": "legacy address (read-only)",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "address",
@@ -96,7 +96,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "embeddedMapUrl",
@@ -175,6 +175,20 @@
           "sortable": false
         }
       },
+      "addressDetails": {
+        "edit": {
+          "label": "addressDetails",
+          "description": "building, floor, ...",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "addressDetails",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -212,23 +226,7 @@
             "size": 6
           },
           {
-            "name": "shortName",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "address",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "area",
-            "size": 6
-          },
-          {
-            "name": "country",
+            "name": "website",
             "size": 6
           }
         ],
@@ -240,15 +238,15 @@
         ],
         [
           {
-            "name": "website",
+            "name": "addressDetails",
+            "size": 6
+          },
+          {
+            "name": "address",
             "size": 6
           }
         ],
         [
-          {
-            "name": "embeddedMapUrl",
-            "size": 6
-          },
           {
             "name": "logo",
             "size": 6
