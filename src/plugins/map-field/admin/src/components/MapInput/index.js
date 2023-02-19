@@ -6,7 +6,7 @@ import GeocoderControl from './geocoder-control';
 import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding'
 
-const TOKEN = "pk.eyJ1IjoicGxheTE0IiwiYSI6ImNsZGVtZXRiaTAwcXMzcW8xeWRocWNwbWgifQ.eSlehQdOi60URb4U1ILH9g"
+const TOKEN = process.env.STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN
 
 const MapField = ({
   intlLabel,
@@ -93,11 +93,7 @@ const MapField = ({
       <Marker longitude={longitude} latitude={latitude} color="#ff5200" />
     </Map>
 
-    <Grid gap={{
-        desktop: 5,
-        tablet: 2,
-        mobile: 1
-      }} >
+    <Grid>
       <GridItem padding={1} col={8} xs={12}>
         <TextInput label="address" name="address" value={address} disabled />
       </GridItem>

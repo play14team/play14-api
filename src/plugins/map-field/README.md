@@ -2,6 +2,9 @@
 
 A quick description of map-field.
 
+Inspired by
+* [Customizing fields in the Strapi admin panel by Cyril Lopez](https://www.youtube.com/watch?v=55KJ2sCX8ws)
+
 ## Configure the plugin
 
 ```js
@@ -12,10 +15,6 @@ module.exports = ({ env }) => ({
 
   "map-field": {
     enabled: true,
-    config: {
-      mapboxToken: process.env.MAPBOX_ACCESS_TOKEN,
-      roles: ["strapi-super-admin"],
-    },
   },
 
   ...
@@ -24,7 +23,18 @@ module.exports = ({ env }) => ({
 
 ```
 
-## Add a json field and enable module
+## Provide a valid Mapbox Access Token
+
+Add a valid [Mapbox Access Token](https://docs.mapbox.com/help/getting-started/access-tokens/) as an environment variable in your `.env` file
+
+```bash
+# .env
+STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN=pk.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxxxxx
+
+```
+
+
+## Add a json field and enable the module
 
 ```js
 // in your content-type definition
@@ -46,27 +56,3 @@ module.exports = ({ env }) => ({
 }
 
 ```
-
-
-## Configure webpack 
-
-You need to configure `webpack` to export the `MAPBOX_ACCESS_TOKEN` variables from the `.env` to the client.
-
-For that, go to `src/admin/webpack.config.js` and add the following config.
-
-```js
-//webpack.config.js
-
-module.exports = (config, webpack) => {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        MAPBOX_VARIABLES: {
-          MAPBOX_ACCESS_TOKEN: JSON.stringify(process.env.MAPBOX_ACCESS_TOKEN),
-        },
-      })
-    );
-    return config;
-};
-```
-
-[More details](https://forum.strapi.io/t/use-env-in-local-plugin/992)

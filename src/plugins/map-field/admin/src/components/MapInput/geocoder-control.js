@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useControl, Marker} from 'react-map-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import "../../../../node_modules/@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import mapboxgl from 'mapbox-gl'
 
 /* eslint-disable complexity,max-statements */
 const GeocoderControl = (props) => {
@@ -14,7 +15,8 @@ const GeocoderControl = (props) => {
       const ctrl = new MapboxGeocoder({
         ...props,
         marker: props.marker ? <Marker {...props.marker} /> : false,
-        accessToken: props.mapboxAccessToken
+        accessToken: props.mapboxAccessToken,
+        mapboxgl: mapboxgl
       });
       props.onLoading && ctrl.on('loading', props.onLoading);
       props.onResults && ctrl.on('results', props.onResults);

@@ -72,10 +72,6 @@ module.exports = ({ env }) => ({
   "map-field": {
     enabled: true,
     resolve: './src/plugins/map-field',
-    config: {
-      mapboxToken: process.env.MAPBOX_ACCESS_TOKEN,
-      roles: ["strapi-super-admin"],
-    },
   },
   "fuzzy-search": {
     enabled: true,
