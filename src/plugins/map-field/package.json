@@ -16,7 +16,6 @@
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@mapbox/mapbox-sdk": "^0.15.0",
-    "axios": "^1.3.2",
     "mapbox-gl": "^2.12.0",
     "react-map-gl": "^7.0.21"
   },
