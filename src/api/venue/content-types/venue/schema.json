@@ -27,7 +27,7 @@
       "type": "string"
     },
     "address": {
-      "type": "text"
+      "type": "string"
     },
     "country": {
       "pluginOptions": {},
@@ -64,7 +64,11 @@
       "mappedBy": "venue"
     },
     "location": {
-      "type": "json"
+      "type": "customField",
+      "customField": "plugin::map-field.map"
+    },
+    "addressDetails": {
+      "type": "string"
     }
   }
 }

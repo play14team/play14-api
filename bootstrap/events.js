@@ -3,28 +3,11 @@
 const path = require("path");
 const fs = require("fs");
 const showdown = require('showdown');
-const {
-  ensureFolder
-} = require('./upload.js');
-const {
-  yaml2json,
-  mapPlayers,
-  uploadImages,
-  getDefaultImage,
-  uploadContentImages
-} = require('./utilities.js');
-const {
-  eventToSlug,
-  capitalize,
-  normalize
-} = require('../src/libs/strings');
-const {
-  getCountryFromCity,
-  geocodeAddress
-} = require('./geocode')
-const {
-  Mutex
-} = require('async-mutex');
+const { ensureFolder } = require('./upload.js');
+const { yaml2json, mapPlayers, uploadImages, getDefaultImage, uploadContentImages } = require('./utilities.js');
+const { eventToSlug, capitalize, normalize } = require('../src/libs/strings');
+const { getCountryFromCity, geocodeAddress, getCountryCode, getAddress, getArea } = require('./geocode')
+const { Mutex } = require('async-mutex');
 
 const mutex = new Mutex();
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
@@ -264,20 +247,21 @@ async function mapVenue(location) {
   }
 
   await mutex.runExclusive(async () => {
-    let shortName = (location.name || location)
-    shortName = shortName.replaceAll(' ', '');
+    const name = location.name;
+    const shortName = name.replaceAll(' ', '');
     const geocode = await geocodeAddress(location.address);
+    const countryCode = getCountryCode(geocode);
 
     const venueData = {
       data: {
         shortName: shortName,
-        name: location.name || location,
-        address: location.address || "",
-        area: location.area || "",
-        country: geocode.countryCode,
-        embeddedMapUrl: location.map || "",
-        website: location.url || "",
-        location: geocode.coordinates,
+        name: name,
+        address: location.address,
+        area: location.area,
+        country: countryCode,
+        embeddedMapUrl: location.map,
+        website: location.url,
+        location: geocode,
       }
     };
     if (!venue) {

@@ -275,6 +275,20 @@
           "sortable": true
         }
       },
+      "ratings": {
+        "edit": {
+          "label": "ratings",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "ratings",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -305,6 +319,13 @@
       }
     },
     "layouts": {
+      "list": [
+        "name",
+        "category",
+        "defaultImage",
+        "scale",
+        "timebox"
+      ],
       "edit": [
         [
           {
@@ -403,14 +424,13 @@
             "name": "resources",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "ratings",
+            "size": 12
+          }
         ]
-      ],
-      "list": [
-        "name",
-        "category",
-        "defaultImage",
-        "scale",
-        "timebox"
       ]
     }
   },

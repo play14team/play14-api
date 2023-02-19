@@ -6,10 +6,28 @@ module.exports = ({
     name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
+        useDefaults: true,
         directives: {
+          'connect-src': ["'self'", 'https:'],
           'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
-          'img-src': ["'self'", 'data:', 'blob:', 'cdn.jsdelivr.net', 'strapi.io', 'market.strapi.io', '*.tile.openstreetmap.org', process.env.STORAGE_URL, process.env.STORAGE_CDN_URL],
-          'media-src': ["'self'", 'data:', 'blob:', process.env.STORAGE_URL, process.env.STORAGE_CDN_URL],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'cdn.jsdelivr.net',
+            'dl.airtable.com',
+            process.env.STORAGE_URL,
+            process.env.STORAGE_CDN_URL
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'dl.airtable.com',
+            process.env.STORAGE_URL,
+            process.env.STORAGE_CDN_URL
+          ],
+          'worker-src': ['blob:'],
           upgradeInsecureRequests: null,
         },
       }
