@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_default_history_items",
+  "info": {
+    "displayName": "HistoryItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "dateFormat": {
+      "type": "enumeration",
+      "enum": [
+        "Year",
+        "Month",
+        "Day"
+      ]
+    },
+    "additionalText": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
