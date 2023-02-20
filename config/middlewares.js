@@ -9,7 +9,7 @@ module.exports = ({
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
+          'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'api.mapbox.com'],
           'img-src': [
             "'self'",
             'data:',
