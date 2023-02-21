@@ -36,7 +36,7 @@
     "strapi-plugin-entity-relationship-chart": "^4.1.0",
     "strapi-plugin-fuzzy-search": "^1.10.2",
     "strapi-plugin-import-export-entries": "^1.18.0",
-    "strapi-plugin-map-field": "^1.0.4",
+    "strapi-plugin-map-field": "^1.0.5",
     "strapi-plugin-multi-select": "^1.1.0",
     "strapi-plugin-populate-deep": "^1.1.2",
     "strapi-plugin-sitemap": "^2.0.9",

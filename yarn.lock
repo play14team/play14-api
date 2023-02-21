@@ -12048,10 +12048,10 @@ strapi-plugin-import-export-entries@^1.18.0:
     monaco-editor-webpack-plugin "7.0.1"
     react-singleton-hook "3.3.0"
 
-strapi-plugin-map-field@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-map-field/-/strapi-plugin-map-field-1.0.4.tgz#1ceb4c660f7a2e57fa9b2027557f2b1e631cf570"
-  integrity sha512-XM+TaY28V690vfwRGNr1ILUKoomXsQy6j7K4fW+iosHh3HsY/FxxvlurQ3X99QeiedmdoVCwZI57O3vs8S7ofg==
+strapi-plugin-map-field@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-map-field/-/strapi-plugin-map-field-1.0.5.tgz#f33772d40448d69fdea3cb7226019448c3312720"
+  integrity sha512-06wn3UMQc5i8GAuFDKJaMKmzdGePJ8x1jz72DUdQc/sn3plZaTbgYWWSUwZC5zdI9a/zRIbMqB0RkYf5jrhaPg==
   dependencies:
     "@mapbox/mapbox-gl-geocoder" "^5.0.1"
     "@mapbox/mapbox-sdk" "^0.15.0"
