@@ -30,6 +30,10 @@
       "relation": "oneToMany",
       "target": "api::event.event",
       "mappedBy": "location"
+    },
+    "location": {
+      "type": "customField",
+      "customField": "plugin::map-field.map"
     }
   }
 }

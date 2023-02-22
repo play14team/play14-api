@@ -278,6 +278,20 @@
           "sortable": false
         }
       },
+      "location": {
+        "edit": {
+          "label": "location",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "location",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -308,13 +322,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "name",
-        "slug",
-        "position",
-        "avatar",
-        "company"
-      ],
       "edit": [
         [
           {
@@ -344,23 +351,13 @@
         ],
         [
           {
-            "name": "city",
-            "size": 6
-          },
-          {
-            "name": "country",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "embeddedMapUrl",
+            "name": "website",
             "size": 12
           }
         ],
         [
           {
-            "name": "website",
+            "name": "location",
             "size": 12
           }
         ],
@@ -412,6 +409,13 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "name",
+        "slug",
+        "position",
+        "avatar",
+        "company"
       ]
     }
   },

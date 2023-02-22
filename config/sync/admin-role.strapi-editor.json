@@ -183,6 +183,83 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::history.history",
+      "properties": {
+        "fields": [
+          "founders",
+          "intro",
+          "items.additionalText",
+          "items.date",
+          "items.dateFormat",
+          "items.description",
+          "items.image",
+          "items.title",
+          "keyMoments"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::history.history",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::history.history",
+      "properties": {
+        "fields": [
+          "founders",
+          "intro",
+          "items.additionalText",
+          "items.date",
+          "items.dateFormat",
+          "items.description",
+          "items.image",
+          "items.title",
+          "keyMoments"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::history.history",
+      "properties": {
+        "fields": [
+          "founders",
+          "intro",
+          "items.additionalText",
+          "items.date",
+          "items.dateFormat",
+          "items.description",
+          "items.image",
+          "items.title",
+          "keyMoments"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::player.player",
       "properties": {
         "fields": [

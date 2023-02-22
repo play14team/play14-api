@@ -22,6 +22,9 @@
       "action": "api::game.game.findOne"
     },
     {
+      "action": "api::history.history.find"
+    },
+    {
       "action": "api::home.home.find"
     },
     {

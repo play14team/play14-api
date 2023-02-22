@@ -103,6 +103,10 @@
       "relation": "manyToMany",
       "target": "api::game.game",
       "mappedBy": "proposedBy"
+    },
+    "location": {
+      "type": "customField",
+      "customField": "plugin::map-field.map"
     }
   }
 }

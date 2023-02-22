@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::event-location.event-location",
+  "key": "plugin_content_manager_configuration_content_types::api::history.history",
   "value": {
-    "uid": "api::event-location.event-location",
+    "uid": "api::history.history",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
-      "pageSize": 50,
-      "mainField": "name",
-      "defaultSortBy": "name",
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,75 +20,60 @@
           "sortable": true
         }
       },
-      "name": {
+      "items": {
         "edit": {
-          "label": "Name",
+          "label": "items",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "name",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug": {
-        "edit": {
-          "label": "Slug",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "country": {
-        "edit": {
-          "label": "Country",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "country",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "events": {
-        "edit": {
-          "label": "Events",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "events",
+          "label": "items",
           "searchable": false,
           "sortable": false
         }
       },
-      "location": {
+      "intro": {
         "edit": {
-          "label": "location",
+          "label": "intro",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "location",
+          "label": "intro",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "founders": {
+        "edit": {
+          "label": "founders",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "founders",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "keyMoments": {
+        "edit": {
+          "label": "keyMoments",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "keyMoments",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -124,38 +109,32 @@
       "edit": [
         [
           {
-            "name": "name",
+            "name": "founders",
             "size": 6
           },
           {
-            "name": "slug",
+            "name": "keyMoments",
             "size": 6
           }
         ],
         [
           {
-            "name": "country",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "location",
+            "name": "intro",
             "size": 12
           }
         ],
         [
           {
-            "name": "events",
-            "size": 6
+            "name": "items",
+            "size": 12
           }
         ]
       ],
       "list": [
-        "name",
-        "events",
-        "slug",
-        "country"
+        "id",
+        "items",
+        "createdAt",
+        "updatedAt"
       ]
     }
   },

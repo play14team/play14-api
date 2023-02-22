@@ -11,7 +11,8 @@
           "name",
           "slug",
           "country",
-          "events"
+          "events",
+          "location"
         ]
       },
       "conditions": []
@@ -30,7 +31,8 @@
           "name",
           "slug",
           "country",
-          "events"
+          "events",
+          "location"
         ]
       },
       "conditions": []
@@ -43,7 +45,8 @@
           "name",
           "slug",
           "country",
-          "events"
+          "events",
+          "location"
         ]
       },
       "conditions": []
@@ -310,6 +313,83 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::history.history",
+      "properties": {
+        "fields": [
+          "founders",
+          "intro",
+          "keyMoments",
+          "items.date",
+          "items.dateFormat",
+          "items.additionalText",
+          "items.title",
+          "items.description",
+          "items.image"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::history.history",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::history.history",
+      "properties": {
+        "fields": [
+          "founders",
+          "intro",
+          "keyMoments",
+          "items.date",
+          "items.dateFormat",
+          "items.additionalText",
+          "items.title",
+          "items.description",
+          "items.image"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::history.history",
+      "properties": {
+        "fields": [
+          "founders",
+          "intro",
+          "keyMoments",
+          "items.date",
+          "items.dateFormat",
+          "items.additionalText",
+          "items.title",
+          "items.description",
+          "items.image"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::home.home",
       "properties": {
         "fields": [
@@ -384,7 +464,8 @@
           "mentored",
           "user",
           "documented",
-          "proposed"
+          "proposed",
+          "location"
         ]
       },
       "conditions": []
@@ -418,7 +499,8 @@
           "mentored",
           "user",
           "documented",
-          "proposed"
+          "proposed",
+          "location"
         ]
       },
       "conditions": []
@@ -446,7 +528,8 @@
           "mentored",
           "user",
           "documented",
-          "proposed"
+          "proposed",
+          "location"
         ]
       },
       "conditions": []
@@ -809,30 +892,6 @@
       "conditions": []
     },
     {
-      "action": "plugin::documentation.read",
-      "subject": null,
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::documentation.settings.read",
-      "subject": null,
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::documentation.settings.regenerate",
-      "subject": null,
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::documentation.settings.update",
-      "subject": null,
-      "properties": {},
-      "conditions": []
-    },
-    {
       "action": "plugin::email.settings.read",
       "subject": null,
       "properties": {},
@@ -858,18 +917,6 @@
     },
     {
       "action": "plugin::i18n.locale.update",
-      "subject": null,
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::sitemap.menu-link",
-      "subject": null,
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::sitemap.settings.read",
       "subject": null,
       "properties": {},
       "conditions": []

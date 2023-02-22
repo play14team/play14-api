@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::event-location.event-location",
+  "key": "plugin_content_manager_configuration_components::default.history-item",
   "value": {
-    "uid": "api::event-location.event-location",
+    "uid": "default.history-item",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
-      "pageSize": 50,
-      "mainField": "name",
-      "defaultSortBy": "name",
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "additionalText",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -16,148 +16,138 @@
         "edit": {},
         "list": {
           "label": "id",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "name": {
-        "edit": {
-          "label": "Name",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "name",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug": {
-        "edit": {
-          "label": "Slug",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "country": {
-        "edit": {
-          "label": "Country",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "country",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "events": {
-        "edit": {
-          "label": "Events",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "events",
           "searchable": false,
           "sortable": false
         }
       },
-      "location": {
+      "date": {
         "edit": {
-          "label": "location",
+          "label": "date",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "location",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "createdAt": {
-        "edit": {
-          "label": "createdAt",
-          "description": "",
-          "placeholder": "",
-          "visible": false,
-          "editable": true
-        },
-        "list": {
-          "label": "createdAt",
+          "label": "date",
           "searchable": true,
           "sortable": true
         }
       },
-      "updatedAt": {
+      "additionalText": {
         "edit": {
-          "label": "updatedAt",
+          "label": "additionalText",
           "description": "",
           "placeholder": "",
-          "visible": false,
+          "visible": true,
           "editable": true
         },
         "list": {
-          "label": "updatedAt",
+          "label": "additionalText",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "title",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "image": {
+        "edit": {
+          "label": "image",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "image",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "dateFormat": {
+        "edit": {
+          "label": "dateFormat",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateFormat",
           "searchable": true,
           "sortable": true
         }
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "date",
+        "additionalText",
+        "title"
+      ],
       "edit": [
         [
           {
-            "name": "name",
+            "name": "title",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "date",
+            "size": 4
           },
           {
-            "name": "slug",
-            "size": 6
+            "name": "dateFormat",
+            "size": 4
+          },
+          {
+            "name": "additionalText",
+            "size": 4
           }
         ],
         [
           {
-            "name": "country",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "location",
+            "name": "description",
             "size": 12
           }
         ],
         [
           {
-            "name": "events",
+            "name": "image",
             "size": 6
           }
         ]
-      ],
-      "list": [
-        "name",
-        "events",
-        "slug",
-        "country"
       ]
-    }
+    },
+    "isComponent": true
   },
   "type": "object",
   "environment": null,
