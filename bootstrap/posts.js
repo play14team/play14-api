@@ -27,7 +27,7 @@ async function importData() {
 
 async function importPosts(markdownDir) {
   try {
-    const folderId = await ensureFolder("posts");
+    const folderId = await ensureFolder("articles");
     const files = await fs.promises.readdir(markdownDir);
 
     let succeeded = 0;
@@ -93,15 +93,15 @@ async function mapPost(post, parentFolderId) {
     data: {
       title: post.title,
       slug: slug,
-      // author: author,
-      // cannonical: post.cannonical,
-      // summary: post.excerpt,
-      // defaultImage: defaultImage,
-      // images: images,
-      // content: newHtmlContent,
-      // category: post.categories[0],
-      // tags: tags,
-      // publishedAt: post.date,
+      author: author,
+      cannonical: post.cannonical,
+      summary: post.excerpt,
+      defaultImage: defaultImage,
+      images: images,
+      content: newHtmlContent,
+      category: post.categories[0],
+      tags: tags,
+      publishedAt: post.date,
     }
   };
 }
