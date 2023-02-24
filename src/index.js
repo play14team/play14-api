@@ -4,6 +4,7 @@ const sponsors = require('../bootstrap/sponsors')
 const players = require('../bootstrap/players')
 const events = require('../bootstrap/events')
 const games = require('../bootstrap/games')
+const posts = require('../bootstrap/posts')
 
 module.exports = {
   /**
@@ -31,6 +32,7 @@ module.exports = {
         // await players.importData();
         // await events.importData();
         // await games.importData();
+        // await posts.importData();
       }, 1500);
     }
   },
