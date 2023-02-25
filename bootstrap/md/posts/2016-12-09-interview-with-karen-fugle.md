@@ -6,7 +6,7 @@ categories:
   - Interview
 tags:
   - Coaching
-author: Cédric Pontet
+author: Mark Webb
 
 excerpt: Our friend Mark Webb publish an interview of Karen Fugle, who is an Executive Coach and LSP facilitator.
 

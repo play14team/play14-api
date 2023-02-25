@@ -22,6 +22,10 @@ function yaml2json(inputfile, skipSplit) {
       return yaml.load(data);
 }
 
+function sanitizeMarkdown(markdown) {
+  return markdown.replaceAll("#play14", "&#x23;play14");
+}
+
 function mapSocialNetworks(socials) {
   const socialNetworks = [];
   socials && socials.map(s => {
@@ -143,4 +147,4 @@ async function mapPlayers(names) {
   return players;
 }
 
-module.exports = { yaml2json, mapSocialNetworks, mapPlayers, uploadImages, getDefaultImage, uploadContentImages };
+module.exports = { yaml2json, sanitizeMarkdown, mapSocialNetworks, mapPlayers, uploadImages, getDefaultImage, uploadContentImages };

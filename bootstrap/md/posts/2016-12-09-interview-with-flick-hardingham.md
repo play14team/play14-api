@@ -6,9 +6,9 @@ categories:
   - Interview
 tags:
   - Learning
-author: Cédric Pontet
+author: Mark Webb
 
-excerpt: Our friend Mark Webb publish an interview of Flick Hardingham, who has been using games extensively to foster creativity.   
+excerpt: An interview of Flick Hardingham, who has been using games extensively to foster creativity.   
 
 images:
   - /images/players/FlickHardingham.jpg

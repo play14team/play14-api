@@ -14,6 +14,7 @@ excerpt: >
 cannonical: https://www.linkedin.com/pulse/power-playfulness-play14-madrid-mari-luz-garcia
 
 images:
+  - /images/posts/the-power-of-playfulness/00.png
   - /images/posts/the-power-of-playfulness/01.png
   - /images/posts/the-power-of-playfulness/02.png
   - /images/posts/the-power-of-playfulness/03.png

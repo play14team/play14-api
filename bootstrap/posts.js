@@ -7,6 +7,7 @@ const {
 } = require('./upload.js');
 const {
   yaml2json,
+  sanitizeMarkdown,
   uploadImages,
   getDefaultImage,
   uploadContentImages
@@ -15,7 +16,9 @@ const {
   toSlug
 } = require('../src/libs/strings');
 const showdown = require('showdown');
+const { Mutex } = require('async-mutex');
 
+const mutex = new Mutex();
 const bootstrapDir = path.resolve(process.cwd(), "bootstrap/");
 const markdownConverter = new showdown.Converter();
 
@@ -81,12 +84,13 @@ async function createOrUpdatePost(file, folderId) {
 
 async function mapPost(post, parentFolderId) {
   const slug = toSlug(post.title);
-  const tags = mapList(post.tags);
+  const tags = await mapTags(post.tags);
   const author = await mapPlayer(post.author);
   const imagesFolderId = await ensureFolder(slug, parentFolderId);
   const images = await uploadImages(post, slug, imagesFolderId);
   const defaultImage = getDefaultImage(images, slug, post);
-  const htmlContent = markdownConverter.makeHtml(post.content);
+  const sanitized = sanitizeMarkdown(post.content);
+  const htmlContent = markdownConverter.makeHtml(sanitized);
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
 
   return {
@@ -97,7 +101,7 @@ async function mapPost(post, parentFolderId) {
       cannonical: post.cannonical,
       summary: post.excerpt,
       defaultImage: defaultImage,
-      images: images,
+      images: images.filter(i => i != defaultImage),
       content: newHtmlContent,
       category: post.categories[0],
       tags: tags,
@@ -107,15 +111,33 @@ async function mapPost(post, parentFolderId) {
   };
 }
 
-function mapList(values) {
-  if (values)
-    return values.map(value => {
-      return {
-        value: value
+async function mapTags(values) {
+  const tags = [];
+  if (values) {
+    values.map(async value => {
+      const tag = await mapTag(value);
+      tags.push(tag);
+    });
+  }
+
+  await Promise.all(tags);
+  return tags;
+}
+
+async function mapTag(value) {
+  const tagApi = 'api::tag.tag';
+  if (value) {
+    const lowercase = value.toLowerCase();
+    let tag;
+    await mutex.runExclusive(async () => {
+      tag = await strapi.query(tagApi).findOne({ where: { value: lowercase } })
+      if (!tag) {
+        tag = await strapi.entityService.create(tagApi, { data: { value: lowercase }});
       }
     });
-
-  return [];
+    return tag;
+  }
+  return null;
 }
 
 async function mapPlayer(name) {

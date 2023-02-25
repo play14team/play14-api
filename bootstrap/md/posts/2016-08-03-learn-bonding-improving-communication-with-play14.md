@@ -13,6 +13,7 @@ excerpt: >
 cannonical: https://www.adventureswithagile.com/2016/08/03/play14-review/
 
 images:
+  - /images/posts/learn-bonding-improving-communication/00.jpg
   - /images/posts/learn-bonding-improving-communication/01.jpg
   - /images/posts/learn-bonding-improving-communication/02.jpg
   - /images/posts/learn-bonding-improving-communication/03.jpg

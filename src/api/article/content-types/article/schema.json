@@ -31,15 +31,12 @@
       "type": "text"
     },
     "defaultImage": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "images": {
       "type": "media",
@@ -63,9 +60,10 @@
       ]
     },
     "tags": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.list"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "articles"
     }
   }
 }
