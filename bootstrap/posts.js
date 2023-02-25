@@ -102,6 +102,7 @@ async function mapPost(post, parentFolderId) {
       category: post.categories[0],
       tags: tags,
       publishedAt: post.date,
+      createdAt: post.date,
     }
   };
 }
