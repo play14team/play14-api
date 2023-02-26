@@ -8,6 +8,7 @@ const {
 } = require('./upload.js');
 const {
   yaml2json,
+  sanitizeMarkdown,
   mapPlayers,
   uploadImages,
   getDefaultImage,
@@ -96,7 +97,8 @@ async function mapGame(game, parentFolderId) {
   const resources = await mapFiles(game.resources, parentFolderId);
   const safety = mapSafety(game.safety);
   const ratings = mapRatings(game.ratings)
-  const htmlContent = markdownConverter.makeHtml(game.content);
+  const sanitized = sanitizeMarkdown(game.content);
+  const htmlContent = markdownConverter.makeHtml(sanitized);
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
 
   return {

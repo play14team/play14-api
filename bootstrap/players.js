@@ -3,7 +3,7 @@
 const path = require("path");
 const fs = require("fs");
 const { ensureFolder, uploadFile } = require('./upload.js');
-const { yaml2json, mapSocialNetworks } = require('./utilities.js');
+const { yaml2json, sanitizeMarkdown, mapSocialNetworks } = require('./utilities.js');
 const { toSlug, capitalize } = require('../src/libs/strings');
 const showdown  = require('showdown');
 
@@ -78,7 +78,8 @@ async function uploadAvatar(player, folderId) {
 }
 
 function mapPlayer(player, avatar) {
-  const htmlContent = markdownConverter.makeHtml(player.content);
+  const sanitized = sanitizeMarkdown(player.content);
+  const htmlContent = markdownConverter.makeHtml(sanitized);
 
     return {
         data: {

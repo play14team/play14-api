@@ -1,7 +1,7 @@
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const { normalize } = require('../src/libs/strings')
 
-const mapboxAccessToken = process.env.MAPBOX_ACCESS_TOKEN;
+const mapboxAccessToken = process.env.STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN;
 const rejectedAccuracy = ["street", "approximate", "intersection"];
 
 async function geocodeAddress(address) {

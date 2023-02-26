@@ -16,6 +16,6 @@ images:
 enableComments: true
 ---
 
-Our friend [Mark Webb](https://www.linkedin.com/in/webby) publish an interview of [Flick Hardingham](https://twitter.com/chasingdots), who has been using games extensively to foster creativity.
+Our friend [Mark Webb](https://www.linkedin.com/in/webby) published an interview of [Flick Hardingham](https://twitter.com/chasingdots), who has been using games extensively to foster creativity.
 
 Read the complete interview on [Mark's blog](http://britesparx.com/interview-with-flick-hardingham-on-using-games-for-learning)

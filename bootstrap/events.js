@@ -4,7 +4,7 @@ const path = require("path");
 const fs = require("fs");
 const showdown = require('showdown');
 const { ensureFolder } = require('./upload.js');
-const { yaml2json, mapPlayers, uploadImages, getDefaultImage, uploadContentImages } = require('./utilities.js');
+const { yaml2json, sanitizeMarkdown, mapPlayers, uploadImages, getDefaultImage, uploadContentImages } = require('./utilities.js');
 const { eventToSlug, capitalize, normalize } = require('../src/libs/strings');
 const { getCountryFromCity, geocodeAddress, getCountryCode, getAddress, getArea } = require('./geocode')
 const { Mutex } = require('async-mutex');
@@ -110,7 +110,8 @@ async function mapEvent(event, parentFolderId) {
   const players = await mapPlayersFromEvent(event.title);
   const sponsorships = await mapSponsors(event.sponsors);
 
-  const htmlContent = markdownConverter.makeHtml(event.content);
+  const sanitized = sanitizeMarkdown(event.content);
+  const htmlContent = markdownConverter.makeHtml(sanitized);
   const newHtmlContent = await uploadContentImages(htmlContent, imagesFolderId);
 
   return {
@@ -230,6 +231,10 @@ function mapRegistration(registration) {
 
 async function mapVenue(location) {
   const apiName = 'api::venue.venue';
+
+  if (location == "TBD" || (location && location.name === "TBD"))
+    return null;
+
   let venue = {};
 
   if (location && location.name) {
@@ -258,10 +263,10 @@ async function mapVenue(location) {
         name: name,
         address: location.address,
         area: location.area,
-        country: countryCode,
         embeddedMapUrl: location.map,
         website: location.url,
-        location: geocode,
+        location: venue ? venue.location : geocode,
+        country: venue ? venue.country : countryCode,
       }
     };
     if (!venue) {
