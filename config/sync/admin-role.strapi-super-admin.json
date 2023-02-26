@@ -255,6 +255,68 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::expectation.expectation",
+      "properties": {
+        "fields": [
+          "title",
+          "type",
+          "icon",
+          "content"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::expectation.expectation",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::expectation.expectation",
+      "properties": {
+        "fields": [
+          "title",
+          "type",
+          "icon",
+          "content"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::expectation.expectation",
+      "properties": {
+        "fields": [
+          "title",
+          "type",
+          "icon",
+          "content"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::game.game",
       "properties": {
         "fields": [
