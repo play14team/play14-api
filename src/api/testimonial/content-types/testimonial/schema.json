@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "content": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "audio": {
       "type": "media",
