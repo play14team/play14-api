@@ -1739,6 +1739,184 @@
       "plugin": "users-permissions",
       "globalId": "UsersPermissionsUser"
     },
+    "api::article.article": {
+      "kind": "collectionType",
+      "collectionName": "articles",
+      "info": {
+        "singularName": "article",
+        "pluralName": "articles",
+        "displayName": "Article",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": true
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "uid",
+          "targetField": "title"
+        },
+        "author": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::player.player"
+        },
+        "cannonical": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "text"
+        },
+        "defaultImage": {
+          "type": "media",
+          "multiple": false,
+          "required": true,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "images": {
+          "type": "media",
+          "multiple": true,
+          "required": true,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "content": {
+          "type": "richtext"
+        },
+        "category": {
+          "type": "enumeration",
+          "enum": [
+            "Announcement",
+            "Article",
+            "Event",
+            "Interview",
+            "Meetup"
+          ]
+        },
+        "tags": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::tag.tag",
+          "inversedBy": "articles"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "publishedAt": {
+          "type": "datetime",
+          "configurable": false,
+          "writable": true,
+          "visible": false
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "articles",
+        "info": {
+          "singularName": "article",
+          "pluralName": "articles",
+          "displayName": "Article",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "uid",
+            "targetField": "title"
+          },
+          "author": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::player.player"
+          },
+          "cannonical": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "text"
+          },
+          "defaultImage": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "images": {
+            "type": "media",
+            "multiple": true,
+            "required": true,
+            "allowedTypes": [
+              "images"
+            ]
+          },
+          "content": {
+            "type": "richtext"
+          },
+          "category": {
+            "type": "enumeration",
+            "enum": [
+              "Announcement",
+              "Article",
+              "Event",
+              "Interview",
+              "Meetup"
+            ]
+          },
+          "tags": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::tag.tag",
+            "inversedBy": "articles"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "article",
+      "connection": "default",
+      "uid": "api::article.article",
+      "apiName": "article",
+      "globalId": "Article",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::event.event": {
       "kind": "collectionType",
       "collectionName": "events",
@@ -3322,6 +3500,190 @@
       "uid": "api::sponsor.sponsor",
       "apiName": "sponsor",
       "globalId": "Sponsor",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::tag.tag": {
+      "kind": "collectionType",
+      "collectionName": "tags",
+      "info": {
+        "singularName": "tag",
+        "pluralName": "tags",
+        "displayName": "Tag"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "value": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "articles": {
+          "type": "relation",
+          "relation": "manyToMany",
+          "target": "api::article.article",
+          "mappedBy": "tags"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "tags",
+        "info": {
+          "singularName": "tag",
+          "pluralName": "tags",
+          "displayName": "Tag"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "value": {
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "articles": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::article.article",
+            "mappedBy": "tags"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "tag",
+      "connection": "default",
+      "uid": "api::tag.tag",
+      "apiName": "tag",
+      "globalId": "Tag",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::testimonial.testimonial": {
+      "kind": "collectionType",
+      "collectionName": "testimonials",
+      "info": {
+        "singularName": "testimonial",
+        "pluralName": "testimonials",
+        "displayName": "Testimonial",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "content": {
+          "type": "text"
+        },
+        "audio": {
+          "type": "media",
+          "multiple": false,
+          "required": false,
+          "allowedTypes": [
+            "audios"
+          ]
+        },
+        "author": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::player.player"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "testimonials",
+        "info": {
+          "singularName": "testimonial",
+          "pluralName": "testimonials",
+          "displayName": "Testimonial",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "content": {
+            "type": "text"
+          },
+          "audio": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+              "audios"
+            ]
+          },
+          "author": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::player.player"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "testimonial",
+      "connection": "default",
+      "uid": "api::testimonial.testimonial",
+      "apiName": "testimonial",
+      "globalId": "Testimonial",
       "actions": {},
       "lifecycles": {}
     },

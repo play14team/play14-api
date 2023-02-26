@@ -4,6 +4,9 @@
   "type": "public",
   "permissions": [
     {
+      "action": "api::article.article.find"
+    },
+    {
       "action": "api::event-location.event-location.find"
     },
     {
@@ -32,6 +35,9 @@
     },
     {
       "action": "api::player.player.findOne"
+    },
+    {
+      "action": "api::tag.tag.find"
     },
     {
       "action": "api::venue.venue.find"

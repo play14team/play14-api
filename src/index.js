@@ -5,6 +5,7 @@ const players = require('../bootstrap/players')
 const events = require('../bootstrap/events')
 const games = require('../bootstrap/games')
 const posts = require('../bootstrap/posts')
+const testimonials = require('../bootstrap/testimonials')
 
 module.exports = {
   /**
@@ -33,6 +34,7 @@ module.exports = {
         // await events.importData();
         // await games.importData();
         // await posts.importData();
+        // await testimonials.importData();
       }, 1500);
     }
   },
