@@ -71,7 +71,8 @@ async function mapTestimonial(testimonial, parentFolderId) {
 async function mapAudio(audio, folderId) {
   if (audio) {
     const filePath = path.join(bootstrapDir, audio);
-    return await uploadFile(audio, folderId, filePath);
+    const name = path.basename(audio);
+    return await uploadFile(name, folderId, filePath);
   }
 }
 

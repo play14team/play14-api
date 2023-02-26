@@ -36,7 +36,7 @@ module.exports = {
         // await games.importData();
         // await posts.importData();
         // await testimonials.importData();
-        // expectations.importData();
+        // await expectations.importData();
       }, 1500);
     }
   },

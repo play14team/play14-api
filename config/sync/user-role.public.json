@@ -10,19 +10,13 @@
       "action": "api::event-location.event-location.find"
     },
     {
-      "action": "api::event-location.event-location.findOne"
-    },
-    {
       "action": "api::event.event.find"
     },
     {
-      "action": "api::event.event.findOne"
+      "action": "api::expectation.expectation.find"
     },
     {
       "action": "api::game.game.find"
-    },
-    {
-      "action": "api::game.game.findOne"
     },
     {
       "action": "api::history.history.find"
@@ -34,16 +28,13 @@
       "action": "api::player.player.find"
     },
     {
-      "action": "api::player.player.findOne"
-    },
-    {
       "action": "api::tag.tag.find"
     },
     {
-      "action": "api::venue.venue.find"
+      "action": "api::testimonial.testimonial.find"
     },
     {
-      "action": "api::venue.venue.findOne"
+      "action": "api::venue.venue.find"
     },
     {
       "action": "plugin::fuzzy-search.searchController.search"
