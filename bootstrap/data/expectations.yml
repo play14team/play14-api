@@ -16,9 +16,9 @@ other:
   - icon_class: fa fa-graduation-cap
     title: Unconference
     desc: >
-      <p>An unconference is a conference format where attendees are also session contributors.</p> 
-      <p>There are some simple <a href='http://en.wikipedia.org/wiki/Open_Space_Technology#Guiding_principles_and_one_law' target='_blank'>rules for participants</a>. 
-      They will be explained during the first evening plenary welcome speech, but usually, participants create the schedule during a marketplace session taking place at the beginning of each day.</p> 
+      <p>An unconference is a conference format where attendees are also session contributors.</p>
+      <p>There are some simple <a href='http://en.wikipedia.org/wiki/Open_Space_Technology#Guiding_principles_and_one_law' target='_blank'>rules for participants</a>.
+      They will be explained during the first evening plenary welcome speech, but usually, participants create the schedule during a marketplace session taking place at the beginning of each day.</p>
       <p>Anyone who wants to initiate a topic can claim a time slot in the agenda.</p>
   - icon_class: fa fa-calendar
     title: Schedule
@@ -42,3 +42,8 @@ other:
       "Gather with like-minded people on the unconference format. This means no slideshows, no rockstar sessions in push mode, but collaborative sessions where people get the opportunity to learn and practice but also discuss and challenge.
       <p>So, bring the materials you need to organize and facilitate the learning activities you already know in order to share them actively with your peers in a learning-by-doing and collaborative mindset.</p>
       <p>English will be used in all general communications, but we would like to let the session leaders decide which language to use in their session.</p>"
+
+  - icon_class: fa fa-shield
+    title: Safety
+    desc:
+      "One of the main objectives of #play14 is to provide a safe place for people to experiment. That means the event is designed to allow you to get as much fun as possible while learning and sharing. Therefore, the #play14 hosting teams try to encourage psychological safety and well as physical safety as much as possible."
