@@ -69,16 +69,11 @@ async function createOrUpdateLocation(location, shortName) {
 
 async function mapVenue(location, shortName) {
   const geocode = await geocodeAddress(location.address);
-  const countryCode = getCountryCode(geocode);
 
     return {
         data: {
             shortName: shortName,
             name: location.name,
-            address: location.address,
-            area: location.area,
-            country: countryCode,
-            embeddedMapUrl: location.map,
             website: location.url,
             location: geocode,
         }

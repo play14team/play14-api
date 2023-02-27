@@ -23,21 +23,6 @@
       "unique": true,
       "required": true
     },
-    "area": {
-      "type": "string"
-    },
-    "address": {
-      "type": "string"
-    },
-    "country": {
-      "pluginOptions": {},
-      "type": "customField",
-      "customField": "plugin::country-select.country"
-    },
-    "embeddedMapUrl": {
-      "pluginOptions": {},
-      "type": "text"
-    },
     "logo": {
       "type": "media",
       "multiple": false,

@@ -42,18 +42,8 @@
     "bio": {
       "type": "richtext"
     },
-    "city": {
-      "type": "string"
-    },
-    "country": {
-      "type": "customField",
-      "customField": "plugin::country-select.country"
-    },
     "website": {
       "type": "string"
-    },
-    "embeddedMapUrl": {
-      "type": "text"
     },
     "avatar": {
       "type": "media",
