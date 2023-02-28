@@ -175,6 +175,40 @@ module.exports = ({ env }) => ({
             ],
           },
         },
+        {
+          uid: "api::article.article",
+          modelName: "article",
+          fuzzysortOptions: {
+            characterLimit: 200,
+            threshold: -200,
+            keys: [
+              {
+                name: "title",
+                weight: 500,
+              },
+              {
+                name: "slug",
+                weight: 400,
+              },
+              {
+                name: "category",
+                weight: 300,
+              },
+              {
+                name: "tags",
+                weight: 200,
+              },
+              {
+                name: "summary",
+                weight: 100,
+              },
+              {
+                name: "content",
+                weight: -100,
+              },
+            ],
+          },
+        },
       ],
     },
   },
