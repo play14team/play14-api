@@ -317,6 +317,71 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::format.format",
+      "properties": {
+        "fields": [
+          "openspace",
+          "lawOfTwoFeet",
+          "butterfly",
+          "bumblebee",
+          "schedule"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::format.format",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::format.format",
+      "properties": {
+        "fields": [
+          "openspace",
+          "lawOfTwoFeet",
+          "butterfly",
+          "bumblebee",
+          "schedule"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::format.format",
+      "properties": {
+        "fields": [
+          "openspace",
+          "lawOfTwoFeet",
+          "butterfly",
+          "bumblebee",
+          "schedule"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::game.game",
       "properties": {
         "fields": [
@@ -574,6 +639,59 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::hosting.hosting",
+      "properties": {
+        "fields": [
+          "content"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::hosting.hosting",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::hosting.hosting",
+      "properties": {
+        "fields": [
+          "content"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::hosting.hosting",
+      "properties": {
+        "fields": [
+          "content"
+        ],
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::player.player",
       "properties": {
         "fields": [
@@ -583,10 +701,7 @@
           "company",
           "tagline",
           "bio",
-          "city",
-          "country",
           "website",
-          "embeddedMapUrl",
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
@@ -618,10 +733,7 @@
           "company",
           "tagline",
           "bio",
-          "city",
-          "country",
           "website",
-          "embeddedMapUrl",
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
@@ -647,10 +759,7 @@
           "company",
           "tagline",
           "bio",
-          "city",
-          "country",
           "website",
-          "embeddedMapUrl",
           "avatar",
           "socialNetworks.url",
           "socialNetworks.type",
@@ -801,10 +910,6 @@
         "fields": [
           "name",
           "shortName",
-          "area",
-          "address",
-          "country",
-          "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
@@ -829,10 +934,6 @@
         "fields": [
           "name",
           "shortName",
-          "area",
-          "address",
-          "country",
-          "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",
@@ -851,10 +952,6 @@
         "fields": [
           "name",
           "shortName",
-          "area",
-          "address",
-          "country",
-          "embeddedMapUrl",
           "logo",
           "website",
           "socialNetworks.url",

@@ -263,23 +263,20 @@
       "subject": "api::player.player",
       "properties": {
         "fields": [
-          "attended",
-          "avatar",
-          "bio",
-          "city",
+          "name",
+          "slug",
+          "position",
           "company",
-          "country",
-          "embeddedMapUrl",
+          "tagline",
+          "bio",
+          "website",
+          "avatar",
+          "socialNetworks.url",
+          "socialNetworks.type",
+          "attended",
           "hosted",
           "mentored",
-          "name",
-          "position",
-          "slug",
-          "socialNetworks.type",
-          "socialNetworks.url",
-          "tagline",
-          "user",
-          "website"
+          "user"
         ]
       },
       "conditions": []
@@ -295,23 +292,20 @@
       "subject": "api::player.player",
       "properties": {
         "fields": [
-          "attended",
-          "avatar",
-          "bio",
-          "city",
+          "name",
+          "slug",
+          "position",
           "company",
-          "country",
-          "embeddedMapUrl",
+          "tagline",
+          "bio",
+          "website",
+          "avatar",
+          "socialNetworks.url",
+          "socialNetworks.type",
+          "attended",
           "hosted",
           "mentored",
-          "name",
-          "position",
-          "slug",
-          "socialNetworks.type",
-          "socialNetworks.url",
-          "tagline",
-          "user",
-          "website"
+          "user"
         ]
       },
       "conditions": []
@@ -321,23 +315,20 @@
       "subject": "api::player.player",
       "properties": {
         "fields": [
-          "attended",
-          "avatar",
-          "bio",
-          "city",
+          "name",
+          "slug",
+          "position",
           "company",
-          "country",
-          "embeddedMapUrl",
+          "tagline",
+          "bio",
+          "website",
+          "avatar",
+          "socialNetworks.url",
+          "socialNetworks.type",
+          "attended",
           "hosted",
           "mentored",
-          "name",
-          "position",
-          "slug",
-          "socialNetworks.type",
-          "socialNetworks.url",
-          "tagline",
-          "user",
-          "website"
+          "user"
         ]
       },
       "conditions": []
@@ -395,17 +386,13 @@
       "subject": "api::venue.venue",
       "properties": {
         "fields": [
-          "address",
-          "area",
-          "country",
-          "embeddedMapUrl",
-          "events",
-          "logo",
           "name",
           "shortName",
-          "socialNetworks.type",
+          "logo",
+          "website",
           "socialNetworks.url",
-          "website"
+          "socialNetworks.type",
+          "events"
         ]
       },
       "conditions": []
@@ -421,17 +408,13 @@
       "subject": "api::venue.venue",
       "properties": {
         "fields": [
-          "address",
-          "area",
-          "country",
-          "embeddedMapUrl",
-          "events",
-          "logo",
           "name",
           "shortName",
-          "socialNetworks.type",
+          "logo",
+          "website",
           "socialNetworks.url",
-          "website"
+          "socialNetworks.type",
+          "events"
         ]
       },
       "conditions": []
@@ -441,17 +424,13 @@
       "subject": "api::venue.venue",
       "properties": {
         "fields": [
-          "address",
-          "area",
-          "country",
-          "embeddedMapUrl",
-          "events",
-          "logo",
           "name",
           "shortName",
-          "socialNetworks.type",
+          "logo",
+          "website",
           "socialNetworks.url",
-          "website"
+          "socialNetworks.type",
+          "events"
         ]
       },
       "conditions": []

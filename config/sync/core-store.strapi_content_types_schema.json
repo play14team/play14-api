@@ -2563,6 +2563,176 @@
       "actions": {},
       "lifecycles": {}
     },
+    "api::format.format": {
+      "kind": "singleType",
+      "collectionName": "formats",
+      "info": {
+        "singularName": "format",
+        "pluralName": "formats",
+        "displayName": "Format",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "openspace": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "lawOfTwoFeet": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "butterfly": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "bumblebee": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "schedule": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::format.format"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        }
+      },
+      "__schema__": {
+        "collectionName": "formats",
+        "info": {
+          "singularName": "format",
+          "pluralName": "formats",
+          "displayName": "Format",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "openspace": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          },
+          "lawOfTwoFeet": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          },
+          "butterfly": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          },
+          "bumblebee": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          },
+          "schedule": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "format",
+      "connection": "default",
+      "uid": "api::format.format",
+      "apiName": "format",
+      "globalId": "Format",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::game.game": {
       "kind": "collectionType",
       "collectionName": "games",
@@ -2668,7 +2838,7 @@
             }
           },
           "component": "shared.list",
-          "required": true
+          "required": false
         },
         "preparationSteps": {
           "type": "component",
@@ -2679,7 +2849,7 @@
             }
           },
           "component": "shared.list",
-          "required": true
+          "required": false
         },
         "safety": {
           "type": "component",
@@ -2690,7 +2860,7 @@
             }
           },
           "component": "shared.dictionary",
-          "required": true
+          "required": false
         },
         "defaultImage": {
           "type": "media",
@@ -2923,7 +3093,7 @@
               }
             },
             "component": "shared.list",
-            "required": true
+            "required": false
           },
           "preparationSteps": {
             "type": "component",
@@ -2934,7 +3104,7 @@
               }
             },
             "component": "shared.list",
-            "required": true
+            "required": false
           },
           "safety": {
             "type": "component",
@@ -2945,7 +3115,7 @@
               }
             },
             "component": "shared.dictionary",
-            "required": true
+            "required": false
           },
           "defaultImage": {
             "type": "media",
@@ -3311,6 +3481,110 @@
       "actions": {},
       "lifecycles": {}
     },
+    "api::hosting.hosting": {
+      "kind": "singleType",
+      "collectionName": "hostings",
+      "info": {
+        "singularName": "hosting",
+        "pluralName": "hostings",
+        "displayName": "Hosting"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "content": {
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          },
+          "type": "richtext"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::hosting.hosting"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        }
+      },
+      "__schema__": {
+        "collectionName": "hostings",
+        "info": {
+          "singularName": "hosting",
+          "pluralName": "hostings",
+          "displayName": "Hosting"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "content": {
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            },
+            "type": "richtext"
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "hosting",
+      "connection": "default",
+      "uid": "api::hosting.hosting",
+      "apiName": "hosting",
+      "globalId": "Hosting",
+      "actions": {},
+      "lifecycles": {}
+    },
     "api::player.player": {
       "kind": "collectionType",
       "collectionName": "players",
@@ -3355,18 +3629,8 @@
         "bio": {
           "type": "richtext"
         },
-        "city": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
         "website": {
           "type": "string"
-        },
-        "embeddedMapUrl": {
-          "type": "text"
         },
         "avatar": {
           "type": "media",
@@ -3491,18 +3755,8 @@
           "bio": {
             "type": "richtext"
           },
-          "city": {
-            "type": "string"
-          },
-          "country": {
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
           "website": {
             "type": "string"
-          },
-          "embeddedMapUrl": {
-            "type": "text"
           },
           "avatar": {
             "type": "media",
@@ -3774,7 +4028,8 @@
       "pluginOptions": {},
       "attributes": {
         "content": {
-          "type": "text"
+          "type": "text",
+          "required": true
         },
         "audio": {
           "type": "media",
@@ -3830,7 +4085,8 @@
         "pluginOptions": {},
         "attributes": {
           "content": {
-            "type": "text"
+            "type": "text",
+            "required": true
           },
           "audio": {
             "type": "media",
@@ -3881,21 +4137,6 @@
           "type": "string",
           "unique": true,
           "required": true
-        },
-        "area": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "country": {
-          "pluginOptions": {},
-          "type": "string",
-          "customField": "plugin::country-select.country"
-        },
-        "embeddedMapUrl": {
-          "pluginOptions": {},
-          "type": "text"
         },
         "logo": {
           "type": "media",
@@ -3979,21 +4220,6 @@
             "type": "string",
             "unique": true,
             "required": true
-          },
-          "area": {
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
-          "country": {
-            "pluginOptions": {},
-            "type": "customField",
-            "customField": "plugin::country-select.country"
-          },
-          "embeddedMapUrl": {
-            "pluginOptions": {},
-            "type": "text"
           },
           "logo": {
             "type": "media",

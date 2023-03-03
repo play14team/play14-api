@@ -104,34 +104,6 @@
           "sortable": false
         }
       },
-      "city": {
-        "edit": {
-          "label": "city",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "city",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "country": {
-        "edit": {
-          "label": "country",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "country",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "website": {
         "edit": {
           "label": "website",
@@ -142,20 +114,6 @@
         },
         "list": {
           "label": "website",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "embeddedMapUrl": {
-        "edit": {
-          "label": "embeddedMapUrl",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "embeddedMapUrl",
           "searchable": true,
           "sortable": true
         }
@@ -322,6 +280,13 @@
       }
     },
     "layouts": {
+      "list": [
+        "name",
+        "slug",
+        "position",
+        "avatar",
+        "company"
+      ],
       "edit": [
         [
           {
@@ -409,13 +374,6 @@
             "size": 6
           }
         ]
-      ],
-      "list": [
-        "name",
-        "slug",
-        "position",
-        "avatar",
-        "company"
       ]
     }
   },

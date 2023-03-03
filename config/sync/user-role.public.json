@@ -16,6 +16,9 @@
       "action": "api::expectation.expectation.find"
     },
     {
+      "action": "api::format.format.find"
+    },
+    {
       "action": "api::game.game.find"
     },
     {
@@ -23,6 +26,9 @@
     },
     {
       "action": "api::home.home.find"
+    },
+    {
+      "action": "api::hosting.hosting.find"
     },
     {
       "action": "api::player.player.find"
