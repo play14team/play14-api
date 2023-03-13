@@ -21,7 +21,7 @@
       "pluginOptions": {},
       "type": "string",
       "unique": true,
-      "required": true
+      "required": false
     },
     "logo": {
       "type": "media",

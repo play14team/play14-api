@@ -41,9 +41,6 @@ module.exports = ({ env }) => ({
       defaultDepth: 3, // Default is 5
     }
   },
-  'import-export-entries': {
-    enabled: true,
-  },
   'strapi-blurhash': {
     enabled: true,
   },
