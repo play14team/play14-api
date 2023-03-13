@@ -5,6 +5,11 @@ module.exports = ({ env }) => ({
   apiToken: {
     salt: env('API_TOKEN_SALT'),
   },
+  transfer: {
+    token: {
+      salt: env('TRANSFER_TOKEN_SALT'),
+    },
+  },
   forgotPassword: {
     from: 'admin@play14.org',
     replyTo: 'admin@play14.org',
