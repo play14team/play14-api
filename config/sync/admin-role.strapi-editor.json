@@ -10,6 +10,7 @@
         "fields": [
           "country",
           "events",
+          "location",
           "name",
           "slug"
         ]
@@ -29,6 +30,7 @@
         "fields": [
           "country",
           "events",
+          "location",
           "name",
           "slug"
         ]
@@ -42,6 +44,7 @@
         "fields": [
           "country",
           "events",
+          "location",
           "name",
           "slug"
         ]
@@ -183,18 +186,31 @@
     },
     {
       "action": "plugin::content-manager.explorer.create",
-      "subject": "api::history.history",
+      "subject": "api::game.game",
       "properties": {
         "fields": [
-          "founders",
-          "intro",
-          "items.additionalText",
-          "items.date",
-          "items.dateFormat",
-          "items.description",
-          "items.image",
-          "items.title",
-          "keyMoments"
+          "category",
+          "credits",
+          "defaultImage",
+          "description",
+          "documentedBy",
+          "firstPlayedAt",
+          "images",
+          "materials.value",
+          "name",
+          "preparationSteps.value",
+          "proposedBy",
+          "ratings.connection",
+          "ratings.energy",
+          "ratings.silliness",
+          "resources",
+          "safety.key",
+          "safety.value",
+          "scale",
+          "slug",
+          "summary",
+          "tags.value",
+          "timebox"
         ],
         "locales": [
           "en",
@@ -205,7 +221,18 @@
     },
     {
       "action": "plugin::content-manager.explorer.delete",
-      "subject": "api::history.history",
+      "subject": "api::game.game",
+      "properties": {
+        "locales": [
+          "en",
+          "fr"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::game.game",
       "properties": {
         "locales": [
           "en",
@@ -216,18 +243,31 @@
     },
     {
       "action": "plugin::content-manager.explorer.read",
-      "subject": "api::history.history",
+      "subject": "api::game.game",
       "properties": {
         "fields": [
-          "founders",
-          "intro",
-          "items.additionalText",
-          "items.date",
-          "items.dateFormat",
-          "items.description",
-          "items.image",
-          "items.title",
-          "keyMoments"
+          "category",
+          "credits",
+          "defaultImage",
+          "description",
+          "documentedBy",
+          "firstPlayedAt",
+          "images",
+          "materials.value",
+          "name",
+          "preparationSteps.value",
+          "proposedBy",
+          "ratings.connection",
+          "ratings.energy",
+          "ratings.silliness",
+          "resources",
+          "safety.key",
+          "safety.value",
+          "scale",
+          "slug",
+          "summary",
+          "tags.value",
+          "timebox"
         ],
         "locales": [
           "en",
@@ -238,18 +278,31 @@
     },
     {
       "action": "plugin::content-manager.explorer.update",
-      "subject": "api::history.history",
+      "subject": "api::game.game",
       "properties": {
         "fields": [
-          "founders",
-          "intro",
-          "items.additionalText",
-          "items.date",
-          "items.dateFormat",
-          "items.description",
-          "items.image",
-          "items.title",
-          "keyMoments"
+          "category",
+          "credits",
+          "defaultImage",
+          "description",
+          "documentedBy",
+          "firstPlayedAt",
+          "images",
+          "materials.value",
+          "name",
+          "preparationSteps.value",
+          "proposedBy",
+          "ratings.connection",
+          "ratings.energy",
+          "ratings.silliness",
+          "resources",
+          "safety.key",
+          "safety.value",
+          "scale",
+          "slug",
+          "summary",
+          "tags.value",
+          "timebox"
         ],
         "locales": [
           "en",
@@ -263,20 +316,23 @@
       "subject": "api::player.player",
       "properties": {
         "fields": [
-          "name",
-          "slug",
-          "position",
-          "company",
-          "tagline",
-          "bio",
-          "website",
-          "avatar",
-          "socialNetworks.url",
-          "socialNetworks.type",
           "attended",
+          "avatar",
+          "bio",
+          "company",
+          "documented",
           "hosted",
+          "location",
           "mentored",
-          "user"
+          "name",
+          "position",
+          "proposed",
+          "slug",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "tagline",
+          "user",
+          "website"
         ]
       },
       "conditions": []
@@ -292,20 +348,23 @@
       "subject": "api::player.player",
       "properties": {
         "fields": [
-          "name",
-          "slug",
-          "position",
-          "company",
-          "tagline",
-          "bio",
-          "website",
-          "avatar",
-          "socialNetworks.url",
-          "socialNetworks.type",
           "attended",
+          "avatar",
+          "bio",
+          "company",
+          "documented",
           "hosted",
+          "location",
           "mentored",
-          "user"
+          "name",
+          "position",
+          "proposed",
+          "slug",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "tagline",
+          "user",
+          "website"
         ]
       },
       "conditions": []
@@ -315,20 +374,23 @@
       "subject": "api::player.player",
       "properties": {
         "fields": [
-          "name",
-          "slug",
-          "position",
-          "company",
-          "tagline",
-          "bio",
-          "website",
-          "avatar",
-          "socialNetworks.url",
-          "socialNetworks.type",
           "attended",
+          "avatar",
+          "bio",
+          "company",
+          "documented",
           "hosted",
+          "location",
           "mentored",
-          "user"
+          "name",
+          "position",
+          "proposed",
+          "slug",
+          "socialNetworks.type",
+          "socialNetworks.url",
+          "tagline",
+          "user",
+          "website"
         ]
       },
       "conditions": []
@@ -386,13 +448,15 @@
       "subject": "api::venue.venue",
       "properties": {
         "fields": [
+          "addressDetails",
+          "events",
+          "location",
+          "logo",
           "name",
           "shortName",
-          "logo",
-          "website",
-          "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "socialNetworks.url",
+          "website"
         ]
       },
       "conditions": []
@@ -408,13 +472,15 @@
       "subject": "api::venue.venue",
       "properties": {
         "fields": [
+          "addressDetails",
+          "events",
+          "location",
+          "logo",
           "name",
           "shortName",
-          "logo",
-          "website",
-          "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "socialNetworks.url",
+          "website"
         ]
       },
       "conditions": []
@@ -424,13 +490,15 @@
       "subject": "api::venue.venue",
       "properties": {
         "fields": [
+          "addressDetails",
+          "events",
+          "location",
+          "logo",
           "name",
           "shortName",
-          "logo",
-          "website",
-          "socialNetworks.url",
           "socialNetworks.type",
-          "events"
+          "socialNetworks.url",
+          "website"
         ]
       },
       "conditions": []

@@ -279,6 +279,20 @@
           "sortable": false
         }
       },
+      "timezone": {
+        "edit": {
+          "label": "Timezone",
+          "description": "Select a timezone",
+          "placeholder": "timezone",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "timezone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -327,6 +341,12 @@
           },
           {
             "name": "end",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "timezone",
             "size": 6
           }
         ],

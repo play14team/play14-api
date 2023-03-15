@@ -149,6 +149,16 @@
       "relation": "manyToMany",
       "target": "api::player.player",
       "mappedBy": "attended"
+    },
+    "timezone": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "customField",
+      "required": false,
+      "customField": "plugin::timezone-select.timezone"
     }
   }
 }
