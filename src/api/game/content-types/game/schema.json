@@ -156,9 +156,12 @@
     "resources": {
       "type": "media",
       "multiple": true,
-      "required": true,
+      "required": false,
       "allowedTypes": [
-        "files"
+        "files",
+        "images",
+        "videos",
+        "audios"
       ],
       "pluginOptions": {
         "i18n": {
@@ -184,7 +187,7 @@
         }
       },
       "component": "shared.list",
-      "required": true
+      "required": false
     },
     "credits": {
       "pluginOptions": {
@@ -203,7 +206,7 @@
         }
       },
       "component": "games.ratings",
-      "required": true
+      "required": false
     }
   }
 }
