@@ -8,7 +8,7 @@ bio: "Management of the Resonanz Lab"
 avatar: /images/players/NinaNeef.jpg
 socials:
   - name: linkedin
-    url : in/nina-neef-8313043//
+    url : in/nina-neef-8313043/
 
 events:
   - Berlin 2017
