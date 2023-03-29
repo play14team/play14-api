@@ -8,6 +8,7 @@ const { eventToSlug } = require('../../../../libs/strings')
  */
 
 function validate(data) {
+  if (!data || !data.name || !data.start) return;
   const slug = eventToSlug(data.name, data.start);
   if (data.slug != slug) {
     data.slug = slug;
