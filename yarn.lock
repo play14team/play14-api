@@ -2131,6 +2131,20 @@
     is-plain-obj "^1.1.0"
     xtend "^4.0.1"
 
+"@mapbox/mapbox-sdk@^0.15.2":
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-sdk/-/mapbox-sdk-0.15.2.tgz#3a9e6ea2e6c67b573d404396b8a708b93c1da610"
+  integrity sha512-pvHKqy6FnN4nAOxUtn4GdKJappNifxe5j/mKtDe7xhtqNwUBx9umWQFfnq3arLEu1kgCQKR4W1rOCkvprEreTg==
+  dependencies:
+    "@mapbox/fusspot" "^0.4.0"
+    "@mapbox/parse-mapbox-token" "^0.2.0"
+    "@mapbox/polyline" "^1.0.0"
+    eventemitter3 "^3.1.0"
+    form-data "^3.0.0"
+    got "^11.8.5"
+    is-plain-obj "^1.1.0"
+    xtend "^4.0.1"
+
 "@mapbox/parse-mapbox-token@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@mapbox/parse-mapbox-token/-/parse-mapbox-token-0.2.0.tgz#34049d948868376f689189a5ea0e3cd2d9284b91"
@@ -3191,11 +3205,12 @@
     redux "^4.2.1"
     yup "^0.32.9"
 
-"@strapi/plugin-seo@^1.7.7":
-  version "1.7.7"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-1.7.7.tgz#62965e80f58163afa5eaf0c8a6e962fa8571c176"
-  integrity sha512-Fdw1j4I4h0b3p8ckdtGIirQ5QLYNAXmDnFH23Pt5xerAqQj2B/CvcY5cTWoDVqWIaj5MNfreasCVd+prwBb99g==
+"@strapi/plugin-seo@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-1.9.2.tgz#025915c919b1f880e4bd9ab835d1a884af8ef0e0"
+  integrity sha512-skqckP1ut5nshgLyLJh/aXdwxCawfNzhdA0GfHK4OLffoYIVrtBhLaGyyschJH6NfVt/0AFl2uhU16ievdz9QQ==
   dependencies:
+    date-fns "^2.29.3"
     eslint-plugin-react-hooks "^4.3.0"
     lodash "^4.17.21"
     showdown "^1.9.1"
@@ -5641,7 +5656,7 @@ data-urls@^3.0.2:
     whatwg-mimetype "^3.0.0"
     whatwg-url "^11.0.0"
 
-date-fns@2.30.0:
+date-fns@2.30.0, date-fns@^2.29.3:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.30.0.tgz#f367e644839ff57894ec6ac480de40cae4b0f4d0"
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
@@ -6764,10 +6779,10 @@ fuzzy@^0.1.1:
   resolved "https://registry.yarnpkg.com/fuzzy/-/fuzzy-0.1.3.tgz#4c76ec2ff0ac1a36a9dccf9a00df8623078d4ed8"
   integrity sha512-/gZffu4ykarLrCiP3Ygsa86UAo1E5vEVlvTrpkKywXSbP9Xhln3oSp9QSV57gEq3JFFpGJ4GZ+5zdEp3FcUh4w==
 
-fuzzysort@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/fuzzysort/-/fuzzysort-2.0.1.tgz#e1bf6abbcfeefd1191900a5f56527aa0508d6934"
-  integrity sha512-SlgbPAq0eQ6JQ1h3l4MNeGH/t9DHKH8GGM0RD/6RhmJrNnSoWt3oIVaiQm9g9BPB+wAhRMeMqlUTbhbd7+Ufcg==
+fuzzysort@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/fuzzysort/-/fuzzysort-2.0.4.tgz#a21d1ce8947eaf2797dc3b7c28c36db9d1165f84"
+  integrity sha512-Api1mJL+Ad7W7vnDZnWq5pGaXJjyencT+iKGia2PlHUcSsSzWwIQ3S1isiMpwpavjYtGd2FzhUIhnnhOULZgDw==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
@@ -9774,25 +9789,35 @@ pbf@^3.2.1:
     ieee754 "^1.1.12"
     resolve-protobuf-schema "^2.1.0"
 
-pg-connection-string@2.5.0, pg-connection-string@^2.5.0:
+pg-cloudflare@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/pg-cloudflare/-/pg-cloudflare-1.1.1.tgz#e6d5833015b170e23ae819e8c5d7eaedb472ca98"
+  integrity sha512-xWPagP/4B6BgFO+EKz3JONXv3YDgvkbVrGw2mTo3D6tVDQRh1e7cqVGvyR3BE+eQgAvx1XhW/iEASj4/jCWl3Q==
+
+pg-connection-string@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.5.0.tgz#538cadd0f7e603fc09a12590f3b8a452c2c0cf34"
   integrity sha512-r5o/V/ORTA6TmUnyWZR9nCj1klXCO2CEKNRlVuJptZe85QuhFayC7WeMic7ndayT5IRIR0S0xFxFi2ousartlQ==
+
+pg-connection-string@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.6.1.tgz#78c23c21a35dd116f48e12e23c0965e8d9e2cbfb"
+  integrity sha512-w6ZzNu6oMmIzEAYVw+RLK0+nqHPt8K3ZnknKi+g48Ak2pr3dtljJW3o+D/n2zzCG07Zoe9VOX3aiKpj+BN0pjg==
 
 pg-int8@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/pg-int8/-/pg-int8-1.0.1.tgz#943bd463bf5b71b4170115f80f8efc9a0c0eb78c"
   integrity sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
 
-pg-pool@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.5.2.tgz#ed1bed1fb8d79f1c6fd5fb1c99e990fbf9ddf178"
-  integrity sha512-His3Fh17Z4eg7oANLob6ZvH8xIVen3phEZh2QuyrIl4dQSDVEabNducv6ysROKpDNPSD+12tONZVWfSgMvDD9w==
+pg-pool@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.6.1.tgz#5a902eda79a8d7e3c928b77abf776b3cb7d351f7"
+  integrity sha512-jizsIzhkIitxCGfPRzJn1ZdcosIt3pz9Sh3V01fm1vZnbnCMgmGl5wvGGdNN2EL9Rmb0EcFoCkixH4Pu+sP9Og==
 
-pg-protocol@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.5.0.tgz#b5dd452257314565e2d54ab3c132adc46565a6a0"
-  integrity sha512-muRttij7H8TqRNu/DxrAJQITO4Ac7RmX3Klyr/9mJEOBeIpgnF8f9jAfRz5d3XwQZl5qBjF9gLsUtMPJE0vezQ==
+pg-protocol@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.6.0.tgz#4c91613c0315349363af2084608db843502f8833"
+  integrity sha512-M+PDm637OY5WM307051+bsDia5Xej6d9IR4GwJse1qA1DIhiKlksvrneZOYQq42OM+spubpcNYEo2FcKQrDk+Q==
 
 pg-types@^2.1.0:
   version "2.2.0"
@@ -9805,18 +9830,20 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@^8.7.3:
-  version "8.8.0"
-  resolved "https://registry.yarnpkg.com/pg/-/pg-8.8.0.tgz#a77f41f9d9ede7009abfca54667c775a240da686"
-  integrity sha512-UXYN0ziKj+AeNNP7VDMwrehpACThH7LUl/p8TDFpEUuSejCUIwGSfxpHsPvtM6/WXFy6SU4E5RG4IJV/TZAGjw==
+pg@^8.11.1:
+  version "8.11.1"
+  resolved "https://registry.yarnpkg.com/pg/-/pg-8.11.1.tgz#297e0eb240306b1e9e4f55af8a3bae76ae4810b1"
+  integrity sha512-utdq2obft07MxaDg0zBJI+l/M3mBRfIpEN3iSemsz0G5F2/VXx+XzqF4oxrbIZXQxt2AZzIUzyVg/YM6xOP/WQ==
   dependencies:
     buffer-writer "2.0.0"
     packet-reader "1.0.0"
-    pg-connection-string "^2.5.0"
-    pg-pool "^3.5.2"
-    pg-protocol "^1.5.0"
+    pg-connection-string "^2.6.1"
+    pg-pool "^3.6.1"
+    pg-protocol "^1.6.0"
     pg-types "^2.1.0"
     pgpass "1.x"
+  optionalDependencies:
+    pg-cloudflare "^1.1.1"
 
 pgpass@1.x:
   version "1.0.5"
@@ -11417,10 +11444,10 @@ strapi-blurhash@^1.0.2:
   dependencies:
     plaiceholder "^2.5.0"
 
-strapi-plugin-config-sync@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-config-sync/-/strapi-plugin-config-sync-1.1.0.tgz#a3b5a794360e283eb4698838e49e7456efefd6c4"
-  integrity sha512-oYl96k4tu4DQ3w7e46160zICTBtNziOqjjIbeDtfQ59wzDcennv21NMVNWpyvT4rXm+ZGO3RyyKzvhE7sMbkzQ==
+strapi-plugin-config-sync@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-config-sync/-/strapi-plugin-config-sync-1.1.2.tgz#e946d724bc7f89f547e1a97c12c2eb65ed5c26d1"
+  integrity sha512-hdalQyPRdeGKhPLLk56uHqZNN1Ha7IstCGatGSW0pI64D9z8tNsik5Lz6GGC0zvwukQvf8rS8BGcg91tNaPonw==
   dependencies:
     chalk "^4.1.2"
     cli-table "^0.3.6"
@@ -11439,12 +11466,12 @@ strapi-plugin-country-select@^1.0.0:
   dependencies:
     i18n-iso-countries "^7.5.0"
 
-strapi-plugin-fuzzy-search@^1.10.2:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-fuzzy-search/-/strapi-plugin-fuzzy-search-1.10.2.tgz#21e841425ecec96c030ef7af20334e23f1b3954c"
-  integrity sha512-wJwKh3f0nn0e68oHhKQKcgycedsvB0xX5tteE39VQDjmleWRWik8C3a923FYJumAG05/oF9SyhnIRtcDDY2XvA==
+strapi-plugin-fuzzy-search@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-fuzzy-search/-/strapi-plugin-fuzzy-search-2.0.3.tgz#d7b8b94e212c314822b1fab205d9415404e5c71d"
+  integrity sha512-ke7nHhS+kINQ7bbWomWBQPcOiwnUH6nt2/bIbbcrLMP4qjQEAE4J++9U6ImdbJd97gdjGnHWU6+9six/qzTLfg==
   dependencies:
-    fuzzysort "2.0.1"
+    fuzzysort "2.0.4"
     transliteration "2.3.5"
 
 strapi-plugin-map-field@^1.0.6:
