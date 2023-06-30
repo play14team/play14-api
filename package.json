@@ -30,7 +30,7 @@
     "showdown": "^2.1.0",
     "slugify": "^1.6.5",
     "strapi-blurhash": "^1.0.2",
-    "strapi-plugin-config-sync": "^1.1.0",
+    "strapi-plugin-config-sync": "^1.1.2",
     "strapi-plugin-country-select": "^1.0.0",
     "strapi-plugin-fuzzy-search": "^1.10.2",
     "strapi-plugin-map-field": "^1.0.6",

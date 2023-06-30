@@ -11417,10 +11417,10 @@ strapi-blurhash@^1.0.2:
   dependencies:
     plaiceholder "^2.5.0"
 
-strapi-plugin-config-sync@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-config-sync/-/strapi-plugin-config-sync-1.1.0.tgz#a3b5a794360e283eb4698838e49e7456efefd6c4"
-  integrity sha512-oYl96k4tu4DQ3w7e46160zICTBtNziOqjjIbeDtfQ59wzDcennv21NMVNWpyvT4rXm+ZGO3RyyKzvhE7sMbkzQ==
+strapi-plugin-config-sync@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-config-sync/-/strapi-plugin-config-sync-1.1.2.tgz#e946d724bc7f89f547e1a97c12c2eb65ed5c26d1"
+  integrity sha512-hdalQyPRdeGKhPLLk56uHqZNN1Ha7IstCGatGSW0pI64D9z8tNsik5Lz6GGC0zvwukQvf8rS8BGcg91tNaPonw==
   dependencies:
     chalk "^4.1.2"
     cli-table "^0.3.6"
