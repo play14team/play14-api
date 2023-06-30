@@ -6764,10 +6764,10 @@ fuzzy@^0.1.1:
   resolved "https://registry.yarnpkg.com/fuzzy/-/fuzzy-0.1.3.tgz#4c76ec2ff0ac1a36a9dccf9a00df8623078d4ed8"
   integrity sha512-/gZffu4ykarLrCiP3Ygsa86UAo1E5vEVlvTrpkKywXSbP9Xhln3oSp9QSV57gEq3JFFpGJ4GZ+5zdEp3FcUh4w==
 
-fuzzysort@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/fuzzysort/-/fuzzysort-2.0.1.tgz#e1bf6abbcfeefd1191900a5f56527aa0508d6934"
-  integrity sha512-SlgbPAq0eQ6JQ1h3l4MNeGH/t9DHKH8GGM0RD/6RhmJrNnSoWt3oIVaiQm9g9BPB+wAhRMeMqlUTbhbd7+Ufcg==
+fuzzysort@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/fuzzysort/-/fuzzysort-2.0.4.tgz#a21d1ce8947eaf2797dc3b7c28c36db9d1165f84"
+  integrity sha512-Api1mJL+Ad7W7vnDZnWq5pGaXJjyencT+iKGia2PlHUcSsSzWwIQ3S1isiMpwpavjYtGd2FzhUIhnnhOULZgDw==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
@@ -11439,12 +11439,12 @@ strapi-plugin-country-select@^1.0.0:
   dependencies:
     i18n-iso-countries "^7.5.0"
 
-strapi-plugin-fuzzy-search@^1.10.2:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-fuzzy-search/-/strapi-plugin-fuzzy-search-1.10.2.tgz#21e841425ecec96c030ef7af20334e23f1b3954c"
-  integrity sha512-wJwKh3f0nn0e68oHhKQKcgycedsvB0xX5tteE39VQDjmleWRWik8C3a923FYJumAG05/oF9SyhnIRtcDDY2XvA==
+strapi-plugin-fuzzy-search@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-fuzzy-search/-/strapi-plugin-fuzzy-search-1.11.0.tgz#a5de5a064e2bf5450875aa99936fb7338ef0ac56"
+  integrity sha512-jQFlWVgnyf3ZAA8Sv9XKPPc1qY87UkLCe2pssXKnl95kKV5NiEdUNeW0+88uGyRtZfiT7w4DHE9dUN0wQ4PiQA==
   dependencies:
-    fuzzysort "2.0.1"
+    fuzzysort "2.0.4"
     transliteration "2.3.5"
 
 strapi-plugin-map-field@^1.0.6:
