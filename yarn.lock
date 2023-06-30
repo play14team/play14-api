@@ -2131,6 +2131,20 @@
     is-plain-obj "^1.1.0"
     xtend "^4.0.1"
 
+"@mapbox/mapbox-sdk@^0.15.2":
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-sdk/-/mapbox-sdk-0.15.2.tgz#3a9e6ea2e6c67b573d404396b8a708b93c1da610"
+  integrity sha512-pvHKqy6FnN4nAOxUtn4GdKJappNifxe5j/mKtDe7xhtqNwUBx9umWQFfnq3arLEu1kgCQKR4W1rOCkvprEreTg==
+  dependencies:
+    "@mapbox/fusspot" "^0.4.0"
+    "@mapbox/parse-mapbox-token" "^0.2.0"
+    "@mapbox/polyline" "^1.0.0"
+    eventemitter3 "^3.1.0"
+    form-data "^3.0.0"
+    got "^11.8.5"
+    is-plain-obj "^1.1.0"
+    xtend "^4.0.1"
+
 "@mapbox/parse-mapbox-token@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@mapbox/parse-mapbox-token/-/parse-mapbox-token-0.2.0.tgz#34049d948868376f689189a5ea0e3cd2d9284b91"
