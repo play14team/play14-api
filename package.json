@@ -15,7 +15,7 @@
     "@mapbox/mapbox-sdk": "^0.15.2",
     "@offset-dev/strapi-calendar": "^0.0.9",
     "@strapi/plugin-color-picker": "^4.11.3",
-    "@strapi/plugin-graphql": "4.11.3",
+    "@strapi/plugin-graphql": "4.13.2",
     "@strapi/plugin-i18n": "4.11.3",
     "@strapi/plugin-seo": "^1.9.2",
     "@strapi/plugin-users-permissions": "4.11.3",
