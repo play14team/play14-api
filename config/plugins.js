@@ -12,7 +12,7 @@ module.exports = ({ env }) => ({
           }
       }
   },
-  'ckeditor': true,
+  'ckeditor5': true,
   'seo': {
     enabled: true,
   },
