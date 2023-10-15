@@ -38,7 +38,14 @@ export interface DefaultHistoryItem extends Schema.Component {
     dateFormat: Attribute.Enumeration<['Year', 'Month', 'Day']>;
     additionalText: Attribute.String;
     title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     image: Attribute.Media & Attribute.Required;
   };
 }

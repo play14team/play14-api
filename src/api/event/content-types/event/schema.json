@@ -91,12 +91,16 @@
       "required": false
     },
     "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "type": "richtext"
+      }
     },
     "location": {
       "type": "relation",

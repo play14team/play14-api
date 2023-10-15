@@ -706,7 +706,13 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     summary: Attribute.Text;
     defaultImage: Attribute.Media & Attribute.Required;
     images: Attribute.Media & Attribute.Required;
-    content: Attribute.RichText;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     category: Attribute.Enumeration<
       ['Announcement', 'Article', 'Event', 'Interview', 'Meetup']
     >;
@@ -780,6 +786,12 @@ export interface ApiEventEvent extends Schema.CollectionType {
     timetable: Attribute.Component<'events.timetable', true>;
     registration: Attribute.Component<'registration.registration'>;
     description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -932,6 +944,12 @@ export interface ApiExpectationExpectation extends Schema.CollectionType {
       }>;
     content: Attribute.RichText &
       Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -978,30 +996,60 @@ export interface ApiFormatFormat extends Schema.SingleType {
   };
   attributes: {
     openspace: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     lawOfTwoFeet: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     butterfly: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     bumblebee: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     schedule: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1151,6 +1199,12 @@ export interface ApiGameGame extends Schema.CollectionType {
       }>;
     description: Attribute.RichText &
       Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1214,6 +1268,12 @@ export interface ApiHistoryHistory extends Schema.SingleType {
         };
       }>;
     intro: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1310,6 +1370,12 @@ export interface ApiHostingHosting extends Schema.SingleType {
   };
   attributes: {
     content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1356,7 +1422,13 @@ export interface ApiPlayerPlayer extends Schema.CollectionType {
       Attribute.Required;
     company: Attribute.String;
     tagline: Attribute.String;
-    bio: Attribute.RichText;
+    bio: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     website: Attribute.String;
     avatar: Attribute.Media;
     socialNetworks: Attribute.Component<'contact.social-network', true>;
@@ -1466,6 +1538,51 @@ export interface ApiTagTag extends Schema.CollectionType {
   };
 }
 
+export interface ApiTestTest extends Schema.CollectionType {
+  collectionName: 'tests';
+  info: {
+    singularName: 'test';
+    pluralName: 'tests';
+    displayName: 'Test';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    description: Attribute.Blocks;
+    description2: Attribute.RichText;
+    description3: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    description4: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbarBaloon';
+        }
+      >;
+    description5: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'blockBaloon';
+        }
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::test.test', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::test.test', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTestimonialTestimonial extends Schema.CollectionType {
   collectionName: 'testimonials';
   info: {
@@ -1571,6 +1688,7 @@ declare module '@strapi/types' {
       'api::player.player': ApiPlayerPlayer;
       'api::sponsor.sponsor': ApiSponsorSponsor;
       'api::tag.tag': ApiTagTag;
+      'api::test.test': ApiTestTest;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'api::venue.venue': ApiVenueVenue;
     }
