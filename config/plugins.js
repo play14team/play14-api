@@ -59,6 +59,16 @@ module.exports = ({ env }) => ({
   "map-field": {
     enabled: true,
   },
+  'update-static-content': {
+    enabled: true,
+    config: {
+      githubToken: env('GITHUB_TOKEN'),
+      owner: 'play14team',
+      repo: 'play14-ui',
+      workflowId: '52506304',
+      branch: 'main',
+    },
+  },
   "fuzzy-search": {
     enabled: true,
     config: {
