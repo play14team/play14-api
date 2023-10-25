@@ -19,7 +19,7 @@
     "@strapi/plugin-i18n": "4.14.5",
     "@strapi/plugin-seo": "^1.9.5",
     "@strapi/plugin-users-permissions": "4.14.5",
-    "@strapi/strapi": "4.14.5",
+    "@strapi/strapi": "4.15.0",
     "async-mutex": "^0.4.0",
     "axios": "^1.5.1",
     "js-yaml": "^4.1.0",
