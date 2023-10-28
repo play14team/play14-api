@@ -21,7 +21,7 @@
     "@strapi/plugin-users-permissions": "4.14.5",
     "@strapi/strapi": "4.14.5",
     "async-mutex": "^0.4.0",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "js-yaml": "^4.1.0",
     "jsdom": "^22.1.0",
     "mime": "^3.0.0",
