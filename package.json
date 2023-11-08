@@ -13,7 +13,7 @@
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.0.4",
     "@mapbox/mapbox-sdk": "^0.15.3",
-    "@offset-dev/strapi-calendar": "^0.0.10",
+    "@offset-dev/strapi-calendar": "^0.1.0",
     "@strapi/plugin-color-picker": "^4.14.5",
     "@strapi/plugin-graphql": "4.14.5",
     "@strapi/plugin-i18n": "4.14.5",
