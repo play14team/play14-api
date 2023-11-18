@@ -20,18 +20,18 @@
           "sortable": true
         }
       },
-      "items": {
+      "founders": {
         "edit": {
-          "label": "items",
+          "label": "founders",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "items",
-          "searchable": false,
-          "sortable": false
+          "label": "founders",
+          "searchable": true,
+          "sortable": true
         }
       },
       "intro": {
@@ -48,20 +48,6 @@
           "sortable": false
         }
       },
-      "founders": {
-        "edit": {
-          "label": "founders",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "founders",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "keyMoments": {
         "edit": {
           "label": "keyMoments",
@@ -74,6 +60,20 @@
           "label": "keyMoments",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "items": {
+        "edit": {
+          "label": "items",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "items",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -103,9 +103,45 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "items",
+        "createdAt",
+        "updatedAt"
+      ],
       "edit": [
         [
           {
@@ -129,12 +165,6 @@
             "size": 12
           }
         ]
-      ],
-      "list": [
-        "id",
-        "items",
-        "createdAt",
-        "updatedAt"
       ]
     }
   },

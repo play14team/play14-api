@@ -40,7 +40,7 @@
           "description": "",
           "placeholder": "auto-generated",
           "visible": true,
-          "editable": false
+          "editable": true
         },
         "list": {
           "label": "slug",
@@ -94,8 +94,8 @@
       },
       "defaultImage": {
         "edit": {
-          "label": "defaultImage",
-          "description": "",
+          "label": "Default Image",
+          "description": "500 x 600 image",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -320,9 +320,48 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
       }
     },
     "layouts": {
+      "list": [
+        "name",
+        "start",
+        "end",
+        "status",
+        "location",
+        "venue",
+        "defaultImage"
+      ],
       "edit": [
         [
           {
@@ -426,14 +465,6 @@
             "size": 6
           }
         ]
-      ],
-      "list": [
-        "name",
-        "start",
-        "end",
-        "status",
-        "location",
-        "venue"
       ]
     }
   },
