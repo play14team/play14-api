@@ -1,37 +1,22 @@
 module.exports = ({ env }) => ({
-    'graphql': {
-      config: {
-          endpoint: '/graphql',
-          shadowCRUD: true,
-          playgroundAlways: true,
-          depthLimit: 10,
-          amountLimit: 1000,
-          apolloServer: {
-              tracing: false,
-              introspection: true
-          }
-      }
-  },
-  'ckeditor5': true,
-  'seo': {
-    enabled: true,
-  },
-  'transformer': {
-    enabled: true,
+  graphql: {
     config: {
-      prefix: '/api/',
-      responseTransforms: {
-        removeAttributesKey: true,
-        removeDataKey: true,
-      }
-    }
+      apolloServer: {
+        tracing: false,
+        introspection: true,
+      },
+    },
   },
-  'strapi-plugin-populate-deep': {
+  ckeditor5: true,
+  seo: {
+    enabled: true,
+  },
+  "strapi-plugin-populate-deep": {
     config: {
       defaultDepth: 3, // Default is 5
-    }
+    },
   },
-  'strapi-blurhash': {
+  "strapi-blurhash": {
     enabled: true,
   },
   // upload: {
@@ -42,31 +27,31 @@ module.exports = ({ env }) => ({
   //     }
   //   }
   // },
-  'upload': {
+  upload: {
     config: {
-      provider: 'strapi-provider-upload-azure-storage',
+      provider: "strapi-provider-upload-azure-storage",
       providerOptions: {
-        account: env('STORAGE_ACCOUNT'),
-        accountKey: env('STORAGE_ACCOUNT_KEY'),
-        serviceBaseURL: env('STORAGE_URL'),
-        containerName: env('STORAGE_CONTAINER_NAME', 'strapi_uploads'),
-        cdnBaseURL: env('STORAGE_CDN_URL'),
-        defaultPath: 'assets',
-        maxConcurrent: 10
-      }
-    }
+        account: env("STORAGE_ACCOUNT"),
+        accountKey: env("STORAGE_ACCOUNT_KEY"),
+        serviceBaseURL: env("STORAGE_URL"),
+        containerName: env("STORAGE_CONTAINER_NAME", "strapi_uploads"),
+        cdnBaseURL: env("STORAGE_CDN_URL"),
+        defaultPath: "assets",
+        maxConcurrent: 10,
+      },
+    },
   },
   "map-field": {
     enabled: true,
   },
-  'update-static-content': {
+  "update-static-content": {
     enabled: true,
     config: {
-      githubToken: env('GITHUB_TOKEN'),
-      owner: 'play14team',
-      repo: 'play14-ui',
-      workflowId: '52506304',
-      branch: 'main',
+      githubToken: env("GITHUB_TOKEN"),
+      owner: "play14team",
+      repo: "play14-ui",
+      workflowId: "52506304",
+      branch: "main",
     },
   },
   "fuzzy-search": {
