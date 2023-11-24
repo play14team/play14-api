@@ -40,7 +40,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "slug",
@@ -222,13 +222,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "title",
-        "author",
-        "category",
-        "defaultImage",
-        "tags"
-      ],
       "edit": [
         [
           {
@@ -284,6 +277,13 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "title",
+        "author",
+        "category",
+        "defaultImage",
+        "tags"
       ]
     }
   },

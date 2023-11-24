@@ -40,7 +40,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "slug",
@@ -310,13 +310,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "name",
-        "slug",
-        "position",
-        "avatar",
-        "company"
-      ],
       "edit": [
         [
           {
@@ -404,6 +397,13 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "name",
+        "slug",
+        "position",
+        "avatar",
+        "company"
       ]
     }
   },

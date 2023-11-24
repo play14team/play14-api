@@ -40,7 +40,7 @@
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": false
         },
         "list": {
           "label": "slug",
@@ -349,13 +349,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "name",
-        "category",
-        "defaultImage",
-        "scale",
-        "timebox"
-      ],
       "edit": [
         [
           {
@@ -461,6 +454,13 @@
             "size": 12
           }
         ]
+      ],
+      "list": [
+        "name",
+        "category",
+        "defaultImage",
+        "scale",
+        "timebox"
       ]
     }
   },

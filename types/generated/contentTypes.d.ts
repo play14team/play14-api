@@ -695,8 +695,8 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    slug: Attribute.UID<'api::article.article', 'title'>;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::article.article', 'title'> & Attribute.Required;
     author: Attribute.Relation<
       'api::article.article',
       'oneToOne',
