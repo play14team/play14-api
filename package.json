@@ -10,6 +10,8 @@
   "scripts": {
     "build": "strapi build",
     "dev": "strapi develop",
+    "export": "strapi export --file ../backup/database/play14",
+    "import": "strapi import --file ../backup/database/play14.tar.gz.enc",
     "start": "strapi start",
     "strapi": "strapi"
   },
