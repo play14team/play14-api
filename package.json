@@ -22,7 +22,7 @@
     "@strapi/plugin-color-picker": "^4.15.4",
     "@strapi/plugin-graphql": "4.15.4",
     "@strapi/plugin-i18n": "4.15.4",
-    "@strapi/plugin-seo": "^1.9.6",
+    "@strapi/plugin-seo": "^1.9.8",
     "@strapi/plugin-users-permissions": "4.15.4",
     "@strapi/strapi": "4.15.5",
     "async-mutex": "^0.4.0",
