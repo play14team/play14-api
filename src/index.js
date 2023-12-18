@@ -1,12 +1,4 @@
-'use strict';
-const venues = require('../bootstrap/venues')
-const sponsors = require('../bootstrap/sponsors')
-const players = require('../bootstrap/players')
-const events = require('../bootstrap/events')
-const games = require('../bootstrap/games')
-const posts = require('../bootstrap/posts')
-const testimonials = require('../bootstrap/testimonials')
-const expectations = require('../bootstrap/expectations')
+"use strict";
 
 module.exports = {
   /**
@@ -24,20 +16,5 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap() {
-    if (process.env.BOOTSTRAP === "true")
-    {
-      console.log("Bootstrap started");
-      setTimeout(async () => {
-        // await sponsors.importData();
-        // await venues.importData();
-        // await players.importData();
-        // await events.importData();
-        // await games.importData();
-        // await posts.importData();
-        // await testimonials.importData();
-        // await expectations.importData();
-      }, 1500);
-    }
-  },
+  bootstrap() {},
 };
