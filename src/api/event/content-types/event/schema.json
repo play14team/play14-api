@@ -163,6 +163,14 @@
       "type": "customField",
       "required": false,
       "customField": "plugin::timezone-select.timezone"
+    },
+    "tagline": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
