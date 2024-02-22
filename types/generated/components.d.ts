@@ -126,20 +126,29 @@ export interface GamesRatings extends Schema.Component {
   };
   attributes: {
     energy: Attribute.Integer &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 5;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
     connection: Attribute.Integer &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 5;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
     silliness: Attribute.Integer &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 5;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
   };
 }
 
