@@ -54,3 +54,9 @@ For more information, refer to the [docker run](https://docs.docker.com/engine/r
 
 Use [Strapi Provider Upload Azure Storage](https://github.com/jakeFeldman/strapi-provider-upload-azure-storage)
 
+## Do not update dependencies
+
+- react-router-dom
+- strapi-plugin-update-static-content
+- strapi-provider-upload-azure-storage
+- styled-components
