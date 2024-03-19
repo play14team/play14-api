@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@_sh/strapi-plugin-ckeditor@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@_sh/strapi-plugin-ckeditor/-/strapi-plugin-ckeditor-2.1.0.tgz#9c4f900b8cc72871154a39998404d54e7a16f491"
-  integrity sha512-RpgNd676Ub27F52/lPb9VY43e+P4Q+sS3QvZ75kLSgIJ98q6WjoN++CxZ/v2Xi4ttr8VoyCywOaWQsPOtxlXEg==
+"@_sh/strapi-plugin-ckeditor@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@_sh/strapi-plugin-ckeditor/-/strapi-plugin-ckeditor-2.1.1.tgz#f2b0dd7755fb65f5e357d8a51c36c00d0f7ba043"
+  integrity sha512-A3JIY0hsQcBE0WamR1wbVgAmH3+1IyC/EDveUIXV2qg4LTZTJBrCOfvxP9+CDV/lWc6GlhJRT/1GObSw9US+tQ==
   dependencies:
     "@ckeditor/ckeditor5-alignment" "^41.0.0"
     "@ckeditor/ckeditor5-autoformat" "^41.0.0"
@@ -2135,6 +2135,20 @@
   version "0.15.3"
   resolved "https://registry.yarnpkg.com/@mapbox/mapbox-sdk/-/mapbox-sdk-0.15.3.tgz#796d46ef1c472a8eea2bce524f4457a05cc9b4cd"
   integrity sha512-axkdkWzSnH5Nky6plqS1jZc5W4txWQimA3iF1CbYVQYuR1tBZZwe8JcWVB8Lw8y06VuYQLQ7SQscyZagdczUJg==
+  dependencies:
+    "@mapbox/fusspot" "^0.4.0"
+    "@mapbox/parse-mapbox-token" "^0.2.0"
+    "@mapbox/polyline" "^1.0.0"
+    eventemitter3 "^3.1.0"
+    form-data "^3.0.0"
+    got "^11.8.5"
+    is-plain-obj "^1.1.0"
+    xtend "^4.0.1"
+
+"@mapbox/mapbox-sdk@^0.15.5":
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-sdk/-/mapbox-sdk-0.15.5.tgz#1814142999cbdf35258bba63d53d4ed35bc4f94f"
+  integrity sha512-unxQvLZU4Sk+sNrZGzylCHXnC1FU3YZvmnHensoJjSPG1iOivV6LEIYwFScH+IodY0A3xx56kkeQ9QJBpWMpdg==
   dependencies:
     "@mapbox/fusspot" "^0.4.0"
     "@mapbox/parse-mapbox-token" "^0.2.0"

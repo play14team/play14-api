@@ -16,8 +16,8 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "^2.1.0",
-    "@mapbox/mapbox-sdk": "^0.15.3",
+    "@_sh/strapi-plugin-ckeditor": "^2.1.1",
+    "@mapbox/mapbox-sdk": "^0.15.5",
     "@offset-dev/strapi-calendar": "^0.1.1",
     "@strapi/plugin-color-picker": "^4.20.5",
     "@strapi/plugin-graphql": "4.20.5",
