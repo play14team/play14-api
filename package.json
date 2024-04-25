@@ -40,7 +40,7 @@
     "strapi-plugin-timezone-select": "^1.0.0",
     "strapi-plugin-update-static-content": "^1.0.8",
     "strapi-provider-upload-azure-storage": "^3.3.0",
-    "styled-components": "5.3.3"
+    "styled-components": "5.3.11"
   },
   "devDependencies": {},
   "engines": {
