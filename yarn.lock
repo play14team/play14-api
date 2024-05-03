@@ -11868,10 +11868,10 @@ strapi-plugin-timezone-select@^1.0.0:
   resolved "https://registry.yarnpkg.com/strapi-plugin-timezone-select/-/strapi-plugin-timezone-select-1.0.0.tgz#d8b881f257ce693cd07d9b5af093d420a58c292f"
   integrity sha512-qCMkuP7LJju92t9STAX6ffFiz5OZyPyoixSDb9Xr41fcmCgd5yIYw0LZwef6fiIQuUK54Ht34XBI4DLs1hv24A==
 
-strapi-plugin-update-static-content@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-update-static-content/-/strapi-plugin-update-static-content-1.0.8.tgz#32f048a589ac267fccbd7ab9c9b197fb2b0c03d7"
-  integrity sha512-/MdKFw2zLhVlMKQwiRmGSMqAdiob/LiX1I2bcPjA7NeWxG2a4MkxlRLwddEjE/vidDcEzDXWiNfRlwps7vzZqw==
+strapi-plugin-update-static-content@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-update-static-content/-/strapi-plugin-update-static-content-1.0.9.tgz#381fb94687cbdc6bec9665e2f6393876ab9ee4ed"
+  integrity sha512-rdRghzP70j4k3zrV3f6Sw0UrlGIMMOa1GDeJ/Az2OLZcK0cQeiA4pC/1u8109oQWR0Mp1quTuSBwGmJdQ271ZA==
   dependencies:
     date-fns "2.29.3"
     react-intl "6.2.1"
