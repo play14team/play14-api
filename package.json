@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.1.1",
-    "@mapbox/mapbox-sdk": "^0.15.6",
+    "@mapbox/mapbox-sdk": "^0.16.0",
     "@offset-dev/strapi-calendar": "^0.1.1",
-    "@strapi/plugin-color-picker": "^4.24.0",
-    "@strapi/plugin-graphql": "4.24.0",
-    "@strapi/plugin-i18n": "4.24.0",
+    "@strapi/plugin-color-picker": "^4.24.2",
+    "@strapi/plugin-graphql": "4.24.2",
+    "@strapi/plugin-i18n": "4.24.2",
     "@strapi/plugin-seo": "^1.9.8",
-    "@strapi/plugin-users-permissions": "4.24.0",
-    "@strapi/strapi": "4.24.0",
+    "@strapi/plugin-users-permissions": "4.24.2",
+    "@strapi/strapi": "4.24.2",
     "pg": "^8.11.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -38,9 +38,9 @@
     "strapi-plugin-multi-select": "^1.2.3",
     "strapi-plugin-oembed": "^1.2.1",
     "strapi-plugin-timezone-select": "^1.0.0",
-    "strapi-plugin-update-static-content": "^1.0.8",
-    "strapi-provider-upload-azure-storage": "^3.3.0",
-    "styled-components": "5.3.3"
+    "strapi-plugin-update-static-content": "^2.0.7",
+    "strapi-provider-upload-azure-storage": "^3.4.0",
+    "styled-components": "5.3.11"
   },
   "devDependencies": {},
   "engines": {

@@ -18,6 +18,10 @@ module.exports = ({ env }) => ({
   },
   "strapi-blurhash": {
     enabled: true,
+    config: {
+      regenerateOnUpdate: true,
+      forceRegenerateOnUpdate: false,
+    },
   },
   // upload: {
   //   config: {
@@ -31,6 +35,7 @@ module.exports = ({ env }) => ({
     config: {
       provider: "strapi-provider-upload-azure-storage",
       providerOptions: {
+        authType: "default",
         account: env("STORAGE_ACCOUNT"),
         accountKey: env("STORAGE_ACCOUNT_KEY"),
         serviceBaseURL: env("STORAGE_URL"),
