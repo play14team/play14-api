@@ -4,7 +4,6 @@
  */
 import ckeditor5 from "@_sh/strapi-plugin-ckeditor/strapi-admin";
 import calendar from "@offset-dev/strapi-calendar/strapi-admin";
-import colorPicker from "@strapi/plugin-color-picker/strapi-admin";
 import graphql from "@strapi/plugin-graphql/strapi-admin";
 import i18N from "@strapi/plugin-i18n/strapi-admin";
 import seo from "@strapi/plugin-seo/strapi-admin";
@@ -22,7 +21,6 @@ renderAdmin(document.getElementById("strapi"), {
   plugins: {
     ckeditor5: ckeditor5,
     calendar: calendar,
-    "color-picker": colorPicker,
     graphql: graphql,
     i18n: i18N,
     seo: seo,
