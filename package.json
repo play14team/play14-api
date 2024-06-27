@@ -20,7 +20,7 @@
     "@mapbox/mapbox-sdk": "^0.16.0",
     "@offset-dev/strapi-calendar": "^0.1.1",
     "@strapi/plugin-graphql": "4.24.4",
-    "@strapi/plugin-i18n": "4.24.4",
+    "@strapi/plugin-i18n": "4.24.5",
     "@strapi/plugin-seo": "^1.9.8",
     "@strapi/plugin-users-permissions": "4.24.4",
     "@strapi/strapi": "4.24.4",
