@@ -815,8 +815,8 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     >;
     cannonical: Attribute.String;
     summary: Attribute.Text;
-    defaultImage: Attribute.Media & Attribute.Required;
-    images: Attribute.Media & Attribute.Required;
+    defaultImage: Attribute.Media<'images'> & Attribute.Required;
+    images: Attribute.Media<'images', true> & Attribute.Required;
     content: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -885,14 +885,14 @@ export interface ApiEventEvent extends Schema.CollectionType {
     status: Attribute.Enumeration<['Announced', 'Open', 'Over', 'Cancelled']> &
       Attribute.Required &
       Attribute.DefaultTo<'Announced'>;
-    defaultImage: Attribute.Media &
+    defaultImage: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    images: Attribute.Media;
+    images: Attribute.Media<'images', true>;
     contactEmail: Attribute.Email & Attribute.DefaultTo<'team@play14.org'>;
     timetable: Attribute.Component<'events.timetable', true>;
     registration: Attribute.Component<'registration.registration'>;
@@ -1294,21 +1294,21 @@ export interface ApiGameGame extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    defaultImage: Attribute.Media &
+    defaultImage: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    images: Attribute.Media &
+    images: Attribute.Media<'images', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    resources: Attribute.Media &
+    resources: Attribute.Media<'files' | 'images' | 'videos' | 'audios', true> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1448,7 +1448,7 @@ export interface ApiHomeHome extends Schema.SingleType {
     };
   };
   attributes: {
-    images: Attribute.Media &
+    images: Attribute.Media<'images', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1547,7 +1547,7 @@ export interface ApiPlayerPlayer extends Schema.CollectionType {
         }
       >;
     website: Attribute.String;
-    avatar: Attribute.Media;
+    avatar: Attribute.Media<'images'>;
     socialNetworks: Attribute.Component<'contact.social-network', true>;
     attended: Attribute.Relation<
       'api::player.player',
@@ -1610,7 +1610,7 @@ export interface ApiSponsorSponsor extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     url: Attribute.String;
-    logo: Attribute.Media;
+    logo: Attribute.Media<'images'>;
     socialNetworks: Attribute.Component<'contact.social-network', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1668,7 +1668,7 @@ export interface ApiTestimonialTestimonial extends Schema.CollectionType {
   };
   attributes: {
     content: Attribute.Text & Attribute.Required;
-    audio: Attribute.Media;
+    audio: Attribute.Media<'audios'>;
     author: Attribute.Relation<
       'api::testimonial.testimonial',
       'oneToOne',
@@ -1705,7 +1705,7 @@ export interface ApiVenueVenue extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     shortName: Attribute.String & Attribute.Unique;
-    logo: Attribute.Media;
+    logo: Attribute.Media<'images'>;
     website: Attribute.String;
     socialNetworks: Attribute.Component<'contact.social-network', true>;
     events: Attribute.Relation<

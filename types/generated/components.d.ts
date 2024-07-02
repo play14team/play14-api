@@ -46,7 +46,7 @@ export interface DefaultHistoryItem extends Schema.Component {
           preset: 'toolbar';
         }
       >;
-    image: Attribute.Media & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
   };
 }
 
@@ -221,7 +221,7 @@ export interface SharedMetaSocial extends Schema.Component {
       Attribute.SetMinMaxLength<{
         maxLength: 65;
       }>;
-    image: Attribute.Media;
+    image: Attribute.Media<'images' | 'files' | 'videos'>;
   };
 }
 
@@ -243,7 +243,8 @@ export interface SharedSeo extends Schema.Component {
         minLength: 50;
         maxLength: 160;
       }>;
-    metaImage: Attribute.Media & Attribute.Required;
+    metaImage: Attribute.Media<'images' | 'files' | 'videos'> &
+      Attribute.Required;
     metaSocial: Attribute.Component<'shared.meta-social', true>;
     keywords: Attribute.Text;
     metaRobots: Attribute.String;
