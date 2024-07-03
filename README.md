@@ -57,6 +57,5 @@ Use [Strapi Provider Upload Azure Storage](https://github.com/jakeFeldman/strapi
 ## Do not update dependencies
 
 - react-router-dom
-- strapi-plugin-update-static-content
-- strapi-provider-upload-azure-storage
+- strapi-blurhash
 - styled-components
