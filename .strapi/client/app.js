@@ -6,13 +6,11 @@ import ckeditor5 from "@_sh/strapi-plugin-ckeditor/strapi-admin";
 import calendar from "@offset-dev/strapi-calendar/strapi-admin";
 import graphql from "@strapi/plugin-graphql/strapi-admin";
 import i18N from "@strapi/plugin-i18n/strapi-admin";
-import seo from "@strapi/plugin-seo/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import configSync from "strapi-plugin-config-sync/strapi-admin";
 import countrySelect from "strapi-plugin-country-select/strapi-admin";
 import mapField from "strapi-plugin-map-field/strapi-admin";
 import multiSelect from "strapi-plugin-multi-select/strapi-admin";
-import oembed from "strapi-plugin-oembed/strapi-admin";
 import prevNextButton from "strapi-plugin-prev-next-button/strapi-admin";
 import timezoneSelect from "strapi-plugin-timezone-select/strapi-admin";
 import updateStaticContent from "strapi-plugin-update-static-content/strapi-admin";
@@ -24,13 +22,11 @@ renderAdmin(document.getElementById("strapi"), {
     calendar: calendar,
     graphql: graphql,
     i18n: i18N,
-    seo: seo,
     "users-permissions": usersPermissions,
     "config-sync": configSync,
     "country-select": countrySelect,
     "map-field": mapField,
     "multi-select": multiSelect,
-    oembed: oembed,
     "prev-next-button": prevNextButton,
     "timezone-select": timezoneSelect,
     "update-static-content": updateStaticContent,

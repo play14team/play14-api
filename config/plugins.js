@@ -9,14 +9,6 @@ module.exports = ({ env }) => ({
   },
   ckeditor5: true,
   "prev-next-button": true,
-  seo: {
-    enabled: true,
-  },
-  "strapi-plugin-populate-deep": {
-    config: {
-      defaultDepth: 3, // Default is 5
-    },
-  },
   "strapi-blurhash": {
     enabled: true,
     config: {
