@@ -293,6 +293,20 @@
           "sortable": true
         }
       },
+      "tagline": {
+        "edit": {
+          "label": "tagline",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "tagline",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -462,6 +476,10 @@
         [
           {
             "name": "mentors",
+            "size": 6
+          },
+          {
+            "name": "tagline",
             "size": 6
           }
         ]

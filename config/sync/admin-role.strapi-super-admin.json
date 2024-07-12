@@ -158,7 +158,8 @@
           "media.url",
           "media.type",
           "players",
-          "timezone"
+          "timezone",
+          "tagline"
         ],
         "locales": [
           "en",
@@ -221,7 +222,8 @@
           "media.url",
           "media.type",
           "players",
-          "timezone"
+          "timezone",
+          "tagline"
         ],
         "locales": [
           "en",
@@ -260,7 +262,8 @@
           "media.url",
           "media.type",
           "players",
-          "timezone"
+          "timezone",
+          "tagline"
         ],
         "locales": [
           "en",
@@ -1353,13 +1356,6 @@
     },
     {
       "action": "plugin::i18n.locale.update",
-      "subject": null,
-      "properties": {},
-      "conditions": [],
-      "actionParameters": {}
-    },
-    {
-      "action": "plugin::seo.read",
       "subject": null,
       "properties": {},
       "conditions": [],
