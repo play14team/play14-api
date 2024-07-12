@@ -8,6 +8,7 @@ module.exports = ({ env }) => ({
     },
   },
   ckeditor5: true,
+  "prev-next-button": true,
   seo: {
     enabled: true,
   },

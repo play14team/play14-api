@@ -13,6 +13,7 @@ import countrySelect from "strapi-plugin-country-select/strapi-admin";
 import mapField from "strapi-plugin-map-field/strapi-admin";
 import multiSelect from "strapi-plugin-multi-select/strapi-admin";
 import oembed from "strapi-plugin-oembed/strapi-admin";
+import prevNextButton from "strapi-plugin-prev-next-button/strapi-admin";
 import timezoneSelect from "strapi-plugin-timezone-select/strapi-admin";
 import updateStaticContent from "strapi-plugin-update-static-content/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
@@ -30,6 +31,7 @@ renderAdmin(document.getElementById("strapi"), {
     "map-field": mapField,
     "multi-select": multiSelect,
     oembed: oembed,
+    "prev-next-button": prevNextButton,
     "timezone-select": timezoneSelect,
     "update-static-content": updateStaticContent,
   },

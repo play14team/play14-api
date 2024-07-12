@@ -3696,9 +3696,9 @@
     yup "0.32.9"
 
 "@strapi/plugin-seo@^1.9.8":
-  version "1.9.8"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-1.9.8.tgz#44e9baec7c63f4f5de720215132aa677f9f6c9d1"
-  integrity sha512-66haxyQ71KozCJbzbFnFvNGhG5I8RPy0KxTTJcILfCgWwmNid4yJ9P9hBarZeCLr1PcqSCN1ju1j+iXpTG7nyg==
+  version "1.9.9"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-1.9.9.tgz#325b73e36ebfe7bab84e3c325a863ec56776a170"
+  integrity sha512-JBJqh1AgGUmaZhM1HjZO7JYwnJffqCc+E30impZMq/GSctJrukeh8ju/UtHOQQeekAbeMc7lhtdRXwqrdb2+Cg==
   dependencies:
     date-fns "^2.29.3"
     eslint-plugin-react-hooks "^4.3.0"
@@ -12349,6 +12349,11 @@ strapi-plugin-oembed@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/strapi-plugin-oembed/-/strapi-plugin-oembed-1.2.1.tgz#bc12e8cf2a199dde21f1d36c9d61f3774fea3f23"
   integrity sha512-wrELjXa+D+i1Iabr4g+hxKTsTngrBqMntOTaA0PlCmGYE64Ou0AWrq9c7UhsTG0nyfcXsym6Zt7uD6C01nIC5A==
+
+strapi-plugin-prev-next-button@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-prev-next-button/-/strapi-plugin-prev-next-button-1.2.0.tgz#753ae9ea0cb800af19f42ef4530ce74fdb1661b1"
+  integrity sha512-gkfVSGzbdFlwt7yOMonOrQ+0dT0zjAefYHtP2vTRGVzOO7wG8mC0W+In0onorShsHzlsGqRFT4DXJvSmHh1XlA==
 
 strapi-plugin-timezone-select@^1.0.0:
   version "1.0.0"
