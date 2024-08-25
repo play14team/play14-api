@@ -136,29 +136,6 @@ export interface GamesRatings extends Schema.Component {
   };
 }
 
-export interface DefaultHistoryItem extends Schema.Component {
-  collectionName: 'components_default_history_items';
-  info: {
-    displayName: 'HistoryItem';
-    description: '';
-  };
-  attributes: {
-    date: Attribute.Date & Attribute.Required;
-    dateFormat: Attribute.Enumeration<['Year', 'Month', 'Day']>;
-    additionalText: Attribute.String;
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'toolbar';
-        }
-      >;
-    image: Attribute.Media<'images'> & Attribute.Required;
-  };
-}
-
 export interface EventsTimetable extends Schema.Component {
   collectionName: 'components_events_timetables';
   info: {
@@ -227,6 +204,29 @@ export interface EventsMedia extends Schema.Component {
   };
 }
 
+export interface DefaultHistoryItem extends Schema.Component {
+  collectionName: 'components_default_history_items';
+  info: {
+    displayName: 'HistoryItem';
+    description: '';
+  };
+  attributes: {
+    date: Attribute.Date & Attribute.Required;
+    dateFormat: Attribute.Enumeration<['Year', 'Month', 'Day']>;
+    additionalText: Attribute.String;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    image: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
 export interface ContactSocialNetwork extends Schema.Component {
   collectionName: 'components_contact_social_networks';
   info: {
@@ -264,11 +264,11 @@ declare module '@strapi/types' {
       'registration.registration': RegistrationRegistration;
       'location.address': LocationAddress;
       'games.ratings': GamesRatings;
-      'default.history-item': DefaultHistoryItem;
       'events.timetable': EventsTimetable;
       'events.time-slots': EventsTimeSlots;
       'events.sponsorship': EventsSponsorship;
       'events.media': EventsMedia;
+      'default.history-item': DefaultHistoryItem;
       'contact.social-network': ContactSocialNetwork;
     }
   }

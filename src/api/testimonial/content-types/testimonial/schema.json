@@ -28,6 +28,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::player.player"
+    },
+    "url": {
+      "type": "string"
     }
   }
 }

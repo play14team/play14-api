@@ -1674,6 +1674,7 @@ export interface ApiTestimonialTestimonial extends Schema.CollectionType {
       'oneToOne',
       'api::player.player'
     >;
+    url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
