@@ -72,7 +72,7 @@ module.exports = {
           );
           await setPosition(apiName, player, "Player");
         }
-        if (isHost(player) && (hasHosted3(player) || hasMentored(player))) {
+        if (isHost(player) && (hasMentored(player) || hasHosted4(player))) {
           console.log(
             `Changing postion of ${player.name} from "Host" to "Mentor"`
           );
@@ -99,8 +99,10 @@ function hasHosted(player) {
   return player.hosted && notCancelled(player.hosted).length > 0;
 }
 
-function hasHosted3(player) {
-  return player.hosted && notCancelled(player.hosted).length > 2;
+function hasHosted4(player) {
+  return (
+    player.hosted && player.hosted.filter((e) => e.status == "Over").length > 3
+  );
 }
 
 function hasNeverHosted(player) {
