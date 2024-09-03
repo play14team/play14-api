@@ -74,6 +74,22 @@ export interface SharedDictionary extends Schema.Component {
   };
 }
 
+export interface ReportingFinance extends Schema.Component {
+  collectionName: 'components_reporting_finances';
+  info: {
+    displayName: 'Finance';
+    icon: 'briefcase';
+    description: '';
+  };
+  attributes: {
+    revenue: Attribute.Decimal & Attribute.Required;
+    expenses: Attribute.Decimal & Attribute.Required;
+    destination: Attribute.Text & Attribute.Required;
+    result: Attribute.Enumeration<['Profit', 'Loss']> & Attribute.Required;
+    resultAmount: Attribute.Decimal & Attribute.Required;
+  };
+}
+
 export interface RegistrationRegistration extends Schema.Component {
   collectionName: 'components_registration_registrations';
   info: {
@@ -261,6 +277,7 @@ declare module '@strapi/types' {
       'shared.meta-social': SharedMetaSocial;
       'shared.list': SharedList;
       'shared.dictionary': SharedDictionary;
+      'reporting.finance': ReportingFinance;
       'registration.registration': RegistrationRegistration;
       'location.address': LocationAddress;
       'games.ratings': GamesRatings;

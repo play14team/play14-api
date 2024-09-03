@@ -1,44 +1,51 @@
-module.exports = ({
-  env
-}) => [
-  'strapi::errors',
+module.exports = ({ env }) => [
+  "strapi::errors",
   {
-    name: 'strapi::security',
+    name: "strapi::security",
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:'],
-          'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'api.mapbox.com'],
-          'img-src': [
+          "connect-src": ["'self'", "https:", "blob:", "*.strapi.io"],
+          "script-src": [
             "'self'",
-            'data:',
-            'blob:',
-            'cdn.jsdelivr.net',
-            'dl.airtable.com',
-            process.env.STORAGE_URL,
-            process.env.STORAGE_CDN_URL
+            "'unsafe-inline'",
+            "cdn.jsdelivr.net",
+            "api.mapbox.com",
           ],
-          'media-src': [
+          "img-src": [
             "'self'",
-            'data:',
-            'blob:',
-            'dl.airtable.com',
+            "data:",
+            "blob:",
+            "cdn.jsdelivr.net",
+            "dl.airtable.com",
+            "*.strapi.io",
+            "s3.amazonaws.com",
             process.env.STORAGE_URL,
-            process.env.STORAGE_CDN_URL
+            process.env.STORAGE_CDN_URL,
           ],
-          'worker-src': ['blob:'],
+          "style-src": ["'self'", "'unsafe-inline'"],
+          "font-src": ["'self'"],
+          "media-src": [
+            "'self'",
+            "data:",
+            "blob:",
+            "dl.airtable.com",
+            process.env.STORAGE_URL,
+            process.env.STORAGE_CDN_URL,
+          ],
+          "worker-src": ["blob:"],
           upgradeInsecureRequests: null,
         },
-      }
+      },
     },
   },
-  'strapi::cors',
-  'strapi::poweredBy',
-  'strapi::logger',
-  'strapi::query',
-  'strapi::body',
-  'strapi::session',
-  'strapi::favicon',
-  'strapi::public',
+  "strapi::cors",
+  "strapi::poweredBy",
+  "strapi::logger",
+  "strapi::query",
+  "strapi::body",
+  "strapi::session",
+  "strapi::favicon",
+  "strapi::public",
 ];
