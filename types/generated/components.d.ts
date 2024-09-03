@@ -84,7 +84,7 @@ export interface ReportingFinance extends Schema.Component {
   attributes: {
     revenue: Attribute.Decimal & Attribute.Required;
     expenses: Attribute.Decimal & Attribute.Required;
-    destination: Attribute.Text & Attribute.Required;
+    destination: Attribute.String & Attribute.Required;
     result: Attribute.Enumeration<['Profit', 'Loss']> & Attribute.Required;
     resultAmount: Attribute.Decimal & Attribute.Required;
   };

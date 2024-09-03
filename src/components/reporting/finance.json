@@ -16,7 +16,7 @@
       "required": true
     },
     "destination": {
-      "type": "text",
+      "type": "string",
       "required": true
     },
     "result": {
