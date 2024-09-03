@@ -159,7 +159,12 @@
           "media.type",
           "players",
           "timezone",
-          "tagline"
+          "tagline",
+          "finance.revenue",
+          "finance.expenses",
+          "finance.destination",
+          "finance.result",
+          "finance.resultAmount"
         ],
         "locales": [
           "en",
@@ -223,7 +228,12 @@
           "media.type",
           "players",
           "timezone",
-          "tagline"
+          "tagline",
+          "finance.revenue",
+          "finance.expenses",
+          "finance.destination",
+          "finance.result",
+          "finance.resultAmount"
         ],
         "locales": [
           "en",
@@ -263,7 +273,12 @@
           "media.type",
           "players",
           "timezone",
-          "tagline"
+          "tagline",
+          "finance.revenue",
+          "finance.expenses",
+          "finance.destination",
+          "finance.result",
+          "finance.resultAmount"
         ],
         "locales": [
           "en",
@@ -925,7 +940,8 @@
         "fields": [
           "content",
           "audio",
-          "author"
+          "author",
+          "url"
         ]
       },
       "conditions": [],
@@ -945,7 +961,8 @@
         "fields": [
           "content",
           "audio",
-          "author"
+          "author",
+          "url"
         ]
       },
       "conditions": [],
@@ -958,7 +975,8 @@
         "fields": [
           "content",
           "audio",
-          "author"
+          "author",
+          "url"
         ]
       },
       "conditions": [],

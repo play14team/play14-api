@@ -63,6 +63,20 @@
           "sortable": true
         }
       },
+      "url": {
+        "edit": {
+          "label": "url",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "url",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -143,6 +157,10 @@
         [
           {
             "name": "author",
+            "size": 6
+          },
+          {
+            "name": "url",
             "size": 6
           }
         ]

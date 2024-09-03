@@ -295,7 +295,7 @@
       },
       "tagline": {
         "edit": {
-          "label": "tagline",
+          "label": "Tagline",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -305,6 +305,20 @@
           "label": "tagline",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "finance": {
+        "edit": {
+          "label": "Finance",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "finance",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -481,6 +495,12 @@
           {
             "name": "tagline",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "finance",
+            "size": 12
           }
         ]
       ]
