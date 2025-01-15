@@ -72,7 +72,7 @@ module.exports = {
           );
           await setPosition(apiName, player, "Player");
         }
-        if (isHost(player) && (hasMentored(player) || hasHosted4(player))) {
+        if (isHost(player) && hasMentored(player)) {
           console.log(
             `Changing postion of ${player.name} from "Host" to "Mentor"`
           );
