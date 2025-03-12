@@ -1,163 +1,103 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Attribute, Schema } from '@strapi/strapi';
 
-export interface SharedSeo extends Schema.Component {
-  collectionName: 'components_shared_seos';
+export interface ContactSocialNetwork extends Schema.Component {
+  collectionName: 'components_contact_social_networks';
   info: {
-    displayName: 'seo';
-    icon: 'search';
+    description: '';
+    displayName: 'SocialNetwork';
+    icon: 'address-card';
   };
   attributes: {
-    metaTitle: Attribute.String &
+    type: Attribute.Enumeration<
+      [
+        'Twitter',
+        'LinkedIn',
+        'Facebook',
+        'Youtube',
+        'Instagram',
+        'Xing',
+        'Email',
+        'Website',
+        'Wikipedia',
+        'Vimeo',
+        'Other'
+      ]
+    >;
+    url: Attribute.String;
+  };
+}
+
+export interface DefaultHistoryItem extends Schema.Component {
+  collectionName: 'components_default_history_items';
+  info: {
+    description: '';
+    displayName: 'HistoryItem';
+  };
+  attributes: {
+    additionalText: Attribute.String;
+    date: Attribute.Date & Attribute.Required;
+    dateFormat: Attribute.Enumeration<['Year', 'Month', 'Day']>;
+    description: Attribute.RichText &
       Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60;
-      }>;
-    metaDescription: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 50;
-        maxLength: 160;
-      }>;
-    metaImage: Attribute.Media<'images' | 'files' | 'videos'> &
-      Attribute.Required;
-    metaSocial: Attribute.Component<'shared.meta-social', true>;
-    keywords: Attribute.Text;
-    metaRobots: Attribute.String;
-    structuredData: Attribute.JSON;
-    metaViewport: Attribute.String;
-    canonicalURL: Attribute.String;
-  };
-}
-
-export interface SharedMetaSocial extends Schema.Component {
-  collectionName: 'components_shared_meta_socials';
-  info: {
-    displayName: 'metaSocial';
-    icon: 'project-diagram';
-  };
-  attributes: {
-    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> &
-      Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60;
-      }>;
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 65;
-      }>;
-    image: Attribute.Media<'images' | 'files' | 'videos'>;
-  };
-}
-
-export interface SharedList extends Schema.Component {
-  collectionName: 'components_shared_lists';
-  info: {
-    displayName: 'List';
-  };
-  attributes: {
-    value: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface SharedDictionary extends Schema.Component {
-  collectionName: 'components_shared_dictionaries';
-  info: {
-    displayName: 'Dictionary';
-    description: '';
-  };
-  attributes: {
-    key: Attribute.String & Attribute.Required;
-    value: Attribute.Text & Attribute.Required;
-  };
-}
-
-export interface ReportingFinance extends Schema.Component {
-  collectionName: 'components_reporting_finances';
-  info: {
-    displayName: 'Finance';
-    icon: 'briefcase';
-    description: '';
-  };
-  attributes: {
-    revenue: Attribute.Decimal & Attribute.Required;
-    expenses: Attribute.Decimal & Attribute.Required;
-    destination: Attribute.String & Attribute.Required;
-    result: Attribute.Enumeration<['Profit', 'Loss']> & Attribute.Required;
-    resultAmount: Attribute.Decimal & Attribute.Required;
-  };
-}
-
-export interface RegistrationRegistration extends Schema.Component {
-  collectionName: 'components_registration_registrations';
-  info: {
-    displayName: 'Registration';
-    icon: 'info-circle';
-    description: '';
-  };
-  attributes: {
-    link: Attribute.String;
-    widgetCode: Attribute.Text;
-  };
-}
-
-export interface LocationAddress extends Schema.Component {
-  collectionName: 'components_location_addresses';
-  info: {
-    displayName: 'Address';
-    icon: 'map-pin';
-    description: '';
-  };
-  attributes: {
-    street: Attribute.String & Attribute.Required;
-    postalCode: Attribute.String;
-    city: Attribute.String & Attribute.Required;
-    area: Attribute.String;
-  };
-}
-
-export interface GamesRatings extends Schema.Component {
-  collectionName: 'components_games_ratings';
-  info: {
-    displayName: 'Ratings';
-    description: '';
-  };
-  attributes: {
-    energy: Attribute.Integer &
-      Attribute.SetMinMax<
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
         {
-          min: 1;
-          max: 5;
-        },
-        number
+          preset: 'toolbar';
+        }
       >;
-    connection: Attribute.Integer &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 5;
-        },
-        number
-      >;
-    silliness: Attribute.Integer &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 5;
-        },
-        number
-      >;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface EventsMedia extends Schema.Component {
+  collectionName: 'components_events_media';
+  info: {
+    displayName: 'Media';
+    icon: 'photo-video';
+  };
+  attributes: {
+    type: Attribute.Enumeration<['Photos', 'Videos']> & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface EventsSponsorship extends Schema.Component {
+  collectionName: 'components_events_sponsorships';
+  info: {
+    description: '';
+    displayName: 'Sponsorship';
+    icon: 'address-book';
+  };
+  attributes: {
+    category: Attribute.String & Attribute.Required;
+    sponsors: Attribute.Relation<
+      'events.sponsorship',
+      'oneToMany',
+      'api::sponsor.sponsor'
+    >;
+  };
+}
+
+export interface EventsTimeSlots extends Schema.Component {
+  collectionName: 'components_events_time_slots';
+  info: {
+    description: '';
+    displayName: 'Timeslots';
+    icon: 'stopwatch';
+  };
+  attributes: {
+    description: Attribute.String & Attribute.Required;
+    time: Attribute.Time & Attribute.Required;
   };
 }
 
 export interface EventsTimetable extends Schema.Component {
   collectionName: 'components_events_timetables';
   info: {
+    description: '';
     displayName: 'Timetable';
     icon: 'calendar';
-    description: '';
   };
   attributes: {
     day: Attribute.Enumeration<
@@ -178,115 +118,175 @@ export interface EventsTimetable extends Schema.Component {
   };
 }
 
-export interface EventsTimeSlots extends Schema.Component {
-  collectionName: 'components_events_time_slots';
+export interface GamesRatings extends Schema.Component {
+  collectionName: 'components_games_ratings';
   info: {
-    displayName: 'Timeslots';
-    icon: 'stopwatch';
     description: '';
+    displayName: 'Ratings';
   };
   attributes: {
-    time: Attribute.Time & Attribute.Required;
-    description: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface EventsSponsorship extends Schema.Component {
-  collectionName: 'components_events_sponsorships';
-  info: {
-    displayName: 'Sponsorship';
-    icon: 'address-book';
-    description: '';
-  };
-  attributes: {
-    category: Attribute.String & Attribute.Required;
-    sponsors: Attribute.Relation<
-      'events.sponsorship',
-      'oneToMany',
-      'api::sponsor.sponsor'
-    >;
-  };
-}
-
-export interface EventsMedia extends Schema.Component {
-  collectionName: 'components_events_media';
-  info: {
-    displayName: 'Media';
-    icon: 'photo-video';
-  };
-  attributes: {
-    url: Attribute.String & Attribute.Required;
-    type: Attribute.Enumeration<['Photos', 'Videos']> & Attribute.Required;
-  };
-}
-
-export interface DefaultHistoryItem extends Schema.Component {
-  collectionName: 'components_default_history_items';
-  info: {
-    displayName: 'HistoryItem';
-    description: '';
-  };
-  attributes: {
-    date: Attribute.Date & Attribute.Required;
-    dateFormat: Attribute.Enumeration<['Year', 'Month', 'Day']>;
-    additionalText: Attribute.String;
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
+    connection: Attribute.Integer &
+      Attribute.SetMinMax<
         {
-          preset: 'toolbar';
-        }
+          max: 5;
+          min: 1;
+        },
+        number
       >;
-    image: Attribute.Media<'images'> & Attribute.Required;
+    energy: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 1;
+        },
+        number
+      >;
+    silliness: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 1;
+        },
+        number
+      >;
   };
 }
 
-export interface ContactSocialNetwork extends Schema.Component {
-  collectionName: 'components_contact_social_networks';
+export interface LocationAddress extends Schema.Component {
+  collectionName: 'components_location_addresses';
   info: {
-    displayName: 'SocialNetwork';
-    icon: 'address-card';
     description: '';
+    displayName: 'Address';
+    icon: 'map-pin';
   };
   attributes: {
-    url: Attribute.String;
-    type: Attribute.Enumeration<
-      [
-        'Twitter',
-        'LinkedIn',
-        'Facebook',
-        'Youtube',
-        'Instagram',
-        'Xing',
-        'Email',
-        'Website',
-        'Wikipedia',
-        'Vimeo',
-        'Other'
-      ]
-    >;
+    area: Attribute.String;
+    city: Attribute.String & Attribute.Required;
+    postalCode: Attribute.String;
+    street: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface RegistrationRegistration extends Schema.Component {
+  collectionName: 'components_registration_registrations';
+  info: {
+    description: '';
+    displayName: 'Registration';
+    icon: 'info-circle';
+  };
+  attributes: {
+    link: Attribute.String;
+    widgetCode: Attribute.Text;
+  };
+}
+
+export interface ReportingFinance extends Schema.Component {
+  collectionName: 'components_reporting_finances';
+  info: {
+    description: '';
+    displayName: 'Finance';
+    icon: 'briefcase';
+  };
+  attributes: {
+    destination: Attribute.String & Attribute.Required;
+    expenses: Attribute.Decimal & Attribute.Required;
+    result: Attribute.Enumeration<['Profit', 'Loss']> & Attribute.Required;
+    resultAmount: Attribute.Decimal & Attribute.Required;
+    revenue: Attribute.Decimal & Attribute.Required;
+  };
+}
+
+export interface SharedDictionary extends Schema.Component {
+  collectionName: 'components_shared_dictionaries';
+  info: {
+    description: '';
+    displayName: 'Dictionary';
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required;
+    value: Attribute.Text & Attribute.Required;
+  };
+}
+
+export interface SharedList extends Schema.Component {
+  collectionName: 'components_shared_lists';
+  info: {
+    displayName: 'List';
+  };
+  attributes: {
+    value: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface SharedMetaSocial extends Schema.Component {
+  collectionName: 'components_shared_meta_socials';
+  info: {
+    displayName: 'metaSocial';
+    icon: 'project-diagram';
+  };
+  attributes: {
+    description: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 65;
+      }>;
+    image: Attribute.Media<'images' | 'files' | 'videos'>;
+    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> &
+      Attribute.Required;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+  };
+}
+
+export interface SharedSeo extends Schema.Component {
+  collectionName: 'components_shared_seos';
+  info: {
+    displayName: 'seo';
+    icon: 'search';
+  };
+  attributes: {
+    canonicalURL: Attribute.String;
+    keywords: Attribute.Text;
+    metaDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 160;
+        minLength: 50;
+      }>;
+    metaImage: Attribute.Media<'images' | 'files' | 'videos'> &
+      Attribute.Required;
+    metaRobots: Attribute.String;
+    metaSocial: Attribute.Component<'shared.meta-social', true>;
+    metaTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    metaViewport: Attribute.String;
+    structuredData: Attribute.JSON;
   };
 }
 
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'shared.seo': SharedSeo;
-      'shared.meta-social': SharedMetaSocial;
-      'shared.list': SharedList;
-      'shared.dictionary': SharedDictionary;
-      'reporting.finance': ReportingFinance;
-      'registration.registration': RegistrationRegistration;
-      'location.address': LocationAddress;
-      'games.ratings': GamesRatings;
-      'events.timetable': EventsTimetable;
-      'events.time-slots': EventsTimeSlots;
-      'events.sponsorship': EventsSponsorship;
-      'events.media': EventsMedia;
-      'default.history-item': DefaultHistoryItem;
       'contact.social-network': ContactSocialNetwork;
+      'default.history-item': DefaultHistoryItem;
+      'events.media': EventsMedia;
+      'events.sponsorship': EventsSponsorship;
+      'events.time-slots': EventsTimeSlots;
+      'events.timetable': EventsTimetable;
+      'games.ratings': GamesRatings;
+      'location.address': LocationAddress;
+      'registration.registration': RegistrationRegistration;
+      'reporting.finance': ReportingFinance;
+      'shared.dictionary': SharedDictionary;
+      'shared.list': SharedList;
+      'shared.meta-social': SharedMetaSocial;
+      'shared.seo': SharedSeo;
     }
   }
 }
