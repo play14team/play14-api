@@ -1,10 +1,11 @@
-'use strict';
+"use strict";
 
-const { eventToSlug } = require('../../../../libs/strings')
+const { eventToSlug } = require("../../../../libs/strings");
 
 /**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/models.html#lifecycle-hooks)
- * to customize this model
+ * Lifecycle hooks for Event content type
+ * Migrated to Strapi 5 Document Service API
+ * See: https://docs.strapi.io/dev-docs/api/document-service
  */
 
 function validate(data) {
@@ -17,9 +18,11 @@ function validate(data) {
 
 module.exports = {
   beforeCreate(event) {
-    validate(event.params.data);
+    const { data } = event.params;
+    validate(data);
   },
   beforeUpdate(event) {
-    validate(event.params.data);
+    const { data } = event.params;
+    validate(data);
   },
 };

@@ -3,8 +3,9 @@
 const { toSlug } = require("../../../../libs/strings");
 
 /**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/models.html#lifecycle-hooks)
- * to customize this model
+ * Lifecycle hooks for Event Location content type
+ * Migrated to Strapi 5 Document Service API
+ * See: https://docs.strapi.io/dev-docs/api/document-service
  */
 
 function validate(data) {
@@ -17,9 +18,11 @@ function validate(data) {
 
 module.exports = {
   beforeCreate(location) {
-    validate(location.params.data);
+    const { data } = location.params;
+    validate(data);
   },
   beforeUpdate(location) {
-    validate(location.params.data);
+    const { data } = location.params;
+    validate(data);
   },
 };

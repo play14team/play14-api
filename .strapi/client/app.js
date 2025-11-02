@@ -3,32 +3,26 @@
  * Any modifications made will be discarded.
  */
 import ckeditor5 from "@_sh/strapi-plugin-ckeditor/strapi-admin";
-import calendar from "@offset-dev/strapi-calendar/strapi-admin";
 import graphql from "@strapi/plugin-graphql/strapi-admin";
-import i18N from "@strapi/plugin-i18n/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import configSync from "strapi-plugin-config-sync/strapi-admin";
 import countrySelect from "strapi-plugin-country-select/strapi-admin";
 import mapField from "strapi-plugin-map-field/strapi-admin";
-import multiSelect from "strapi-plugin-multi-select/strapi-admin";
-import prevNextButton from "strapi-plugin-prev-next-button/strapi-admin";
 import timezoneSelect from "strapi-plugin-timezone-select/strapi-admin";
-import updateStaticContent from "strapi-plugin-update-static-content/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
+import customisations from "../../src/admin/app.tsx";
+
 renderAdmin(document.getElementById("strapi"), {
+  customisations,
+
   plugins: {
     ckeditor5: ckeditor5,
-    calendar: calendar,
     graphql: graphql,
-    i18n: i18N,
     "users-permissions": usersPermissions,
     "config-sync": configSync,
     "country-select": countrySelect,
     "map-field": mapField,
-    "multi-select": multiSelect,
-    "prev-next-button": prevNextButton,
     "timezone-select": timezoneSelect,
-    "update-static-content": updateStaticContent,
   },
 });

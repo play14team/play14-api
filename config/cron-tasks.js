@@ -1,3 +1,7 @@
+/**
+ * Cron tasks migrated to Strapi 5 Document Service API
+ * See: https://docs.strapi.io/dev-docs/api/document-service
+ */
 module.exports = {
   eventStatus: {
     task: async ({ strapi }) => {
@@ -5,8 +9,8 @@ module.exports = {
 
       console.log("Running event status job");
       const apiName = "api::event.event";
-      const events = await strapi.entityService.findMany(apiName, {
-        fields: ["id, name, end"],
+      const events = await strapi.documents(apiName).findMany({
+        fields: ["id", "name", "end"],
         filters: {
           $and: [
             {
@@ -28,15 +32,16 @@ module.exports = {
 
       console.log(
         "'Open' or 'Announced' events in the past found:",
-        events.length
+        events.length,
       );
 
-      events.map(async (event) => {
+      for (const event of events) {
         console.log("Changing status of event to 'Over'", event);
-        await strapi.entityService.update(apiName, event.id, {
+        await strapi.documents(apiName).update({
+          documentId: event.documentId,
           data: { status: "Over" },
         });
-      });
+      }
     },
     options: {
       // everyday at 00:00
@@ -49,8 +54,8 @@ module.exports = {
 
       console.log("Running player position job");
       const apiName = "api::player.player";
-      const players = await strapi.entityService.findMany(apiName, {
-        fields: ["id, name, position"],
+      const players = await strapi.documents(apiName).findMany({
+        fields: ["id", "name", "position"],
         populate: ["hosted", "mentored"],
         filters: {
           position: { $nei: "Founder" },
@@ -59,26 +64,26 @@ module.exports = {
 
       console.log("Players found:", players.length);
 
-      players.map(async (player) => {
+      for (const player of players) {
         if (isPlayer(player) && hasHosted(player)) {
           console.log(
-            `Changing postion of ${player.name} from "Player" to "Host"`
+            `Changing postion of ${player.name} from "Player" to "Host"`,
           );
           await setPosition(apiName, player, "Host");
         }
         if (isHost(player) && hasNeverHosted(player)) {
           console.log(
-            `Changing postion of ${player.name} from "Host" to "Player"`
+            `Changing postion of ${player.name} from "Host" to "Player"`,
           );
           await setPosition(apiName, player, "Player");
         }
         if (isHost(player) && hasMentored(player)) {
           console.log(
-            `Changing postion of ${player.name} from "Host" to "Mentor"`
+            `Changing postion of ${player.name} from "Host" to "Mentor"`,
           );
           await setPosition(apiName, player, "Mentor");
         }
-      });
+      }
     },
     options: {
       // everyday at 00:05
@@ -118,7 +123,8 @@ function notCancelled(events) {
 }
 
 async function setPosition(apiName, player, position) {
-  await strapi.entityService.update(apiName, player.id, {
+  await strapi.documents(apiName).update({
+    documentId: player.documentId,
     data: { position: position },
   });
 }
