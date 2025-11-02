@@ -3,8 +3,9 @@
 const { toSlug } = require("../../../../libs/strings");
 
 /**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/models.html#lifecycle-hooks)
- * to customize this model
+ * Lifecycle hooks for Game content type
+ * Migrated to Strapi 5 Document Service API
+ * See: https://docs.strapi.io/dev-docs/api/document-service
  */
 
 function validate(data) {
@@ -17,9 +18,11 @@ function validate(data) {
 
 module.exports = {
   beforeCreate(game) {
-    validate(game.params.data);
+    const { data } = game.params;
+    validate(data);
   },
   beforeUpdate(game) {
-    validate(game.params.data);
+    const { data } = game.params;
+    validate(data);
   },
 };

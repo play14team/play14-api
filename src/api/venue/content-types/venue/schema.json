@@ -27,9 +27,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "pluginOptions": {}
     },
     "website": {
@@ -50,7 +48,7 @@
     },
     "location": {
       "type": "customField",
-      "customField": "plugin::map-field.map"
+      "customField": "global::map-field"
     },
     "addressDetails": {
       "type": "string"

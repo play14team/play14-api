@@ -24,12 +24,7 @@
     },
     "position": {
       "type": "enumeration",
-      "enum": [
-        "Player",
-        "Host",
-        "Mentor",
-        "Founder"
-      ],
+      "enum": ["Player", "Host", "Mentor", "Founder"],
       "required": true
     },
     "company": {
@@ -53,9 +48,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "socialNetworks": {
       "type": "component",
@@ -100,7 +93,7 @@
     },
     "location": {
       "type": "customField",
-      "customField": "plugin::map-field.map"
+      "customField": "global::map-field"
     }
   }
 }

@@ -5,16 +5,12 @@ module.exports = ({ env }) => ({
         tracing: false,
         introspection: true,
       },
+      // Enable v4 compatibility mode for gradual migration
+      v4CompatibilityMode: true,
     },
   },
-  ckeditor5: true,
-  "prev-next-button": true,
-  "strapi-blurhash": {
+  ckeditor5: {
     enabled: true,
-    config: {
-      regenerateOnUpdate: true,
-      forceRegenerateOnUpdate: false,
-    },
   },
   // upload: {
   //   config: {
@@ -42,154 +38,17 @@ module.exports = ({ env }) => ({
   "map-field": {
     enabled: true,
   },
-  "update-static-content": {
+  "timezone-select": {
     enabled: true,
-    config: {
-      githubToken: env("GITHUB_TOKEN"),
-      owner: "play14team",
-      repo: "play14-ui",
-      workflowId: "52506304",
-      branch: "main",
-    },
   },
-  "fuzzy-search": {
+  "country-select": {
     enabled: true,
-    config: {
-      contentTypes: [
-        {
-          uid: "api::event.event",
-          modelName: "event",
-          queryConstraints: {
-            where: {
-              $and: [
-                {
-                  publishedAt: { $notNull: true },
-                },
-              ],
-            },
-          },
-          fuzzysortOptions: {
-            characterLimit: 500,
-            threshold: -200,
-            keys: [
-              {
-                name: "name",
-                weight: 500,
-              },
-              {
-                name: "status",
-                weight: 400,
-              },
-              {
-                name: "description",
-                weight: -100,
-              },
-            ],
-          },
-        },
-        {
-          uid: "api::player.player",
-          modelName: "player",
-          fuzzysortOptions: {
-            characterLimit: 200,
-            threshold: -200,
-            keys: [
-              {
-                name: "name",
-                weight: 500,
-              },
-              {
-                name: "slug",
-                weight: 400,
-              },
-              {
-                name: "position",
-                weight: 300,
-              },
-              {
-                name: "company",
-                weight: 200,
-              },
-              {
-                name: "tagline",
-                weight: 100,
-              },
-              {
-                name: "bio",
-                weight: -100,
-              },
-            ],
-          },
-        },
-        {
-          uid: "api::game.game",
-          modelName: "game",
-          fuzzysortOptions: {
-            characterLimit: 200,
-            threshold: -200,
-            keys: [
-              {
-                name: "name",
-                weight: 500,
-              },
-              {
-                name: "slug",
-                weight: 400,
-              },
-              {
-                name: "category",
-                weight: 300,
-              },
-              {
-                name: "tags",
-                weight: 200,
-              },
-              {
-                name: "credits",
-                weight: 100,
-              },
-              {
-                name: "summary",
-                weight: -100,
-              },
-            ],
-          },
-        },
-        {
-          uid: "api::article.article",
-          modelName: "article",
-          fuzzysortOptions: {
-            characterLimit: 200,
-            threshold: -200,
-            keys: [
-              {
-                name: "title",
-                weight: 500,
-              },
-              {
-                name: "slug",
-                weight: 400,
-              },
-              {
-                name: "category",
-                weight: 300,
-              },
-              {
-                name: "tags",
-                weight: 200,
-              },
-              {
-                name: "summary",
-                weight: 100,
-              },
-              {
-                name: "content",
-                weight: -100,
-              },
-            ],
-          },
-        },
-      ],
-    },
   },
+  // NOTE: The following plugins were removed during Strapi 5 migration due to compatibility issues:
+  // - update-static-content: No Node 22/Strapi 5 version available
+  //   TODO: Implement alternative GitHub webhook trigger mechanism
+  // - fuzzy-search: Requires Node <=20.x.x
+  //   TODO: Migrate to Strapi 5 native search or Meilisearch integration
+  // - prev-next-button: No Strapi 5 version available
+  //   TODO: Evaluate if still needed or implement custom solution
 });

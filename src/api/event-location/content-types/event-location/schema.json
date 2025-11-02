@@ -33,7 +33,7 @@
     },
     "location": {
       "type": "customField",
-      "customField": "plugin::map-field.map"
+      "customField": "global::map-field"
     }
   }
 }
