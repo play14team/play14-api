@@ -1,6 +1,6 @@
-import type { Attribute, Schema } from '@strapi/strapi';
+import type { Schema, Struct } from '@strapi/strapi';
 
-export interface ContactSocialNetwork extends Schema.Component {
+export interface ContactSocialNetwork extends Struct.ComponentSchema {
   collectionName: 'components_contact_social_networks';
   info: {
     description: '';
@@ -8,7 +8,7 @@ export interface ContactSocialNetwork extends Schema.Component {
     icon: 'address-card';
   };
   attributes: {
-    type: Attribute.Enumeration<
+    type: Schema.Attribute.Enumeration<
       [
         'Twitter',
         'LinkedIn',
@@ -20,49 +20,50 @@ export interface ContactSocialNetwork extends Schema.Component {
         'Website',
         'Wikipedia',
         'Vimeo',
-        'Other'
+        'Other',
       ]
     >;
-    url: Attribute.String;
+    url: Schema.Attribute.String;
   };
 }
 
-export interface DefaultHistoryItem extends Schema.Component {
+export interface DefaultHistoryItem extends Struct.ComponentSchema {
   collectionName: 'components_default_history_items';
   info: {
     description: '';
     displayName: 'HistoryItem';
   };
   attributes: {
-    additionalText: Attribute.String;
-    date: Attribute.Date & Attribute.Required;
-    dateFormat: Attribute.Enumeration<['Year', 'Month', 'Day']>;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
+    additionalText: Schema.Attribute.String;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    dateFormat: Schema.Attribute.Enumeration<['Year', 'Month', 'Day']>;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
         {
           preset: 'toolbar';
         }
       >;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    title: Attribute.String & Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface EventsMedia extends Schema.Component {
+export interface EventsMedia extends Struct.ComponentSchema {
   collectionName: 'components_events_media';
   info: {
     displayName: 'Media';
     icon: 'photo-video';
   };
   attributes: {
-    type: Attribute.Enumeration<['Photos', 'Videos']> & Attribute.Required;
-    url: Attribute.String & Attribute.Required;
+    type: Schema.Attribute.Enumeration<['Photos', 'Videos']> &
+      Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface EventsSponsorship extends Schema.Component {
+export interface EventsSponsorship extends Struct.ComponentSchema {
   collectionName: 'components_events_sponsorships';
   info: {
     description: '';
@@ -70,16 +71,12 @@ export interface EventsSponsorship extends Schema.Component {
     icon: 'address-book';
   };
   attributes: {
-    category: Attribute.String & Attribute.Required;
-    sponsors: Attribute.Relation<
-      'events.sponsorship',
-      'oneToMany',
-      'api::sponsor.sponsor'
-    >;
+    category: Schema.Attribute.String & Schema.Attribute.Required;
+    sponsors: Schema.Attribute.Relation<'oneToMany', 'api::sponsor.sponsor'>;
   };
 }
 
-export interface EventsTimeSlots extends Schema.Component {
+export interface EventsTimeSlots extends Struct.ComponentSchema {
   collectionName: 'components_events_time_slots';
   info: {
     description: '';
@@ -87,12 +84,12 @@ export interface EventsTimeSlots extends Schema.Component {
     icon: 'stopwatch';
   };
   attributes: {
-    description: Attribute.String & Attribute.Required;
-    time: Attribute.Time & Attribute.Required;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+    time: Schema.Attribute.Time & Schema.Attribute.Required;
   };
 }
 
-export interface EventsTimetable extends Schema.Component {
+export interface EventsTimetable extends Struct.ComponentSchema {
   collectionName: 'components_events_timetables';
   info: {
     description: '';
@@ -100,7 +97,7 @@ export interface EventsTimetable extends Schema.Component {
     icon: 'calendar';
   };
   attributes: {
-    day: Attribute.Enumeration<
+    day: Schema.Attribute.Enumeration<
       [
         'Monday',
         'Tuesday',
@@ -108,41 +105,41 @@ export interface EventsTimetable extends Schema.Component {
         'Thursday',
         'Friday',
         'Saturday',
-        'Sunday'
+        'Sunday',
       ]
     > &
-      Attribute.Required;
-    description: Attribute.String & Attribute.Required;
-    timeslots: Attribute.Component<'events.time-slots', true> &
-      Attribute.Required;
+      Schema.Attribute.Required;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+    timeslots: Schema.Attribute.Component<'events.time-slots', true> &
+      Schema.Attribute.Required;
   };
 }
 
-export interface GamesRatings extends Schema.Component {
+export interface GamesRatings extends Struct.ComponentSchema {
   collectionName: 'components_games_ratings';
   info: {
     description: '';
     displayName: 'Ratings';
   };
   attributes: {
-    connection: Attribute.Integer &
-      Attribute.SetMinMax<
+    connection: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
         {
           max: 5;
           min: 1;
         },
         number
       >;
-    energy: Attribute.Integer &
-      Attribute.SetMinMax<
+    energy: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
         {
           max: 5;
           min: 1;
         },
         number
       >;
-    silliness: Attribute.Integer &
-      Attribute.SetMinMax<
+    silliness: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
         {
           max: 5;
           min: 1;
@@ -152,7 +149,7 @@ export interface GamesRatings extends Schema.Component {
   };
 }
 
-export interface LocationAddress extends Schema.Component {
+export interface LocationAddress extends Struct.ComponentSchema {
   collectionName: 'components_location_addresses';
   info: {
     description: '';
@@ -160,14 +157,14 @@ export interface LocationAddress extends Schema.Component {
     icon: 'map-pin';
   };
   attributes: {
-    area: Attribute.String;
-    city: Attribute.String & Attribute.Required;
-    postalCode: Attribute.String;
-    street: Attribute.String & Attribute.Required;
+    area: Schema.Attribute.String;
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    postalCode: Schema.Attribute.String;
+    street: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface RegistrationRegistration extends Schema.Component {
+export interface RegistrationRegistration extends Struct.ComponentSchema {
   collectionName: 'components_registration_registrations';
   info: {
     description: '';
@@ -175,12 +172,12 @@ export interface RegistrationRegistration extends Schema.Component {
     icon: 'info-circle';
   };
   attributes: {
-    link: Attribute.String;
-    widgetCode: Attribute.Text;
+    link: Schema.Attribute.String;
+    widgetCode: Schema.Attribute.Text;
   };
 }
 
-export interface ReportingFinance extends Schema.Component {
+export interface ReportingFinance extends Struct.ComponentSchema {
   collectionName: 'components_reporting_finances';
   info: {
     description: '';
@@ -188,91 +185,92 @@ export interface ReportingFinance extends Schema.Component {
     icon: 'briefcase';
   };
   attributes: {
-    destination: Attribute.String & Attribute.Required;
-    expenses: Attribute.Decimal & Attribute.Required;
-    result: Attribute.Enumeration<['Profit', 'Loss']> & Attribute.Required;
-    resultAmount: Attribute.Decimal & Attribute.Required;
-    revenue: Attribute.Decimal & Attribute.Required;
+    destination: Schema.Attribute.String & Schema.Attribute.Required;
+    expenses: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    result: Schema.Attribute.Enumeration<['Profit', 'Loss']> &
+      Schema.Attribute.Required;
+    resultAmount: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    revenue: Schema.Attribute.Decimal & Schema.Attribute.Required;
   };
 }
 
-export interface SharedDictionary extends Schema.Component {
+export interface SharedDictionary extends Struct.ComponentSchema {
   collectionName: 'components_shared_dictionaries';
   info: {
     description: '';
     displayName: 'Dictionary';
   };
   attributes: {
-    key: Attribute.String & Attribute.Required;
-    value: Attribute.Text & Attribute.Required;
+    key: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
 
-export interface SharedList extends Schema.Component {
+export interface SharedList extends Struct.ComponentSchema {
   collectionName: 'components_shared_lists';
   info: {
     displayName: 'List';
   };
   attributes: {
-    value: Attribute.String & Attribute.Required;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface SharedMetaSocial extends Schema.Component {
+export interface SharedMetaSocial extends Struct.ComponentSchema {
   collectionName: 'components_shared_meta_socials';
   info: {
     displayName: 'metaSocial';
     icon: 'project-diagram';
   };
   attributes: {
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
+    description: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
         maxLength: 65;
       }>;
-    image: Attribute.Media<'images' | 'files' | 'videos'>;
-    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> &
-      Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    socialNetwork: Schema.Attribute.Enumeration<['Facebook', 'Twitter']> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
         maxLength: 60;
       }>;
   };
 }
 
-export interface SharedSeo extends Schema.Component {
+export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
     displayName: 'seo';
     icon: 'search';
   };
   attributes: {
-    canonicalURL: Attribute.String;
-    keywords: Attribute.Text;
-    metaDescription: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
+    canonicalURL: Schema.Attribute.String;
+    keywords: Schema.Attribute.Text;
+    metaDescription: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
         maxLength: 160;
         minLength: 50;
       }>;
-    metaImage: Attribute.Media<'images' | 'files' | 'videos'> &
-      Attribute.Required;
-    metaRobots: Attribute.String;
-    metaSocial: Attribute.Component<'shared.meta-social', true>;
-    metaTitle: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
+    metaImage: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
+      Schema.Attribute.Required;
+    metaRobots: Schema.Attribute.String;
+    metaSocial: Schema.Attribute.Component<'shared.meta-social', true>;
+    metaTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
         maxLength: 60;
       }>;
-    metaViewport: Attribute.String;
-    structuredData: Attribute.JSON;
+    metaViewport: Schema.Attribute.String;
+    structuredData: Schema.Attribute.JSON;
   };
 }
 
-declare module '@strapi/types' {
-  export module Shared {
-    export interface Components {
+declare module '@strapi/strapi' {
+  export module Public {
+    export interface ComponentSchemas {
       'contact.social-network': ContactSocialNetwork;
       'default.history-item': DefaultHistoryItem;
       'events.media': EventsMedia;
