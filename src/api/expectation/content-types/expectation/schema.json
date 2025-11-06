@@ -32,10 +32,7 @@
         }
       },
       "type": "enumeration",
-      "enum": [
-        "Main",
-        "Secondary"
-      ],
+      "enum": ["Main", "Secondary"],
       "required": true
     },
     "icon": {
@@ -55,7 +52,7 @@
       },
       "type": "customField",
       "options": {
-        "preset": "toolbar"
+        "preset": "defaultHtml"
       },
       "customField": "plugin::ckeditor5.CKEditor",
       "required": true

@@ -44,11 +44,95 @@ module.exports = ({ env }) => ({
   "country-select": {
     enabled: true,
   },
-  // NOTE: The following plugins were removed during Strapi 5 migration due to compatibility issues:
-  // - update-static-content: No Node 22/Strapi 5 version available
-  //   TODO: Implement alternative GitHub webhook trigger mechanism
-  // - fuzzy-search: Requires Node <=20.x.x
-  //   TODO: Migrate to Strapi 5 native search or Meilisearch integration
-  // - prev-next-button: No Strapi 5 version available
-  //   TODO: Evaluate if still needed or implement custom solution
+  "multi-select": {
+    enabled: true,
+  },
+  "fuzzy-search": {
+    enabled: true,
+    config: {
+      contentTypes: [
+        {
+          uid: "api::event.event",
+          modelName: "event",
+          queryConstraints: {
+            where: {
+              $and: [
+                {
+                  publishedAt: { $notNull: true },
+                },
+              ],
+            },
+          },
+          fuzzysortOptions: {
+            characterLimit: 100,
+            threshold: 0,
+            keys: [
+              {
+                name: "name",
+                weight: 1000,
+              },
+            ],
+          },
+        },
+        {
+          uid: "api::player.player",
+          modelName: "player",
+          fuzzysortOptions: {
+            characterLimit: 100,
+            threshold: 0,
+            keys: [
+              {
+                name: "name",
+                weight: 5000,
+              },
+              {
+                name: "slug",
+                weight: 3000,
+              },
+              {
+                name: "company",
+                weight: 100,
+              },
+            ],
+          },
+        },
+        {
+          uid: "api::game.game",
+          modelName: "game",
+          fuzzysortOptions: {
+            characterLimit: 100,
+            threshold: 0,
+            keys: [
+              {
+                name: "name",
+                weight: 1000,
+              },
+              {
+                name: "slug",
+                weight: 500,
+              },
+            ],
+          },
+        },
+        {
+          uid: "api::article.article",
+          modelName: "article",
+          fuzzysortOptions: {
+            characterLimit: 100,
+            threshold: 0,
+            keys: [
+              {
+                name: "title",
+                weight: 1000,
+              },
+              {
+                name: "slug",
+                weight: 500,
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
 });
