@@ -6,12 +6,21 @@ module.exports = ({ env }) => [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "connect-src": ["'self'", "https:", "blob:", "*.strapi.io"],
+          "connect-src": [
+            "'self'",
+            "https:",
+            "blob:",
+            "*.strapi.io",
+            "https://proxy-event.ckeditor.com",
+            "https://cdn.ckeditor.com",
+          ],
           "script-src": [
             "'self'",
             "'unsafe-inline'",
+            "'unsafe-eval'",
             "cdn.jsdelivr.net",
             "api.mapbox.com",
+            "https://cdn.ckeditor.com",
           ],
           "img-src": [
             "'self'",
@@ -21,11 +30,16 @@ module.exports = ({ env }) => [
             "dl.airtable.com",
             "*.strapi.io",
             "s3.amazonaws.com",
+            "https://cdn.ckeditor.com",
             process.env.STORAGE_URL,
             process.env.STORAGE_CDN_URL,
           ],
-          "style-src": ["'self'", "'unsafe-inline'"],
-          "font-src": ["'self'"],
+          "style-src": [
+            "'self'",
+            "'unsafe-inline'",
+            "https://cdn.ckeditor.com",
+          ],
+          "font-src": ["'self'", "https://cdn.ckeditor.com"],
           "media-src": [
             "'self'",
             "data:",
@@ -34,7 +48,14 @@ module.exports = ({ env }) => [
             process.env.STORAGE_URL,
             process.env.STORAGE_CDN_URL,
           ],
-          "worker-src": ["blob:"],
+          "worker-src": ["'self'", "blob:"],
+          "frame-src": [
+            "'self'",
+            "https://ckeditor.com",
+            "https://*.ckeditor.com",
+          ],
+          "object-src": ["'none'"],
+          "base-uri": ["'self'"],
           upgradeInsecureRequests: null,
         },
       },
