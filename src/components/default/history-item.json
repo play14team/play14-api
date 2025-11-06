@@ -12,11 +12,7 @@
     },
     "dateFormat": {
       "type": "enumeration",
-      "enum": [
-        "Year",
-        "Month",
-        "Day"
-      ]
+      "enum": ["Year", "Month", "Day"]
     },
     "additionalText": {
       "type": "string"
@@ -28,7 +24,7 @@
     "description": {
       "type": "customField",
       "options": {
-        "preset": "toolbar"
+        "preset": "defaultHtml"
       },
       "customField": "plugin::ckeditor5.CKEditor",
       "required": true
@@ -37,9 +33,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     }
   }
 }

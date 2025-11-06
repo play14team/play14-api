@@ -42,7 +42,7 @@ export interface DefaultHistoryItem extends Struct.ComponentSchema {
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
         {
-          preset: 'toolbar';
+          preset: 'defaultHtml';
         }
       >;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;

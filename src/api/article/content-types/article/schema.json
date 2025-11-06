@@ -37,34 +37,24 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "images": {
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "content": {
       "type": "customField",
       "options": {
-        "preset": "toolbar"
+        "preset": "defaultHtml"
       },
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "category": {
       "type": "enumeration",
-      "enum": [
-        "Announcement",
-        "Article",
-        "Event",
-        "Interview",
-        "Meetup"
-      ]
+      "enum": ["Announcement", "Article", "Event", "Interview", "Meetup"]
     },
     "tags": {
       "type": "relation",
