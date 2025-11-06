@@ -2,9 +2,9 @@
 
 ## Architecture Overview
 
-This is a **Strapi v4** headless CMS API serving the #play14 community platform. Core architecture:
+This is a **Strapi v5** headless CMS API serving the #play14 community platform. Core architecture:
 
-- **Backend**: Strapi 4.25.21 with PostgreSQL database
+- **Backend**: Strapi 5.x with PostgreSQL database
 - **Deployment**: Azure Container Apps via Docker (multi-stage builds)
 - **Storage**: Azure Blob Storage for media uploads
 - **Frontend Integration**: Triggers `play14-ui` repo rebuilds via GitHub Actions (see `update-static-content` plugin config)
@@ -59,7 +59,7 @@ module.exports = {
   beforeCreate(event) {
     event.params.data.slug = eventToSlug(
       event.params.data.name,
-      event.params.data.start
+      event.params.data.start,
     );
   },
 };
@@ -135,3 +135,34 @@ Reusable components in `src/components/`:
 3. **Azure Upload**: Requires `defaultPath: "assets"` in provider config - don't change without CDN updates
 4. **Yarn Version**: Using Yarn 1.22.22 (see `packageManager` in package.json) - avoid `npm`
 5. **Node Version**: Check `.nvmrc` for required Node.js version (18.x expected from Dockerfile)
+
+## Coding Standards
+
+Follow the language-specific instructions in `.github/instructions/`:
+
+- [Node.js/JavaScript Guidelines](./instructions/nodejs.instructions.md)
+- [Strapi 5 Best Practices](./instructions/strapi5.instructions.md)
+- [Testing Standards](./instructions/testing.instructions.md)
+- [Security Best Practices](./instructions/security.instructions.md)
+- [Documentation Requirements](./instructions/documentation.instructions.md)
+- [Performance Guidelines](./instructions/performance.instructions.md)
+- [Code Review Standards](./instructions/code-review.instructions.md)
+
+## Specialized Prompts
+
+Use the prompts in `.github/prompts/` for common development tasks:
+
+- [Setup Strapi Component](./prompts/setup-strapi-component.prompt.md)
+- [Write Tests](./prompts/write-tests.prompt.md)
+- [Code Review](./prompts/code-review.prompt.md)
+- [Refactor Code](./prompts/refactor-code.prompt.md)
+- [Generate Documentation](./prompts/generate-docs.prompt.md)
+- [Debug Issues](./prompts/debug-issue.prompt.md)
+
+## Chat Modes
+
+Switch to specialized modes in `.github/chatmodes/`:
+
+- [Strapi Architect](./chatmodes/strapi-architect.chatmode.md) - Architecture planning
+- [Code Reviewer](./chatmodes/reviewer.chatmode.md) - Code review assistance
+- [Debugger](./chatmodes/debugger.chatmode.md) - Bug hunting and fixing
