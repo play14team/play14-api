@@ -49,6 +49,30 @@ module.exports = {
           models: [uid],
 
           /**
+           * Store previous publishedAt value before update
+           */
+          async beforeUpdate(event) {
+            const documentId = event.params.where?.id || event.params.where?.documentId;
+            if (!documentId) return;
+
+            try {
+              const existing = await strapi.db.query(uid).findOne({
+                where: { id: documentId },
+                select: ["publishedAt"],
+              });
+              
+              // Store in event state for use in afterUpdate
+              if (!event.state) event.state = {};
+              event.state.previousPublishedAt = existing?.publishedAt;
+            } catch (error) {
+              strapi.log.warn(
+                `[GitHub Trigger] Failed to fetch previous publishedAt for ${uid}:`,
+                error.message,
+              );
+            }
+          },
+
+          /**
            * Trigger when content is updated
            * Check if publishedAt changed from null to a date (published)
            * or from a date to null (unpublished)
@@ -60,20 +84,30 @@ module.exports = {
             const contentType = uid.split("::")[1].split(".")[1];
             const documentId = event.result?.documentId || event.result?.id;
 
-            // Check if publishedAt changed (indicates publish/unpublish)
-            const wasPublished = event.params.data.publishedAt !== undefined;
+            // Only trigger if publishedAt was included in the update
+            if (event.params.data.publishedAt === undefined) return;
 
-            if (wasPublished) {
-              const isNowPublished = event.result.publishedAt !== null;
-              const action = isNowPublished ? "published" : "unpublished";
+            // Get previous and current publishedAt values
+            const previousPublishedAt = event.state?.previousPublishedAt;
+            const currentPublishedAt = event.result.publishedAt;
 
-              strapi.log.info(
-                `[GitHub Trigger] Detected ${contentType} ${action}: ${documentId}`,
-              );
-              githubTrigger.debouncedTrigger(
-                `${contentType} ${action}: ${documentId}`,
-              );
+            // Check if publishedAt actually changed
+            const wasPublished = previousPublishedAt !== null;
+            const isNowPublished = currentPublishedAt !== null;
+
+            // Only trigger if the published state changed
+            if (wasPublished === isNowPublished) {
+              // No state change, don't trigger
+              return;
             }
+
+            const action = isNowPublished ? "published" : "unpublished";
+            strapi.log.info(
+              `[GitHub Trigger] Detected ${contentType} ${action}: ${documentId}`,
+            );
+            githubTrigger.debouncedTrigger(
+              `${contentType} ${action}: ${documentId}`,
+            );
           },
 
           /**
