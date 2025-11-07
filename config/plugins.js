@@ -5,8 +5,6 @@ module.exports = ({ env }) => ({
         tracing: false,
         introspection: true,
       },
-      // Enable v4 compatibility mode for gradual migration
-      v4CompatibilityMode: true,
     },
   },
   ckeditor5: {
