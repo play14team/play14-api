@@ -1,6 +1,10 @@
 /**
  * Cron tasks migrated to Strapi 5 Document Service API
  * See: https://docs.strapi.io/dev-docs/api/document-service
+ *
+ * Note: Operations are executed in parallel using Promise.all() for better
+ * performance with large datasets. This is safe because each update operation
+ * is independent and doesn't depend on the order of execution.
  */
 module.exports = {
   eventStatus: {
@@ -35,13 +39,15 @@ module.exports = {
         events.length,
       );
 
-      for (const event of events) {
-        console.log("Changing eventStatus of event to 'Over'", event);
-        await strapi.documents(apiName).update({
-          documentId: event.documentId,
-          data: { eventStatus: "Over" },
-        });
-      }
+      await Promise.all(
+        events.map(async (event) => {
+          console.log("Changing eventStatus of event to 'Over'", event);
+          await strapi.documents(apiName).update({
+            documentId: event.documentId,
+            data: { eventStatus: "Over" },
+          });
+        }),
+      );
     },
     options: {
       // everyday at 00:00
@@ -64,26 +70,28 @@ module.exports = {
 
       console.log("Players found:", players.length);
 
-      for (const player of players) {
-        if (isPlayer(player) && hasHosted(player)) {
-          console.log(
-            `Changing postion of ${player.name} from "Player" to "Host"`,
-          );
-          await setPosition(apiName, player, "Host");
-        }
-        if (isHost(player) && hasNeverHosted(player)) {
-          console.log(
-            `Changing postion of ${player.name} from "Host" to "Player"`,
-          );
-          await setPosition(apiName, player, "Player");
-        }
-        if (isHost(player) && hasMentored(player)) {
-          console.log(
-            `Changing postion of ${player.name} from "Host" to "Mentor"`,
-          );
-          await setPosition(apiName, player, "Mentor");
-        }
-      }
+      await Promise.all(
+        players.map(async (player) => {
+          if (isPlayer(player) && hasHosted(player)) {
+            console.log(
+              `Changing postion of ${player.name} from "Player" to "Host"`,
+            );
+            await setPosition(apiName, player, "Host");
+          }
+          if (isHost(player) && hasNeverHosted(player)) {
+            console.log(
+              `Changing postion of ${player.name} from "Host" to "Player"`,
+            );
+            await setPosition(apiName, player, "Player");
+          }
+          if (isHost(player) && hasMentored(player)) {
+            console.log(
+              `Changing postion of ${player.name} from "Host" to "Mentor"`,
+            );
+            await setPosition(apiName, player, "Mentor");
+          }
+        }),
+      );
     },
     options: {
       // everyday at 00:05
