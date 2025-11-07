@@ -52,8 +52,14 @@ module.exports = {
            * Store previous publishedAt value before update
            */
           async beforeUpdate(event) {
-            const documentId = event.params.where?.id || event.params.where?.documentId;
-            if (!documentId) return;
+            const where = event.params.where || {};
+            const documentId = where.id || where.documentId;
+            if (!documentId) {
+              strapi.log.warn(
+                `[GitHub Trigger] No document ID found in beforeUpdate for ${uid}`,
+              );
+              return;
+            }
 
             try {
               const existing = await strapi.db.query(uid).findOne({
@@ -96,18 +102,15 @@ module.exports = {
             const isNowPublished = currentPublishedAt !== null;
 
             // Only trigger if the published state changed
-            if (wasPublished === isNowPublished) {
-              // No state change, don't trigger
-              return;
+            if (wasPublished !== isNowPublished) {
+              const action = isNowPublished ? "published" : "unpublished";
+              strapi.log.info(
+                `[GitHub Trigger] Detected ${contentType} ${action}: ${documentId}`,
+              );
+              githubTrigger.debouncedTrigger(
+                `${contentType} ${action}: ${documentId}`,
+              );
             }
-
-            const action = isNowPublished ? "published" : "unpublished";
-            strapi.log.info(
-              `[GitHub Trigger] Detected ${contentType} ${action}: ${documentId}`,
-            );
-            githubTrigger.debouncedTrigger(
-              `${contentType} ${action}: ${documentId}`,
-            );
           },
 
           /**
