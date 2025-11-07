@@ -77,6 +77,11 @@ module.exports = ({ env }) => ({
         {
           uid: "api::player.player",
           modelName: "player",
+          queryConstraints: {
+            where: {
+              publishedAt: { $notNull: true },
+            },
+          },
           fuzzysortOptions: {
             characterLimit: 100,
             threshold: 0,
@@ -99,6 +104,11 @@ module.exports = ({ env }) => ({
         {
           uid: "api::game.game",
           modelName: "game",
+          queryConstraints: {
+            where: {
+              publishedAt: { $notNull: true },
+            },
+          },
           fuzzysortOptions: {
             characterLimit: 100,
             threshold: 0,
@@ -117,6 +127,11 @@ module.exports = ({ env }) => ({
         {
           uid: "api::article.article",
           modelName: "article",
+          queryConstraints: {
+            where: {
+              publishedAt: { $notNull: true },
+            },
+          },
           fuzzysortOptions: {
             characterLimit: 100,
             threshold: 0,

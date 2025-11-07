@@ -16,10 +16,10 @@ module.exports = {
             {
               $or: [
                 {
-                  status: "Open",
+                  eventStatus: "Open",
                 },
                 {
-                  status: "Announced",
+                  eventStatus: "Announced",
                 },
               ],
             },
@@ -36,10 +36,10 @@ module.exports = {
       );
 
       for (const event of events) {
-        console.log("Changing status of event to 'Over'", event);
+        console.log("Changing eventStatus of event to 'Over'", event);
         await strapi.documents(apiName).update({
           documentId: event.documentId,
-          data: { status: "Over" },
+          data: { eventStatus: "Over" },
         });
       }
     },
@@ -106,7 +106,8 @@ function hasHosted(player) {
 
 function hasHosted4(player) {
   return (
-    player.hosted && player.hosted.filter((e) => e.status == "Over").length > 3
+    player.hosted &&
+    player.hosted.filter((e) => e.eventStatus == "Over").length > 3
   );
 }
 
@@ -119,7 +120,7 @@ function hasMentored(player) {
 }
 
 function notCancelled(events) {
-  return events.filter((e) => e.status != "Cancelled");
+  return events.filter((e) => e.eventStatus != "Cancelled");
 }
 
 async function setPosition(apiName, player, position) {

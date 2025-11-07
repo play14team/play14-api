@@ -41,11 +41,16 @@
       "required": true,
       "default": "2023-01-03T16:30:00.000Z"
     },
-    "status": {
+    "eventStatus": {
       "type": "enumeration",
       "enum": ["Announced", "Open", "Over", "Cancelled"],
       "default": "Announced",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     },
     "defaultImage": {
       "type": "media",
