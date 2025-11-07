@@ -78,16 +78,16 @@
           "sortable": true
         }
       },
-      "status": {
+      "eventStatus": {
         "edit": {
           "label": "Status",
-          "description": "",
-          "placeholder": "",
+          "description": "Event status workflow: Announced → Open → Over → Cancelled",
+          "placeholder": "Select event status",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "status",
+          "label": "eventStatus",
           "searchable": true,
           "sortable": true
         }
@@ -385,7 +385,7 @@
         "name",
         "start",
         "end",
-        "status",
+        "eventStatus",
         "location",
         "venue",
         "defaultImage"
@@ -419,7 +419,7 @@
         ],
         [
           {
-            "name": "status",
+            "name": "eventStatus",
             "size": 6
           },
           {

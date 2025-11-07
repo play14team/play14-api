@@ -558,6 +558,16 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     end: Schema.Attribute.DateTime &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'2023-01-03T16:30:00.000Z'>;
+    eventStatus: Schema.Attribute.Enumeration<
+      ['Announced', 'Open', 'Over', 'Cancelled']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'Announced'>;
     finance: Schema.Attribute.Component<'reporting.finance', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -603,11 +613,6 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     start: Schema.Attribute.DateTime &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'2023-01-01T17:00:00.000Z'>;
-    status: Schema.Attribute.Enumeration<
-      ['Announced', 'Open', 'Over', 'Cancelled']
-    > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Announced'>;
     tagline: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
