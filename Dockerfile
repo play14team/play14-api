@@ -8,7 +8,7 @@ ENV STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN ${STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN}
 WORKDIR /opt/
 COPY package.json yarn.lock ./
 RUN yarn global add node-gyp
-RUN yarn install --production  --network-timeout 600000
+RUN yarn install --production  --network-timeout 600000 --ignore-engines
 ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
