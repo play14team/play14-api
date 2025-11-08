@@ -2,12 +2,23 @@
 
 ## Architecture Overview
 
-This is a **Strapi v5** headless CMS API serving the #play14 community platform. Core architecture:
+This is a **Strapi v5** headless CMS API serving the #play14 community platform with **Azure Bicep Infrastructure as Code**. Core architecture:
 
 - **Backend**: Strapi 5.x with PostgreSQL database
+- **Infrastructure**: Azure Bicep templates for repeatable deployments
 - **Deployment**: Azure Container Apps via Docker (multi-stage builds)
 - **Storage**: Azure Blob Storage for media uploads
 - **Frontend Integration**: Triggers `play14-ui` repo rebuilds via GitHub Actions (see `update-static-content` plugin config)
+
+### Infrastructure Components
+
+Current infrastructure uses ARM templates in `iac/templates/`, with plans to migrate to Bicep:
+
+- **Container Apps**: Hosting the Strapi 5 API application
+- **Database**: PostgreSQL with Azure Database for PostgreSQL
+- **Storage**: Azure Storage Account with CDN integration
+- **Networking**: Virtual Network with private endpoints
+- **Monitoring**: Application Insights and Log Analytics
 
 ### Key Content Types
 
@@ -22,10 +33,25 @@ Located in `src/api/*/content-types/*/schema.json`:
 
 ### Local Development
 
+**Strapi Development**:
+
 ```bash
 yarn dev              # Start with auto-reload (port 1337)
 yarn build            # Build admin panel
 yarn start            # Production mode without reload
+```
+
+**Infrastructure Development (Bicep)**:
+
+```powershell
+# Validate Bicep templates
+bicep build iac/main.bicep
+
+# Deploy to development environment
+az deployment group create --resource-group play14-dev --template-file iac/main.bicep --parameters @iac/dev.parameters.json
+
+# Validate deployment without executing
+az deployment group validate --resource-group play14-dev --template-file iac/main.bicep --parameters @iac/dev.parameters.json
 ```
 
 ### Docker Workflow
@@ -140,6 +166,8 @@ Reusable components in `src/components/`:
 
 Follow the language-specific instructions in `.github/instructions/`:
 
+**Application Development**:
+
 - [Node.js/JavaScript Guidelines](./instructions/nodejs.instructions.md)
 - [Strapi 5 Best Practices](./instructions/strapi5.instructions.md)
 - [Testing Standards](./instructions/testing.instructions.md)
@@ -148,9 +176,20 @@ Follow the language-specific instructions in `.github/instructions/`:
 - [Performance Guidelines](./instructions/performance.instructions.md)
 - [Code Review Standards](./instructions/code-review.instructions.md)
 
+**Infrastructure Development**:
+
+- [Bicep Best Practices](./instructions/bicep.instructions.md)
+- [Azure Security Guidelines](./instructions/azure-security.instructions.md)
+- [Infrastructure Testing](./instructions/infrastructure-testing.instructions.md)
+- [Azure DevOps Pipelines](./instructions/azure-pipelines.instructions.md)
+- [Cost Optimization](./instructions/azure-cost.instructions.md)
+- [Monitoring and Observability](./instructions/azure-monitoring.instructions.md)
+
 ## Specialized Prompts
 
 Use the prompts in `.github/prompts/` for common development tasks:
+
+**Application Development**:
 
 - [Setup Strapi Component](./prompts/setup-strapi-component.prompt.md)
 - [Write Tests](./prompts/write-tests.prompt.md)
@@ -159,10 +198,28 @@ Use the prompts in `.github/prompts/` for common development tasks:
 - [Generate Documentation](./prompts/generate-docs.prompt.md)
 - [Debug Issues](./prompts/debug-issue.prompt.md)
 
+**Infrastructure Development**:
+
+- [Deploy Azure Infrastructure](./prompts/deploy-azure-infrastructure.prompt.md)
+- [Optimize Azure Costs](./prompts/optimize-azure-costs.prompt.md)
+- [Update Bicep Modules](./prompts/update-bicep-modules.prompt.md)
+- [Infrastructure Security Review](./prompts/infrastructure-security-review.prompt.md)
+- [Generate Infrastructure Documentation](./prompts/generate-infra-docs.prompt.md)
+- [Troubleshoot Deployment Issues](./prompts/troubleshoot-deployment.prompt.md)
+
 ## Chat Modes
 
 Switch to specialized modes in `.github/chatmodes/`:
 
+**Application Development**:
+
 - [Strapi Architect](./chatmodes/strapi-architect.chatmode.md) - Architecture planning
 - [Code Reviewer](./chatmodes/reviewer.chatmode.md) - Code review assistance
 - [Debugger](./chatmodes/debugger.chatmode.md) - Bug hunting and fixing
+
+**Infrastructure Development**:
+
+- [Azure Architect](./chatmodes/azure-architect.chatmode.md) - Architecture planning and design
+- [Bicep Specialist](./chatmodes/bicep-specialist.chatmode.md) - Bicep template development
+- [Infrastructure Reviewer](./chatmodes/infrastructure-reviewer.chatmode.md) - Infrastructure code review
+- [Deployment Troubleshooter](./chatmodes/deployment-troubleshooter.chatmode.md) - Deployment issue resolution
