@@ -116,7 +116,7 @@ build
 appSettings.json
 **/bootstrap/json
 src/extensions/documentation/documentation
-
+*.parameters.json
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
