@@ -1,7 +1,5 @@
 "use strict";
 
-const githubTriggerLifecycles = require("./extensions/github-trigger-lifecycles");
-
 module.exports = {
   /**
    * An asynchronous register function that runs before
@@ -9,10 +7,7 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register({ strapi }) {
-    // Register GitHub trigger lifecycle hooks
-    githubTriggerLifecycles.register({ strapi });
-  },
+  register() {},
 
   /**
    * An asynchronous bootstrap function that runs before
