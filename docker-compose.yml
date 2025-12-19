@@ -1,4 +1,3 @@
-version: '3'
 services:
   play14-api:
     container_name: play14-api
@@ -25,18 +24,18 @@ services:
       - ./.env:/opt/app/.env
       - ./public/uploads:/opt/app/public/uploads
     ports:
-      - '1337:1337'
+      - "1337:1337"
     networks:
       - play14-api
     depends_on:
       - play14-apiDB
-      
+
   play14-apiDB:
     container_name: play14-apiDB
-    platform: linux/amd64 #for platform error on Apple M1 chips
+    platform: linux/arm64
     restart: unless-stopped
     env_file: .env
-    image: postgres:14.5-alpine
+    image: postgres:17.6-alpine
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
@@ -46,16 +45,16 @@ services:
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
 
     ports:
-      - '5432:5432'
+      - "5432:5432"
     networks:
       - play14-api
-      
+
   play14-apiAdminer:
     container_name: play14-apiAdminer
     image: adminer
     restart: unless-stopped
     ports:
-      - '9090:8080'
+      - "9090:8080"
     environment:
       - ADMINER_DEFAULT_SERVER=play14-apiDB
     networks:

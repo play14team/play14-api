@@ -8,12 +8,18 @@ module.exports = ({ env }) => ({
       user: env('DATABASE_USERNAME', 'strapi'),
       password: env('DATABASE_PASSWORD', 'strapi'),
       schema: env('DATABASE_SCHEMA', 'public'), // Not required
-      // ssl: false
-      ssl: {
-        enabled: env('DATABASE_SSL', true),
-        rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), // For self-signed certificates
+      ssl: env.bool('DATABASE_SSL', true) && {
+        rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false),
       },
     },
+    pool: {
+      min: env.int('DATABASE_POOL_MIN', 5),
+      max: env.int('DATABASE_POOL_MAX', 20),
+      idleTimeoutMillis: 30000,
+      createTimeoutMillis: 30000,
+      acquireTimeoutMillis: 60000,
+    },
     debug:  env.bool('DATABASE_DEBUG', false),
+    acquireConnectionTimeout: 60000,
   },
 });

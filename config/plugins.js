@@ -1,4 +1,8 @@
 module.exports = ({ env }) => ({
+  "rebuild-trigger": {
+    enabled: true,
+    resolve: "./src/plugins/rebuild-trigger",
+  },
   graphql: {
     config: {
       apolloServer: {
