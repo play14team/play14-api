@@ -230,13 +230,13 @@ const RebuildWidget = () => {
         Trigger a rebuild of the play14 website to publish recent content changes.
       </Typography>
 
-      <Flex gap={2}>
+      <Flex gap={2} justifyContent="center">
         <Button
           onClick={handleRebuild}
           loading={loading}
           disabled={isBuilding}
           startIcon={<Play />}
-          fullWidth={!hasFailed}
+          style={{ maxWidth: "200px" }}
         >
           {loading ? "Triggering..." : isBuilding ? "Build in progress..." : "Rebuild Now"}
         </Button>
