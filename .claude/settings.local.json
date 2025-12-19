@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.strapi.io)",
+      "WebFetch(domain:forum.strapi.io)",
+      "WebFetch(domain:strapi.io)",
+      "WebFetch(domain:www.npmjs.com)",
+      "mcp__filesystem__list_directory",
+      "mcp__filesystem__directory_tree"
+    ]
+  }
+}

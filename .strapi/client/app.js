@@ -10,6 +10,7 @@ import countrySelect from "strapi-plugin-country-select/strapi-admin";
 import mapField from "strapi-plugin-map-field/strapi-admin";
 import multiSelect from "strapi-plugin-multi-select/strapi-admin";
 import timezoneSelect from "strapi-plugin-timezone-select/strapi-admin";
+import rebuildTrigger from "../../src/plugins/rebuild-trigger/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
 import customisations from "../../src/admin/app.tsx";
@@ -26,5 +27,6 @@ renderAdmin(document.getElementById("strapi"), {
     "map-field": mapField,
     "multi-select": multiSelect,
     "timezone-select": timezoneSelect,
+    "rebuild-trigger": rebuildTrigger,
   },
 });
