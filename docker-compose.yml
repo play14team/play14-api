@@ -1,11 +1,14 @@
 services:
   play14-api:
     container_name: play14-api
-    build: .
-    image: play14-api:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: play14-api:dev
     restart: unless-stopped
     env_file: .env
     environment:
+      HOST: 0.0.0.0
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: play14-apiDB
       DATABASE_NAME: ${DATABASE_NAME}

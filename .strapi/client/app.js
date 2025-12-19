@@ -3,7 +3,6 @@
  * Any modifications made will be discarded.
  */
 import ckeditor5 from "@_sh/strapi-plugin-ckeditor/strapi-admin";
-import graphql from "@strapi/plugin-graphql/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import configSync from "strapi-plugin-config-sync/strapi-admin";
 import countrySelect from "strapi-plugin-country-select/strapi-admin";
@@ -20,7 +19,6 @@ renderAdmin(document.getElementById("strapi"), {
 
   plugins: {
     ckeditor5: ckeditor5,
-    graphql: graphql,
     "users-permissions": usersPermissions,
     "config-sync": configSync,
     "country-select": countrySelect,
