@@ -61,10 +61,22 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Colors for output
-function Write-Info { Write-Host "ℹ️  $args" -ForegroundColor Cyan }
-function Write-Success { Write-Host "✅ $args" -ForegroundColor Green }
-function Write-Error { Write-Host "❌ $args" -ForegroundColor Red }
-function Write-Warning { Write-Host "⚠️  $args" -ForegroundColor Yellow }
+function Write-Info {
+    param([string]$Message)
+    Write-Host "ℹ️  $Message" -ForegroundColor Cyan
+}
+function Write-Success {
+    param([string]$Message)
+    Write-Host "✅ $Message" -ForegroundColor Green
+}
+function Write-Error {
+    param([string]$Message)
+    Write-Host "❌ $Message" -ForegroundColor Red
+}
+function Write-Warning {
+    param([string]$Message)
+    Write-Host "⚠️  $Message" -ForegroundColor Yellow
+}
 
 Write-Info "Starting provisioning of play14-api-acc container app..."
 Write-Info "Resource Group: $ResourceGroup"
