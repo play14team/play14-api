@@ -88,6 +88,17 @@ jobs:
               --min-replicas 1 \
               --max-replicas 1
 
+      - name: Start Container App
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            echo "Starting container app..."
+            az containerapp update \
+              -n ${{ env.CONTAINER_APP_ACC }} \
+              -g ${{ env.RESOURCE_GROUP }} \
+              --min-replicas 1 \
+              --max-replicas 1
+
       - name: Deploy to Acceptance Container App
         uses: azure/CLI@v2
         with:
