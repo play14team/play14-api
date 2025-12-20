@@ -271,13 +271,36 @@ nvm use 22
 
 ## Deployment Pipeline
 
-GitHub Actions workflow (`.github/workflows/play14-api-aca.yml`):
+### PR Deployment (Acceptance Environment)
+
+GitHub Actions workflow (`.github/workflows/pr-deployment.yml`):
+- **Triggers**: Pull request events (opened, synchronize, reopened, closed) targeting `main`
+- **Authentication**: Federated credentials (OIDC) - passwordless via `play14-github-actions` service principal
+- **Container App**: `play14-api-acc` (acceptance environment)
+- **Custom Domain**: `community-acc.play14.org`
+- **Lifecycle**:
+  1. On PR open/update: Build image → Push to ACR → Deploy to `play14-api-acc` → Scale up (1 replica)
+  2. On PR close: Scale down to 0 replicas (cost optimization)
+- **Image Tags**: `pr-{number}` and `pr-{number}-{sha}` for each PR
+
+### Production Deployment
+
+GitHub Actions workflow (`.github/workflows/production-deployment.yml`):
 1. Triggers on `main` branch push
 2. Builds Docker image with Mapbox token build arg
 3. Pushes to Azure Container Registry
 4. Deploys to Azure Container App `play14-api` in `play14-community` resource group
 
-**Infrastructure as Code**: Bicep templates in `iac/bicep/` with parameters for dev/acceptance/prod environments.
+### Infrastructure as Code
+
+**Bicep Templates**: `iac/main.bicep` with environment-specific parameters in `iac/bicep/parameters/`
+- **Provisioning Script**: `iac/cli/provision-acc.ps1` - Creates container app and federated credentials
+- **Validation Script**: `iac/cli/validate-deployment.ps1` - Pre-deployment checks
+- **Federated Credentials**:
+  - `play14-api-pr`: For PR deployments (`repo:play14team/play14-api:pull_request`)
+  - `play14-api-main`: For production deployments (`repo:play14team/play14-api:ref:refs/heads/main`)
+
+See [iac/DEPLOYMENT_GUIDE.md](iac/DEPLOYMENT_GUIDE.md) for detailed deployment documentation.
 
 ## Environment Variables
 
