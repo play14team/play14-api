@@ -147,9 +147,10 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const prStatus = context.payload.pull_request.merged ? 'merged' : 'closed';
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🛑 **Acceptance Environment Stopped**\n\nThe container app has been stopped to save resources.\nPR was ${{ github.event.pull_request.merged ? 'merged' : 'closed' }}.`
+              body: `🛑 **Acceptance Environment Stopped**\n\nThe container app has been stopped to save resources.\nPR was ${prStatus}.`
             })
