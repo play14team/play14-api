@@ -14,7 +14,8 @@
     "import": "strapi import --file ../backup/database/play14.tar.gz.enc",
     "start": "strapi start",
     "strapi": "strapi",
-    "dev": "podman compose up -d && podman logs -f play14-api"
+    "dev": "podman compose up -d && podman logs -f play14-api",
+    "down": "podman compose down"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^6.0.2",

@@ -6,15 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **#play14 API** is a Strapi 5 headless CMS serving the #play14 global community platform for agile game players and facilitators. Currently on `migration-v5` branch after upgrading from Strapi 4 with Node 22.
 
-**Tech Stack**: Strapi 5.31.3, Node.js 22, PostgreSQL 14.5, Azure Container Apps, Azure Blob Storage, GraphQL + REST APIs
+**Tech Stack**: Strapi 5.33.0, Node.js 22, PostgreSQL 14.5, Azure Container Apps, Azure Blob Storage, GraphQL + REST APIs
 
 ## Common Development Commands
 
 ### Local Development
 ```bash
-yarn dev              # Start with auto-reload on port 1337
+yarn develop          # Start Strapi in development mode with auto-reload
+yarn dev              # Start with Podman Compose and follow logs
 yarn build            # Build admin panel (required after plugin/config changes)
 yarn start            # Production mode without reload
+yarn down             # Stop and remove Podman Compose containers
 ```
 
 ### Database Operations
@@ -23,17 +25,25 @@ yarn export           # Export database to ../backup/database/play14
 yarn import           # Import from ../backup/database/play14.tar.gz.enc
 ```
 
-### Docker Development
+### Container Development
 ```bash
-# Local with PostgreSQL + Adminer
-docker-compose up
+# Local with PostgreSQL + Adminer (using Podman Compose)
+yarn dev              # Starts containers and follows logs
+yarn down             # Stops and removes containers
+
+# Or use Podman Compose directly
+podman compose up -d
+podman logs -f play14-api
+podman compose down
 
 # Production build (requires Mapbox token)
-docker build --build-arg STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN=<token> -t play14-api .
+podman build --build-arg STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN=<token> -t play14-api .
 
 # Run container with env file
-docker run -p 1337:1337 -it --env-file=./.env --name play14-api play14-api
+podman run -p 1337:1337 -it --env-file=./.env --name play14-api play14-api
 ```
+
+**Note**: This project uses Podman instead of Docker. All commands use `podman` and `podman compose` instead of `docker` and `docker-compose`.
 
 ### Infrastructure Deployment (Bicep)
 ```powershell
@@ -175,11 +185,12 @@ Standard Strapi routes are auto-generated. Custom routes include:
 
 **Completed**:
 - ✅ Node.js 18 → 22
-- ✅ Strapi 4.25.21 → 5.31.3
+- ✅ Strapi 4.25.21 → 5.33.0
 - ✅ Lifecycle hooks migrated to Document Service API
 - ✅ Cron tasks updated to new API
 - ✅ Admin panel configuration (`src/admin/app.tsx`)
 - ✅ Breaking dependency updates (react-router-dom 5→6, styled-components 5→6)
+- ✅ Container runtime migrated from Docker to Podman
 
 **Current Blocker** ⚠️:
 Custom field plugins are installed but not registering:
@@ -344,5 +355,5 @@ Critical variables (see `.env.example`):
 | Components | `src/components/` |
 | Bootstrap data | `bootstrap/` |
 | Infrastructure | `iac/bicep/` |
-| Docker | `Dockerfile`, `docker-compose.yml` |
+| Containers | `Dockerfile`, `docker-compose.yml` (Podman compatible) |
 | Migration docs | `MIGRATION_STATUS.md`, `MIGRATION_PLAN_STRAPI5.md` |
