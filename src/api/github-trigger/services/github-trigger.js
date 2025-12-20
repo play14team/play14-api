@@ -13,10 +13,10 @@ module.exports = ({ strapi }) => ({
   async triggerWorkflow(reason = "Content updated") {
     const config = {
       githubToken: process.env.GITHUB_TOKEN,
-      owner: "play14team",
-      repo: "play14-ui",
-      workflowId: "52506304",
-      branch: "main",
+      owner: process.env.GITHUB_OWNER || "play14team",
+      repo: process.env.GITHUB_REPO || "play14-ui",
+      workflowId: process.env.GITHUB_WORKFLOW_ID || "52506304",
+      branch: process.env.GITHUB_BRANCH || "main",
     };
 
     if (!config.githubToken) {

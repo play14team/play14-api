@@ -2,8 +2,8 @@
 
 const config = {
   githubToken: process.env.GITHUB_TOKEN,
-  owner: "play14team",
-  repo: "play14-ui",
+  owner: process.env.GITHUB_OWNER || "play14team",
+  repo: process.env.GITHUB_REPO || "play14-ui",
 };
 
 const mapRun = (run) => ({
