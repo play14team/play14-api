@@ -16,6 +16,9 @@ jobs:
     name: Build PR Image
     runs-on: ubuntu-latest
     if: github.event.action != 'closed'
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -64,6 +67,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      pull-requests: write
 
     steps:
       - name: Azure Login
@@ -123,6 +127,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      pull-requests: write
 
     steps:
       - name: Azure Login
