@@ -3,6 +3,8 @@ name: Production Deployment
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 env:
@@ -15,6 +17,7 @@ jobs:
   build-production:
     name: Build Production Image
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
 
     steps:
       - name: Checkout
