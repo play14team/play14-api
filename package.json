@@ -1,6 +1,6 @@
 {
   "name": "play14-api",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "#play14 api",
   "license": "MIT",
@@ -9,12 +9,12 @@
   },
   "scripts": {
     "build": "strapi build",
-    "dev": "strapi develop",
+    "develop": "strapi develop",
     "export": "strapi export --file ../backup/database/play14",
     "import": "strapi import --file ../backup/database/play14.tar.gz.enc",
     "start": "strapi start",
     "strapi": "strapi",
-    "podman": "podman compose up -d && podman logs -f play14-api"
+    "dev": "podman compose up -d && podman logs -f play14-api"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^6.0.2",
