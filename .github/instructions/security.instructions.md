@@ -53,7 +53,7 @@ const apiKey = "sk_this_is_a_very_bad_idea_12345";
 - Configure proper error handling to avoid information disclosure
 - Set secure HTTP headers (HSTS, X-Content-Type-Options, etc.)
 - Use environment-specific configurations
-- Regular security audits with `npm audit` or `yarn audit`
+- Regular security audits with dependency scanning tools (npm audit, Snyk, etc.)
 
 ## A06: Vulnerable Components
 

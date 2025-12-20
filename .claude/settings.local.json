@@ -14,7 +14,11 @@
       "Bash(gh run list:*)",
       "Bash(git ls-tree:*)",
       "Bash(gh pr view:*)",
-      "Bash(gh workflow:*)"
+      "Bash(gh workflow:*)",
+      "Bash(az containerapp logs show:*)",
+      "Bash(az containerapp show:*)",
+      "Bash(podman compose:*)",
+      "Bash(podman build:*)"
     ]
   }
 }

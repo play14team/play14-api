@@ -36,9 +36,9 @@ Located in `src/api/*/content-types/*/schema.json`:
 **Strapi Development**:
 
 ```bash
-yarn dev              # Start with auto-reload (port 1337)
-yarn build            # Build admin panel
-yarn start            # Production mode without reload
+bun run dev           # Start with auto-reload (port 1337)
+bun run build         # Build admin panel
+bun run start         # Production mode without reload
 ```
 
 **Infrastructure Development (Bicep)**:
@@ -54,14 +54,16 @@ az deployment group create --resource-group play14-dev --template-file iac/main.
 az deployment group validate --resource-group play14-dev --template-file iac/main.bicep --parameters @iac/dev.parameters.json
 ```
 
-### Docker Workflow
+### Container Workflow
+
+**Note**: This project uses Podman instead of Docker.
 
 ```bash
-# Local testing with docker-compose (includes PostgreSQL)
-docker-compose up
+# Local testing with podman-compose (includes PostgreSQL)
+podman compose up
 
 # Production build (requires STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN)
-docker build --build-arg STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN=<token> -t play14-api .
+podman build --build-arg STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN=<token> -t play14-api .
 ```
 
 ### Environment Setup
@@ -159,8 +161,8 @@ Reusable components in `src/components/`:
 1. **Slug Conflicts**: Lifecycle hooks modify data before save - don't manually set slugs
 2. **GraphQL Cache**: Restart dev server after schema changes to refresh introspection
 3. **Azure Upload**: Requires `defaultPath: "assets"` in provider config - don't change without CDN updates
-4. **Yarn Version**: Using Yarn 1.22.22 (see `packageManager` in package.json) - avoid `npm`
-5. **Node Version**: Check `.nvmrc` for required Node.js version (18.x expected from Dockerfile)
+4. **Bun Only**: Using Bun 1.3.5 (see `packageManager` in package.json) - avoid `npm` and `yarn`
+5. **Node Version**: Check `.nvmrc` for required Node.js version (22.x for compatibility)
 
 ## Coding Standards
 

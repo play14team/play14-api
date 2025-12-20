@@ -12,24 +12,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Local Development
 ```bash
-yarn develop          # Start Strapi in development mode with auto-reload
-yarn dev              # Start with Podman Compose and follow logs
-yarn build            # Build admin panel (required after plugin/config changes)
-yarn start            # Production mode without reload
-yarn down             # Stop and remove Podman Compose containers
+bun run develop       # Start Strapi in development mode with auto-reload
+bun run dev           # Start with Podman Compose and follow logs
+bun run build         # Build admin panel (required after plugin/config changes)
+bun run start         # Production mode without reload
+bun run down          # Stop and remove Podman Compose containers
 ```
 
 ### Database Operations
 ```bash
-yarn export           # Export database to ../backup/database/play14
-yarn import           # Import from ../backup/database/play14.tar.gz.enc
+bun run export        # Export database to ../backup/database/play14
+bun run import        # Import from ../backup/database/play14.tar.gz.enc
 ```
 
 ### Container Development
 ```bash
 # Local with PostgreSQL + Adminer (using Podman Compose)
-yarn dev              # Starts containers and follows logs
-yarn down             # Stops and removes containers
+bun run dev           # Starts containers and follows logs
+bun run down          # Stops and removes containers
 
 # Or use Podman Compose directly
 podman compose up -d
@@ -256,11 +256,18 @@ CSP configured in `config/middlewares.js`:
 
 ### Package Manager
 
-**Use Yarn 1.22.22 exclusively** (pinned in `package.json`):
+**Use Bun 1.3.5 exclusively** (pinned in `package.json`):
 ```json
-"packageManager": "yarn@1.22.22+sha512..."
+"packageManager": "bun@1.3.5"
 ```
-Do not use npm commands.
+
+Bun provides:
+- 2-10x faster dependency installation than Yarn/npm
+- Drop-in compatibility with Node.js and npm packages
+- Native TypeScript and JSX support
+- Built-in bundler and test runner
+
+Do not use npm or yarn commands - always use `bun` or `bun run`.
 
 ### Node Version
 
@@ -334,7 +341,7 @@ Critical variables (see `.env.example`):
 3. **Custom Fields**: Current blocker - plugins installed but not registering with Strapi 5
 4. **Azure Upload**: `defaultPath: "assets"` required - don't change without CDN updates
 5. **Node Version**: Use Node 22 exactly (`.nvmrc`)
-6. **Yarn Only**: Never use npm - package manager pinned to yarn@1.22.22
+6. **Bun Only**: Never use npm or yarn - package manager pinned to bun@1.3.5
 7. **Cron Jobs**: Disabled by default - enable with `CRON_ENABLED=true` in production
 8. **File Watching**: Admin panel ignores `config/sync/**`, `bootstrap/md/**`, `bootstrap/json/**`
 
