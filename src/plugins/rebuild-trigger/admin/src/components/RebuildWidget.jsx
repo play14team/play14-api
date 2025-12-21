@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Button, Flex, Typography, Box, Loader, Badge } from "@strapi/design-system";
 import { useFetchClient, useNotification } from "@strapi/strapi/admin";
-import { Check, Cross, Play, ExternalLink, ArrowClockwise } from "@strapi/icons";
+import { Check, Cross, Play, ExternalLink, ArrowClockwise, Trash } from "@strapi/icons";
 
 const PLUGIN_ID = "rebuild-trigger";
 const POLL_INTERVAL = 10000; // Poll every 10 seconds when a build is in progress
@@ -119,6 +119,7 @@ const RunInfo = ({ run, label }) => {
 
 const RebuildWidget = () => {
   const [loading, setLoading] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
   const [statusLoading, setStatusLoading] = useState(true);
   const [latestSuccessfulRun, setLatestSuccessfulRun] = useState(null);
   const [currentRun, setCurrentRun] = useState(null); // Track triggered/in-progress run
@@ -221,6 +222,35 @@ const RebuildWidget = () => {
     handleRebuild();
   };
 
+  const handleCancel = async () => {
+    if (!currentRun || !currentRun.id) return;
+
+    setCancelling(true);
+    try {
+      const response = await post(`/${PLUGIN_ID}/cancel`, {
+        runId: currentRun.id,
+      });
+
+      toggleNotification({
+        type: "success",
+        message: response.data?.message || "Workflow run cancelled successfully",
+      });
+
+      // Fetch updated status immediately
+      await fetchStatus();
+    } catch (error) {
+      toggleNotification({
+        type: "warning",
+        message:
+          error.response?.data?.error?.message ||
+          error.message ||
+          "Failed to cancel workflow run",
+      });
+    } finally {
+      setCancelling(false);
+    }
+  };
+
   const isBuilding = currentRun && (currentRun.status === "in_progress" || currentRun.status === "queued");
   const hasFailed = currentRun && currentRun.status === "completed" && currentRun.conclusion === "failure";
 
@@ -234,12 +264,24 @@ const RebuildWidget = () => {
         <Button
           onClick={handleRebuild}
           loading={loading}
-          disabled={isBuilding}
+          disabled={isBuilding || cancelling}
           startIcon={<Play />}
           style={{ maxWidth: "200px" }}
         >
           {loading ? "Triggering..." : isBuilding ? "Build in progress..." : "Rebuild Now"}
         </Button>
+
+        {isBuilding && (
+          <Button
+            onClick={handleCancel}
+            loading={cancelling}
+            disabled={cancelling}
+            variant="danger-light"
+            startIcon={<Trash />}
+          >
+            {cancelling ? "Cancelling..." : "Cancel"}
+          </Button>
+        )}
 
         {hasFailed && (
           <Button

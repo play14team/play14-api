@@ -15,7 +15,7 @@ module.exports = ({ strapi }) => ({
       githubToken: process.env.GITHUB_TOKEN,
       owner: process.env.GITHUB_OWNER || "play14team",
       repo: process.env.GITHUB_REPO || "play14-ui",
-      workflowId: process.env.GITHUB_WORKFLOW_ID || "52506304",
+      workflowId: process.env.GITHUB_WORKFLOW_ID || "217740349",
       branch: process.env.GITHUB_BRANCH || "main",
     };
 

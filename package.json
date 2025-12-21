@@ -14,7 +14,9 @@
     "import": "strapi import --file ../backup/database/play14.tar.gz.enc",
     "start": "strapi start",
     "strapi": "strapi",
-    "dev": "podman compose up --build",
+    "dev": "podman compose up -d play14-db && strapi develop",
+    "dev:pods": "podman compose up --build",
+    "db": "podman compose up -d play14-db",
     "up": "podman compose up && podman logs -f play14-api",
     "down": "podman compose down"
   },
