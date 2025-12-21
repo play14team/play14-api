@@ -82,22 +82,8 @@ jobs:
         with:
           inlineScript: |
             echo "Starting container app..."
-            az containerapp update \
-              -n ${{ env.CONTAINER_APP_ACC }} \
-              -g ${{ env.RESOURCE_GROUP }} \
-              --min-replicas 1 \
-              --max-replicas 1
-
-      - name: Start Container App
-        uses: azure/CLI@v2
-        with:
-          inlineScript: |
-            echo "Starting container app..."
-            az containerapp update \
-              -n ${{ env.CONTAINER_APP_ACC }} \
-              -g ${{ env.RESOURCE_GROUP }} \
-              --min-replicas 1 \
-              --max-replicas 1
+            az rest --method post \
+              --url "/subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ env.RESOURCE_GROUP }}/providers/Microsoft.App/containerApps/${{ env.CONTAINER_APP_ACC }}/start?api-version=2024-03-01"
 
       - name: Deploy to Acceptance Container App
         uses: azure/CLI@v2
@@ -153,11 +139,8 @@ jobs:
         with:
           inlineScript: |
             echo "Stopping container app..."
-            az containerapp update \
-              -n ${{ env.CONTAINER_APP_ACC }} \
-              -g ${{ env.RESOURCE_GROUP }} \
-              --min-replicas 0 \
-              --max-replicas 0
+            az rest --method post \
+              --url "/subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ env.RESOURCE_GROUP }}/providers/Microsoft.App/containerApps/${{ env.CONTAINER_APP_ACC }}/stop?api-version=2024-03-01"
 
       - name: Comment PR with stop notification
         uses: actions/github-script@v7
