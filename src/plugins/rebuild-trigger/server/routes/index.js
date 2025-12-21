@@ -20,6 +20,14 @@ module.exports = {
           policies: ["admin::isAuthenticatedAdmin"],
         },
       },
+      {
+        method: "POST",
+        path: "/cancel",
+        handler: "rebuild.cancel",
+        config: {
+          policies: ["admin::isAuthenticatedAdmin"],
+        },
+      },
     ],
   },
 };
