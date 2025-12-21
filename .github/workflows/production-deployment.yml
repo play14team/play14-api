@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       pr_number: ${{ steps.check.outputs.pr_number }}
+      pr_head_sha: ${{ steps.check.outputs.pr_head_sha }}
       is_pr_merge: ${{ steps.check.outputs.is_pr_merge }}
 
     steps:
@@ -31,6 +32,11 @@ jobs:
           # Check if this is a merge commit
           if git rev-parse HEAD^2 >/dev/null 2>&1; then
             echo "This is a merge commit"
+
+            # Extract PR head commit SHA (the commit that was merged, not the merge commit)
+            PR_HEAD_SHA=$(git rev-parse HEAD^2)
+            echo "PR head SHA: $PR_HEAD_SHA"
+            echo "pr_head_sha=$PR_HEAD_SHA" >> $GITHUB_OUTPUT
 
             # Extract PR number from merge commit message (format: "Merge pull request #123 from...")
             PR_NUMBER=$(git log -1 --pretty=%B | grep -oP 'Merge pull request #\K\d+' || echo "")
@@ -53,6 +59,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: check-pr-merge
     if: needs.check-pr-merge.outputs.is_pr_merge == 'true'
+    outputs:
+      image_retagged: ${{ steps.retag.outputs.success }}
     permissions:
       id-token: write
       contents: read
@@ -70,32 +78,61 @@ jobs:
           az acr login --name play14containerregistry
 
       - name: Retag PR image for production
+        id: retag
+        continue-on-error: true
         run: |
           PR_NUMBER=${{ needs.check-pr-merge.outputs.pr_number }}
-          PR_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${PR_NUMBER}-${{ github.sha }}"
+          PR_HEAD_SHA=${{ needs.check-pr-merge.outputs.pr_head_sha }}
+          PR_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${PR_NUMBER}-${PR_HEAD_SHA}"
           PROD_SHA_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
           PROD_LATEST_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
 
-          echo "Pulling PR image: $PR_IMAGE"
-          docker pull "$PR_IMAGE"
+          echo "Looking for PR image: $PR_IMAGE"
 
-          echo "Tagging as: $PROD_SHA_IMAGE"
-          docker tag "$PR_IMAGE" "$PROD_SHA_IMAGE"
+          # Check if image exists in registry
+          if az acr repository show-tags --name play14containerregistry --repository ${{ env.IMAGE_NAME }} --output json | grep -q "pr-${PR_NUMBER}-${PR_HEAD_SHA}"; then
+            echo "✅ PR image found in registry"
 
-          echo "Tagging as: $PROD_LATEST_IMAGE"
-          docker tag "$PR_IMAGE" "$PROD_LATEST_IMAGE"
+            echo "Pulling PR image: $PR_IMAGE"
+            if docker pull "$PR_IMAGE"; then
+              echo "Tagging as: $PROD_SHA_IMAGE"
+              docker tag "$PR_IMAGE" "$PROD_SHA_IMAGE"
 
-          echo "Pushing production tags..."
-          docker push "$PROD_SHA_IMAGE"
-          docker push "$PROD_LATEST_IMAGE"
+              echo "Tagging as: $PROD_LATEST_IMAGE"
+              docker tag "$PR_IMAGE" "$PROD_LATEST_IMAGE"
 
-          echo "✅ Successfully retagged PR image for production"
+              echo "Pushing production tags..."
+              docker push "$PROD_SHA_IMAGE"
+              docker push "$PROD_LATEST_IMAGE"
+
+              echo "✅ Successfully retagged PR image for production"
+              echo "success=true" >> $GITHUB_OUTPUT
+              exit 0
+            else
+              echo "❌ Failed to pull PR image"
+              echo "success=false" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+          else
+            echo "⚠️ PR image not found in registry: $PR_IMAGE"
+            echo "This could happen if:"
+            echo "  - PR was closed before acceptance deployment completed"
+            echo "  - PR deployment workflow failed"
+            echo "  - Image was manually deleted from ACR"
+            echo "Will fall back to building a new image..."
+            echo "success=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
 
   build-production:
     name: Build Production Image
     runs-on: ubuntu-latest
-    needs: check-pr-merge
-    if: needs.check-pr-merge.outputs.is_pr_merge == 'false'
+    needs: [check-pr-merge, retag-pr-image]
+    if: |
+      always() && (
+        needs.check-pr-merge.outputs.is_pr_merge == 'false' ||
+        (needs.check-pr-merge.outputs.is_pr_merge == 'true' && needs.retag-pr-image.outputs.image_retagged != 'true')
+      )
     permissions:
       id-token: write
       contents: read
