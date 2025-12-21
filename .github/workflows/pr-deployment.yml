@@ -82,6 +82,16 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Deploy to Acceptance Container App
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            echo "Deploying new image to container app (even if stopped)..."
+            az containerapp update \
+              -n ${{ env.CONTAINER_APP_ACC }} \
+              -g ${{ env.RESOURCE_GROUP }} \
+              --image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.pull_request.number }}-${{ github.sha }}
+
       - name: Start Container App
         uses: azure/CLI@v2
         with:
@@ -134,15 +144,6 @@ jobs:
 
             echo "❌ Container app failed to become ready after $MAX_ATTEMPTS attempts"
             exit 1
-
-      - name: Deploy to Acceptance Container App
-        uses: azure/CLI@v2
-        with:
-          inlineScript: |
-            az containerapp update \
-              -n ${{ env.CONTAINER_APP_ACC }} \
-              -g ${{ env.RESOURCE_GROUP }} \
-              --image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.pull_request.number }}-${{ github.sha }}
 
       - name: Get Container App URL
         id: get-url
