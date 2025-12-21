@@ -90,6 +90,51 @@ jobs:
             az rest --method post \
               --url "/subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ env.RESOURCE_GROUP }}/providers/Microsoft.App/containerApps/${{ env.CONTAINER_APP_ACC }}/start?api-version=2024-03-01"
 
+      - name: Wait for Container App to be Ready
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            echo "Waiting for container app to be ready..."
+
+            # Get the app URL
+            APP_URL=$(az containerapp show \
+              -n ${{ env.CONTAINER_APP_ACC }} \
+              -g ${{ env.RESOURCE_GROUP }} \
+              --query properties.configuration.ingress.fqdn \
+              -o tsv)
+
+            if [ -z "$APP_URL" ]; then
+              echo "Error: Could not retrieve container app URL"
+              exit 1
+            fi
+
+            HEALTH_URL="https://$APP_URL/_health"
+            MAX_ATTEMPTS=60
+            SLEEP_SECONDS=10
+            attempt=1
+
+            echo "Checking health endpoint: $HEALTH_URL"
+            echo "Will retry up to $MAX_ATTEMPTS times (${SLEEP_SECONDS}s intervals, ~$((MAX_ATTEMPTS * SLEEP_SECONDS / 60)) minutes total)"
+
+            while [ $attempt -le $MAX_ATTEMPTS ]; do
+              echo "Attempt $attempt/$MAX_ATTEMPTS..."
+
+              # Use curl to check health endpoint
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -m 10 "$HEALTH_URL" || echo "000")
+
+              if [ "$HTTP_CODE" = "204" ] || [ "$HTTP_CODE" = "200" ]; then
+                echo "✅ Container app is ready (HTTP $HTTP_CODE)"
+                exit 0
+              fi
+
+              echo "Container app not ready yet (HTTP $HTTP_CODE). Waiting ${SLEEP_SECONDS}s..."
+              sleep $SLEEP_SECONDS
+              attempt=$((attempt + 1))
+            done
+
+            echo "❌ Container app failed to become ready after $MAX_ATTEMPTS attempts"
+            exit 1
+
       - name: Deploy to Acceptance Container App
         uses: azure/CLI@v2
         with:
